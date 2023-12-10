@@ -1,1 +1,6 @@
-321
+321 //dev branch
+123 //main branch
+
+Sau khi merge nhánh main và nhánh dev, trong file txt có 1 dòng cùng bị thay đổi ở các nhánh, git sẽ hiện các phiên bản bị thay đổi của dòng đó, cần chọn phiên bản muốn giữ hoặc hợp nhất hoặc sửa thủ công
+giải quyết bằng cách xóa những dòng có <<< HEAD, ====, >>>>
+Sau khi resovle conflict dùng git merge --continue để tiếp tục merge
