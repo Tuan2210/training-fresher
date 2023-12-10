@@ -1,0 +1,288 @@
+:root {
+  --txtActive: #291CCB;
+  --txtMenu: #6E7998;
+  --txtContent: #98A0B5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.txtLeft {
+  text-align: left;
+}
+
+.txtRight {
+  text-align: right;
+}
+
+.txtCenter {
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.menu {
+  width: 240px;
+  max-height: 100%;
+  border-right: 2px solid #F0F1F3;
+  justify-content: space-between;
+}
+.menu .topMenu {
+  padding: 20px;
+}
+.menu .boxMenu {
+  width: 204px;
+  height: 264px;
+  margin-top: 10px;
+  gap: 4px;
+  justify-content: space-around;
+}
+.menu .boxMenu img {
+  width: 18px;
+  height: 18px;
+  margin-right: 5%;
+}
+.menu .boxMenu span {
+  margin-left: 15%;
+}
+.menu .tab {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  border-radius: 8px;
+  gap: 18px;
+  color: var(--txtMenu);
+}
+.menu .activeTab {
+  color: var(--txtActive);
+}
+
+.activeTab {
+  background: #EDEDFC;
+  color: var(--txtActive);
+  font-weight: bold;
+}
+
+.hoverBtn {
+  cursor: pointer;
+}
+
+.hoverBtn:hover {
+  background: #EDEDFC;
+}
+
+.bottomMenu {
+  margin: 0 auto;
+  margin-bottom: 3%;
+  width: 204px;
+  height: 142px;
+  justify-content: space-between;
+}
+.bottomMenu .topSide {
+  width: 204px;
+  height: 32px;
+}
+.bottomMenu .topSide .titleRows {
+  gap: 4px;
+  margin-left: 5%;
+}
+.bottomMenu .centerSide {
+  justify-content: space-between;
+}
+.bottomMenu .centerSide button {
+  position: relative;
+  width: 100px;
+  height: 38px;
+  border-radius: 6px;
+  border: 1px;
+  padding: 9px 17px 9px 17px;
+}
+.bottomMenu .centerSide .btnDeposit {
+  background: #fff;
+  border: 1px solid #DBDDE5;
+}
+.bottomMenu .centerSide .btnWithdraw {
+  background: #4C40E6;
+  color: #fff;
+}
+.bottomMenu .bottomSide {
+  justify-content: space-between;
+}
+.bottomMenu .bottomSide button {
+  background: #fff;
+  border: none;
+}
+.bottomMenu .bottomSide .btnCollapse {
+  width: 112px;
+  height: 40px;
+  border-radius: 4px;
+  padding: 9px;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  color: var(--txtMenu);
+}
+
+.content-footer {
+  width: 100%;
+}
+
+.content {
+  width: 85%;
+  height: 100%;
+  padding: 2%;
+}
+.content .header {
+  width: 100%;
+  height: 36px;
+}
+.content .header button {
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  padding: 8px 12px 8px 12px;
+}
+.content .header button:hover {
+  background: #EDEDFC;
+}
+.content .header .btnAll {
+  width: 41px;
+}
+.content .header .btnOpen {
+  background: none;
+  margin-left: 1%;
+  width: 60px;
+  color: var(--txtContent);
+}
+.content .table-wrapper {
+  border-radius: 10px 10px 0px 0px;
+  border-style: solid;
+  border-color: #F0F1F3;
+  position: relative;
+  width: 1152px;
+  top: 12px;
+  font-size: 14px;
+  line-height: 20px;
+  overflow-y: auto;
+}
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-y: auto;
+}
+.content table thead {
+  color: var(--txtContent);
+  font-size: 12px;
+  line-height: 16px;
+  background: #F9F9FA;
+  border-bottom: 2px solid #F0F1F3;
+}
+.content table tbody tr:ntn-child(odd) {
+  background: #F9F9FA;
+}
+.content table th,
+.content table td {
+  padding: 16px 24px 16px 24px;
+}
+.content table td P {
+  display: inline-block;
+}
+
+#test tr:nth-of-type(2n) {
+  background: #F9F9FA;
+}
+
+.buy {
+  color: #00632B;
+}
+
+.sell {
+  color: #B01212;
+}
+
+.stt {
+  border-radius: 4px;
+  padding: 2px 10px 2px 10px;
+}
+
+.openStt {
+  color: #00632B;
+  background: #E8FCF1;
+}
+
+.filledStt {
+  color: #976400;
+  background: #FFF5D5;
+}
+
+.canceledStt {
+  color: #B01212;
+  background: #FFEBEB;
+}
+
+.btnCancel {
+  color: #B01212;
+  border: none;
+  background: none;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-top: 2px solid var(--devider);
+  color: #5A6689;
+  border-top: 1px solid #F0F1F3;
+}
+
+.pagination ul {
+  display: flex;
+}
+.pagination ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--cl-senary);
+  cursor: pointer;
+  border: 1px solid #F0F1F3;
+}
+
+.pagination ul li.active {
+  background: #EDEDFC;
+  border: 1px solid #291CCB;
+}
+
+.pagination ul li:has(img) {
+  padding: 9px;
+}
+
+.pagination ul li:not(:has(img)) {
+  padding: 9px 17px;
+}/*# sourceMappingURL=styles.css.map */

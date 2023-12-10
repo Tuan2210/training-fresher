@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BT2</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <div class="container flexRow">
+        <div class="menu flexColumn">
+            <div class="topMenu">
+                <img src="imgs/Group 12328.png" alt="logo" id="logo">
+                <ul class="boxMenu flexColumn">
+                    <li class="tab hoverBtn"><img src="imgs/trade.png" alt="" class="menuIcons">Trade</li>
+                    <li class="tab activeTab"><img src="imgs/Orders.png" alt="" class="menuIcons">Orders</li>
+                    <li class="tab hoverBtn" style="color: #291CCB"><span></span>All</li>
+                    <li class="tab hoverBtn"><span></span>Open</li>
+                    <li class="tab hoverBtn"><img src="imgs/History.png" alt="" class="menuIcons">History</li>
+                    <li class="tab hoverBtn"><img src="imgs/settings.png" alt="" class="menuIcons">Settings</li>
+                </ul>
+            </div>
+            <div class="bottomMenu flexColumn">
+                <div class="topSide flexRow">
+                    <img src="imgs/Metamask.png" alt="" id="avatar">
+                    <div class="titleRows">
+                        <p><b>0.000244 ETH</b></p>
+                        <p>0xGD63...6DS9</p>
+                    </div>
+                </div>
+                <div class="centerSide flexRow">
+                    <button class="btnDeposit hoverBtn">Deposit</button>
+                    <button class="btnWithdraw hoverBtn">Withdraw</button>
+                </div>
+                <div class="bottomSide flexRow">
+                    <button class="btnCollapse flexRow hoverBtn">
+                        <img src="imgs/collapse-active.png" alt="">
+                        <p>Collapse</p>
+                    </button>
+                    <button class="hoverBtn"><img src="imgs/Group.png" alt=""></button>
+                </div>
+            </div>
+        </div>
+        <div class="content-footer flexColumn">
+            <div class="content">
+                <div class="header flexRow">
+                    <button class="btnAll activeTab hoverBtn">All</button>
+                    <button class="btnOpen hoverBtn">Open</button>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="txtLeft">DATE</th>
+                                <th class="txtLeft">MARKET</th>
+                                <th class="txtLeft">SIDE</th>
+                                <th class="txtLeft">PRICE</th>
+                                <th class="txtLeft">AMOUNT</th>
+                                <th class="txtLeft">VALUE</th>
+                                <th class="txtLeft">FILLED</th>
+                                <th class="txtLeft">STATUS</th>
+                                <th class="txtLeft" style="color: #B01212;">CANCEL &nbsp;ALL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="test">
+                        </tbody>
+                    </table>
+                    <div class="footer">
+                        <span class="">Showing <b>1</b> to <b>10</b> of <b>97</b> results</span>
+                        <div class="pagination">
+                            <ul>
+                                <li class="hoverBtn"><img src="imgs/Chevron left.png" alt="left" /></li>
+                                <li class="active hoverBtn">1</li>
+                                <li class="hoverBtn">2</li>
+                                <li class="hoverBtn">3</li>
+                                <li class="none hoverBtn">...</li>
+                                <li class="hoverBtn">5</li>
+                                <li class="hoverBtn">6</li>
+                                <li class="hoverBtn">7</li>
+                                <li class="hoverBtn"><img src="imgs/Chevron right.png" alt="right" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
