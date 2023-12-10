@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Fleur+De+Leah&family=Inter:wght@500&family=Mansalva&family=Mystery+Quest&display=swap");
 :root {
   --txtActive: #291CCB;
   --txtMenu: #6E7998;
@@ -14,6 +15,10 @@ html,
 body {
   min-width: 100%;
   max-width: 100%;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .flexColumn {
@@ -43,31 +48,31 @@ body {
   height: 100%;
 }
 
-.menu {
+.sidebar {
   width: 240px;
   max-height: 100%;
   border-right: 2px solid #F0F1F3;
   justify-content: space-between;
 }
-.menu .topMenu {
+.sidebar .top-sidebar {
   padding: 20px;
 }
-.menu .boxMenu {
+.sidebar .menu {
   width: 204px;
   height: 264px;
   margin-top: 10px;
   gap: 4px;
   justify-content: space-around;
 }
-.menu .boxMenu img {
+.sidebar .menu img {
   width: 18px;
   height: 18px;
   margin-right: 5%;
 }
-.menu .boxMenu span {
+.sidebar .menu span {
   margin-left: 15%;
 }
-.menu .tab {
+.sidebar .tab {
   display: flex;
   align-items: center;
   height: 42px;
@@ -75,7 +80,7 @@ body {
   gap: 18px;
   color: var(--txtMenu);
 }
-.menu .activeTab {
+.sidebar .activeTab {
   color: var(--txtActive);
 }
 
@@ -93,25 +98,34 @@ body {
   background: #EDEDFC;
 }
 
-.bottomMenu {
+.bottom-sidebar {
   margin: 0 auto;
   margin-bottom: 3%;
   width: 204px;
   height: 142px;
   justify-content: space-between;
 }
-.bottomMenu .topSide {
+.bottom-sidebar .topSide {
   width: 204px;
   height: 32px;
 }
-.bottomMenu .topSide .titleRows {
+.bottom-sidebar .topSide .titleRows {
   gap: 4px;
   margin-left: 5%;
 }
-.bottomMenu .centerSide {
+.bottom-sidebar .topSide .titleRows .title1 {
+  font-size: 16px;
+  line-height: 24px;
+}
+.bottom-sidebar .topSide .titleRows .title2 {
+  font-size: 12px;
+  line-height: 12px;
+  color: #76809D;
+}
+.bottom-sidebar .centerSide {
   justify-content: space-between;
 }
-.bottomMenu .centerSide button {
+.bottom-sidebar .centerSide button {
   position: relative;
   width: 100px;
   height: 38px;
@@ -119,22 +133,24 @@ body {
   border: 1px;
   padding: 9px 17px 9px 17px;
 }
-.bottomMenu .centerSide .btnDeposit {
+.bottom-sidebar .centerSide .btnDeposit {
   background: #fff;
   border: 1px solid #DBDDE5;
+  font-family: "Inter";
 }
-.bottomMenu .centerSide .btnWithdraw {
+.bottom-sidebar .centerSide .btnWithdraw {
   background: #4C40E6;
   color: #fff;
+  font-family: "Inter";
 }
-.bottomMenu .bottomSide {
+.bottom-sidebar .bottomSide {
   justify-content: space-between;
 }
-.bottomMenu .bottomSide button {
+.bottom-sidebar .bottomSide button {
   background: #fff;
   border: none;
 }
-.bottomMenu .bottomSide .btnCollapse {
+.bottom-sidebar .bottomSide .btnCollapse {
   width: 112px;
   height: 40px;
   border-radius: 4px;
@@ -143,6 +159,7 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--txtMenu);
+  font-family: "Inter";
 }
 
 .content-footer {
@@ -169,12 +186,14 @@ body {
 }
 .content .header .btnAll {
   width: 41px;
+  font-family: "Inter";
 }
 .content .header .btnOpen {
   background: none;
   margin-left: 1%;
   width: 60px;
   color: var(--txtContent);
+  font-family: "Inter";
 }
 .content .table-wrapper {
   border-radius: 10px 10px 0px 0px;
@@ -246,6 +265,7 @@ body {
   color: #B01212;
   border: none;
   background: none;
+  font-family: "Inter";
 }
 
 .footer {
@@ -266,7 +286,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 20px;
   font-weight: 500;
   color: var(--cl-senary);

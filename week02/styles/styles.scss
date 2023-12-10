@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Fleur+De+Leah&family=Inter:wght@500&family=Mansalva&family=Mystery+Quest&display=swap');
 :root {
     --txtActive: #291CCB;
     --txtMenu: #6E7998;
@@ -14,6 +15,10 @@ html,
 body {
     min-width: 100%;
     max-width: 100%;
+    font-family: 'Inter';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
 }
 
 .flexColumn {
@@ -43,15 +48,15 @@ body {
     height: 100%;
 }
 
-.menu {
+.sidebar {
     width: 240px;
     max-height: 100%;
     border-right: 2px solid #F0F1F3;
     justify-content: space-between;
-    .topMenu {
+    .top-sidebar {
         padding: 20px;
     }
-    .boxMenu {
+    .menu {
         // position: absolute;
         width: 204px;
         height: 264px;
@@ -94,7 +99,7 @@ body {
     background: #EDEDFC;
 }
 
-.bottomMenu {
+.bottom-sidebar {
     margin: 0 auto;
     margin-bottom: 3%;
     width: 204px;
@@ -106,6 +111,15 @@ body {
         .titleRows {
             gap: 4px;
             margin-left: 5%;
+            .title1 {
+                font-size: 16px;
+                line-height: 24px;
+            }
+            .title2 {
+                font-size: 12px;
+                line-height: 12px;
+                color: #76809D;
+            }
         }
     }
     .centerSide {
@@ -121,10 +135,12 @@ body {
         .btnDeposit {
             background: #fff;
             border: 1px solid #DBDDE5;
+            font-family: 'Inter';
         }
         .btnWithdraw {
             background: #4C40E6;
             color: #fff;
+            font-family: 'Inter';
         }
     }
     .bottomSide {
@@ -142,6 +158,7 @@ body {
             align-items: center;
             justify-content: center;
             color: var(--txtMenu);
+            font-family: 'Inter';
         }
     }
 }
@@ -170,12 +187,14 @@ body {
         }
         .btnAll {
             width: 41px;
+            font-family: 'Inter';
         }
         .btnOpen {
             background: none;
             margin-left: 1%;
             width: 60px;
             color: var(--txtContent);
+            font-family: 'Inter';
         }
     }
     .table-wrapper {
@@ -250,6 +269,7 @@ body {
     color: #B01212;
     border: none;
     background: none;
+    font-family: 'Inter';
 }
 
 // footer
@@ -270,7 +290,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.2rem;
+        font-size: 1rem;
         line-height: 20px;
         font-weight: 500;
         color: var(--cl-senary);
