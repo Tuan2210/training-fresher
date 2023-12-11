@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Fleur+De+Leah&family=Inter:wght@300&family=Mansalva&family=Mystery+Quest&family=Poppins:wght@400&display=swap');
+:root {
+    --txtColorInfoDetails: #979797;
+    --txtSizeInfoDetails: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    min-width: 100%;
+    max-width: 100%;
+    font-family: 'Poppins';
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.txtLeft {
+    text-align: left;
+}
+
+.txtRight {
+    text-align: right;
+}
+
+.txtCenter {
+    text-align: center;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+section {
+    width: 100%;
+}
+
+button:hover,
+.btnSearch:hover,
+.btnViewAll:hover,
+.btnReadMore:hover {
+    cursor: pointer;
+}
+
+.main {
+    background-image: url("../imgs/bg-image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100dvh;
+    border-radius: 0px 0px 54px 54px;
+    .container {
+        width: 80%;
+        height: 100dvh;
+        align-items: center;
+        margin: 0 auto;
+        padding: 32px 0px 120px 0px;
+        justify-content: space-between;
+        .header {
+            width: 100%;
+            #logo {
+                object-fit: contain;
+            }
+            .main_menu {
+                width: 100%;
+                justify-content: space-around;
+                align-items: center;
+                color: #818182;
+                list-style-type: none;
+                padding: 0 5%;
+            }
+            .user {
+                align-items: center;
+                width: 20%;
+                display: flex;
+                justify-content: space-between;
+                .user-name {
+                    width: 100%;
+                    span,
+                    p {
+                        padding-right: 5%;
+                    }
+                    span {
+                        color: #818182;
+                    }
+                    p {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .cta {
+            width: 100%;
+            height: 100%;
+            // background: red;
+            justify-content: center;
+            align-items: center;
+            .cta-title {
+                color: #fff;
+                font-size: 48px;
+                font-weight: 600;
+                line-height: 62px;
+                gap: 24px;
+            }
+            button {
+                background-color: #7B61FF;
+                color: #fff;
+                border-radius: 12px;
+                padding: 2%;
+                gap: 8px;
+                border: none;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                margin-top: 4%;
+            }
+        }
+        .row {
+            width: 100%;
+            height: 20%;
+            padding: 0 5% 0 5%;
+            .search-row {
+                background: #fff;
+                width: 100%;
+                height: 100%;
+                padding: 8px;
+                border-radius: 12px;
+                justify-content: space-between;
+                align-items: center;
+                .input {
+                    border: none;
+                    width: 100%;
+                    height: 100%;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 2%;
+                    background: none;
+                    .content {
+                        width: 100%;
+                        span,
+                        p {
+                            margin-left: 5%;
+                        }
+                        span {
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 20px;
+                            color: #979797;
+                        }
+                        p {
+                            font-size: 16px;
+                            font-weight: 500;
+                            line-height: 24px;
+                        }
+                    }
+                }
+                .btnSearch {
+                    background: #7B61FF;
+                    padding: 2.5%;
+                    border-radius: 12px;
+                    width: 60px;
+                    height: 60px;
+                    gap: 8px;
+                    border: none;
+                    background-image: url("../imgs/icon-search.png");
+                    background-repeat: no-repeat;
+                    background-size: 40% 40%;
+                    background-position: center;
+                }
+            }
+        }
+    }
+}
+
+.container {
+    width: 90%;
+    align-items: flex-start;
+    margin: 0 auto;
+    .title {
+        padding-bottom: 64px;
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 48px;
+        text-align: left;
+    }
+    .row {
+        width: 100%;
+        justify-content: space-between;
+        .card {
+            width: 100%;
+            margin-right: 2%;
+            .info {
+                margin-top: 5%;
+                .name {
+                    font-size: 16px;
+                    font-weight: 500;
+                    line-height: 20px;
+                }
+                .place {
+                    // background: red;
+                    font-size: var(--txtSizeInfoDetails);
+                    color: var(--txtColorInfoDetails);
+                    justify-content: space-between;
+                    align-items: center;
+                    span {
+                        width: 100%;
+                    }
+                    #map {
+                        margin-right: 3%;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+    .top-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+.btnViewAll,
+.btnReadMore {
+    color: #7B61FF;
+    background: #F6F4FF;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    gap: 4px;
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.popular-destinations {
+    height: 50%;
+    padding: 120px 0px;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.hotels-restaurants {
+    .place {
+        margin-top: 5%;
+    }
+}
+
+.tips-advice {
+    padding-bottom: 120px;
+    .travel-card {
+        width: 48%;
+        justify-content: space-between;
+        align-items: center;
+        .content {
+            width: 45%;
+            height: 100%;
+            justify-content: space-between;
+            align-items: center;
+            // background: red;
+            .top-content {
+                font-size: 22px;
+                font-weight: 600;
+                line-height: 34px;
+            }
+            .center-content,
+            .bottom-content {
+                font-size: var(--txtSizeInfoDetails);
+                color: var(--txtColorInfoDetails);
+            }
+            .bottom-content {
+                width: 100%;
+                .item {
+                    width: fit-content;
+                    align-items: center;
+                    margin-right: 5%;
+                }
+            }
+        }
+    }
+}
+
+.about-us {
+    margin: 0 auto;
+    width: 75%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3%;
+    .col-left {
+        width: 60%;
+        height: 100%;
+        justify-content: space-between;
+        .title {
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 48px;
+        }
+        .content {
+            padding: 4% 0 4% 0;
+            color: #5B5B5B;
+            font-family: Poppins;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 32px;
+        }
+    }
+}
+
+.hotels-restaurants,
+.tips-advice,
+.activities,
+.about-us {
+    padding-bottom: 120px;
+}
+
+// footer
+.footer {
+    padding: 120px 0px;
+    background: #F9F9F9;
+    .row {
+        gap: 64px;
+        .col-left {
+            width: 40%;
+            gap: 32px;
+            justify-content: space-between;
+            .row-top {
+                gap: 16px;
+                p {
+                    color: var(--txtColorInfoDetails);
+                    font-size: var(--txtSizeInfoDetails);
+                }
+            }
+            .row-bottom {
+                gap: 32px;
+            }
+        }
+        .col-center {
+            width: 50%;
+            height: 100%;
+            gap: 64px;
+            ul {
+                list-style-type: none;
+                gap: 12px;
+                li {
+                    color: var(--txtColorInfoDetails);
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+            }
+            p {
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 28px;
+                // margin-bottom: 0%;
+            }
+            .about,
+            .company,
+            .support {
+                height: 100%;
+                gap: 20px;
+                justify-content: space-between;
+            }
+        }
+        .col-right {
+            width: 40%;
+            height: 100%;
+            justify-content: space-between;
+            gap: 20px;
+            .row-bottom {
+                justify-content: space-between;
+                gap: 16px;
+                .input-email-box {
+                    width: 70%;
+                    padding: 16px;
+                    background: #fff;
+                    align-items: center;
+                    gap: 16px;
+                    input {
+                        border: none;
+                    }
+                    .content p {
+                        color: var(--txtColorInfoDetails);
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 20px;
+                    }
+                    .input-email {
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 24px;
+                    }
+                }
+                button {
+                    padding: 24px;
+                    border-radius: 12px;
+                    background: #7B61FF;
+                    border: none;
+                }
+            }
+        }
+    }
+}

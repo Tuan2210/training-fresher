@@ -5,10 +5,341 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week2 - Layout2</title>
+    <!-- <link rel="stylesheet" href="styles/gridSystem.css"> -->
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
+    <div class="wrapper flexColumn">
+        <!-- main -->
+        <section class="main">
+            <div class="container flexColumn">
+                <div class="header flexRow">
+                    <img src="imgs/logo.png" alt="logo" id="logo">
+                    <ul class="main_menu flexRow">
+                        <li class="tab">home</li>
+                        <li class="tab">hotels</li>
+                        <li class="tab">restaurants</li>
+                        <li class="tab">tours</li>
+                        <li class="tab">destinations</li>
+                        <li class="tab">activities</li>
+                        <li class="tab">contact</li>
+                    </ul>
+                    <div class="user flexRow">
+                        <div class="user-name flexColumn txtRight">
+                            <span>Holla,</span>
+                            <p>Ales Nesetril</p>
+                        </div>
+                        <img src="imgs/avatar.png" alt="avatar">
+                    </div>
+                </div>
+                <div class="cta flexColumn">
+                    <div class="cta-title">Discover the most engaging places</div>
+                    <button class="flexRow"><img src="imgs/global-line.png" alt="">Discover on 3D Globe</button>
+                </div>
+                <div class="row">
+                    <div class="search-row flexRow">
+                        <button class="input flexRow">
+                            <img src="imgs/icon-location.png" alt="ico-location">
+                            <div class="content flexColumn txtLeft">
+                                <span>Location</span>
+                                <p><b>Explore nearby destinations</b></p>
+                            </div>
+                        </button>
+                        <button class="input flexRow">
+                            <img src="imgs/icon-activity.png" alt="ico-activity">
+                            <div class="content flexColumn txtLeft">
+                                <span>Activity</span>
+                                <p><b>All Activities</b></p>
+                            </div>
+                        </button>
+                        <button class="input flexRow">
+                            <img src="imgs/icon-calendar.png" alt="ico-calendar">
+                            <div class="content flexColumn txtLeft">
+                                <span>When</span>
+                                <p><b>Choose a Date</b></p>
+                            </div>
+                        </button>
+                        <button class="input flexRow">
+                            <img src="imgs/icon-guest.png" alt="ico-guest">
+                            <div class="content flexColumn txtLeft">
+                                <span>Guests</span>
+                                <p><b>1 Guest</b></p>
+                            </div>
+                        </button>
+                        <input type="button" class="btnSearch">
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- popular destinations -->
+        <section class="popular-destinations container flexColumn">
+            <p class="title"><b>Popular Destinations</b></p>
+            <div class="row flexRow">
+                <div class="card flexColumn">
+                    <img src="imgs/big-sur.png" alt="">
+                    <div class="info flexColumn">
+                        <p class="name">Big Sur</p>
+                        <p class="place">Califomia, USA</p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/Prescott.png" alt="Prescott">
+                    <div class="info flexColumn">
+                        <p class="name">Prescott</p>
+                        <p class="place">Arizona, USA</p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/Fort-Mayers.png" alt="Fort-Mayers">
+                    <div class="info flexColumn">
+                        <p class="name">Fort Mayers</p>
+                        <p class="place">Florida, USA</p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/Tucson.png" alt="Tucson">
+                    <div class="info flexColumn">
+                        <p class="name">Tucson</p>
+                        <p class="place">Arizona, USA</p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/St-Joseph.png" alt="StJoseph">
+                    <div class="info flexColumn">
+                        <p class="name">St. Joseph</p>
+                        <p class="place">Michigan, USA</p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/Madrid.png" alt="Madrid">
+                    <div class="info flexColumn">
+                        <p class="name">Madrid</p>
+                        <p class="place">Spain</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- hotels-restaurants -->
+        <section class="hotels-restaurants container flexColumn">
+            <div class="top-container flexRow">
+                <p class="title"><b>Hotels and Restaurants</b></p>
+                <div class="btnViewAll flexRow">
+                    View all
+                    <img src="imgs/arrow-right-line.png" alt="">
+                </div>
+            </div>
+            <div class="row flexRow">
+                <div class="card flexColumn">
+                    <img src="imgs/hotel1.png" alt="">
+                    <div class="info flexColumn">
+                        <p class="name">Monastero Santa Rosa Hotel & Spa</p>
+                        <p class="place flexRow">
+                            <img src="imgs/map-pin-line.png" alt="map" id="map"><span>Salerno, Italy</span>
+                            <img src="imgs/rating-bar-1.png" alt="" id="rating-bar">
+                        </p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/hotel2.png" alt="">
+                    <div class="info flexColumn">
+                        <p class="name">Grand Hotel Tremezzo</p>
+                        <p class="place flexRow">
+                            <img src="imgs/map-pin-line.png" alt="map" id="map"><span>Lake Como, Italy</span>
+                            <img src="imgs/rating-bar-2.png" alt="" id="rating-bar">
+                        </p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/hotel3.png" alt="">
+                    <div class="info flexColumn">
+                        <p class="name">The Oberoi Udaivilas, Udaipur</p>
+                        <p class="place flexRow">
+                            <img src="imgs/map-pin-line.png" alt="map" id="map"><span>Udaipur, India</span>
+                            <img src="imgs/rating-bar-3.png" alt="" id="rating-bar">
+                        </p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/hotel4.png" alt="">
+                    <div class="info flexColumn">
+                        <p class="name">AKA Beverly Hills</p>
+                        <p class="place flexRow">
+                            <img src="imgs/map-pin-line.png" alt="map" id="map">
+                            <span>Los Angeles, United States</span>
+                            <img src="imgs/rating-bar-4.png" alt="" id="rating-bar">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- travel tips-advice -->
+        <section class="tips-advice container flexColumn">
+            <div class="top-container flexRow">
+                <p class="title"><b>Travel Tips and Advice</b></p>
+                <div class="btnViewAll flexRow">
+                    View all
+                    <img src="imgs/arrow-right-line.png" alt="">
+                </div>
+            </div>
+            <div class="row flexRow">
+                <div class="travel-card flexRow">
+                    <img class="travel1" src="imgs/travel1.png" alt="travel1" />
+                    <div class="content flexColumn">
+                        <div class="top-content">East Village Ice Cream Crawl</div>
+                        <div class="center-content">We will stop at five different world-class ice cream shops on this 1.5 mile 1.5 hour tour. At each ice cream store we'll explore the story behind the business and see what makes the ice cream unique as you savor every…</div>
+                        <div class="bottom-content flexRow">
+                            <div class="item flexRow">
+                                <img src="imgs/calendar-2-line.png" alt="" />&nbsp;Today
+                            </div>
+                            <div class="item flexRow">
+                                <img src="imgs/user-line.png" alt="" />&nbsp;Maria Philips
+                            </div>
+                            <div class="item flexRow">
+                                <img src="imgs/chat-3-line.png" alt="" />&nbsp;2
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="travel-card flexRow">
+                    <img class="travel1" src="imgs/travel2.png" alt="travel2" />
+                    <div class="content flexColumn">
+                        <div class="top-content">Brooklyn Bridge cinematic photo walk</div>
+                        <div class="center-content">This experience takes place at the Brooklyn Bridge Park and Brooklyn Bridge, but I’m always open to capture clients at different locations upon request for an additional charge. </div>
+                        <div class="bottom-content flexRow">
+                            <div class="item flexRow">
+                                <img src="imgs/calendar-2-line.png" alt="" />&nbsp;Today
+                            </div>
+                            <div class="item flexRow">
+                                <img src="imgs/user-line.png" alt="" />&nbsp;James Calzoni
+                            </div>
+                            <div class="item flexRow">
+                                <img src="imgs/chat-3-line.png" alt="" />&nbsp;17
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- activities -->
+        <section class="activities container flexColumn">
+            <div class="top-container flexRow">
+                <p class="title"><b>Activities</b></p>
+                <div class="btnViewAll flexRow">
+                    View all
+                    <img src="imgs/arrow-right-line.png" alt="">
+                </div>
+            </div>
+            <div class="row flexRow">
+                <div class="card flexColumn">
+                    <img src="imgs/sailing.png" alt="">
+                    <div class="info flexColumn">
+                        <p class="name">Sailing</p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/climbing.png" alt="">
+                    <div class="info flexColumn">
+                        <p class="name">Climbing</p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/skiing.png" alt="">
+                    <div class="info flexColumn">
+                        <p class="name">Skiing</p>
+                    </div>
+                </div>
+                <div class="card flexColumn">
+                    <img src="imgs/hiking.png" alt="">
+                    <div class="info flexColumn">
+                        <p class="name">Hiking</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- about us -->
+        <section class="about-us flexRow">
+            <div class="col-left flexColumn">
+                <div class="title">About Us</div>
+                <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a sapien justo. Nulla facilisis tristique imperdiet. Nullam a placerat odio. Sed in ex augue. Aliquam porta consectetur lorem sit amet ultrices. Class aptent taciti sociosqu
+                    ad litora torquent per conubia nostra, per inceptos himenaeos.</div>
+                <div class="bottom"></div>
+                <div class="btnReadMore flexRow">
+                    Read more
+                    <img src="imgs/arrow-right-line.png" alt="">
+                </div>
+            </div>
+            <div class="col-right flexColumn">
+                <img src="imgs/about-us.png" alt="about-us">
+            </div>
+        </section>
+
+        <!-- footer -->
+        <section class="footer">
+            <div class="container row flexRow">
+                <div class="col-left flexColumn">
+                    <div class="row-top flexColumn">
+                        <img src="imgs/logo2.png" alt="logo2" id="logo2" width="35%" height="45%">
+                        <p>We always make our customers happy by providing as many choises as possible</p>
+                    </div>
+                    <div class="row-bottom flexRow">
+                        <a href="https://www.facebook.com"><img src="imgs/fb.png" alt="fb"></a>
+                        <a href="https://twitter.com"><img src="imgs/twitter-fill.png" alt="twitter"></a>
+                        <a href="https://www.instagram.com"><img src="imgs/instagram-fill.png" alt="ig"></a>
+                    </div>
+                </div>
+                <div class="col-center flexRow">
+                    <div class="about flexColumn">
+                        <p><b>About</b></p>
+                        <ul class="flexColumn">
+                            <li>About Us</li>
+                            <li>Features</li>
+                            <li>News</li>
+                            <li>Menu</li>
+                        </ul>
+                    </div>
+                    <div class="company flexColumn">
+                        <p><b>Company</b></p>
+                        <ul class="flexColumn">
+                            <li>Why 2rism</li>
+                            <li>Partner With Us</li>
+                            <li>FAQ</li>
+                            <li>Blog</li>
+                        </ul>
+                    </div>
+                    <div class="support flexColumn">
+                        <p><b>Support</b></p>
+                        <ul class="flexColumn">
+                            <li>Account</li>
+                            <li>Support Center</li>
+                            <li>Feedback</li>
+                            <li>Contact Us</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-right flexColumn">
+                    <div class="row-top">
+                        <b>Subscribe on our destination review newsletters</b>
+                    </div>
+                    <div class="row-bottom flexRow">
+                        <div class="input-email-box flexRow">
+                            <img src="imgs/mail.png" alt="icon-mail">
+                            <div class="content">
+                                <p>Your Email</p>
+                                <input type="text" value="johndoe@gmail.com" class="input-email">
+                            </div>
+                        </div>
+                        <button><img src="imgs/arrow-right.png" alt=""></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </body>
 
 </html>
