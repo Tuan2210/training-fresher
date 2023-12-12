@@ -163,7 +163,7 @@ body {
             span.sttNotify {
                 width: 20%;
                 height: 20%;
-                margin-top: -100%;
+                margin-top: -70%;
                 margin-left: 80%;
                 background: var(--pink-pink);
             }
@@ -196,23 +196,22 @@ span.sttNotify {
     background: var(--bg-color);
     width: 100%;
     // height: 100%;
-    .left-menu {
+    .menu-left {
         background: var(--bg-color);
         border-right: 3px solid var(--gray-blue-grey-blue-95);
         position: sticky;
-        height: 100dvh;
+        height: 100%;
         justify-content: space-between;
         align-items: center;
         padding: 20% 0 20% 0;
         .top-menu,
         .bottom-menu {
             width: 40%;
-            height: 100%;
+            height: 40%;
             justify-content: space-between;
         }
         .bottom-menu {
-            height: 60%;
-            margin-top: 100%;
+            height: 30%;
             img {
                 border-radius: 50%;
             }
@@ -222,6 +221,123 @@ span.sttNotify {
         // width: 50%;
         background: var(--bg-color);
         border-right: 1px solid black;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 10% 8%;
+        font-size: 13px;
+        font-weight: 900;
+        line-height: 25px;
+        button {
+            border: none;
+            background: var(--bg-color);
+        }
+        .active-tab {
+            background: #fff;
+        }
+        .tab {
+            padding: 2%;
+        }
+        .active-tab:hover,
+        .tab:hover {
+            cursor: pointer;
+        }
+        .tab,
+        .active-tab {
+            justify-content: space-between;
+            align-items: center;
+            .tab-left {
+                width: 60%;
+                align-items: center;
+                gap: 10%;
+                .lblDashboard {
+                    color: var(--gray-blue-grey-blue-70);
+                    font-size: var(--fontSize);
+                }
+                .lblActive {
+                    color: var(--blue-blue);
+                }
+            }
+        }
+        .main-menu {
+            color: var(--gray-blue-grey-blue-70);
+            header.head-main-menu {
+                font-size: 12px;
+                line-height: 20px;
+            }
+            .dashboard {
+                margin-top: 4%;
+                margin-bottom: 4%;
+            }
+            .right-clients {
+                justify-content: space-between;
+                align-items: center;
+                width: 25%;
+                .clients-msg {
+                    border-radius: 50%;
+                    background: var(--blue-blue);
+                    color: #fff;
+                    width: 30%;
+                    height: 30%;
+                    text-align: center;
+                    font-size: 10px;
+                    font-weight: 900;
+                    line-height: 20px;
+                }
+            }
+        }
+        .projects-box {
+            // background: red;
+            justify-content: space-between;
+            border: 3px solid var(--gray-blue-grey-blue-95);
+            border-radius: 5%;
+            .projects-header {
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .tab-left {
+                width: 100%;
+                align-items: center;
+                gap: 2%;
+            }
+            .projects-content-box {
+                width: 100%;
+                padding: 6% 5%;
+                .title-project,
+                .prj-item {
+                    width: 100%;
+                    background: #fff;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 5% 6%;
+                    color: var(--gray-blue-grey-blue-70);
+                    button {
+                        background: none;
+                    }
+                }
+                .title-project {
+                    border-bottom: 2px solid var(--gray-blue-grey-blue-95);
+                }
+                .title-prj-active {
+                    color: var(--blue-blue);
+                }
+            }
+            footer.title-project {
+                width: 100%;
+                padding: 6% 5%;
+                color: var(--gray-blue-grey-blue-70);
+                .title-project-item {
+                    width: 100%;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 5% 6%;
+                }
+            }
+        }
+        .applications-box,
+        .second-menu {
+            color: var(--gray-blue-grey-blue-70);
+        }
     }
     .content-box {
         background: var(--bg-color);
