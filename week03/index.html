@@ -71,7 +71,7 @@
         </header>
 
         <!-- content -->
-        <div class="content-wrapper">
+        <div class="content-container">
             <!-- left-navigate -->
             <div class="navigate-content">
                 <div class="menu-left flexColumn">
@@ -590,7 +590,234 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-box"></div>
+
+                <!-- content-box -->
+                <div class="content-box flexColumn">
+                    <!-- head-content-box -->
+                    <div class="head-content-box flexRow">
+                        <div class="head-left flexRow">
+                            <button class="btnPhoneCall btn-style btn-hover">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 30" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.2037 18.25L19.6637 17.96C19.0537 17.89 18.4537 18.1 18.0237 18.53L16.1837 20.37C13.3537 18.93 11.0337 16.62 9.59367 13.78L11.4437 11.93C11.8737 11.5 12.0837 10.9 12.0137 10.29L11.7237 7.77C11.6037 6.76 10.7537 6 9.73367 6H8.00367C6.87367 6 5.93367 6.94 6.00367 8.07C6.53367 16.61 13.3637 23.43 21.8937 23.96C23.0237 24.03 23.9637 23.09 23.9637 21.96V20.23C23.9737 19.22 23.2137 18.37 22.2037 18.25Z" fill="#C3CAD9"/>
+                                </svg>
+                            </button>
+                            <button class="btnVideoCam btn-style btn-hover">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 30" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20 13.5V10C20 9.45 19.55 9 19 9H7C6.45 9 6 9.45 6 10V20C6 20.55 6.45 21 7 21H19C19.55 21 20 20.55 20 20V16.5L22.29 18.79C22.92 19.42 24 18.97 24 18.08V11.91C24 11.02 22.92 10.57 22.29 11.2L20 13.5Z" fill="#C3CAD9"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="head-name flexRow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#29CC39"/>
+                            </svg>
+                            <span>Dennis Smith</span>
+                        </div>
+                        <div class="head-right flexRow">
+                            <button class="btnZoom btn-style btn-hover">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 30" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17 11H17.4853L14.7782 13.7071L13.7071 14.7782L13.7065 14.7788L11 17.4853V17C11 16.45 10.55 16 10 16C9.45 16 9 16.45 9 17V20C9 20.55 9.45 21 10 21H13C13.55 21 14 20.55 14 20C14 19.45 13.55 19 13 19H12.3137L15.1213 16.1924L16.1924 15.1213L16.1927 15.1211L19 12.3137V13C19 13.55 19.45 14 20 14C20.55 14 21 13.55 21 13V10C21 9.45 20.55 9 20 9H17C16.45 9 16 9.45 16 10C16 10.55 16.45 11 17 11Z" fill="#C3CAD9"/>
+                                </svg>
+                            </button>
+                            <button class="btnApps btn-style btn-hover">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 30" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 11H11V7H7V11ZM13 23H17V19H13V23ZM7 23H11V19H7V23ZM7 17H11V13H7V17ZM13 17H17V13H13V17ZM19 7V11H23V7H19ZM13 11H17V7H13V11ZM19 17H23V13H19V17ZM19 23H23V19H19V23Z" fill="#C3CAD9"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- content-past-msg -->
+                    <div class="content-past-msg-wrapper flexColumn">
+                        <div class="post flexRow">
+                            <div class="post-left flexRow">
+                                <div class="ava-img-post"><img src="imgs/Avatar Image-post1.png" alt="ava-img-post"></div>
+                                <div class="content-post flexColumn">
+                                    <div class="header-content-post flexRow">
+                                        <div class="name-title">Stella Evans</div>
+                                        <div class="channel-title">Web Designer</div>
+                                        <div class="time-title">12:45 PM</div>
+                                    </div>
+                                    <div class="file">
+                                        <div class="file-content flexColumn">
+                                            <div class="left-file-content flexRow">
+                                                <div class="file-name">Human Design Guidelines.pdf</div>
+                                                <div class="file-size">760.90 KB</div>
+                                            </div>
+                                            <div class="progress flexColumn">
+                                                <div class="head-progress flexRow">
+                                                    <span>Downloading&nbsp;...</span>
+                                                    <span>65%</span>
+                                                </div>
+                                                <img src="imgs/Progress-bar.png" alt="" id="progress-bar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-right">
+                                <div class="post-right-box flexRow">
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3536 24.1307C15.5936 24.8207 14.4236 24.8207 13.6636 24.1207L13.5536 24.0207C8.30357 19.2707 4.87357 16.1607 5.00357 12.2807C5.06357 10.5807 5.93357 8.95065 7.34357 7.99065C9.98357 6.19065 13.2436 7.03065 15.0036 9.09065C16.7636 7.03065 20.0236 6.18065 22.6636 7.99065C24.0736 8.95065 24.9436 10.5807 25.0036 12.2807C25.1436 16.1607 21.7036 19.2707 16.4536 24.0407L16.3536 24.1307Z" fill="#FFCB33"/>
+                                        </svg>
+                                    </button>
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4 9L17.16 7.8C17.07 7.34 16.66 7 16.18 7H9C8.45 7 8 7.45 8 8V23C8 23.55 8.45 24 9 24C9.55 24 10 23.55 10 23V17H15.6L15.84 18.2C15.93 18.67 16.34 19 16.82 19H22C22.55 19 23 18.55 23 18V10C23 9.45 22.55 9 22 9H17.4Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 13C7.9 13 7 13.9 7 15C7 16.1 7.9 17 9 17C10.1 17 11 16.1 11 15C11 13.9 10.1 13 9 13ZM21 13C19.9 13 19 13.9 19 15C19 16.1 19.9 17 21 17C22.1 17 23 16.1 23 15C23 13.9 22.1 13 21 13ZM15 13C13.9 13 13 13.9 13 15C13 16.1 13.9 17 15 17C16.1 17 17 16.1 17 15C17 13.9 16.1 13 15 13Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post flexRow">
+                            <div class="post-left flexRow">
+                                <div class="ava-img-post"><img src="imgs/Avatar 7.png" alt="ava-img-post" width="40px" height="40px"></div>
+                                <div class="content-post flexColumn">
+                                    <div class="header-content-post flexRow">
+                                        <div class="name-title">Edward Goodwin</div>
+                                        <div class="channel-title">Web Designer</div>
+                                        <div class="time-title">12:45 PM</div>
+                                    </div>
+                                    <div class="content-post-details flexRow">
+                                        <img src="imgs/Image.png" alt="img-post">
+                                        <img src="imgs/Image (1).png" alt="img-post">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-right">
+                                <div class="post-right-box flexRow">
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3536 24.1307C15.5936 24.8207 14.4236 24.8207 13.6636 24.1207L13.5536 24.0207C8.30357 19.2707 4.87357 16.1607 5.00357 12.2807C5.06357 10.5807 5.93357 8.95065 7.34357 7.99065C9.98357 6.19065 13.2436 7.03065 15.0036 9.09065C16.7636 7.03065 20.0236 6.18065 22.6636 7.99065C24.0736 8.95065 24.9436 10.5807 25.0036 12.2807C25.1436 16.1607 21.7036 19.2707 16.4536 24.0407L16.3536 24.1307Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4 9L17.16 7.8C17.07 7.34 16.66 7 16.18 7H9C8.45 7 8 7.45 8 8V23C8 23.55 8.45 24 9 24C9.55 24 10 23.55 10 23V17H15.6L15.84 18.2C15.93 18.67 16.34 19 16.82 19H22C22.55 19 23 18.55 23 18V10C23 9.45 22.55 9 22 9H17.4Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 13C7.9 13 7 13.9 7 15C7 16.1 7.9 17 9 17C10.1 17 11 16.1 11 15C11 13.9 10.1 13 9 13ZM21 13C19.9 13 19 13.9 19 15C19 16.1 19.9 17 21 17C22.1 17 23 16.1 23 15C23 13.9 22.1 13 21 13ZM15 13C13.9 13 13 13.9 13 15C13 16.1 13.9 17 15 17C16.1 17 17 16.1 17 15C17 13.9 16.1 13 15 13Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- line-today -->
+                    <div class="line-today">
+                        <button class="btnMsgToday btn-style">Today</button>
+                        <div class="line"></div>
+                    </div>
+
+                    <!-- content-msg-today -->
+                    <div class="content-msg-today-wrapper flexColumn">
+                        <div class="post flexRow">
+                            <div class="post-left flexRow">
+                                <div class="ava-img-post"><img src="imgs/kyle-ava.png" alt="ava-img-post"></div>
+                                <div class="content-post flexColumn">
+                                    <div class="header-content-post flexRow">
+                                        <div class="name-title">Kyle Peters</div>
+                                        <div class="channel-title">Web Designer</div>
+                                        <div class="time-title">12:45 PM</div>
+                                    </div>
+                                    <div class="msg-chat">
+                                        <div>
+                                            When you starting a company you are thinking on how to cut expenses. One of such options to cut the startup costs is a company logo design. But is it good idea to order a cheap logo or work without company logo at all?
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-right">
+                                <div class="post-right-box flexRow">
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3536 24.1307C15.5936 24.8207 14.4236 24.8207 13.6636 24.1207L13.5536 24.0207C8.30357 19.2707 4.87357 16.1607 5.00357 12.2807C5.06357 10.5807 5.93357 8.95065 7.34357 7.99065C9.98357 6.19065 13.2436 7.03065 15.0036 9.09065C16.7636 7.03065 20.0236 6.18065 22.6636 7.99065C24.0736 8.95065 24.9436 10.5807 25.0036 12.2807C25.1436 16.1607 21.7036 19.2707 16.4536 24.0407L16.3536 24.1307Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4 9L17.16 7.8C17.07 7.34 16.66 7 16.18 7H9C8.45 7 8 7.45 8 8V23C8 23.55 8.45 24 9 24C9.55 24 10 23.55 10 23V17H15.6L15.84 18.2C15.93 18.67 16.34 19 16.82 19H22C22.55 19 23 18.55 23 18V10C23 9.45 22.55 9 22 9H17.4Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 13C7.9 13 7 13.9 7 15C7 16.1 7.9 17 9 17C10.1 17 11 16.1 11 15C11 13.9 10.1 13 9 13ZM21 13C19.9 13 19 13.9 19 15C19 16.1 19.9 17 21 17C22.1 17 23 16.1 23 15C23 13.9 22.1 13 21 13ZM15 13C13.9 13 13 13.9 13 15C13 16.1 13.9 17 15 17C16.1 17 17 16.1 17 15C17 13.9 16.1 13 15 13Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post flexRow">
+                            <div class="post-left flexRow">
+                                <div class="ava-img-post"><img src="imgs/susan-ava.png" alt="ava-img-post"></div>
+                                <div class="content-post flexColumn">
+                                    <div class="header-content-post flexRow">
+                                        <div class="name-title">Susan Lane</div>
+                                        <div class="channel-title">Web Designer</div>
+                                        <div class="time-title">12:45 PM</div>
+                                    </div>
+                                    <div class="msg-chat">
+                                        <div>
+                                            When you starting a company you are thinking on how to cut expenses. One of such options to cut the startup costs is a company logo design.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-right">
+                                <div class="post-right-box flexRow">
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3536 24.1307C15.5936 24.8207 14.4236 24.8207 13.6636 24.1207L13.5536 24.0207C8.30357 19.2707 4.87357 16.1607 5.00357 12.2807C5.06357 10.5807 5.93357 8.95065 7.34357 7.99065C9.98357 6.19065 13.2436 7.03065 15.0036 9.09065C16.7636 7.03065 20.0236 6.18065 22.6636 7.99065C24.0736 8.95065 24.9436 10.5807 25.0036 12.2807C25.1436 16.1607 21.7036 19.2707 16.4536 24.0407L16.3536 24.1307Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4 9L17.16 7.8C17.07 7.34 16.66 7 16.18 7H9C8.45 7 8 7.45 8 8V23C8 23.55 8.45 24 9 24C9.55 24 10 23.55 10 23V17H15.6L15.84 18.2C15.93 18.67 16.34 19 16.82 19H22C22.55 19 23 18.55 23 18V10C23 9.45 22.55 9 22 9H17.4Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                    <button class="btn-hover btn-style">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 13C7.9 13 7 13.9 7 15C7 16.1 7.9 17 9 17C10.1 17 11 16.1 11 15C11 13.9 10.1 13 9 13ZM21 13C19.9 13 19 13.9 19 15C19 16.1 19.9 17 21 17C22.1 17 23 16.1 23 15C23 13.9 22.1 13 21 13ZM15 13C13.9 13 13 13.9 13 15C13 16.1 13.9 17 15 17C16.1 17 17 16.1 17 15C17 13.9 16.1 13 15 13Z" fill="#DADEE6"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- add-msg -->
+                    <div class="add-msg-wrapper flexRow">
+                        <div class="add-msg-box flexRow">
+                            <div class="left-add-msg flexRow">
+                                <button class="btn-style btn-hover">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.2539 19.5H9.67393C7.58393 19.5 5.72393 17.97 5.52393 15.89C5.29393 13.51 7.16393 11.5 9.50393 11.5H21.8639C23.1739 11.5 24.3639 12.44 24.4939 13.74C24.6439 15.24 23.4739 16.5 22.0039 16.5H11.5039C10.9539 16.5 10.5039 16.05 10.5039 15.5C10.5039 14.95 10.9539 14.5 11.5039 14.5H20.2539C20.6639 14.5 21.0039 14.16 21.0039 13.75C21.0039 13.34 20.6639 13 20.2539 13H11.6439C10.3339 13 9.14393 13.94 9.01393 15.24C8.86393 16.74 10.0339 18 11.5039 18H21.8339C23.9239 18 25.7839 16.47 25.9839 14.39C26.2139 12 24.3439 10 22.0039 10H9.73393C6.86393 10 4.29393 12.1 4.02393 14.96C3.72393 18.25 6.28393 21 9.50393 21H20.2539C20.6639 21 21.0039 20.66 21.0039 20.25C21.0039 19.84 20.6639 19.5 20.2539 19.5Z" fill="#C3CAD9"/>
+                                    </svg>
+                                </button>
+                                <button class="btn-style btn-hover">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24 22V8C24 6.9 23.1 6 22 6H8C6.9 6 6 6.9 6 8V22C6 23.1 6.9 24 8 24H22C23.1 24 24 23.1 24 22ZM11.9 16.98L14 19.51L17.1 15.52C17.3 15.26 17.7 15.26 17.9 15.53L21.41 20.21C21.66 20.54 21.42 21.01 21.01 21.01H9.02C8.6 21.01 8.37 20.53 8.63 20.2L11.12 17C11.31 16.74 11.69 16.73 11.9 16.98Z" fill="#C3CAD9"/>
+                                    </svg>
+                                </button>
+                                <input type="text" placeholder="Type Message">
+                            </div>
+                            <button class="btn-hover btn-style btnSend">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.4 23.8849L23.85 16.4049C24.66 16.0549 24.66 14.9149 23.85 14.5649L6.4 7.08488C5.74 6.79488 5.01 7.28488 5.01 7.99488L5 12.6049C5 13.1049 5.37 13.5349 5.87 13.5949L20 15.4849L5.87 17.3649C5.37 17.4349 5 17.8649 5 18.3649L5.01 22.9749C5.01 23.6849 5.74 24.1749 6.4 23.8849Z" fill="#3361FF"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
