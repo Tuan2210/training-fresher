@@ -9,59 +9,59 @@
 </head>
 
 <body>
-    <div class="container flexRow">
-        <div class="sidebar flexColumn">
-            <div class="top-sidebar">
+    <div class="container d-flex flex-row full-w full-h">
+        <div class="sidebar d-flex flex-col w-240-px full-max-h border-right-w-2 border-right-solid border-right-light-gray just-cont-space-between">
+            <div class="top-sidebar pad-20-px">
                 <img src="imgs/Group 12328.png" alt="logo" id="logo">
-                <ul class="menu flexColumn">
-                    <li class="tab hoverBtn"><img src="imgs/trade.png" alt="" class="menuIcons">Trade</li>
-                    <li class="tab activeTab"><img src="imgs/Orders.png" alt="" class="menuIcons">Orders</li>
-                    <li class="tab hoverBtn" style="color: #291CCB"><span></span>All</li>
-                    <li class="tab hoverBtn"><span></span>Open</li>
-                    <li class="tab hoverBtn"><img src="imgs/History.png" alt="" class="menuIcons">History</li>
-                    <li class="tab hoverBtn"><img src="imgs/settings.png" alt="" class="menuIcons">Settings</li>
+                <ul class="menu d-flex flex-col w-204-px h-264-px mar-top-10-px gap-4-px just-cont-space-around">
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn"><img src="imgs/trade.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">Trade</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   bg-EDEDFC color--txtActive font-weight-bold"><img src="imgs/Orders.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">Orders</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn" style="color: #291CCB"><span class="mar-left-15-percent"></span>All</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn"><span class="mar-left-15-percent"></span>Open</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn"><img src="imgs/History.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">History</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn"><img src="imgs/settings.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">Settings</li>
                 </ul>
             </div>
-            <div class="bottom-sidebar flexColumn">
-                <div class="topSide flexRow">
+            <div class="bottom-sidebar d-flex flex-col mar-0-auto mar-bottom-3-percent w-204-px h-142-px just-cont-space-between">
+                <div class="topSide d-flex flex-row w-204-px h-32-px">
                     <img src="imgs/Metamask.png" alt="" id="avatar">
-                    <div class="titleRows">
-                        <p class="title1"><b>0.000244 ETH</b></p>
-                        <p class="title2">0xGD63...6DS9</p>
+                    <div class="titleRows gap-4-px mar-left-5-percent">
+                        <p class="title1 font-size-16-px line-height-24-px"><b>0.000244 ETH</b></p>
+                        <p class="title2 font-size-12-px line-height-12-px color-76809D">0xGD63...6DS9</p>
                     </div>
                 </div>
-                <div class="centerSide flexRow">
-                    <button class="btnDeposit hoverBtn">Deposit</button>
-                    <button class="btnWithdraw hoverBtn">Withdraw</button>
+                <div class="centerSide d-flex flex-row just-cont-space-between">
+                    <button class="btnDeposit hoverBtn position-relative w-100-px h-38-px border-rad-6-px border-w-1-px padding-9-17-px font-family-Inter   bg-fff border-w-1-px border-style-solid border-color-DBDDE5">Deposit</button>
+                    <button class="btnWithdraw hoverBtn position-relative w-100-px h-38-px border-rad-6-px border-w-1-px padding-9-17-px font-family-Inter  bg-4C40E6 color-fff">Withdraw</button>
                 </div>
-                <div class="bottomSide flexRow">
-                    <button class="btnCollapse flexRow hoverBtn">
+                <div class="bottomSide d-flex flex-row just-cont-space-between ">
+                    <button class="btnCollapse d-flex flex-row hoverBtn bg-fff border-none w-112-px h-40-px border-rad-4-px pad-9-px gap-14-px align-items-center just-cont-center color--txtMenu font-family-Inter">
                         <img src="imgs/collapse-active.png" alt="">
                         <p>Collapse</p>
                     </button>
-                    <button class="hoverBtn"><img src="imgs/Group.png" alt=""></button>
+                    <button class="hoverBtn bg-fff border-none"><img src="imgs/Group.png" alt=""></button>
                 </div>
             </div>
         </div>
-        <div class="content-footer flexColumn">
-            <div class="content">
-                <div class="header flexRow">
-                    <button class="btnAll activeTab hoverBtn">All</button>
+        <div class="content-footer d-flex flex-col full-w">
+            <div class="content w-85-percent">
+                <div class="header d-flex flex-row">
+                    <button class="btnAll bg-EDEDFC color--txtActive font-weight-bold hoverBtn">All</button>
                     <button class="btnOpen hoverBtn">Open</button>
                 </div>
                 <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
-                                <th class="txtLeft">DATE</th>
-                                <th class="txtLeft">MARKET</th>
-                                <th class="txtLeft">SIDE</th>
-                                <th class="txtLeft">PRICE</th>
-                                <th class="txtLeft">AMOUNT</th>
-                                <th class="txtLeft">VALUE</th>
-                                <th class="txtLeft">FILLED</th>
-                                <th class="txtLeft">STATUS</th>
-                                <th class="txtLeft" style="color: #B01212;">CANCEL &nbsp;ALL</th>
+                                <th class="txt-left">DATE</th>
+                                <th class="txt-left">MARKET</th>
+                                <th class="txt-left">SIDE</th>
+                                <th class="txt-left">PRICE</th>
+                                <th class="txt-left">AMOUNT</th>
+                                <th class="txt-left">VALUE</th>
+                                <th class="txt-left">FILLED</th>
+                                <th class="txt-left">STATUS</th>
+                                <th class="txt-left" style="color: #B01212;">CANCEL &nbsp;ALL</th>
                             </tr>
                         </thead>
                         <tbody id="test">
