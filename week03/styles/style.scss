@@ -85,13 +85,17 @@ input:focus {
 
 // header
 header.navigate-header {
-    grid-column: 1 / 4;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100px;
+    grid-column: 1 / 4;
     background: var(--bg-color);
     border-bottom: 2px solid var(--gray-blue-grey-blue-95);
     padding: 0 25px;
     align-items: center;
+    justify-content: space-between;
     .content-navigate {
         width: 100%;
         height: 50px;
@@ -221,6 +225,7 @@ span.sttNotify {
 
 // content
 .content-container {
+    margin-top: 100px;
     display: grid;
     grid-template-columns: 6% 20% auto;
     background: var(--bg-color);
