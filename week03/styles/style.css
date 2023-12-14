@@ -702,10 +702,10 @@ span.sttNotify {
   height: 3%;
   background: var(--gray-blue-grey-blue-95);
 }
-.content-container .content-wrapper .content-box .content-msg-today-wrapper {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper {
   justify-content: space-evenly;
 }
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .msg-chat {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .msg-chat {
   text-align: justify;
   font-size: 14px;
   font-weight: 700;
