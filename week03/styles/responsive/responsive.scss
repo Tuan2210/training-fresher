@@ -155,6 +155,9 @@
                         .btnFriends {
                             visibility: visible;
                         }
+                        span {
+                            margin-left: 0;
+                        }
                     }
                     .head-name {
                         gap: 0;
@@ -242,57 +245,4 @@
             }
         }
     }
-    // .container {
-    //     overflow-x: hidden;
-    //     max-width: 360px;
-    //     max-height: 100%;
-    // }
-    // //header
-    // header.navigate-header {
-    //     gap: 25px;
-    //     .content-navigate {
-    //         .logo {
-    //             width: fit-content;
-    //             gap: 35px;
-    //         }
-    //         .right-box {
-    //             width: fit-content;
-    //             .user-box {
-    //                 display: none;
-    //             }
-    //             .control-box {
-    //                 width: fit-content;
-    //                 .btnSearch,
-    //                 .btnNotify,
-    //                 .btnClose {
-    //                     display: none;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-    // //content-container
-    // .content-container {
-    //     .content-wrapper {
-    //         width: 100%;
-    //         .content-box {
-    //             width: 100%;
-    //             height: fit-content;
-    //             padding: 15px;
-    //             justify-content: space-between;
-    //             .head-content-box {
-    //                 width: 100%;
-    //                 .head-left {
-    //                     .btnFriends {
-    //                         visibility: visible;
-    //                     }
-    //                 }
-    //             }
-    //             .content-past-msg-wrapper,
-    //             .content-today-msg-wrapper {
-    //                 width: 100%;
-    //             }
-    //         }
-    //     }
-    // }
 }

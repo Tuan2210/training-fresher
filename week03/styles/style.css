@@ -133,6 +133,8 @@ header.navigate-header ul.menu {
 header.navigate-header ul.menu li a {
   font-size: var(--fontSize);
   color: var(--gray-blue-grey-blue-70);
+  width: -moz-fit-content;
+  width: fit-content;
 }
 header.navigate-header ul.menu .btnMoreMenu {
   border: none;
@@ -555,6 +557,7 @@ span.sttNotify {
   visibility: hidden;
 }
 .content-container .content-wrapper .content-box .head-content-box .head-left span {
+  margin-left: -60%;
   gap: 20px;
 }
 .content-container .content-wrapper .content-box .head-content-box .head-name {

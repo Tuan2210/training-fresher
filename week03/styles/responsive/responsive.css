@@ -154,6 +154,9 @@
   .content-container .content-wrapper .content-box .head-content-box .head-left .btnFriends {
     visibility: visible;
   }
+  .content-container .content-wrapper .content-box .head-content-box .head-left span {
+    margin-left: 0;
+  }
   .content-container .content-wrapper .content-box .head-content-box .head-name {
     gap: 0;
     width: -moz-fit-content;

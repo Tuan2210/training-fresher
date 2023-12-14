@@ -132,6 +132,7 @@ header.navigate-header {
         li a {
             font-size: var(--fontSize);
             color: var(--gray-blue-grey-blue-70);
+            width: fit-content;
         }
         .btnMoreMenu {
             border: none;
@@ -227,7 +228,6 @@ span.sttNotify {
     .menu-left {
         background: var(--bg-color);
         border-right: 3px solid var(--gray-blue-grey-blue-95);
-        // position: relative;
         height: 100%;
         width: 85px;
         justify-content: space-between;
@@ -247,7 +247,6 @@ span.sttNotify {
         }
     }
     .sidebar {
-        // position: relative;
         background: var(--bg-color);
         gap: 40px;
         padding: 30px 20px 0 30px;
@@ -494,11 +493,6 @@ span.sttNotify {
             background: #fff;
             justify-content: space-between;
             .head-content-box {
-                // width: 100%;
-                // justify-content: space-between;
-                // align-items: center;
-                // border-bottom: 3px solid var(--gray-blue-grey-blue-95);
-                // padding: 25px 30px;
                 width: 100%;
                 justify-content: space-between;
                 align-items: center;
@@ -514,11 +508,10 @@ span.sttNotify {
                 }
                 .head-left {
                     .btnFriends {
-                        // margin-right: -45%;
-                        // display: none;
                         visibility: hidden;
                     }
                     span {
+                        margin-left: -60%;
                         gap: 20px;
                     }
                 }
