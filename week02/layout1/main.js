@@ -163,7 +163,8 @@ function renderData() {
             <td style="color: var(--txtContent);">${item.value}</td>
             <td style="color: var(--txtContent);">${item.filled}</td>
             <td>
-                <p class="stt txtCenter ${
+                <p class="stt txt-center border-rad-4-px
+                ${
                   item.status === "Open"
                     ? "openStt"
                     : item.status === "Filled"
@@ -174,9 +175,9 @@ function renderData() {
             ${
               item.status === "Open"
                 ? `<td class="">
-                <div class="flexRow">
+                <div class="flex-row">
                   
-                    <button class="btnCancel">Cancel</button>
+                    <button class="btnCancel border-none bg-none font-family-Inter">Cancel</button>
                     <img src="imgs/cancel.png" alt="" />
                 </div>
             </td>`
