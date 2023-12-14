@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Fleur+De+Leah&family=Inter:wght@500&family=Mansalva&family=Mystery+Quest&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Fleur+De+Leah&family=Inter:wght@500&family=Mansalva&family=Mystery+Quest&display=swap");
 :root {
     --txtActive: #291CCB;
     --txtMenu: #6E7998;
@@ -15,14 +15,14 @@ html,
 body {
     min-width: 100%;
     max-width: 100%;
-    font-family: 'Inter';
+    font-family: "Inter";
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
 }
 
 .font-family-Inter {
-    font-family: 'Inter';
+    font-family: "Inter";
 }
 
 .d-flex {
@@ -39,14 +39,6 @@ body {
 
 .txt-left {
     text-align: left;
-}
-
-.txt-right {
-    text-align: right;
-}
-
-.txt-center {
-    text-align: center;
 }
 
 .full-w {
@@ -138,7 +130,7 @@ body {
 }
 
 .color--txtMenu {
-    color: var(--txtMenu)
+    color: var(--txtMenu);
 }
 
 .bg-EDEDFC {
@@ -146,7 +138,7 @@ body {
 }
 
 .color--txtActive {
-    color: var(--txtActive)
+    color: var(--txtActive);
 }
 
 .font-weight-bold {
@@ -277,107 +269,73 @@ body {
     width: 85%;
 }
 
-.padding-2-percent {
+.content {
+    height: 100%;
     padding: 2%;
 }
 
-.h-36-px {
+.content .header {
+    width: 100%;
     height: 36px;
 }
 
-.padding-8-12-px {
+.content .header button {
+    height: 36px;
+    border-radius: 6px;
+    border: none;
     padding: 8px 12px 8px 12px;
 }
 
-button.btnAll:hover,
-button.btnOpen:hover {
+.content .header button:hover {
     background: #EDEDFC;
 }
 
-.w-41-px {
+.content .header .btnAll {
     width: 41px;
+    font-family: "Inter";
 }
 
-.bg-none {
+.content .header .btnOpen {
     background: none;
-}
-
-.mar-left-1-percent {
     margin-left: 1%;
-}
-
-.w-60-px {
     width: 60px;
-}
-
-.color--txtContent {
     color: var(--txtContent);
+    font-family: "Inter";
 }
 
-.border-rad-10-0-px {
+.content .table-wrapper {
     border-radius: 10px 10px 0px 0px;
-}
-
-.border-color-F0F1F3 {
+    border-style: solid;
     border-color: #F0F1F3;
-}
-
-.w-1152-px {
+    position: relative;
     width: 1152px;
-}
-
-.top-12-px {
     top: 12px;
-}
-
-.font-size-14-px {
     font-size: 14px;
-}
-
-.line-height-20-px {
     line-height: 20px;
-}
-
-.overflow-y-auto {
     overflow-y: auto;
 }
 
-.border-collapse-collapse {
-    border-collapse: collapse;
-}
-
-.line-height-16-px {
+.content table thead {
+    color: var(--txtContent);
+    font-size: 12px;
     line-height: 16px;
+    background: #F9F9FA;
+    border-bottom: 2px solid #F0F1F3;
 }
 
-.bg-F9F9FA {
+.content table tbody tr:ntn-child(odd) {
     background: #F9F9FA;
 }
 
-.border-bottom-w-2-px {
-    border-bottom: 2px;
-}
-
-.border-bottom-solid {
-    border-bottom-style: solid;
-}
-
-table tbody tr:ntn-child(odd) {
-    background: #F9F9FA;
-}
-
-// td,
-th {
+.content table th,
+.content table td {
     padding: 16px 24px 16px 24px;
 }
 
-// .content {
-//     table {
-//         td P {
-//             display: inline-block;
-//         }
-//     }
-// }
+.content table td P {
+    display: inline-block;
+}
+
 #test tr:nth-of-type(2n) {
     background: #F9F9FA;
 }
@@ -391,6 +349,7 @@ th {
 }
 
 .stt {
+    border-radius: 4px;
     padding: 2px 10px 2px 10px;
 }
 
@@ -413,7 +372,9 @@ th {
     color: #B01212;
 }
 
-// footer
+
+/*  */
+
 .footer {
     padding: 12px 24px;
     border-top: 2px solid var(--devider);
@@ -422,6 +383,9 @@ th {
 }
 
 .pagination ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1rem;
     line-height: 20px;
     font-weight: 500;

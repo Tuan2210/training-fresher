@@ -175,7 +175,7 @@ function renderData() {
             ${
               item.status === "Open"
                 ? `<td class="">
-                <div class="flex-row">
+                <div class="d-flex flex-row align-items-center">
                   
                     <button class="btnCancel border-none bg-none font-family-Inter">Cancel</button>
                     <img src="imgs/cancel.png" alt="" />
