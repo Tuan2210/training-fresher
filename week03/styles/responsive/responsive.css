@@ -1,0 +1,233 @@
+@media screen and (max-width: 768px) {
+  .container {
+    overflow-x: hidden;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  header.navigate-header .content-navigate {
+    width: 100%;
+  }
+  header.navigate-header .content-navigate .logo {
+    width: 20%;
+  }
+  header.navigate-header .content-navigate ul.menu,
+  header.navigate-header .content-navigate .search-box {
+    display: none;
+  }
+  header.navigate-header .content-navigate .right-box {
+    gap: 50px;
+  }
+  header.navigate-header .content-navigate .right-box .user-box {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  header.navigate-header .content-navigate .right-box .control-box {
+    gap: 10px;
+  }
+  header.navigate-header .content-navigate .right-box .control-box .btnSearch {
+    visibility: visible;
+  }
+  .content-container .menu-left {
+    z-index: 0;
+    visibility: hidden;
+    margin-left: -500px;
+  }
+  .content-container .sidebar {
+    z-index: 1;
+    visibility: hidden;
+    margin-left: -800px;
+  }
+  .content-container .content-wrapper {
+    gap: 0;
+  }
+  .content-container .content-wrapper .sidebar-content-box {
+    z-index: 2;
+    visibility: hidden;
+    margin-left: -500px;
+  }
+  .content-container .content-wrapper .content-box {
+    z-index: 3;
+    width: 100%;
+    margin-left: -58%;
+    height: 100%;
+    gap: 0;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper,
+  .content-container .content-wrapper .content-box .content-today-msg-wrapper {
+    align-self: center;
+    height: -moz-fit-content;
+    height: fit-content;
+    gap: 50%;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post,
+  .content-container .content-wrapper .content-box .content-today-msg-wrapper .post {
+    gap: 0;
+  }
+  .content-container .content-wrapper .content-box .line-today {
+    height: 5%;
+  }
+  .content-container .content-wrapper .content-box .add-msg-wrapper {
+    align-self: center;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+}
+@media screen and (max-width: 360px) {
+  .container {
+    overflow-x: hidden;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  header.navigate-header {
+    gap: 25px;
+  }
+  header.navigate-header .content-navigate .logo {
+    width: -moz-fit-content;
+    width: fit-content;
+    gap: 35px;
+  }
+  header.navigate-header .content-navigate .right-box {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  header.navigate-header .content-navigate .right-box .user-box {
+    display: none;
+  }
+  header.navigate-header .content-navigate .right-box .control-box {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  header.navigate-header .content-navigate .right-box .control-box .btnSearch,
+  header.navigate-header .content-navigate .right-box .control-box .btnNotify,
+  header.navigate-header .content-navigate .right-box .control-box .btnClose {
+    display: none;
+  }
+  .content-container {
+    background: red;
+  }
+  .content-container .menu-left {
+    z-index: 0;
+    visibility: hidden;
+    margin-left: -500px;
+  }
+  .content-container .sidebar {
+    z-index: 1;
+    visibility: hidden;
+    margin-left: -800px;
+  }
+  .content-container .content-wrapper {
+    gap: 0;
+    grid-template-columns: auto 300px;
+    margin-left: -124px;
+  }
+  .content-container .content-wrapper .sidebar-content-box {
+    z-index: 2;
+    visibility: hidden;
+    margin-left: -500px;
+  }
+  .content-container .content-wrapper .content-box {
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    gap: 0;
+    margin: 0 auto;
+  }
+  .content-container .content-wrapper .content-box .head-content-box {
+    width: 100%;
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+  .content-container .content-wrapper .content-box .head-content-box .head-left {
+    gap: 0;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .content-container .content-wrapper .content-box .head-content-box .head-left span {
+    width: 10%;
+    gap: 0;
+    height: 100%;
+  }
+  .content-container .content-wrapper .content-box .head-content-box .head-left span .btnPhoneCall,
+  .content-container .content-wrapper .content-box .head-content-box .head-left span .btnVideoCam {
+    height: 30px;
+  }
+  .content-container .content-wrapper .content-box .head-content-box .head-left .btnFriends {
+    visibility: visible;
+  }
+  .content-container .content-wrapper .content-box .head-content-box .head-name {
+    gap: 0;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .content-container .content-wrapper .content-box .head-content-box .head-right {
+    gap: 0;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper,
+  .content-container .content-wrapper .content-box .content-today-msg-wrapper {
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    gap: 20%;
+    padding: 20px 15px;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post,
+  .content-container .content-wrapper .content-box .content-today-msg-wrapper .post {
+    gap: 0;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .header-content-post,
+  .content-container .content-wrapper .content-box .content-today-msg-wrapper .post .post-left .content-post .header-content-post {
+    flex-direction: column;
+    gap: 0;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .header-content-post .name-title,
+  .content-container .content-wrapper .content-box .content-today-msg-wrapper .post .post-left .content-post .header-content-post .name-title {
+    font-size: 12px;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .header-content-post .channel-title,
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .header-content-post .time-title,
+  .content-container .content-wrapper .content-box .content-today-msg-wrapper .post .post-left .content-post .header-content-post .channel-title,
+  .content-container .content-wrapper .content-box .content-today-msg-wrapper .post .post-left .content-post .header-content-post .time-title {
+    font-size: 10px;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post {
+    gap: 0;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left {
+    width: 77%;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .file,
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .content-post-details {
+    margin-left: -30%;
+    width: 130%;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .file {
+    gap: 15px;
+    padding: 15px;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .file .file-name,
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .file .file-size,
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .file .progress span {
+    font-size: 12px;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .content-post-details {
+    gap: 10px;
+  }
+  .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left .content-post .content-post-details img {
+    height: 155px;
+    width: 130px;
+  }
+  .content-container .content-wrapper .content-box .content-today-msg-wrapper .msg-chat {
+    font-size: 12px;
+  }
+  .content-container .content-wrapper .content-box .post-right .post-right-box button.btnFlag {
+    display: none;
+  }
+  .content-container .content-wrapper .content-box .line-today {
+    height: 5%;
+  }
+  .content-container .content-wrapper .content-box .add-msg-wrapper {
+    align-self: center;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+}/*# sourceMappingURL=responsive.css.map */

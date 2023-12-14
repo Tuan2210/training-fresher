@@ -84,22 +84,36 @@ input:focus {
 }
 
 // header
-.navigate-header {
+header.navigate-header {
     grid-column: 1 / 4;
     width: 100%;
-    max-height: 15%;
+    height: 100px;
     background: var(--bg-color);
     border-bottom: 2px solid var(--gray-blue-grey-blue-95);
-    padding: 0.5% 2%;
+    padding: 0 25px;
+    align-items: center;
     .content-navigate {
         width: 100%;
+        height: 50px;
         justify-content: space-between;
+    }
+    .logo,
+    ul.menu,
+    .search-box {
+        margin-right: 45px;
     }
     .logo {
         width: 12%;
         align-items: center;
         justify-content: space-between;
         gap: 5%;
+        margin-right: 50px;
+        #check-btnMenu {
+            display: none;
+        }
+        #check-btnMenu:checked~.sidebar {
+            left: 0;
+        }
         .title {
             color: var(--gray-blue-grey-blue-50);
             font-feature-settings: 'clig' off, 'liga' off;
@@ -111,9 +125,10 @@ input:focus {
         }
     }
     ul.menu {
-        width: 35%;
+        width: 500px;
         justify-content: space-between;
         align-items: center;
+        gap: 25px;
         li a {
             font-size: var(--fontSize);
             color: var(--gray-blue-grey-blue-70);
@@ -151,13 +166,14 @@ input:focus {
         }
     }
     .right-box {
-        width: 18%;
+        width: 400px;
         align-items: center;
-        justify-content: space-between;
+        gap: 30px;
         .user-box {
-            width: 50%;
+            width: 150px;
             align-items: center;
             justify-content: space-between;
+            gap: 15px;
             .lblUser {
                 color: #6B7A99;
                 font-size: 13px;
@@ -166,7 +182,9 @@ input:focus {
             }
         }
         .control-box {
-            width: 30%;
+            width: 140px;
+            height: 40px;
+            gap: 5px;
             justify-content: space-between;
             span.sttNotify {
                 width: 20%;
@@ -174,6 +192,9 @@ input:focus {
                 margin-top: -70%;
                 margin-left: 80%;
                 background: var(--pink-pink);
+            }
+            .btnSearch {
+                visibility: hidden;
             }
         }
     }
@@ -206,8 +227,9 @@ span.sttNotify {
     .menu-left {
         background: var(--bg-color);
         border-right: 3px solid var(--gray-blue-grey-blue-95);
-        position: sticky;
+        // position: relative;
         height: 100%;
+        width: 85px;
         justify-content: space-between;
         align-items: center;
         padding: 20% 0 20% 0;
@@ -225,6 +247,7 @@ span.sttNotify {
         }
     }
     .sidebar {
+        // position: relative;
         background: var(--bg-color);
         gap: 40px;
         padding: 30px 20px 0 30px;
@@ -489,6 +512,16 @@ span.sttNotify {
                         border-radius: 0;
                     }
                 }
+                .head-left {
+                    .btnFriends {
+                        // margin-right: -45%;
+                        // display: none;
+                        visibility: hidden;
+                    }
+                    span {
+                        gap: 20px;
+                    }
+                }
                 .head-name {
                     align-items: center;
                     gap: 10px;
@@ -499,7 +532,7 @@ span.sttNotify {
                 }
             }
             .content-past-msg-wrapper,
-            .content-msg-today-wrapper {
+            .content-today-msg-wrapper {
                 height: 100%;
                 justify-content: space-between;
                 padding: 35px;
@@ -537,6 +570,10 @@ span.sttNotify {
                             color: var(--gray-blue-grey-blue-70);
                             .name-title {
                                 color: var(--gray-blue-grey-blue-50);
+                            }
+                            span {
+                                width: fit-content;
+                                gap: 10px;
                             }
                         }
                         .file {

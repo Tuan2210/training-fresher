@@ -83,25 +83,39 @@ input:focus {
   max-height: 100%;
 }
 
-.navigate-header {
+header.navigate-header {
   grid-column: 1/4;
   width: 100%;
-  max-height: 15%;
+  height: 100px;
   background: var(--bg-color);
   border-bottom: 2px solid var(--gray-blue-grey-blue-95);
-  padding: 0.5% 2%;
+  padding: 0 25px;
+  align-items: center;
 }
-.navigate-header .content-navigate {
+header.navigate-header .content-navigate {
   width: 100%;
+  height: 50px;
   justify-content: space-between;
 }
-.navigate-header .logo {
+header.navigate-header .logo,
+header.navigate-header ul.menu,
+header.navigate-header .search-box {
+  margin-right: 45px;
+}
+header.navigate-header .logo {
   width: 12%;
   align-items: center;
   justify-content: space-between;
   gap: 5%;
+  margin-right: 50px;
 }
-.navigate-header .logo .title {
+header.navigate-header .logo #check-btnMenu {
+  display: none;
+}
+header.navigate-header .logo #check-btnMenu:checked ~ .sidebar {
+  left: 0;
+}
+header.navigate-header .logo .title {
   color: var(--gray-blue-grey-blue-50);
   font-feature-settings: "clig" off, "liga" off;
   font-family: Roboto;
@@ -110,75 +124,82 @@ input:focus {
   font-weight: 700;
   line-height: 30px;
 }
-.navigate-header ul.menu {
-  width: 35%;
+header.navigate-header ul.menu {
+  width: 500px;
   justify-content: space-between;
   align-items: center;
+  gap: 25px;
 }
-.navigate-header ul.menu li a {
+header.navigate-header ul.menu li a {
   font-size: var(--fontSize);
   color: var(--gray-blue-grey-blue-70);
 }
-.navigate-header ul.menu .btnMoreMenu {
+header.navigate-header ul.menu .btnMoreMenu {
   border: none;
   background: none;
   padding: 2%;
   color: var(--gray-blue-grey-blue-70);
 }
-.navigate-header .search-box {
+header.navigate-header .search-box {
   width: 25%;
   justify-content: space-between;
 }
-.navigate-header .search-box button.btnSearchGlass,
-.navigate-header .search-box button.btnSearchOk {
+header.navigate-header .search-box button.btnSearchGlass,
+header.navigate-header .search-box button.btnSearchOk {
   border: none;
   background: #fff;
   padding: 0 3% 0 5%;
 }
-.navigate-header .search-box button.btnSearchGlass {
+header.navigate-header .search-box button.btnSearchGlass {
   border-radius: 50% 0 0 50%;
 }
-.navigate-header .search-box button.btnSearchOk {
+header.navigate-header .search-box button.btnSearchOk {
   border-radius: 0 50% 50% 0;
 }
-.navigate-header .search-box input.input-search {
+header.navigate-header .search-box input.input-search {
   width: 100%;
   font-size: 12px;
   font-weight: 700;
   line-height: 20px;
 }
-.navigate-header .search-box input.input-search::-moz-placeholder {
+header.navigate-header .search-box input.input-search::-moz-placeholder {
   color: var(--gray-blue-grey-blue-80);
 }
-.navigate-header .search-box input.input-search::placeholder {
+header.navigate-header .search-box input.input-search::placeholder {
   color: var(--gray-blue-grey-blue-80);
 }
-.navigate-header .right-box {
-  width: 18%;
+header.navigate-header .right-box {
+  width: 400px;
+  align-items: center;
+  gap: 30px;
+}
+header.navigate-header .right-box .user-box {
+  width: 150px;
   align-items: center;
   justify-content: space-between;
+  gap: 15px;
 }
-.navigate-header .right-box .user-box {
-  width: 50%;
-  align-items: center;
-  justify-content: space-between;
-}
-.navigate-header .right-box .user-box .lblUser {
+header.navigate-header .right-box .user-box .lblUser {
   color: #6B7A99;
   font-size: 13px;
   font-weight: 700;
   line-height: 25px;
 }
-.navigate-header .right-box .control-box {
-  width: 30%;
+header.navigate-header .right-box .control-box {
+  width: 140px;
+  height: 40px;
+  gap: 5px;
   justify-content: space-between;
 }
-.navigate-header .right-box .control-box span.sttNotify {
+header.navigate-header .right-box .control-box span.sttNotify {
   width: 20%;
   height: 20%;
   margin-top: -70%;
   margin-left: 80%;
   background: var(--pink-pink);
+}
+header.navigate-header .right-box .control-box .btnSearch {
+  visibility: hidden;
 }
 
 button.btnNotify,
@@ -207,8 +228,8 @@ span.sttNotify {
 .content-container .menu-left {
   background: var(--bg-color);
   border-right: 3px solid var(--gray-blue-grey-blue-95);
-  position: sticky;
   height: 100%;
+  width: 85px;
   justify-content: space-between;
   align-items: center;
   padding: 20% 0 20% 0;
@@ -530,6 +551,12 @@ span.sttNotify {
 .content-container .content-wrapper .content-box .head-content-box .head-right button {
   border-radius: 0;
 }
+.content-container .content-wrapper .content-box .head-content-box .head-left .btnFriends {
+  visibility: hidden;
+}
+.content-container .content-wrapper .content-box .head-content-box .head-left span {
+  gap: 20px;
+}
 .content-container .content-wrapper .content-box .head-content-box .head-name {
   align-items: center;
   gap: 10px;
@@ -539,46 +566,46 @@ span.sttNotify {
   line-height: 25px;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper {
   height: 100%;
   justify-content: space-between;
   padding: 35px;
   gap: 25px;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post {
   width: 100%;
   justify-content: space-between;
   gap: 3%;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-left,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .post-left {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .post-left {
   width: 500%;
   gap: 20px;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-right,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .post-right {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .post-right {
   width: 100%;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-right .post-right-box,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .post-right .post-right-box {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .post-right .post-right-box {
   gap: 2px;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .post-right .post-right-box button,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .post-right .post-right-box button {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .post-right .post-right-box button {
   border-radius: 0;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .ava-img-post,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .ava-img-post {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .ava-img-post {
   height: 100%;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post {
   width: 100%;
   gap: 20px;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .header-content-post,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .header-content-post {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .header-content-post {
   width: -moz-fit-content;
   width: fit-content;
   gap: 10px;
@@ -588,11 +615,17 @@ span.sttNotify {
   color: var(--gray-blue-grey-blue-70);
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .header-content-post .name-title,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .header-content-post .name-title {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .header-content-post .name-title {
   color: var(--gray-blue-grey-blue-50);
 }
+.content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .header-content-post span,
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .header-content-post span {
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 10px;
+}
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file {
   padding: 20px;
   border-radius: 5px;
   border: 3px solid var(--gray-blue-grey-blue-95);
@@ -600,31 +633,31 @@ span.sttNotify {
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file .file-content,
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file .left-file-content,
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file .progress,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file .file-content,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file .left-file-content,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file .progress {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file .file-content,
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file .left-file-content,
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file .progress {
   gap: 15px;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file .left-file-content,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file .left-file-content {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file .left-file-content {
   font-size: 15px;
   line-height: 20px;
   font-weight: 700;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file .left-file-content .file-name,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file .left-file-content .file-name {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file .left-file-content .file-name {
   color: var(--gray-blue-grey-blue-50);
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file .left-file-content .file-size,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file .left-file-content .file-size {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file .left-file-content .file-size {
   color: var(--blue-blue);
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file .progress,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file .progress {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file .progress {
   width: 100%;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file .progress .head-progress,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file .progress .head-progress {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file .progress .head-progress {
   width: 100%;
   justify-content: space-between;
   font-size: 13px;
@@ -633,13 +666,13 @@ span.sttNotify {
   color: var(--blue-blue);
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .content-post-details,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .content-post-details {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .content-post-details {
   gap: 20px;
 }
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .file,
 .content-container .content-wrapper .content-box .content-past-msg-wrapper .post .content-post .content-post-details,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .file,
-.content-container .content-wrapper .content-box .content-msg-today-wrapper .post .content-post .content-post-details {
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .file,
+.content-container .content-wrapper .content-box .content-today-msg-wrapper .post .content-post .content-post-details {
   width: 100%;
 }
 .content-container .content-wrapper .content-box .line-today {
