@@ -31,7 +31,6 @@
     }
     //content-container
     .content-container {
-        // background: red;
         .menu-left {
             z-index: 0;
             visibility: hidden;
@@ -43,7 +42,6 @@
             margin-left: -800px;
         }
         .content-wrapper {
-            // background: cyan;
             gap: 0;
             .sidebar-content-box {
                 z-index: 2;
@@ -109,7 +107,6 @@
     }
     //content-container
     .content-container {
-        background: red;
         .menu-left {
             z-index: 0;
             visibility: hidden;
@@ -121,7 +118,6 @@
             margin-left: -800px;
         }
         .content-wrapper {
-            // background: cyan;
             gap: 0;
             grid-template-columns: auto 300px;
             margin-left: -124px;
