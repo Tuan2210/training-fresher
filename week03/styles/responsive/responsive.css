@@ -102,9 +102,6 @@
   header.navigate-header .content-navigate .right-box .control-box .btnClose {
     display: none;
   }
-  .content-container {
-    background: red;
-  }
   .content-container .menu-left {
     z-index: 0;
     visibility: hidden;
