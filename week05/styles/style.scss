@@ -81,11 +81,11 @@ body {
                 color: var(--main-color);
                 border-color: var(--main-color);
             }
-            .items-list {
+            ul.items-list {
                 // background: red;
                 padding: 30px 0 30px 0;
                 gap: 30px;
-                .item {
+                li.item {
                     height: 30%;
                     font-weight: 700;
                     line-height: 20px;
@@ -96,6 +96,5 @@ body {
                 }
             }
         }
-        .todo-wrapper {}
     }
 }

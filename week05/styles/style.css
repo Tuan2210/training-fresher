@@ -78,22 +78,22 @@ body {
   color: var(--main-color);
   border-color: var(--main-color);
 }
-.container .content-container .done-wrapper .items-list,
-.container .content-container .todo-wrapper .items-list,
-.container .content-container .doing-wrapper .items-list {
+.container .content-container .done-wrapper ul.items-list,
+.container .content-container .todo-wrapper ul.items-list,
+.container .content-container .doing-wrapper ul.items-list {
   padding: 30px 0 30px 0;
   gap: 30px;
 }
-.container .content-container .done-wrapper .items-list .item,
-.container .content-container .todo-wrapper .items-list .item,
-.container .content-container .doing-wrapper .items-list .item {
+.container .content-container .done-wrapper ul.items-list li.item,
+.container .content-container .todo-wrapper ul.items-list li.item,
+.container .content-container .doing-wrapper ul.items-list li.item {
   height: 30%;
   font-weight: 700;
   line-height: 20px;
   box-shadow: 0 10px 20px 2px var(--second-color);
 }
-.container .content-container .done-wrapper .items-list .item .due-date,
-.container .content-container .todo-wrapper .items-list .item .due-date,
-.container .content-container .doing-wrapper .items-list .item .due-date {
+.container .content-container .done-wrapper ul.items-list li.item .due-date,
+.container .content-container .todo-wrapper ul.items-list li.item .due-date,
+.container .content-container .doing-wrapper ul.items-list li.item .due-date {
   color: var(--second-color);
 }/*# sourceMappingURL=style.css.map */
