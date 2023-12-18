@@ -13,8 +13,8 @@
 
 html,
 body {
-    min-width: 100%;
     max-width: 100%;
+    max-height: 100dvh;
     font-family: "Inter";
     font-size: 14px;
     font-weight: 400;
@@ -85,6 +85,18 @@ body {
     height: 264px;
 }
 
+.top-24-px {
+    top: 24px;
+}
+
+.left-28-px {
+    left: 28px;
+}
+
+.border-collapse-collapse {
+    border-collapse: collapse;
+}
+
 .mar-top-10-px {
     margin-top: 10px;
 }
@@ -145,7 +157,8 @@ body {
     font-weight: bold;
 }
 
-.hoverBtn {
+.hoverBtn,
+.hoverBtnCancel {
     cursor: pointer;
 }
 
@@ -217,12 +230,24 @@ body {
     padding: 9px 17px 9px 17px;
 }
 
+.padding-12-10-px {
+    padding: 12px 10px;
+}
+
+.padding-12-24-px {
+    padding: 12px 24px;
+}
+
 .bg-fff {
     background: #fff;
 }
 
 .border-style-solid {
     border-style: solid;
+}
+
+.border-color-F0F1F3 {
+    border-color: #F0F1F3;
 }
 
 .border-color-DBDDE5 {
@@ -251,6 +276,10 @@ body {
 
 .border-rad-4-px {
     border-radius: 4px;
+}
+
+.border-rad-10-px {
+    border-radius: 10px;
 }
 
 .pad-9-px {
@@ -303,15 +332,19 @@ body {
     font-family: "Inter";
 }
 
-.content .table-wrapper {
-    border-radius: 10px 10px 0px 0px;
-    border-style: solid;
-    border-color: #F0F1F3;
-    position: relative;
-    width: 1152px;
+.top-12-px {
     top: 12px;
+}
+
+.font-size-14-px {
     font-size: 14px;
+}
+
+.line-height-20-px {
     line-height: 20px;
+}
+
+.overflow-y-auto {
     overflow-y: auto;
 }
 
@@ -372,31 +405,39 @@ body {
     color: #B01212;
 }
 
+.bg-none {
+    background: none;
+}
 
-/*  */
-
-.footer {
-    padding: 12px 24px;
-    border-top: 2px solid var(--devider);
+.color-5A6689 {
     color: #5A6689;
+}
+
+.border-top-footer {
     border-top: 1px solid #F0F1F3;
 }
 
+.border-rad-footer {
+    border-radius: 0 0 10px 10px;
+}
+
 .pagination ul li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 1rem;
     line-height: 20px;
     font-weight: 500;
-    color: var(--cl-senary);
-    cursor: pointer;
-    border: 1px solid #F0F1F3;
 }
 
 .pagination ul li.active {
     background: #EDEDFC;
     border: 1px solid #291CCB;
+}
+
+.border-rad-6-0-0-6-px {
+    border-radius: 6px 0 0 6px;
+}
+
+.border-rad-0-6-6-0px {
+    border-radius: 0 6px 6px 0;
 }
 
 .pagination ul li:has(img) {

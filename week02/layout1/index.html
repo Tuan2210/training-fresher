@@ -12,14 +12,14 @@
     <div class="container d-flex flex-row full-w full-h">
         <div class="sidebar d-flex flex-col w-240-px full-max-h border-right-w-2 border-right-solid border-right-light-gray just-cont-space-between">
             <div class="top-sidebar pad-20-px">
-                <img src="imgs/Group 12328.png" alt="logo" id="logo">
+                <img src="imgs/Group 12328.png" alt="logo" id="logo" class="top-24-px left-28-px">
                 <ul class="menu d-flex flex-col w-204-px h-264-px mar-top-10-px gap-4-px just-cont-space-around">
-                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn"><img src="imgs/trade.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">Trade</li>
-                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   bg-EDEDFC color--txtActive font-weight-bold"><img src="imgs/Orders.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">Orders</li>
-                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn" style="color: #291CCB"><span class="mar-left-15-percent"></span>All</li>
-                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn"><span class="mar-left-15-percent"></span>Open</li>
-                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn"><img src="imgs/History.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">History</li>
-                    <li class="d-flex align-items-center h-42-px border-rad-8-px gap-18-px color--txtMenu   hoverBtn"><img src="imgs/settings.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">Settings</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px padding-12-10-px gap-18-px color--txtMenu   hoverBtn"><img src="imgs/trade.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">Trade</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px padding-12-10-px gap-18-px color--txtMenu   bg-EDEDFC color--txtActive font-weight-bold"><img src="imgs/Orders.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">Orders</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px padding-12-10-px gap-18-px color--txtMenu   hoverBtn" style="color: #291CCB"><span class="mar-left-15-percent"></span>All</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px padding-12-10-px gap-18-px color--txtMenu   hoverBtn"><span class="mar-left-15-percent"></span>Open</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px padding-12-10-px gap-18-px color--txtMenu   hoverBtn"><img src="imgs/History.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">History</li>
+                    <li class="d-flex align-items-center h-42-px border-rad-8-px padding-12-10-px gap-18-px color--txtMenu   hoverBtn"><img src="imgs/settings.png" alt="" class="menuIcons img-w-18-px img-h-18-px mar-right-5-percent">Settings</li>
                 </ul>
             </div>
             <div class="bottom-sidebar d-flex flex-col mar-0-auto mar-bottom-3-percent w-204-px h-142-px just-cont-space-between">
@@ -43,13 +43,13 @@
                 </div>
             </div>
         </div>
-        <div class="content-footer d-flex flex-col full-w">
-            <div class="content w-85-percent full-h padding-2-percent ">
+        <div class="content-footer full-w d-flex flex-col full-w">
+            <div class="content full-w full-h padding-2-percent ">
                 <div class="header d-flex flex-row full-w h-36-px">
                     <button class="btnAll bg-EDEDFC color--txtActive font-weight-bold hoverBtn border-rad-6-px border-none padding-8-12-px w-41-px font-family-Inter">All</button>
                     <button class="btnOpen hoverBtn border-rad-6-px border-none padding-8-12-px bg-none mar-left-1-percent w-60-px color--txtContent font-family-Inter">Open</button>
                 </div>
-                <div class="table-wrapper border-rad-10-0-px border-style-solid border-color-F0F1F3 position-relative w-1152-px top-12-px font-size-14-px line-height-20-px overflow-y-auto">
+                <div class="table-wrapper full-w border-rad-10-px border-style-solid border-color-F0F1F3 position-relative top-12-px font-size-14-px line-height-20-px overflow-y-auto">
                     <table class="full-w border-collapse-collapse overflow-y-auto">
                         <thead class="color--txtContent font-size-12-px line-height-16-px bg-F9F9FA border-w-2-px  border-bottom-w-2-px border-bottom-solid border-color-F0F1F3">
                             <tr>
@@ -61,25 +61,25 @@
                                 <th class="txt-left">VALUE</th>
                                 <th class="txt-left">FILLED</th>
                                 <th class="txt-left">STATUS</th>
-                                <th class="txt-left" style="color: #B01212;">CANCEL &nbsp;ALL</th>
+                                <th class="txt-left btnCancel">CANCEL &nbsp;ALL</th>
                             </tr>
                         </thead>
                         <tbody id="test">
                         </tbody>
                     </table>
-                    <div class="footer full-w d-flex just-cont-space-between align-items-center">
+                    <div class="footer full-w d-flex just-cont-space-between align-items-center padding-12-24-px color-5A6689 border-top-footer border-rad-footer">
                         <span class="show-results">Showing <b>1</b> to <b>10</b> of <b>97</b> results</span>
                         <div class="pagination d-flex">
                             <ul class="d-flex">
-                                <li class="d-flex just-cont-center align-items-center  hoverBtn"><img src="imgs/Chevron left.png" alt="left" /></li>
-                                <li class="d-flex just-cont-center align-items-center  active hoverBtn">1</li>
-                                <li class="d-flex just-cont-center align-items-center  hoverBtn">2</li>
-                                <li class="d-flex just-cont-center align-items-center  hoverBtn">3</li>
-                                <li class="d-flex just-cont-center align-items-center  none hoverBtn">...</li>
-                                <li class="d-flex just-cont-center align-items-center  hoverBtn">5</li>
-                                <li class="d-flex just-cont-center align-items-center  hoverBtn">6</li>
-                                <li class="d-flex just-cont-center align-items-center  hoverBtn">7</li>
-                                <li class="d-flex just-cont-center align-items-center  hoverBtn"><img src="imgs/Chevron right.png" alt="right" /></li>
+                                <li class="d-flex just-cont-center align-items-center border-style-solid border-w-1-px border-color-F0F1F3  hoverBtn border-rad-6-0-0-6-px"><img src="imgs/Chevron left.png" alt="left" /></li>
+                                <li class="d-flex just-cont-center align-items-center border-style-solid border-w-1-px border-color-F0F1F3  active hoverBtn">1</li>
+                                <li class="d-flex just-cont-center align-items-center border-style-solid border-w-1-px border-color-F0F1F3  hoverBtn">2</li>
+                                <li class="d-flex just-cont-center align-items-center border-style-solid border-w-1-px border-color-F0F1F3  hoverBtn">3</li>
+                                <li class="d-flex just-cont-center align-items-center border-style-solid border-w-1-px border-color-F0F1F3  none hoverBtn">...</li>
+                                <li class="d-flex just-cont-center align-items-center border-style-solid border-w-1-px border-color-F0F1F3  hoverBtn">5</li>
+                                <li class="d-flex just-cont-center align-items-center border-style-solid border-w-1-px border-color-F0F1F3  hoverBtn">6</li>
+                                <li class="d-flex just-cont-center align-items-center border-style-solid border-w-1-px border-color-F0F1F3  hoverBtn">7</li>
+                                <li class="d-flex just-cont-center align-items-center border-style-solid border-w-1-px border-color-F0F1F3  hoverBtn border-rad-0-6-6-0px"><img src="imgs/Chevron right.png" alt="right" /></li>
                             </ul>
                         </div>
                     </div>

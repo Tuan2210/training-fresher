@@ -177,7 +177,7 @@ function renderData() {
                 ? `<td class="">
                 <div class="d-flex flex-row align-items-center">
                   
-                    <button class="btnCancel border-none bg-none font-family-Inter">Cancel</button>
+                    <button class="btnCancel border-none bg-none font-family-Inter hoverBtnCancel">Cancel</button>
                     <img src="imgs/cancel.png" alt="" />
                 </div>
             </td>`
