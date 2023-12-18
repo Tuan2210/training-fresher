@@ -16,10 +16,14 @@
 
 html,
 body {
-  min-width: 100%;
-  min-height: 100dvh;
+  max-width: 100%;
+  max-height: 100dvh;
+  overflow: hidden;
   user-select: none;
   font-family: "Inter";
+  background-image: url(https://c4.wallpaperflare.com/wallpaper/118/216/2/mountains-trees-moon-landscape-wallpaper-preview.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -61,39 +65,57 @@ body {
   width: 100px;
 }
 .container .content-container {
-  background-image: url(https://c4.wallpaperflare.com/wallpaper/118/216/2/mountains-trees-moon-landscape-wallpaper-preview.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: none;
+  height: 100dvh;
+  overflow-y: auto;
 }
 .container .content-container .done-wrapper,
-.container .content-container .todo-wrapper,
+.container .content-container .to-do-wrapper,
 .container .content-container .doing-wrapper {
   border-color: var(--main-color);
 }
 .container .content-container .done-wrapper span,
-.container .content-container .todo-wrapper span,
+.container .content-container .to-do-wrapper span,
 .container .content-container .doing-wrapper span {
   width: 100%;
   margin: 0 auto;
   color: var(--main-color);
   border-color: var(--main-color);
 }
-.container .content-container .done-wrapper ul.items-list,
-.container .content-container .todo-wrapper ul.items-list,
-.container .content-container .doing-wrapper ul.items-list {
+.container .content-container .done-wrapper ul.items-done-list,
+.container .content-container .done-wrapper ul.items-to-do-list,
+.container .content-container .done-wrapper ul.items-doing-list,
+.container .content-container .to-do-wrapper ul.items-done-list,
+.container .content-container .to-do-wrapper ul.items-to-do-list,
+.container .content-container .to-do-wrapper ul.items-doing-list,
+.container .content-container .doing-wrapper ul.items-done-list,
+.container .content-container .doing-wrapper ul.items-to-do-list,
+.container .content-container .doing-wrapper ul.items-doing-list {
   padding: 30px 0 30px 0;
   gap: 30px;
 }
-.container .content-container .done-wrapper ul.items-list li.item,
-.container .content-container .todo-wrapper ul.items-list li.item,
-.container .content-container .doing-wrapper ul.items-list li.item {
-  height: 30%;
+.container .content-container .done-wrapper ul.items-done-list li.item-to-do,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-to-do,
+.container .content-container .done-wrapper ul.items-doing-list li.item-to-do,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-to-do,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-to-do,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-to-do,
+.container .content-container .doing-wrapper ul.items-done-list li.item-to-do,
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-to-do,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-to-do {
+  height: 150px;
   font-weight: 700;
   line-height: 20px;
-  box-shadow: 0 10px 20px 2px var(--second-color);
+  box-shadow: 0 2px 15px 5px var(--second-color);
 }
-.container .content-container .done-wrapper ul.items-list li.item .due-date,
-.container .content-container .todo-wrapper ul.items-list li.item .due-date,
-.container .content-container .doing-wrapper ul.items-list li.item .due-date {
+.container .content-container .done-wrapper ul.items-done-list li.item-to-do .due-date,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-to-do .due-date,
+.container .content-container .done-wrapper ul.items-doing-list li.item-to-do .due-date,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-to-do .due-date,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-to-do .due-date,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-to-do .due-date,
+.container .content-container .doing-wrapper ul.items-done-list li.item-to-do .due-date,
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-to-do .due-date,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-to-do .due-date {
   color: var(--second-color);
 }/*# sourceMappingURL=style.css.map */

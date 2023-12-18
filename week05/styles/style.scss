@@ -16,10 +16,14 @@
 
 html,
 body {
-    min-width: 100%;
-    min-height: 100dvh;
+    max-width: 100%;
+    max-height: 100dvh;
+    overflow: hidden;
     user-select: none;
     font-family: 'Inter';
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/118/216/2/mountains-trees-moon-landscape-wallpaper-preview.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -51,7 +55,6 @@ body {
                 width: 100px;
                 color: #fff;
                 background: var(--second-color);
-                // border: 2px solid var(--main-color);
             }
         }
         .add-box::after {
@@ -66,14 +69,12 @@ body {
         }
     }
     .content-container {
-        background-image: url(https://c4.wallpaperflare.com/wallpaper/118/216/2/mountains-trees-moon-landscape-wallpaper-preview.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
+        background: none;
+        height: 100dvh;
+        overflow-y: auto;
         .done-wrapper,
-        .todo-wrapper,
+        .to-do-wrapper,
         .doing-wrapper {
-            // background: linear-gradient(to bottom, #F7F8FA, #09CBD0, #fff);
-            // background: var(--bg-contentr);
             border-color: var(--main-color);
             span {
                 width: 100%;
@@ -81,15 +82,16 @@ body {
                 color: var(--main-color);
                 border-color: var(--main-color);
             }
-            ul.items-list {
-                // background: red;
+            ul.items-done-list,
+            ul.items-to-do-list,
+            ul.items-doing-list {
                 padding: 30px 0 30px 0;
                 gap: 30px;
-                li.item {
-                    height: 30%;
+                li.item-to-do {
+                    height: 150px;
                     font-weight: 700;
                     line-height: 20px;
-                    box-shadow: 0 10px 20px 2px var(--second-color);
+                    box-shadow: 0 2px 15px 5px var(--second-color);
                     .due-date {
                         color: var(--second-color);
                     }
