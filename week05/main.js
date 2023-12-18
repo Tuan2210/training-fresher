@@ -99,20 +99,33 @@ function newElement() {
     "rounded-xl"
   );
 
+  var itemBox = document.createElement("div");
+  itemBox.classList.add("item-box", "w-full", "flex", "justify-between");
+
   var itemDetails = document.createElement("div");
-  // itemDetails.className("item-details");
   itemDetails.classList.add("item-details");
   itemDetails.textContent = input;
 
+  var itemOptions = document.createElement("div");
+  itemOptions.classList.add("item-options", "flex", "flex-col", "gap-4");
+
+  var faTrash = document.createElement("i");
+  faTrash.classList.add("fa-solid", "fa-trash");
+  var faPen = document.createElement("i");
+  faPen.classList.add("fa-solid", "fa-pen");
+
   var dueDate = document.createElement("div");
-  // dueDate.className = "due-date text-right";
   dueDate.classList.add("due-date", "text-right");
 
   var currentDate = new Date(),
     formattedDateTime = formatDateTime(currentDate);
   dueDate.innerHTML = `<i>${formattedDateTime}</i>`;
 
-  item.appendChild(itemDetails);
+  item.appendChild(itemBox);
+  itemBox.appendChild(itemDetails);
+  itemBox.appendChild(itemOptions);
+  itemOptions.appendChild(faTrash);
+  itemOptions.appendChild(faPen);
   item.appendChild(dueDate);
   document.querySelector(".items-to-do-list").appendChild(item);
 

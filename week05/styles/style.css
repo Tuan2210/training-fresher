@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Fleur+De+Leah&family=Inter:wght@300&family=Mansalva&family=Mystery+Quest&family=Poppins&family=Roboto:wght@500&display=swap");
 :root {
   --main-color: #09CBD0;
-  --second-color: #068995;
+  --second-color: #0e1538;
   --bg-content: #F7F8FA;
+  --third-color: #068995 ;
 }
 
 * {
@@ -46,7 +47,6 @@ body {
 .container header .add-box input {
   width: 100%;
   padding: 0 20px 0 20px;
-  border-bottom: 2px dashed lightgray;
 }
 .container header .add-box input:focus {
   outline: none;
@@ -54,6 +54,10 @@ body {
 .container header .add-box .addBtn {
   width: 100px;
   color: #fff;
+  background: var(--third-color);
+}
+.container header .add-box .addBtn:hover {
+  color: var(--main-color);
   background: var(--second-color);
 }
 .container header .add-box::after {
@@ -77,10 +81,42 @@ body {
 .container .content-container .done-wrapper span,
 .container .content-container .to-do-wrapper span,
 .container .content-container .doing-wrapper span {
+  position: relative;
   width: 100%;
   margin: 0 auto;
   color: var(--main-color);
-  border-color: var(--main-color);
+  overflow: hidden;
+}
+.container .content-container .done-wrapper span i,
+.container .content-container .done-wrapper span .title,
+.container .content-container .to-do-wrapper span i,
+.container .content-container .to-do-wrapper span .title,
+.container .content-container .doing-wrapper span i,
+.container .content-container .doing-wrapper span .title {
+  z-index: 2;
+}
+.container .content-container .done-wrapper span::before,
+.container .content-container .to-do-wrapper span::before,
+.container .content-container .doing-wrapper span::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 70%;
+}
+.container .content-container .done-wrapper span::after,
+.container .content-container .to-do-wrapper span::after,
+.container .content-container .doing-wrapper span::after {
+  content: "";
+  position: absolute;
+  background: #0e1538;
+  inset: 2px;
+  border-radius: 15px;
+}
+.container .content-container .done-wrapper span:hover::before,
+.container .content-container .to-do-wrapper span:hover::before,
+.container .content-container .doing-wrapper span:hover::before {
+  background: var(--main-color);
+  animation: hoverTitle 5s linear infinite;
 }
 .container .content-container .done-wrapper ul.items-done-list,
 .container .content-container .done-wrapper ul.items-to-do-list,
@@ -106,7 +142,7 @@ body {
   height: 150px;
   font-weight: 700;
   line-height: 20px;
-  box-shadow: 0 2px 15px 5px var(--second-color);
+  box-shadow: 0 2px 15px 5px var(--third-color);
 }
 .container .content-container .done-wrapper ul.items-done-list li.item-to-do .due-date,
 .container .content-container .done-wrapper ul.items-to-do-list li.item-to-do .due-date,
@@ -117,5 +153,68 @@ body {
 .container .content-container .doing-wrapper ul.items-done-list li.item-to-do .due-date,
 .container .content-container .doing-wrapper ul.items-to-do-list li.item-to-do .due-date,
 .container .content-container .doing-wrapper ul.items-doing-list li.item-to-do .due-date {
-  color: var(--second-color);
+  color: var(--third-color);
+}
+.container .content-container .done-wrapper ul.items-done-list .item-details,
+.container .content-container .done-wrapper ul.items-to-do-list .item-details,
+.container .content-container .done-wrapper ul.items-doing-list .item-details,
+.container .content-container .to-do-wrapper ul.items-done-list .item-details,
+.container .content-container .to-do-wrapper ul.items-to-do-list .item-details,
+.container .content-container .to-do-wrapper ul.items-doing-list .item-details,
+.container .content-container .doing-wrapper ul.items-done-list .item-details,
+.container .content-container .doing-wrapper ul.items-to-do-list .item-details,
+.container .content-container .doing-wrapper ul.items-doing-list .item-details {
+  width: 90%;
+  overflow-wrap: break-word;
+  text-align: justify;
+}
+.container .content-container .done-wrapper ul.items-done-list .fa-trash,
+.container .content-container .done-wrapper ul.items-done-list .fa-pen,
+.container .content-container .done-wrapper ul.items-to-do-list .fa-trash,
+.container .content-container .done-wrapper ul.items-to-do-list .fa-pen,
+.container .content-container .done-wrapper ul.items-doing-list .fa-trash,
+.container .content-container .done-wrapper ul.items-doing-list .fa-pen,
+.container .content-container .to-do-wrapper ul.items-done-list .fa-trash,
+.container .content-container .to-do-wrapper ul.items-done-list .fa-pen,
+.container .content-container .to-do-wrapper ul.items-to-do-list .fa-trash,
+.container .content-container .to-do-wrapper ul.items-to-do-list .fa-pen,
+.container .content-container .to-do-wrapper ul.items-doing-list .fa-trash,
+.container .content-container .to-do-wrapper ul.items-doing-list .fa-pen,
+.container .content-container .doing-wrapper ul.items-done-list .fa-trash,
+.container .content-container .doing-wrapper ul.items-done-list .fa-pen,
+.container .content-container .doing-wrapper ul.items-to-do-list .fa-trash,
+.container .content-container .doing-wrapper ul.items-to-do-list .fa-pen,
+.container .content-container .doing-wrapper ul.items-doing-list .fa-trash,
+.container .content-container .doing-wrapper ul.items-doing-list .fa-pen {
+  color: var(--third-color);
+}
+.container .content-container .done-wrapper ul.items-done-list .fa-trash:hover,
+.container .content-container .done-wrapper ul.items-done-list .fa-pen:hover,
+.container .content-container .done-wrapper ul.items-to-do-list .fa-trash:hover,
+.container .content-container .done-wrapper ul.items-to-do-list .fa-pen:hover,
+.container .content-container .done-wrapper ul.items-doing-list .fa-trash:hover,
+.container .content-container .done-wrapper ul.items-doing-list .fa-pen:hover,
+.container .content-container .to-do-wrapper ul.items-done-list .fa-trash:hover,
+.container .content-container .to-do-wrapper ul.items-done-list .fa-pen:hover,
+.container .content-container .to-do-wrapper ul.items-to-do-list .fa-trash:hover,
+.container .content-container .to-do-wrapper ul.items-to-do-list .fa-pen:hover,
+.container .content-container .to-do-wrapper ul.items-doing-list .fa-trash:hover,
+.container .content-container .to-do-wrapper ul.items-doing-list .fa-pen:hover,
+.container .content-container .doing-wrapper ul.items-done-list .fa-trash:hover,
+.container .content-container .doing-wrapper ul.items-done-list .fa-pen:hover,
+.container .content-container .doing-wrapper ul.items-to-do-list .fa-trash:hover,
+.container .content-container .doing-wrapper ul.items-to-do-list .fa-pen:hover,
+.container .content-container .doing-wrapper ul.items-doing-list .fa-trash:hover,
+.container .content-container .doing-wrapper ul.items-doing-list .fa-pen:hover {
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+@keyframes hoverTitle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=style.css.map */

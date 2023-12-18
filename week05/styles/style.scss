@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Fleur+De+Leah&family=Inter:wght@300&family=Mansalva&family=Mystery+Quest&family=Poppins&family=Roboto:wght@500&display=swap');
 :root {
     --main-color: #09CBD0;
-    --second-color: #068995;
+    --second-color: #0e1538;
     --bg-content: #F7F8FA;
+    --third-color: #068995
 }
 
 * {
@@ -46,7 +47,6 @@ body {
             input {
                 width: 100%;
                 padding: 0 20px 0 20px;
-                border-bottom: 2px dashed lightgray;
             }
             input:focus {
                 outline: none;
@@ -54,6 +54,10 @@ body {
             .addBtn {
                 width: 100px;
                 color: #fff;
+                background: var(--third-color);
+            }
+            .addBtn:hover {
+                color: var(--main-color);
                 background: var(--second-color);
             }
         }
@@ -77,10 +81,32 @@ body {
         .doing-wrapper {
             border-color: var(--main-color);
             span {
+                position: relative;
                 width: 100%;
                 margin: 0 auto;
                 color: var(--main-color);
-                border-color: var(--main-color);
+                overflow: hidden;
+                i,
+                .title {
+                    z-index: 2;
+                }
+            }
+            span::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 70%;
+            }
+            span::after {
+                content: '';
+                position: absolute;
+                background: #0e1538;
+                inset: 2px;
+                border-radius: 15px;
+            }
+            span:hover::before {
+                background: var(--main-color);
+                animation: hoverTitle 5s linear infinite;
             }
             ul.items-done-list,
             ul.items-to-do-list,
@@ -91,12 +117,35 @@ body {
                     height: 150px;
                     font-weight: 700;
                     line-height: 20px;
-                    box-shadow: 0 2px 15px 5px var(--second-color);
+                    box-shadow: 0 2px 15px 5px var(--third-color);
                     .due-date {
-                        color: var(--second-color);
+                        color: var(--third-color);
                     }
+                }
+                .item-details {
+                    width: 90%;
+                    overflow-wrap: break-word;
+                    text-align: justify;
+                }
+                .fa-trash,
+                .fa-pen {
+                    color: var(--third-color);
+                }
+                .fa-trash:hover,
+                .fa-pen:hover {
+                    color: var(--main-color);
+                    cursor: pointer;
                 }
             }
         }
+    }
+}
+
+@keyframes hoverTitle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
