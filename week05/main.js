@@ -80,16 +80,16 @@ function padZero(number) {
 }
 
 //--handle add task--
-function newElement() {
+function createItem() {
   var input = document.querySelector("#myInput").value;
   if (input === "") {
     alert("The input is empty!\nPlease enter your task 😊");
     return;
   }
 
-  var item = document.createElement("li");
+  const itemToDo = document.createElement("li");
   // item.className("item bg-white flex flex-col justify-between p-3 rounded-xl");
-  item.classList.add(
+  itemToDo.classList.add(
     "item-to-do",
     "bg-white",
     "flex",
@@ -99,35 +99,56 @@ function newElement() {
     "rounded-xl"
   );
 
-  var itemBox = document.createElement("div");
+  const itemBox = document.createElement("div");
   itemBox.classList.add("item-box", "w-full", "flex", "justify-between");
 
-  var itemDetails = document.createElement("div");
+  const itemDetails = document.createElement("div");
   itemDetails.classList.add("item-details");
   itemDetails.textContent = input;
 
-  var itemOptions = document.createElement("div");
+  const itemOptions = document.createElement("div");
   itemOptions.classList.add("item-options", "flex", "flex-col", "gap-4");
 
-  var faTrash = document.createElement("i");
+  const inputPreview = document.createElement("div");
+  inputPreview.classList.add("inputPreview", "flex", "justify-center");
+
+  const cssCheckbox = document.createElement("input");
+  cssCheckbox.setAttribute("name", "cssCheckbox");
+  cssCheckbox.setAttribute("id", "demo_opt_1");
+  cssCheckbox.setAttribute("type", "checkbox");
+  cssCheckbox.classList.add("css-checkbox");
+
+  const labelChkb = document.createElement("label");
+  labelChkb.setAttribute("for", "demo_opt_1");
+
+  const faTrash = document.createElement("i");
   faTrash.classList.add("fa-solid", "fa-trash");
   var faPen = document.createElement("i");
   faPen.classList.add("fa-solid", "fa-pen");
 
-  var dueDate = document.createElement("div");
+  const dueDate = document.createElement("div");
   dueDate.classList.add("due-date", "text-right");
 
-  var currentDate = new Date(),
+  const currentDate = new Date(),
     formattedDateTime = formatDateTime(currentDate);
   dueDate.innerHTML = `<i>${formattedDateTime}</i>`;
 
-  item.appendChild(itemBox);
+  itemToDo.appendChild(itemBox);
+
   itemBox.appendChild(itemDetails);
   itemBox.appendChild(itemOptions);
+
+  itemOptions.appendChild(inputPreview);
+
+  inputPreview.appendChild(cssCheckbox);
+  inputPreview.appendChild(labelChkb);
+
   itemOptions.appendChild(faTrash);
   itemOptions.appendChild(faPen);
-  item.appendChild(dueDate);
-  document.querySelector(".items-to-do-list").appendChild(item);
+
+  itemToDo.appendChild(dueDate);
+
+  document.querySelector(".items-to-do-list").appendChild(itemToDo);
 
   document.querySelector("#myInput").value = "";
 }
