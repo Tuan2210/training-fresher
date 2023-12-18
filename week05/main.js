@@ -61,6 +61,7 @@ function refreshRealTime() {
 
   setTimeout("refreshRealTime()", 1000);
 }
+document.addEventListener("DOMContentLoaded", refreshRealTime);
 
 //--format date-time--
 function formatDateTime(date) {
@@ -78,6 +79,9 @@ function formatDateTime(date) {
 function padZero(number) {
   return number < 10 ? `0${number}` : number;
 }
+
+//--array-local-storage--
+var toDoList = [];
 
 //--handle add task--
 function createItem() {
@@ -123,6 +127,8 @@ function createItem() {
 
   const faTrash = document.createElement("i");
   faTrash.classList.add("fa-solid", "fa-trash");
+  faTrash.onclick = delItem;
+
   var faPen = document.createElement("i");
   faPen.classList.add("fa-solid", "fa-pen");
 
@@ -151,4 +157,20 @@ function createItem() {
   document.querySelector(".items-to-do-list").appendChild(itemToDo);
 
   document.querySelector("#myInput").value = "";
+}
+
+//--handle del task--
+function delItem() {
+  const trash = document.querySelector(".fa-trash");
+  // for (var i = 0; i < i++; i++) {
+  //   trash[i].onclick = () => {
+  //     alert(trash[i]);
+  //     // const div = this.parentElement;
+  //     // div.style.display = "none";
+  //   };
+  // }
+  trash.onclick = function () {
+    const itemToDo = document.querySelector(".item-to-do");
+    itemToDo.style.display = "none";
+  };
 }
