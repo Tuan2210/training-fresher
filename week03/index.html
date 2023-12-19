@@ -2,852 +2,794 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week3 - Chat</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/responsive/responsive.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/responsive/responsive.css" />
+    <title>Week03 - Chat</title>
 </head>
 
 <body>
-    <div class="container flexColumn">
-        <!-- navigate -->
-        <header class="navigate-header flexRow">
-            <div class="content-navigate flexRow">
-                <div class="logo flexRow">
-                    <input type="checkbox" id="check-btnMenu">
-                    <label class="btnMenu btn-style btn-hover" for="check-btnMenu">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 30 30" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 21H23C23.55 21 24 20.55 24 20C24 19.45 23.55 19 23 19H7C6.45 19 6 19.45 6 20C6 20.55 6.45 21 7 21ZM7 16H23C23.55 16 24 15.55 24 15C24 14.45 23.55 14 23 14H7C6.45 14 6 14.45 6 15C6 15.55 6.45 16 7 16ZM6 10C6 10.55 6.45 11 7 11H23C23.55 11 24 10.55 24 10C24 9.45 23.55 9 23 9H7C6.45 9 6 9.45 6 10Z" fill="#C3CAD9"/>
-                          </svg>
-                    </label>
-                    <div class="title"><b>Constructor</b></div>
-                </div>
-                <ul class="menu flexRow">
-                    <li class="menu-item"><a href="#">Dashboard</a></li>
-                    <li class="menu-item"><a href="#">About Us</a></li>
-                    <li class="menu-item"><a href="#">News</a></li>
-                    <li class="menu-item"><a href="#">User Policy</a></li>
-                    <li class="menu-item"><a href="#">Contacts</a></li>
-                    <button class="btnMoreMenu">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.33337 13C8.23337 13 7.33337 13.9 7.33337 15C7.33337 16.1 8.23337 17 9.33337 17C10.4334 17 11.3334 16.1 11.3334 15C11.3334 13.9 10.4334 13 9.33337 13ZM21.3334 13C20.2334 13 19.3334 13.9 19.3334 15C19.3334 16.1 20.2334 17 21.3334 17C22.4334 17 23.3334 16.1 23.3334 15C23.3334 13.9 22.4334 13 21.3334 13ZM15.3334 13C14.2334 13 13.3334 13.9 13.3334 15C13.3334 16.1 14.2334 17 15.3334 17C16.4334 17 17.3334 16.1 17.3334 15C17.3334 13.9 16.4334 13 15.3334 13Z" fill="#C3CAD9"/>
-                        </svg>
-                    </button>
-                </ul>
-                <div class="search-box flexRow">
-                    <button class="btnSearchGlass btn-hover">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.1673 17.0006H18.3773L18.0973 16.7306C19.2973 15.3306 19.9173 13.4206 19.5773 11.3906C19.1073 8.61063 16.7873 6.39063 13.9873 6.05063C9.75731 5.53063 6.19731 9.09063 6.71731 13.3206C7.05731 16.1206 9.27731 18.4406 12.0573 18.9106C14.0873 19.2506 15.9973 18.6306 17.3973 17.4306L17.6673 17.7106V18.5006L21.9173 22.7506C22.3273 23.1606 22.9973 23.1606 23.4073 22.7506C23.8173 22.3406 23.8173 21.6706 23.4073 21.2606L19.1673 17.0006ZM13.1673 17.0006C10.6773 17.0006 8.66731 14.9906 8.66731 12.5006C8.66731 10.0106 10.6773 8.00063 13.1673 8.00063C15.6573 8.00063 17.6673 10.0106 17.6673 12.5006C17.6673 14.9906 15.6573 17.0006 13.1673 17.0006Z" fill="#C3CAD9"/>
-                          </svg>
-                    </button>
-                    <input class="input-search" type="text" placeholder="Search Transactions and Documents">
-                    <button class="btnSearchOk btn-hover">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9592 9.29376C12.5692 9.68376 12.5692 10.3138 12.9592 10.7038L16.8392 14.5838L12.9592 18.4638C12.5692 18.8538 12.5692 19.4838 12.9592 19.8738C13.3492 20.2638 13.9792 20.2638 14.3692 19.8738L18.9592 15.2838C19.3492 14.8938 19.3492 14.2638 18.9592 13.8738L14.3692 9.28376C13.9892 8.90376 13.3492 8.90376 12.9592 9.29376Z" fill="#C3CAD9"/>
-                          </svg>
-                    </button>
-                </div>
-                <div class="right-box flexRow">
-                    <div class="user-box flexRow">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15 5C9.48 5 5 9.48 5 15C5 20.52 9.48 25 15 25C20.52 25 25 20.52 25 15C25 9.48 20.52 5 15 5ZM15 8C16.66 8 18 9.34 18 11C18 12.66 16.66 14 15 14C13.34 14 12 12.66 12 11C12 9.34 13.34 8 15 8ZM15 22.2C12.5 22.2 10.29 20.92 9 18.98C9.03 16.99 13 15.9 15 15.9C16.99 15.9 20.97 16.99 21 18.98C19.71 20.92 17.5 22.2 15 22.2Z" fill="#C3CAD9"/>
-                        </svg>
-                        <div class="lblUser">Clayton Santos</div>
-                    </div>
-                    <div class="control-box flexRow">
-                        <button class="btnSearch btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5006 17.0006H17.7106L17.4306 16.7306C18.6306 15.3306 19.2506 13.4206 18.9106 11.3906C18.4406 8.61063 16.1206 6.39063 13.3206 6.05063C9.09063 5.53063 5.53063 9.09063 6.05063 13.3206C6.39063 16.1206 8.61063 18.4406 11.3906 18.9106C13.4206 19.2506 15.3306 18.6306 16.7306 17.4306L17.0006 17.7106V18.5006L21.2506 22.7506C21.6606 23.1606 22.3306 23.1606 22.7406 22.7506C23.1506 22.3406 23.1506 21.6706 22.7406 21.2606L18.5006 17.0006ZM12.5006 17.0006C10.0106 17.0006 8.00063 14.9906 8.00063 12.5006C8.00063 10.0106 10.0106 8.00063 12.5006 8.00063C14.9906 8.00063 17.0006 10.0106 17.0006 12.5006C17.0006 14.9906 14.9906 17.0006 12.5006 17.0006Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                        <button class="btnNotify btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5865 24.5C15.6865 24.5 16.5865 23.6 16.5865 22.5H12.5865C12.5865 23.6 13.4765 24.5 14.5865 24.5ZM20.5865 18.5V13.5C20.5865 10.43 18.9465 7.86 16.0865 7.18V6.5C16.0865 5.67 15.4165 5 14.5865 5C13.7565 5 13.0865 5.67 13.0865 6.5V7.18C10.2165 7.86 8.58648 10.42 8.58648 13.5V18.5L7.29648 19.79C6.66648 20.42 7.10648 21.5 7.99648 21.5H21.1665C22.0565 21.5 22.5065 20.42 21.8765 19.79L20.5865 18.5Z" fill="#C3CAD9"/>
-                            </svg>
-                            <span class="sttNotify">&nbsp;</span>
-                        </button>
-                        <button class="btnUser btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 5C9.48 5 5 9.48 5 15C5 20.52 9.48 25 15 25C20.52 25 25 20.52 25 15C25 9.48 20.52 5 15 5ZM15 8C16.66 8 18 9.34 18 11C18 12.66 16.66 14 15 14C13.34 14 12 12.66 12 11C12 9.34 13.34 8 15 8ZM15 22.2C12.5 22.2 10.29 20.92 9 18.98C9.03 16.99 13 15.9 15 15.9C16.99 15.9 20.97 16.99 21 18.98C19.71 20.92 17.5 22.2 15 22.2Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                        <button class="btnClose btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 5C9.47 5 5 9.47 5 15C5 20.53 9.47 25 15 25C20.53 25 25 20.53 25 15C25 9.47 20.53 5 15 5ZM19.3 19.3C18.91 19.69 18.28 19.69 17.89 19.3L15 16.41L12.11 19.3C11.72 19.69 11.09 19.69 10.7 19.3C10.5127 19.1132 10.4075 18.8595 10.4075 18.595C10.4075 18.3305 10.5127 18.0768 10.7 17.89L13.59 15L10.7 12.11C10.5127 11.9232 10.4075 11.6695 10.4075 11.405C10.4075 11.1405 10.5127 10.8868 10.7 10.7C11.09 10.31 11.72 10.31 12.11 10.7L15 13.59L17.89 10.7C18.28 10.31 18.91 10.31 19.3 10.7C19.69 11.09 19.69 11.72 19.3 12.11L16.41 15L19.3 17.89C19.68 18.27 19.68 18.91 19.3 19.3Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
+    <div>
+        <div class="main-wrapper">
+            <header class="header">
+                <div class="header-widget">
+                    <div class="header-logo-container">
+                        <button class="mobile-menu-icon light">
+                        <img class="icon-size-30" src="./assets/icons/mobile-menu-icon.svg" alt="" />
+                     </button>
 
-        <!-- content -->
-        <div class="content-container">
-            <!-- left-navigate -->
-            <div class="navigate-content">
-                <div class="menu-left flexColumn">
-                    <div class="top-menu flexColumn">
-                        <button class="btnHome btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 13.9C14.39 13.9 13.9 14.39 13.9 15C13.9 15.61 14.39 16.1 15 16.1C15.61 16.1 16.1 15.61 16.1 15C16.1 14.39 15.61 13.9 15 13.9ZM15 5C9.48 5 5 9.48 5 15C5 20.52 9.48 25 15 25C20.52 25 25 20.52 25 15C25 9.48 20.52 5 15 5ZM17.19 17.19L9 21L12.81 12.81L21 9L17.19 17.19Z" fill="#3361FF"/>
-                            </svg>
-                        </button>
-                        <button class="btnFavorite btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.557 20.6975L18.707 23.2075C19.467 23.6675 20.397 22.9875 20.197 22.1275L19.097 17.4075L22.767 14.2275C23.437 13.6475 23.077 12.5475 22.197 12.4775L17.367 12.0675L15.477 7.6075C15.137 6.7975 13.977 6.7975 13.637 7.6075L11.747 12.0575L6.91696 12.4675C6.03696 12.5375 5.67696 13.6375 6.34696 14.2175L10.017 17.3975L8.91696 22.1175C8.71696 22.9775 9.64696 23.6575 10.407 23.1975L14.557 20.6975Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                        <button class="btnMess btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 5C9.47714 5 5 9.17124 5 14.3168C5 17.2488 6.45416 19.864 8.72671 21.5719V25.1242L12.1316 23.2439C13.0403 23.497 14.003 23.6335 15 23.6335C20.5229 23.6335 25 19.4623 25 14.3168C25 9.17124 20.5229 5 15 5ZM15.9938 17.5466L13.4472 14.8137L8.47826 17.5466L13.9441 11.7081L16.5528 14.441L21.4596 11.7081L15.9938 17.5466Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                        <button class="btnStonk btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.4325 9.85L20.8725 11.29L15.9925 16.17L12.7025 12.88C12.5157 12.6927 12.262 12.5875 11.9975 12.5875C11.733 12.5875 11.4793 12.6927 11.2925 12.88L5.2925 18.89C4.9025 19.28 4.9025 19.91 5.2925 20.3C5.6825 20.69 6.3125 20.69 6.7025 20.3L11.9925 15L15.2825 18.29C15.6725 18.68 16.3025 18.68 16.6925 18.29L22.2825 12.71L23.7225 14.15C24.0325 14.46 24.5725 14.24 24.5725 13.8V9.5C24.5825 9.22 24.3625 9 24.0825 9H19.7925C19.3425 9 19.1225 9.54 19.4325 9.85Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                        <button class="btnGlobal btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 5C9.48 5 5 9.48 5 15C5 20.52 9.48 25 15 25C20.52 25 25 20.52 25 15C25 9.48 20.52 5 15 5ZM14 22.93C10.05 22.44 7 19.08 7 15C7 14.38 7.08 13.79 7.21 13.21L12 18V19C12 20.1 12.9 21 14 21V22.93ZM20.9 20.39C20.64 19.58 19.9 19 19 19H18V16C18 15.45 17.55 15 17 15H11V13H13C13.55 13 14 12.55 14 12V10H16C17.1 10 18 9.1 18 8V7.59C20.93 8.78 23 11.65 23 15C23 17.08 22.2 18.97 20.9 20.39Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                        <button class="btnCity btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18 14.5825V9.41249C18 8.88249 17.79 8.37249 17.41 8.00249L15.7 6.29249C15.5132 6.10523 15.2595 6 14.995 6C14.7305 6 14.4768 6.10523 14.29 6.29249L12.59 7.99249C12.21 8.37249 12 8.88249 12 9.41249V10.5825H8C6.9 10.5825 6 11.4825 6 12.5825V22.5825C6 23.6825 6.9 24.5825 8 24.5825H22C23.1 24.5825 24 23.6825 24 22.5825V16.5825C24 15.4825 23.1 14.5825 22 14.5825H18ZM10 22.5825H8V20.5825H10V22.5825ZM10 18.5825H8V16.5825H10V18.5825ZM10 14.5825H8V12.5825H10V14.5825ZM16 22.5825H14V20.5825H16V22.5825ZM16 18.5825H14V16.5825H16V18.5825ZM16 14.5825H14V12.5825H16V14.5825ZM16 10.5825H14V8.58249H16V10.5825ZM22 22.5825H20V20.5825H22V22.5825ZM22 18.5825H20V16.5825H22V18.5825Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="bottom-menu flexColumn">
-                        <img class="avt-img" src="imgs/Base.png" alt=""><span class="sttNotify"></span>
-                        <img class="avt-img" src="imgs/ava.png" alt="">
-                        <img class="avt-img" src="imgs/Avatar 4.png" alt="">
-                        <img class="avt-img" src="imgs/Avatar 7.png" alt="">
-                        <button class="btnAdd btn-style btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 5C9.48 5 5 9.48 5 15C5 20.52 9.48 25 15 25C20.52 25 25 20.52 25 15C25 9.48 20.52 5 15 5ZM19 16H16V19C16 19.55 15.55 20 15 20C14.45 20 14 19.55 14 19V16H11C10.45 16 10 15.55 10 15C10 14.45 10.45 14 11 14H14V11C14 10.45 14.45 10 15 10C15.55 10 16 10.45 16 11V14H19C19.55 14 20 14.45 20 15C20 15.55 19.55 16 19 16Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- sidebar-main-menu -->
-            <div class="sidebar flexColumn">
-                <!-- main-menu -->
-                <div class="main-menu flexColumn">
-                    <header class="head-main-menu"><b>MAIN MENU</b></header>
-                    <div class="dashboard tab active-tab flexRow">
-                        <div class="left-dashboard tab-left flexRow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7 16H13C13.55 16 14 15.55 14 15V7C14 6.45 13.55 6 13 6H7C6.45 6 6 6.45 6 7V15C6 15.55 6.45 16 7 16ZM7 24H13C13.55 24 14 23.55 14 23V19C14 18.45 13.55 18 13 18H7C6.45 18 6 18.45 6 19V23C6 23.55 6.45 24 7 24ZM17 24H23C23.55 24 24 23.55 24 23V15C24 14.45 23.55 14 23 14H17C16.45 14 16 14.45 16 15V23C16 23.55 16.45 24 17 24ZM16 7V11C16 11.55 16.45 12 17 12H23C23.55 12 24 11.55 24 11V7C24 6.45 23.55 6 23 6H17C16.45 6 16 6.45 16 7Z" fill="#3361FF"/>
-                            </svg>
-                            <span class="lblActive">Dashboard</span>
-                        </div>
-                        <button class="btnExpandMore active-tab">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4625 12.2925L14.5825 16.1725L10.7025 12.2925C10.5157 12.1052 10.262 12 9.9975 12C9.73298 12 9.47933 12.1052 9.2925 12.2925C8.9025 12.6825 8.9025 13.3125 9.2925 13.7025L13.8825 18.2925C14.2725 18.6825 14.9025 18.6825 15.2925 18.2925L19.8825 13.7025C20.2725 13.3125 20.2725 12.6825 19.8825 12.2925C19.4925 11.9125 18.8525 11.9025 18.4625 12.2925Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="applications tab flexRow">
-                        <div class="left-applications tab-left flexRow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7 11H11V7H7V11ZM13 23H17V19H13V23ZM7 23H11V19H7V23ZM7 17H11V13H7V17ZM13 17H17V13H13V17ZM19 7V11H23V7H19ZM13 11H17V7H13V11ZM19 17H23V13H19V17ZM19 23H23V19H19V23Z" fill="#C3CAD9"/>
-                            </svg>
-                            <span class="lblApplications">Applications</span>
-                        </div>
-                        <button class="btnExpandMore">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4625 12.2925L14.5825 16.1725L10.7025 12.2925C10.5157 12.1052 10.262 12 9.9975 12C9.73298 12 9.47933 12.1052 9.2925 12.2925C8.9025 12.6825 8.9025 13.3125 9.2925 13.7025L13.8825 18.2925C14.2725 18.6825 14.9025 18.6825 15.2925 18.2925L19.8825 13.7025C20.2725 13.3125 20.2725 12.6825 19.8825 12.2925C19.4925 11.9125 18.8525 11.9025 18.4625 12.2925Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="clients tab flexRow">
-                        <div class="left-clients tab-left flexRow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M19 14C20.66 14 21.99 12.66 21.99 11C21.99 9.34 20.66 8 19 8C17.34 8 16 9.34 16 11C16 12.66 17.34 14 19 14ZM11 14C12.66 14 13.99 12.66 13.99 11C13.99 9.34 12.66 8 11 8C9.34 8 8 9.34 8 11C8 12.66 9.34 14 11 14ZM11 16C8.67 16 4 17.17 4 19.5V21C4 21.55 4.45 22 5 22H17C17.55 22 18 21.55 18 21V19.5C18 17.17 13.33 16 11 16ZM19 16C18.71 16 18.38 16.02 18.03 16.05C18.05 16.06 18.06 16.08 18.07 16.09C19.21 16.92 20 18.03 20 19.5V21C20 21.35 19.93 21.69 19.82 22H25C25.55 22 26 21.55 26 21V19.5C26 17.17 21.33 16 19 16Z" fill="#C3CAD9"/>
-                            </svg>
-                            <span class="lblClients">Clients</span>
-                        </div>
-                        <div class="right-clients flexRow">
-                            <div class="clients-msg">2</div>
-                            <button class="btnExpandMore">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4625 12.2925L14.5825 16.1725L10.7025 12.2925C10.5157 12.1052 10.262 12 9.9975 12C9.73298 12 9.47933 12.1052 9.2925 12.2925C8.9025 12.6825 8.9025 13.3125 9.2925 13.7025L13.8825 18.2925C14.2725 18.6825 14.9025 18.6825 15.2925 18.2925L19.8825 13.7025C20.2725 13.3125 20.2725 12.6825 19.8825 12.2925C19.4925 11.9125 18.8525 11.9025 18.4625 12.2925Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                        </div>
+                        <h1 class="logo-text">Constructor</h1>
                     </div>
                 </div>
 
-                <!-- prj -->
-                <div class="projects-wrapper tab flexColumn">
-                    <header class="projects-header flexRow">
-                        <div class="tab-left flexRow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16 19H14C13.45 19 13 18.55 13 18H6.01V22C6.01 23.1 6.91 24 8.01 24H22C23.1 24 24 23.1 24 22V18H17C17 18.55 16.55 19 16 19ZM23 10H19C19 7.79 17.21 6 15 6C12.79 6 11 7.79 11 10H7C5.9 10 5 10.9 5 12V15C5 16.11 5.89 17 7 17H13V16C13 15.45 13.45 15 14 15H16C16.55 15 17 15.45 17 16V17H23C24.1 17 25 16.1 25 15V12C25 10.9 24.1 10 23 10ZM13 10C13 8.9 13.9 8 15 8C16.1 8 17 8.9 17 10H12.99H13Z" fill="#3361FF"/>
-                            </svg>
-                            <span class="lblActive">Projects</span>
-                        </div>
-                        <button class="arrow-up">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.7125 18.2925L14.5925 14.4125L18.4725 18.2925C18.8625 18.6825 19.4925 18.6825 19.8825 18.2925C20.2725 17.9025 20.2725 17.2725 19.8825 16.8825L15.2925 12.2925C15.1057 12.1052 14.852 12 14.5875 12C14.323 12 14.0693 12.1052 13.8825 12.2925L9.2925 16.8825C8.9025 17.2725 8.9025 17.9025 9.2925 18.2925C9.6825 18.6725 10.3225 18.6825 10.7125 18.2925Z" fill="#3361FF"/>
-                            </svg>
-                        </button>
-                    </header>
-                    <div class="projects-content-box flexColumn">
-                        <div class="title-project title-prj-active flexRow">
-                            <div class="tab-left flexRow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#3361FF"/>
-                                </svg>Coca Cola Project
-                            </div>
-                            <button class="arrow-up btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.7125 18.2925L14.5925 14.4125L18.4725 18.2925C18.8625 18.6825 19.4925 18.6825 19.8825 18.2925C20.2725 17.9025 20.2725 17.2725 19.8825 16.8825L15.2925 12.2925C15.1057 12.1052 14.852 12 14.5875 12C14.323 12 14.0693 12.1052 13.8825 12.2925L9.2925 16.8825C8.9025 17.2725 8.9025 17.9025 9.2925 18.2925C9.6825 18.6725 10.3225 18.6825 10.7125 18.2925Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="prj-item flexRow">
-                            <div class="tab-left flexRow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                </svg>Link Colors
-                            </div>
-                            <button class="arrow-right btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2925 18.4625L16.1725 14.5825L12.2925 10.7025C12.1052 10.5157 12 10.262 12 9.9975C12 9.73298 12.1052 9.47933 12.2925 9.2925C12.6825 8.9025 13.3125 8.9025 13.7025 9.2925L18.2925 13.8825C18.6825 14.2725 18.6825 14.9025 18.2925 15.2925L13.7025 19.8825C13.3125 20.2725 12.6825 20.2725 12.2925 19.8825C11.9125 19.4925 11.9025 18.8525 12.2925 18.4625Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="prj-item title-prj-active flexRow">
-                            <div class="tab-left flexRow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#3361FF"/>
-                                </svg>Additional Content
-                            </div>
-                            <button class="arrow-right btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2925 18.4625L16.1725 14.5825L12.2925 10.7025C12.1052 10.5157 12 10.262 12 9.9975C12 9.73298 12.1052 9.47933 12.2925 9.2925C12.6825 8.9025 13.3125 8.9025 13.7025 9.2925L18.2925 13.8825C18.6825 14.2725 18.6825 14.9025 18.2925 15.2925L13.7025 19.8825C13.3125 20.2725 12.6825 20.2725 12.2925 19.8825C11.9125 19.4925 11.9025 18.8525 12.2925 18.4625Z" fill="#3361FF"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="prj-item flexRow">
-                            <div class="tab-left flexRow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                </svg>Dismissing
-                            </div>
-                            <button class="arrow-right btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2925 18.4625L16.1725 14.5825L12.2925 10.7025C12.1052 10.5157 12 10.262 12 9.9975C12 9.73298 12.1052 9.47933 12.2925 9.2925C12.6825 8.9025 13.3125 8.9025 13.7025 9.2925L18.2925 13.8825C18.6825 14.2725 18.6825 14.9025 18.2925 15.2925L13.7025 19.8825C13.3125 20.2725 12.6825 20.2725 12.2925 19.8825C11.9125 19.4925 11.9025 18.8525 12.2925 18.4625Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="prj-item flexRow">
-                            <div class="tab-left flexRow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                </svg>Java Script Behavior
-                            </div>
-                            <button class="arrow-right btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2925 18.4625L16.1725 14.5825L12.2925 10.7025C12.1052 10.5157 12 10.262 12 9.9975C12 9.73298 12.1052 9.47933 12.2925 9.2925C12.6825 8.9025 13.3125 8.9025 13.7025 9.2925L18.2925 13.8825C18.6825 14.2725 18.6825 14.9025 18.2925 15.2925L13.7025 19.8825C13.3125 20.2725 12.6825 20.2725 12.2925 19.8825C11.9125 19.4925 11.9025 18.8525 12.2925 18.4625Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <footer class="title-project">
-                        <div class="title-project-item flexRow">
-                            <div class="tab-left flexRow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                </svg>
-                                <span>Zoom Projects</span>
-                            </div>
-                            <button class="arrow-right btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2925 18.4625L16.1725 14.5825L12.2925 10.7025C12.1052 10.5157 12 10.262 12 9.9975C12 9.73298 12.1052 9.47933 12.2925 9.2925C12.6825 8.9025 13.3125 8.9025 13.7025 9.2925L18.2925 13.8825C18.6825 14.2725 18.6825 14.9025 18.2925 15.2925L13.7025 19.8825C13.3125 20.2725 12.6825 20.2725 12.2925 19.8825C11.9125 19.4925 11.9025 18.8525 12.2925 18.4625Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="title-project-item flexRow">
-                            <div class="tab-left flexRow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                </svg>
-                                <span>Task Board</span>
-                            </div>
-                            <button class="arrow-right btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2925 18.4625L16.1725 14.5825L12.2925 10.7025C12.1052 10.5157 12 10.262 12 9.9975C12 9.73298 12.1052 9.47933 12.2925 9.2925C12.6825 8.9025 13.3125 8.9025 13.7025 9.2925L18.2925 13.8825C18.6825 14.2725 18.6825 14.9025 18.2925 15.2925L13.7025 19.8825C13.3125 20.2725 12.6825 20.2725 12.2925 19.8825C11.9125 19.4925 11.9025 18.8525 12.2925 18.4625Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="title-project-item flexRow">
-                            <div class="tab-left flexRow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                </svg>
-                                <span>Project Diagramma</span>
-                            </div>
-                            <button class="arrow-right btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2925 18.4625L16.1725 14.5825L12.2925 10.7025C12.1052 10.5157 12 10.262 12 9.9975C12 9.73298 12.1052 9.47933 12.2925 9.2925C12.6825 8.9025 13.3125 8.9025 13.7025 9.2925L18.2925 13.8825C18.6825 14.2725 18.6825 14.9025 18.2925 15.2925L13.7025 19.8825C13.3125 20.2725 12.6825 20.2725 12.2925 19.8825C11.9125 19.4925 11.9025 18.8525 12.2925 18.4625Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </footer>
+                <div class="header-widget hide-1040">
+                    <nav class="header-menu">
+                        <ul>
+                            <li>Dashboard</li>
+                            <li>About Us</li>
+                            <li>News</li>
+                            <li>User Policy</li>
+                            <li>Contacts</li>
+                            <li><img class="icon-size-30" src="./assets/icons/navigation-more-icon.svg" alt="" /></li>
+                        </ul>
+                    </nav>
                 </div>
 
-                <!-- applications -->
-                <div class="applications-box tab flexRow">
-                    <div class="left-applications tab-left flexRow">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 11H11V7H7V11ZM13 23H17V19H13V23ZM7 23H11V19H7V23ZM7 17H11V13H7V17ZM13 17H17V13H13V17ZM19 7V11H23V7H19ZM13 11H17V7H13V11ZM19 17H23V13H19V17ZM19 23H23V19H19V23Z" fill="#C3CAD9"/>
-                        </svg>
-                        <span class="lblApplications">Applications</span>
-                    </div>
-                    <button class="btnExpandMore btn-hover">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4625 12.2925L14.5825 16.1725L10.7025 12.2925C10.5157 12.1052 10.262 12 9.9975 12C9.73298 12 9.47933 12.1052 9.2925 12.2925C8.9025 12.6825 8.9025 13.3125 9.2925 13.7025L13.8825 18.2925C14.2725 18.6825 14.9025 18.6825 15.2925 18.2925L19.8825 13.7025C20.2725 13.3125 20.2725 12.6825 19.8825 12.2925C19.4925 11.9125 18.8525 11.9025 18.4625 12.2925Z" fill="#C3CAD9"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- second-menu -->
-                <div class="second-menu flexColumn">
-                    <div class="head-second-menu"><b>SECOND MENU</b></div>
-                    <div class="intergrations tab flexRow">
-                        <div class="left-intergrations tab-left flexRow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.01 17.2915H6C5.45 17.2915 5 17.7415 5 18.2915C5 18.8415 5.45 19.2915 6 19.2915H12.01V21.0815C12.01 21.5315 12.55 21.7515 12.86 21.4315L15.64 18.6415C15.83 18.4415 15.83 18.1315 15.64 17.9315L12.86 15.1415C12.55 14.8215 12.01 15.0515 12.01 15.4915V17.2915ZM17.99 15.0815V13.2915H24C24.55 13.2915 25 12.8415 25 12.2915C25 11.7415 24.55 11.2915 24 11.2915H17.99V9.50153C17.99 9.05153 17.45 8.83153 17.14 9.15153L14.36 11.9415C14.17 12.1415 14.17 12.4515 14.36 12.6515L17.14 15.4415C17.45 15.7515 17.99 15.5315 17.99 15.0815Z" fill="#C3CAD9"/>
-                              </svg>
-                            <span class="lblIntergrations">Intergrations</span>
+                <div class="header-widget hide-1400">
+                    <div class="header-search light">
+                        <div class="header-search__input-box">
+                            <button class="btnSearchGlass">
+                              <img class="icon-size-30" src="./assets/icons/search-icon.svg" alt="" />
+                           </button>
+                            <input class="input-search" type="text" placeholder="Search Transactions and Documents">
                         </div>
-                        <button class="btnExpandMore btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4625 12.2925L14.5825 16.1725L10.7025 12.2925C10.5157 12.1052 10.262 12 9.9975 12C9.73298 12 9.47933 12.1052 9.2925 12.2925C8.9025 12.6825 8.9025 13.3125 9.2925 13.7025L13.8825 18.2925C14.2725 18.6825 14.9025 18.6825 15.2925 18.2925L19.8825 13.7025C20.2725 13.3125 20.2725 12.6825 19.8825 12.2925C19.4925 11.9125 18.8525 11.9025 18.4625 12.2925Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="users-second-menu tab flexRow">
-                        <div class="left-users-second-menu tab-left flexRow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 5C9.48 5 5 9.48 5 15C5 20.52 9.48 25 15 25C20.52 25 25 20.52 25 15C25 9.48 20.52 5 15 5ZM15 8C16.66 8 18 9.34 18 11C18 12.66 16.66 14 15 14C13.34 14 12 12.66 12 11C12 9.34 13.34 8 15 8ZM15 22.2C12.5 22.2 10.29 20.92 9 18.98C9.03 16.99 13 15.9 15 15.9C16.99 15.9 20.97 16.99 21 18.98C19.71 20.92 17.5 22.2 15 22.2Z" fill="#C3CAD9"/>
-                            </svg>
-                            <span class="lblUsersSecondMenu">Users</span>
-                        </div>
-                        <button class="btnExpandMore btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4625 12.2925L14.5825 16.1725L10.7025 12.2925C10.5157 12.1052 10.262 12 9.9975 12C9.73298 12 9.47933 12.1052 9.2925 12.2925C8.9025 12.6825 8.9025 13.3125 9.2925 13.7025L13.8825 18.2925C14.2725 18.6825 14.9025 18.6825 15.2925 18.2925L19.8825 13.7025C20.2725 13.3125 20.2725 12.6825 19.8825 12.2925C19.4925 11.9125 18.8525 11.9025 18.4625 12.2925Z" fill="#C3CAD9"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="settings tab flexRow">
-                        <div class="left-settings tab-left flexRow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1593 15.98C22.1993 15.66 22.2293 15.34 22.2293 15C22.2293 14.66 22.1993 14.34 22.1593 14.02L24.2693 12.37C24.4593 12.22 24.5093 11.95 24.3893 11.73L22.3893 8.27C22.2693 8.05 21.9993 7.97 21.7793 8.05L19.2893 9.05C18.7693 8.65 18.2093 8.32 17.5993 8.07L17.2193 5.42C17.1893 5.18 16.9793 5 16.7293 5H12.7293C12.4793 5 12.2693 5.18 12.2393 5.42L11.8593 8.07C11.2493 8.32 10.6893 8.66 10.1693 9.05L7.67933 8.05C7.44933 7.96 7.18933 8.05 7.06933 8.27L5.06933 11.73C4.93933 11.95 4.99933 12.22 5.18933 12.37L7.29933 14.02C7.25933 14.34 7.22933 14.67 7.22933 15C7.22933 15.33 7.25933 15.66 7.29933 15.98L5.18933 17.63C4.99933 17.78 4.94933 18.05 5.06933 18.27L7.06933 21.73C7.18933 21.95 7.45933 22.03 7.67933 21.95L10.1693 20.95C10.6893 21.35 11.2493 21.68 11.8593 21.93L12.2393 24.58C12.2693 24.82 12.4793 25 12.7293 25H16.7293C16.9793 25 17.1893 24.82 17.2193 24.58L17.5993 21.93C18.2093 21.68 18.7693 21.34 19.2893 20.95L21.7793 21.95C22.0093 22.04 22.2693 21.95 22.3893 21.73L24.3893 18.27C24.5093 18.05 24.4593 17.78 24.2693 17.63L22.1593 15.98ZM14.7293 18.5C12.7993 18.5 11.2293 16.93 11.2293 15C11.2293 13.07 12.7993 11.5 14.7293 11.5C16.6593 11.5 18.2293 13.07 18.2293 15C18.2293 16.93 16.6593 18.5 14.7293 18.5Z" fill="#C3CAD9"/>
-                            </svg>
-                            <span class="lblSettings">Settings</span>
-                        </div>
-                        <button class="btnExpandMore btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4625 12.2925L14.5825 16.1725L10.7025 12.2925C10.5157 12.1052 10.262 12 9.9975 12C9.73298 12 9.47933 12.1052 9.2925 12.2925C8.9025 12.6825 8.9025 13.3125 9.2925 13.7025L13.8825 18.2925C14.2725 18.6825 14.9025 18.6825 15.2925 18.2925L19.8825 13.7025C20.2725 13.3125 20.2725 12.6825 19.8825 12.2925C19.4925 11.9125 18.8525 11.9025 18.4625 12.2925Z" fill="#C3CAD9"/>
-                            </svg>
+                        <button class="btnSearchOk">
+                           <img class="icon-size-30" src="./assets/icons/chevron-right-icon.svg" alt="" />
                         </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- content-wrapper -->
-            <div class="content-wrapper">
-                <div class="sidebar-content-box">
-                    <div class="head-sidebar-content-box flexRow">
-                        <div class="head-sidebar-left flexRow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5006 17.0006H17.7106L17.4306 16.7306C18.6306 15.3306 19.2506 13.4206 18.9106 11.3906C18.4406 8.61063 16.1206 6.39063 13.3206 6.05063C9.09063 5.53063 5.53063 9.09063 6.05063 13.3206C6.39063 16.1206 8.61063 18.4406 11.3906 18.9106C13.4206 19.2506 15.3306 18.6306 16.7306 17.4306L17.0006 17.7106V18.5006L21.2506 22.7506C21.6606 23.1606 22.3306 23.1606 22.7406 22.7506C23.1506 22.3406 23.1506 21.6706 22.7406 21.2606L18.5006 17.0006ZM12.5006 17.0006C10.0106 17.0006 8.00063 14.9906 8.00063 12.5006C8.00063 10.0106 10.0106 8.00063 12.5006 8.00063C14.9906 8.00063 17.0006 10.0106 17.0006 12.5006C17.0006 14.9906 14.9906 17.0006 12.5006 17.0006Z" fill="#C3CAD9"/>
-                            </svg>
-                            <input type="text" placeholder="Search in Messages">
+                <div class="header-widget">
+                    <div class="header-right">
+                        <div class="header-right__account hide-640">
+                            <div class="header-right__account-avatar">
+                                <img class="icon-size-30" src="./assets/icons/account-icon.svg" alt="" />
+                            </div>
+                            <span class="header-right__account-name">Clayton Santos</span>
                         </div>
-                        <button class="btn-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 15.5925H19.17L14.29 20.4725C13.9 20.8625 13.9 21.5025 14.29 21.8925C14.68 22.2825 15.31 22.2825 15.7 21.8925L22.29 15.3025C22.68 14.9125 22.68 14.2825 22.29 13.8925L15.71 7.29249C15.5232 7.10523 15.2695 7 15.005 7C14.7405 7 14.4868 7.10523 14.3 7.29249C13.91 7.68249 13.91 8.31249 14.3 8.70249L19.17 13.5925H8C7.45 13.5925 7 14.0425 7 14.5925C7 15.1425 7.45 15.5925 8 15.5925Z" fill="#C3CAD9"/>
-                            </svg>
+
+                        <div class="header-right__utils">
+                            <button class="header-right__utils-item light show-flex-1400 hide-360">
+                           <img class="icon-size-30" src="./assets/icons/search-icon.svg" alt="" />
                         </button>
-                    </div>
-                    <div class="sidebar-content flexColumn">
-                        <!-- direct message -->
-                        <div class="direct-msg-box flexColumn">
-                            <div class="head-sidebar-content flexRow">
-                                <div class="title">Direct Messages</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10C14.45 10 14 10.45 14 11V14H11C10.45 14 10 14.45 10 15C10 15.55 10.45 16 11 16H14V19C14 19.55 14.45 20 15 20C15.55 20 16 19.55 16 19V16H19C19.55 16 20 15.55 20 15C20 14.45 19.55 14 19 14H16V11C16 10.45 15.55 10 15 10ZM15 5C9.48 5 5 9.48 5 15C5 20.52 9.48 25 15 25C20.52 25 25 20.52 25 15C25 9.48 20.52 5 15 5ZM15 23C10.59 23 7 19.41 7 15C7 10.59 10.59 7 15 7C19.41 7 23 10.59 23 15C23 19.41 19.41 23 15 23Z" fill="#DADEE6"/>
-                                </svg>
-                            </div>
-                            <div class="content-sidebar-content flexColumn">
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <img src="imgs/Avatar Image.png" alt="ava-img1">Ina Perry
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="stt stt-online">Online</div>
-                                        <div class="time">12:45</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <img src="imgs/Avatar Image (1).png" alt="ava-img2">Wesley Ray
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="stt stt-online">Online</div>
-                                        <div class="time">12:45</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <img src="imgs/Avatar Image (2).png" alt="ava-img1">Eula Burton
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="stt stt-work">Work</div>
-                                        <div class="time">12:45</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <img src="imgs/Avatar Image (3).png" alt="ava-img1">Viola Morales
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="stt stt-offline">Offline</div>
-                                        <div class="time">12:45</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <img src="imgs/Avatar Image (4).png" alt="ava-img1">Vincent Terry
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="stt stt-online">Online</div>
-                                        <div class="time">12:45</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <img src="imgs/Avatar Image (5).png" alt="ava-img1">Nell Burns
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="stt stt-offline">Offline</div>
-                                        <div class="time">12:45</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <img src="imgs/Avatar Image (6).png" alt="ava-img1">Lydia Sutton
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="stt stt-online">Online</div>
-                                        <div class="time">12:45</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <img src="imgs/Avatar Image (7).png" alt="ava-img1">Cynthia Evans
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="stt stt-offline">Offline</div>
-                                        <div class="time">12:45</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bottom-sidebar-content">
-                                <button class="btn-hover">
-                                    Show More Channels
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- channels -->
-                        <div class="channels flexColumn">
-                            <div class="head-sidebar-content flexRow">
-                                <div class="title">#&nbsp;Channels</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10C14.45 10 14 10.45 14 11V14H11C10.45 14 10 14.45 10 15C10 15.55 10.45 16 11 16H14V19C14 19.55 14.45 20 15 20C15.55 20 16 19.55 16 19V16H19C19.55 16 20 15.55 20 15C20 14.45 19.55 14 19 14H16V11C16 10.45 15.55 10 15 10ZM15 5C9.48 5 5 9.48 5 15C5 20.52 9.48 25 15 25C20.52 25 25 20.52 25 15C25 9.48 20.52 5 15 5ZM15 23C10.59 23 7 19.41 7 15C7 10.59 10.59 7 15 7C19.41 7 23 10.59 23 15C23 19.41 19.41 23 15 23Z" fill="#DADEE6"/>
-                                </svg>
-                            </div>
-                            <div class="content-sidebar-content flexColumn">
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                            <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                        </svg> How To Frotend
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="num-add-subs">+12</div>
-                                        <div class="subs">564</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                            <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                        </svg> Payment Workers
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="num-add-subs">+12</div>
-                                        <div class="subs">564</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                            <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                        </svg> Web Designer
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="num-add-subs">+12</div>
-                                        <div class="subs">564</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                            <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                        </svg> President of Sales
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="num-add-subs">+12</div>
-                                        <div class="subs">564</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                            <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                        </svg> Marketing Coordinator
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="num-add-subs">+12</div>
-                                        <div class="subs">564</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bottom-sidebar-content">
-                                <button class="btn-hover">
-                                    Show More Channels
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- project companies -->
-                        <div class="prj-companies flexColumn">
-                            <div class="head-sidebar-content flexRow">
-                                <div class="title">Project Companies</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10C14.45 10 14 10.45 14 11V14H11C10.45 14 10 14.45 10 15C10 15.55 10.45 16 11 16H14V19C14 19.55 14.45 20 15 20C15.55 20 16 19.55 16 19V16H19C19.55 16 20 15.55 20 15C20 14.45 19.55 14 19 14H16V11C16 10.45 15.55 10 15 10ZM15 5C9.48 5 5 9.48 5 15C5 20.52 9.48 25 15 25C20.52 25 25 20.52 25 15C25 9.48 20.52 5 15 5ZM15 23C10.59 23 7 19.41 7 15C7 10.59 10.59 7 15 7C19.41 7 23 10.59 23 15C23 19.41 19.41 23 15 23Z" fill="#DADEE6"/>
-                                </svg>
-                            </div>
-                            <div class="content-sidebar-content flexColumn">
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                            <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                        </svg> Walt Disney
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="num-add-subs">+12</div>
-                                        <div class="subs">564</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                            <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                        </svg> Johnson & Johnson
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="num-add-subs">+5</div>
-                                        <div class="subs">456</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                            <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                        </svg> General Electric
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="num-add-subs"></div>
-                                        <div class="subs">387</div>
-                                    </div>
-                                </div>
-                                <div class="item flexRow">
-                                    <div class="item-left flexRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                            <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#C3CAD9"/>
-                                        </svg> Bank of America
-                                    </div>
-                                    <div class="item-right flexRow">
-                                        <div class="num-add-subs"></div>
-                                        <div class="subs">321</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bottom-sidebar-content">
-                                <button class="btn-hover">
-                                    Show More Channels
-                                </button>
-                            </div>
+                            <button class="header-right__utils-item light hide-430">
+                           <img class="icon-size-30" src="./assets/icons/notification-icon.svg" alt="" />
+                           <div class="status-icon"></div>
+                        </button>
+                            <button class="header-right__utils-item light show-flex-768">
+                           <img class="icon-size-30" src="./assets/icons/account-icon.svg" alt="" />
+                        </button>
+                            <button class="header-right__utils-item light hide-480">
+                           <img class="icon-size-30" src="./assets/icons/cancel-icon.svg" alt="" />
+                        </button>
                         </div>
                     </div>
                 </div>
+            </header>
 
-                <!-- content-box -->
-                <div class="content-box flexColumn">
-                    <!-- head-content-box -->
-                    <div class="head-content-box flexRow">
-                        <div class="head-left flexRow">
-                            <button class="btnFriends btn-style btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="21" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19 14C20.66 14 21.99 12.66 21.99 11C21.99 9.34 20.66 8 19 8C17.34 8 16 9.34 16 11C16 12.66 17.34 14 19 14ZM11 14C12.66 14 13.99 12.66 13.99 11C13.99 9.34 12.66 8 11 8C9.34 8 8 9.34 8 11C8 12.66 9.34 14 11 14ZM11 16C8.67 16 4 17.17 4 19.5V21C4 21.55 4.45 22 5 22H17C17.55 22 18 21.55 18 21V19.5C18 17.17 13.33 16 11 16ZM19 16C18.71 16 18.38 16.02 18.03 16.05C18.05 16.06 18.06 16.08 18.07 16.09C19.21 16.92 20 18.03 20 19.5V21C20 21.35 19.93 21.69 19.82 22H25C25.55 22 26 21.55 26 21V19.5C26 17.17 21.33 16 19 16Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                            <span class="flexRow">
-                                <button class="btnPhoneCall btn-style btn-hover">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 30" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M22.2037 18.25L19.6637 17.96C19.0537 17.89 18.4537 18.1 18.0237 18.53L16.1837 20.37C13.3537 18.93 11.0337 16.62 9.59367 13.78L11.4437 11.93C11.8737 11.5 12.0837 10.9 12.0137 10.29L11.7237 7.77C11.6037 6.76 10.7537 6 9.73367 6H8.00367C6.87367 6 5.93367 6.94 6.00367 8.07C6.53367 16.61 13.3637 23.43 21.8937 23.96C23.0237 24.03 23.9637 23.09 23.9637 21.96V20.23C23.9737 19.22 23.2137 18.37 22.2037 18.25Z" fill="#C3CAD9"/>
-                                    </svg>
-                                </button>
-                                <button class="btnVideoCam btn-style btn-hover">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 30" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20 13.5V10C20 9.45 19.55 9 19 9H7C6.45 9 6 9.45 6 10V20C6 20.55 6.45 21 7 21H19C19.55 21 20 20.55 20 20V16.5L22.29 18.79C22.92 19.42 24 18.97 24 18.08V11.91C24 11.02 22.92 10.57 22.29 11.2L20 13.5Z" fill="#C3CAD9"/>
-                                    </svg>
-                                </button>
-                            </span>
+            <div class="main-body">
+                <div class="main-body-left">
+                    <div class="header-logo-container">
+                        <div class="header-logo-container__left">
+                            <button class="mobile-menu-icon light primary-border">
+                           <div class="icon-size-30">
+                              <img src="./assets/icons/mobile-menu-icon.svg" alt="" />
+                           </div>
+                        </button>
+
+                            <h1 class="logo-text">Constructor</h1>
                         </div>
-                        <div class="head-name flexRow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <rect x="11" y="12" width="7" height="7" rx="3.5" fill="#29CC39"/>
-                            </svg>
-                            <span>Dennis Smith</span>
+
+                        <button class="light primary-border main-body-left__close-btn">
+                        <div class="icon-size-30">
+                           <img src="./assets/icons/close-icon.svg" alt="" />
                         </div>
-                        <div class="head-right flexRow">
-                            <button class="btnZoom btn-style btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17 11H17.4853L14.7782 13.7071L13.7071 14.7782L13.7065 14.7788L11 17.4853V17C11 16.45 10.55 16 10 16C9.45 16 9 16.45 9 17V20C9 20.55 9.45 21 10 21H13C13.55 21 14 20.55 14 20C14 19.45 13.55 19 13 19H12.3137L15.1213 16.1924L16.1924 15.1213L16.1927 15.1211L19 12.3137V13C19 13.55 19.45 14 20 14C20.55 14 21 13.55 21 13V10C21 9.45 20.55 9 20 9H17C16.45 9 16 9.45 16 10C16 10.55 16.45 11 17 11Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                            <button class="btnApps btn-style btn-hover">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 11H11V7H7V11ZM13 23H17V19H13V23ZM7 23H11V19H7V23ZM7 17H11V13H7V17ZM13 17H17V13H13V17ZM19 7V11H23V7H19ZM13 11H17V7H13V11ZM19 17H23V13H19V17ZM19 23H23V19H19V23Z" fill="#C3CAD9"/>
-                                </svg>
-                            </button>
-                        </div>
+                     </button>
                     </div>
 
-                    <!-- content-past-msg -->
-                    <div class="content-past-msg-wrapper flexColumn">
-                        <div class="post flexRow">
-                            <div class="post-left flexRow">
-                                <div class="ava-img-post"><img src="imgs/Avatar Image-post1.png" alt="ava-img-post"></div>
-                                <div class="content-post flexColumn">
-                                    <div class="header-content-post flexRow">
-                                        <div class="name-title">Stella Evans</div>
-                                        <span class="flexRow">
-                                            <div class="channel-title">Web Designer</div>
-                                            <div class="time-title">12:45 PM</div>
-                                        </span>
+                    <div class="main-body-left__content">
+                        <div class="left-menu">
+                            <nav class="left-menu__item-list">
+                                <ul>
+                                    <li class="light"><img src="./assets/icons/explore-icon.svg" alt="" /></li>
+                                    <li class="light"><img src="./assets/icons/start-icon.svg" alt="" /></li>
+                                    <li class="light"><img src="./assets/icons/messenger-icon.svg" alt="" /></li>
+                                    <li class="light"><img src="./assets/icons/trending-up-icon.svg" alt="" /></li>
+                                    <li class="light"><img src="./assets/icons/publicon-icon.svg" alt="" /></li>
+                                    <li class="light"><img src="./assets/icons/city-icon.svg" alt="" /></li>
+                                </ul>
+                            </nav>
+
+                            <button class="primary-border light left-menu__back-btn">
+                           <div class="icon-size-30"><img src="./assets/icons/arrow-left-icon.svg" alt="" /></div>
+                        </button>
+
+                            <div class="left-menu__bottom">
+                                <div class="left-menu__bottom-avatar-list">
+                                    <ul>
+                                        <li class="bottom-avatar-list__item">
+                                            <img src="./assets/imgs/image-1.png" alt="" />
+                                            <div class="status-icon"></div>
+                                        </li>
+                                        <li class="bottom-avatar-list__item">
+                                            <img src="./assets/imgs/image-2.png" alt="" />
+                                        </li>
+                                        <li class="bottom-avatar-list__item">
+                                            <img src="./assets/imgs/image-3.png" alt="" />
+                                        </li>
+                                        <li class="bottom-avatar-list__item">
+                                            <img src="./assets/imgs/image-4.png" alt="" />
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="left-menu__bottom-add-button light">
+                                    <img src="./assets/icons/add-icon.svg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar">
+                            <div class="sidebar__main-menu">
+                                <h4 class="main-menu-title">MAIN MENU</h4>
+
+                                <div class="main-menu-header light">
+                                    <div class="main-menu-header__left">
+                                        <img class="icon-size-30 hide-1200" src="./assets/icons/dashboard-icon.svg" alt="" />
+                                        <img class="icon-size-30 show-block-1200" src="./assets/icons/dashboard-icon-2.svg" alt="" />
+                                        <span class="senary-color sidebar-span">Dashboard</span>
                                     </div>
-                                    <div class="file">
-                                        <div class="file-content flexColumn">
-                                            <div class="left-file-content flexRow">
-                                                <div class="file-name">Human Design Guidelines.pdf</div>
-                                                <div class="file-size">760.90 KB</div>
+
+                                    <div class="main-menu-header__right">
+                                        <img class="icon-size-30 hide-1200" src="./assets/icons/chevron-bottom-icon.svg" alt="" />
+                                        <img class="icon-size-30 show-block-1200" src="./assets/icons/chevron-bottom-icon-2.svg" alt="" />
+                                    </div>
+                                </div>
+
+                                <div class="main-menu-content">
+                                    <ul>
+                                        <li class="main-menu-content-item">
+                                            <div class="main-menu-content__left">
+                                                <img class="icon-size-30" src="./assets/icons/apps-icon.svg" alt="" />
+                                                <span class="sidebar-span">Applocations</span>
                                             </div>
-                                            <div class="progress flexColumn">
-                                                <div class="head-progress flexRow">
-                                                    <span>Downloading&nbsp;...</span>
-                                                    <span>65%</span>
+
+                                            <div class="main-menu-content__right">
+                                                <img class="icon-size-30" src="./assets/icons/chevron-bottom-icon.svg" alt="" />
+                                            </div>
+                                        </li>
+
+                                        <li class="main-menu-content-item">
+                                            <div class="main-menu-content__left">
+                                                <img class="icon-size-30" src="./assets/icons/group-icon.svg" alt="" />
+                                                <span class="sidebar-span">Clients</span>
+                                            </div>
+
+                                            <div class="main-menu-content__right">
+                                                <span class="badge">2</span>
+                                                <img class="icon-size-30" src="./assets/icons/chevron-bottom-icon.svg" alt="" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sidebar__project">
+                                <div class="sidebar__project-header">
+                                    <div class="sidebar__project-header__left">
+                                        <img class="icon-size-30" src="./assets/icons/actived-bag-icon.svg" alt="" />
+                                        <span class="senary-color sidebar-span">Projects</span>
+                                    </div>
+
+                                    <div class="sidebar__project-header__right">
+                                        <img class="icon-size-30" src="./assets/icons/actived-chevron-top-icon.svg" alt="" />
+                                    </div>
+                                </div>
+
+                                <div class="sidebar__project-content light">
+                                    <div class="project-content__head">
+                                        <div class="project-content__head-left">
+                                            <img class="icon-size-30" src="./assets/icons/actived-dot-icon.svg" alt="" />
+                                            <span class="senary-color sidebar-span">Coca Cola Project</span>
+                                        </div>
+
+                                        <img class="icon-size-30" src="./assets/icons/chevron-top-icon.svg" alt="" />
+                                    </div>
+
+                                    <div class="project-content__content">
+                                        <div class="project-content__content-item">
+                                            <div class="project-content__content-item-left">
+                                                <img class="icon-size-30" src="./assets/icons/dot-icon.svg" alt="" />
+                                                <span class="sidebar-span">Link Colors</span>
+                                            </div>
+
+                                            <img class="icon-size-30" src="./assets/icons/chevron-right-icon.svg" alt="" />
+                                        </div>
+
+                                        <div class="project-content__content-item">
+                                            <div class="project-content__content-item-left">
+                                                <img class="icon-size-30" src="./assets/icons/actived-dot-icon.svg" alt="" />
+                                                <span class="senary-color sidebar-span">Additional Content</span>
+                                            </div>
+
+                                            <img class="icon-size-30" src="./assets/icons/actived-chevron-right-icon.svg" alt="" />
+                                        </div>
+
+                                        <div class="project-content__content-item">
+                                            <div class="project-content__content-item-left">
+                                                <img class="icon-size-30" src="./assets/icons/dot-icon.svg" alt="" />
+                                                <span class="sidebar-span">Disimissing</span>
+                                            </div>
+
+                                            <img class="icon-size-30" src="./assets/icons/chevron-right-icon.svg" alt="" />
+                                        </div>
+
+                                        <div class="project-content__content-item">
+                                            <div class="project-content__content-item-left">
+                                                <img class="icon-size-30" src="./assets/icons/dot-icon.svg" alt="" />
+                                                <span class="sidebar-span">Java Script Behavior</span>
+                                            </div>
+
+                                            <img class="icon-size-30" src="./assets/icons/chevron-right-icon.svg" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-content__footer">
+                                    <div class="project-content__footer-item">
+                                        <div class="project-content__footer-item-left">
+                                            <img class="icon-size-30" src="./assets/icons/dot-icon.svg" alt="" />
+                                            <span class="sidebar-span">Zoom Projects</span>
+                                        </div>
+
+                                        <div class="project-content__footer-item-right">
+                                            <img class="icon-size-30" src="./assets/icons/chevron-right-icon.svg" alt="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="project-content__footer-item">
+                                        <div class="project-content__footer-item-left">
+                                            <img class="icon-size-30" src="./assets/icons/dot-icon.svg" alt="" />
+                                            <span class="sidebar-span">Task Board</span>
+                                        </div>
+
+                                        <div class="project-content__footer-item-right">
+                                            <img class="icon-size-30" src="./assets/icons/chevron-right-icon.svg" alt="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="project-content__footer-item">
+                                        <div class="project-content__footer-item-left">
+                                            <img class="icon-size-30" src="./assets/icons/dot-icon.svg" alt="" />
+                                            <span class="sidebar-span">Project Diagramma</span>
+                                        </div>
+
+                                        <div class="project-content__footer-item-right">
+                                            <img class="icon-size-30" src="./assets/icons/chevron-right-icon.svg" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sidebar__applocation">
+                                <div class="sidebar__applocation-left">
+                                    <img class="icon-size-30" src="./assets/icons/apps-icon.svg" alt="" />
+                                    <span class="sidebar-span">Applocations</span>
+                                </div>
+
+                                <div class="sidebar__applocation-right">
+                                    <img src="./assets/icons/chevron-bottom-icon.svg" alt="" />
+                                </div>
+                            </div>
+
+                            <div class="sidebar__second-menu">
+                                <span class="second-menu__title">SECOND MENU</span>
+
+                                <div class="second-menu__content">
+                                    <div class="second-menu__content-item">
+                                        <div class="second-menu__content-item-left">
+                                            <img class="icon-size-30" src="./assets/icons/compare-arrows-icon.svg" alt="" />
+                                            <span class="sidebar-span">Intergrations</span>
+                                        </div>
+
+                                        <div class="second-menu__content-item-right">
+                                            <img class="icon-size-30" src="./assets/icons/chevron-bottom-icon.svg" alt="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="second-menu__content-item">
+                                        <div class="second-menu__content-item-left">
+                                            <img class="icon-size-30" src="./assets/icons/account-icon.svg" alt="" />
+                                            <span class="sidebar-span">Users</span>
+                                        </div>
+
+                                        <div class="second-menu__content-item-right">
+                                            <img class="icon-size-30" src="./assets/icons/chevron-bottom-icon.svg" alt="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="second-menu__content-item">
+                                        <div class="second-menu__content-item-left">
+                                            <img class="icon-size-30" src="./assets/icons/setting-icon.svg" alt="" />
+                                            <span class="sidebar-span">Settings</span>
+                                        </div>
+
+                                        <div class="second-menu__content-item-right">
+                                            <img class="icon-size-30" src="./assets/icons/chevron-bottom-icon.svg" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-wrapper">
+                    <div class="content light">
+                        <div class="content__sidebar">
+                            <div class="content__sidebar-head">
+                                <div class="sidebar-head__input-container">
+                                    <img class="icon-size-30" src="./assets/icons/search-icon.svg" alt="" />
+                                    <input type="text" placeholder="Search in Messages" />
+                                </div>
+
+                                <img src="./assets/icons/arrow-right-icon.svg" alt="" />
+                            </div>
+
+                            <div class="content__sidebar-content">
+                                <div class="sidebar-content__direct-message">
+                                    <div class="sidebar-content__direct-message-title">
+                                        <span>Direct Messages</span>
+                                        <img src="./assets/icons/add-outline-icon.svg" alt="" />
+                                    </div>
+
+                                    <div class="sidebar-content__user-list">
+                                        <ul>
+                                            <li class="user-list__item">
+                                                <div class="user-list__item-left">
+                                                    <img class="nonary-bg" src="./assets/imgs/image-5.png" alt="" />
+                                                    <span class="primary-color">Ina Perry</span>
                                                 </div>
-                                                <img src="imgs/Progress-bar.png" alt="" id="progress-bar">
+                                                <div class="user-list__item-right">
+                                                    <span class="denary-color">Online</span>
+                                                    <span class="secondary-color">12:45</span>
+                                                </div>
+                                            </li>
+                                            <li class="user-list__item">
+                                                <div class="user-list__item-left">
+                                                    <img class="secondary-bg-2" src="./assets/imgs/image-6.png" alt="" />
+                                                    <span class="primary-color">Wesley Ray</span>
+                                                </div>
+                                                <div class="user-list__item-right">
+                                                    <span class="denary-color">Online</span>
+                                                    <span class="secondary-color">12:45</span>
+                                                </div>
+                                            </li>
+                                            <li class="user-list__item">
+                                                <div class="user-list__item-left">
+                                                    <img class="tertiary-bg-2" src="./assets/imgs/image-7.png" alt="" />
+                                                    <span class="primary-color">Eula Burton</span>
+                                                </div>
+                                                <div class="user-list__item-right">
+                                                    <span class="primary-color-2">Work</span>
+                                                    <span class="secondary-color">12:45</span>
+                                                </div>
+                                            </li>
+                                            <li class="user-list__item">
+                                                <div class="user-list__item-left">
+                                                    <img class="quaternary-bg-2" src="./assets/imgs/image-8.png" alt="" />
+                                                    <span class="primary-color">Viola Morales</span>
+                                                </div>
+                                                <div class="user-list__item-right">
+                                                    <span class="secondary-color">Offline</span>
+                                                    <span class="secondary-color">12:45</span>
+                                                </div>
+                                            </li>
+                                            <li class="user-list__item">
+                                                <div class="user-list__item-left">
+                                                    <img class="quinary-bg-2" src="./assets/imgs/image-9.png" alt="" />
+                                                    <span class="primary-color">Vincent Terry</span>
+                                                </div>
+                                                <div class="user-list__item-right">
+                                                    <span class="denary-color">Online</span>
+                                                    <span class="secondary-color">12:45</span>
+                                                </div>
+                                            </li>
+                                            <li class="user-list__item">
+                                                <div class="user-list__item-left">
+                                                    <img class="tertiary-bg-2" src="./assets/imgs/image-10.png" alt="" />
+                                                    <span class="primary-color">Nell Burns</span>
+                                                </div>
+                                                <div class="user-list__item-right">
+                                                    <span class="secondary-color">Offline</span>
+                                                    <span class="secondary-color">12:45</span>
+                                                </div>
+                                            </li>
+                                            <li class="user-list__item">
+                                                <div class="user-list__item-left">
+                                                    <img class="senary-bg-2" src="./assets/imgs/image-11.png" alt="" />
+                                                    <span class="primary-color">Lydia Sutton</span>
+                                                </div>
+                                                <div class="user-list__item-right">
+                                                    <span class="denary-color">Online</span>
+                                                    <span class="secondary-color">12:45</span>
+                                                </div>
+                                            </li>
+                                            <li class="user-list__item">
+                                                <div class="user-list__item-left">
+                                                    <img class="septenary-bg-2" src="./assets/imgs/image-12.png" alt="" />
+                                                    <span class="primary-color">Cynthia Evans</span>
+                                                </div>
+                                                <div class="user-list__item-right">
+                                                    <span class="secondary-color">Offline</span>
+                                                    <span class="secondary-color">12:45</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <button class="sidebar-content__more-btn light">Show More Channels</button>
+                                </div>
+
+                                <div class="sidebar-content__channel">
+                                    <div class="sidebar-content__channel-title">
+                                        <span class="secondary-color"># Channels</span>
+                                        <img src="./assets/icons/add-outline-icon.svg" alt="" />
+                                    </div>
+
+                                    <div class="sidebar-content__channel-content">
+                                        <div class="channel-content__channel-list">
+                                            <ul>
+                                                <li class="channel-list__item">
+                                                    <div class="channel-list__item-left">
+                                                        <img src="./assets/icons/dot-icon.svg" alt="" />
+                                                        <span class="primary-color">How To Frotend</span>
+                                                    </div>
+                                                    <div class="channel-list__item-right">
+                                                        <span class="denary-color">+12</span>
+                                                        <span class="secondary-color">564</span>
+                                                    </div>
+                                                </li>
+                                                <li class="channel-list__item">
+                                                    <div class="channel-list__item-left">
+                                                        <img src="./assets/icons/dot-icon.svg" alt="" />
+                                                        <span class="primary-color">Payment Workers</span>
+                                                    </div>
+                                                    <div class="channel-list__item-right">
+                                                        <span class="denary-color">+12</span>
+                                                        <span class="secondary-color">564</span>
+                                                    </div>
+                                                </li>
+                                                <li class="channel-list__item">
+                                                    <div class="channel-list__item-left">
+                                                        <img src="./assets/icons/dot-icon.svg" alt="" />
+                                                        <span class="primary-color">Web Designer</span>
+                                                    </div>
+                                                    <div class="channel-list__item-right">
+                                                        <span class="denary-color">+12</span>
+                                                        <span class="secondary-color">564</span>
+                                                    </div>
+                                                </li>
+                                                <li class="channel-list__item">
+                                                    <div class="channel-list__item-left">
+                                                        <img src="./assets/icons/dot-icon.svg" alt="" />
+                                                        <span class="primary-color">President of Sales</span>
+                                                    </div>
+                                                    <div class="channel-list__item-right">
+                                                        <span class="denary-color">+12</span>
+                                                        <span class="secondary-color">564</span>
+                                                    </div>
+                                                </li>
+                                                <li class="channel-list__item">
+                                                    <div class="channel-list__item-left">
+                                                        <img src="./assets/icons/dot-icon.svg" alt="" />
+                                                        <span class="primary-color">Marketing Coordinator</span>
+                                                    </div>
+                                                    <div class="channel-list__item-right">
+                                                        <span class="denary-color">+12</span>
+                                                        <span class="secondary-color">564</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <button class="sidebar-content__more-btn light">Show More Channels</button>
+                                </div>
+
+                                <div class="sidebar-content__project-companies">
+                                    <div class="sidebar-content__project-companies-title">
+                                        <span class="secondary-color">Project Companies</span>
+                                        <img src="./assets/icons/add-outline-icon.svg" alt="" />
+                                    </div>
+
+                                    <div class="sidebar-content__project-companies-content">
+                                        <div class="project-companies-content__channel-list">
+                                            <ul>
+                                                <li class="channel-list__item">
+                                                    <div class="channel-list__item-left">
+                                                        <img src="./assets/icons/dot-icon.svg" alt="" />
+                                                        <span class="primary-color">Walt Disney</span>
+                                                    </div>
+                                                    <div class="channel-list__item-right">
+                                                        <span class="denary-color">+12</span>
+                                                        <span class="secondary-color">564</span>
+                                                    </div>
+                                                </li>
+                                                <li class="channel-list__item">
+                                                    <div class="channel-list__item-left">
+                                                        <img src="./assets/icons/dot-icon.svg" alt="" />
+                                                        <span class="primary-color">Johnson & Johnson</span>
+                                                    </div>
+                                                    <div class="channel-list__item-right">
+                                                        <span class="denary-color">+5</span>
+                                                        <span class="secondary-color">456</span>
+                                                    </div>
+                                                </li>
+                                                <li class="channel-list__item">
+                                                    <div class="channel-list__item-left">
+                                                        <img src="./assets/icons/dot-icon.svg" alt="" />
+                                                        <span class="primary-color">General Electric</span>
+                                                    </div>
+                                                    <div class="channel-list__item-right">
+                                                        <span class="denary-color"></span>
+                                                        <span class="secondary-color">387</span>
+                                                    </div>
+                                                </li>
+                                                <li class="channel-list__item">
+                                                    <div class="channel-list__item-left">
+                                                        <img src="./assets/icons/dot-icon.svg" alt="" />
+                                                        <span class="primary-color">Bank of America</span>
+                                                    </div>
+                                                    <div class="channel-list__item-right">
+                                                        <span class="denary-color"></span>
+                                                        <span class="secondary-color">321</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <button class="sidebar-content__more-btn light">Show More Channels</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content__right-content">
+                            <div class="right-content__head">
+                                <div class="head-left">
+                                    <div class="head-left-util show-block-480">
+                                        <img src="./assets/icons/group-icon.svg" alt="" />
+                                    </div>
+                                    <div class="head-left-util">
+                                        <img src="./assets/icons/phone-icon.svg" alt="" />
+                                    </div>
+                                    <div class="head-left-util">
+                                        <img src="./assets/icons/videocam-icon.svg" alt="" />
+                                    </div>
+                                </div>
+
+                                <div class="head-name">
+                                    <img class="icon-size-30" src="./assets/icons/dot-icon-2.svg" alt="" />
+                                    <span class="secondary-color">Dennis Smith</span>
+                                </div>
+
+                                <div class="head-right">
+                                    <div class="head-right-util">
+                                        <img class="icon-size-30" src="./assets/icons/ic_arrows-icon.svg" alt="" />
+                                    </div>
+                                    <div class="head-right-util">
+                                        <img class="icon-size-30" src="./assets/icons/apps-icon.svg" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="right-content__chat-box-wrapper">
+                                <div class="right-content__chat-box">
+                                    <div class="chat-box-content">
+                                        <div class="chat-box-content__item">
+                                            <div class="chat-box-content__item-left">
+                                                <img class="item-left-avatar" src="./assets/imgs/image-13.png" alt="" />
+
+                                                <div class="item-left__content">
+                                                    <div class="item-left__content-head">
+                                                        <span class="primary-color">Stella Evans</span>
+                                                        <div class="item-left__content-head-info">
+                                                            <span class="secondary-color">Web Designer</span>
+                                                            <span class="secondary-color">12:45 PM</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="item-left__main-content">
+                                                        <div class="main-content__file primary-border light">
+                                                            <div class="main-content__file-name">
+                                                                <span class="primary-color">Human Design Guidelines.pdf</span>
+                                                                <span class="senary-color">760.90 KB</span>
+                                                            </div>
+
+                                                            <div class="main-content__action">
+                                                                <span class="senary-color">Downloading …</span>
+                                                                <span class="senary-color">65%</span>
+                                                            </div>
+
+                                                            <div class="main-content__progress">
+                                                                <div class="progress-bar octonary-bg-2"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="chat-box-content__item-right">
+                                                <button class="item-right-button">
+                                          <img class="icon-size-30" src="./assets/icons/actived-heart-icon.svg" alt="" />
+                                       </button>
+                                                <button class="item-right-button hide-480">
+                                          <img class="icon-size-30" src="./assets/icons/flag-icon.svg" alt="" />
+                                       </button>
+                                                <button class="item-right-button">
+                                          <img class="icon-size-30" src="./assets/icons/navigation-more-icon.svg" alt="" />
+                                       </button>
+                                            </div>
+                                        </div>
+                                        <div class="chat-box-content__item">
+                                            <div class="chat-box-content__item-left">
+                                                <img class="item-left-avatar" src="./assets/imgs/image-16.png" alt="" />
+
+                                                <div class="item-left__content">
+                                                    <div class="item-left__content-head">
+                                                        <span class="primary-color">Edward Goodwin</span>
+                                                        <div class="item-left__content-head-info">
+                                                            <span class="secondary-color">Web Designer</span>
+                                                            <span class="secondary-color">12:45 PM</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="item-left__main-content">
+                                                        <div class="main-content__img-container">
+                                                            <div class="img-container__img-item">
+                                                                <img class="img-item__img" src="./assets/imgs/image-14.png" alt="" />
+                                                                <button>
+                                                      <img class="nonary-bg-2" src="./assets/icons/search-icon-2.svg" alt="" />
+                                                   </button>
+                                                            </div>
+                                                            <div class="img-container__img-item">
+                                                                <img class="img-item__img" src="./assets/imgs/image-15.png" alt="" />
+                                                                <button>
+                                                      <img class="nonary-bg-2" src="./assets/icons/search-icon-2.svg" alt="" />
+                                                   </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="chat-box-content__item-right">
+                                                <button class="item-right-button">
+                                          <img class="icon-size-30" src="./assets/icons/heart-icon.svg" alt="" />
+                                       </button>
+                                                <button class="item-right-button hide-480">
+                                          <img class="icon-size-30" src="./assets/icons/flag-icon.svg" alt="" />
+                                       </button>
+                                                <button class="item-right-button">
+                                          <img class="icon-size-30" src="./assets/icons/navigation-more-icon.svg" alt="" />
+                                       </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="chat-box-line-wrapper">
+                                        <span class="light quaternary-color">Today</span>
+                                        <div class="chat-box-line octonary-bg"></div>
+                                    </div>
+
+                                    <div class="chat-box-content">
+                                        <div class="chat-box-content__item">
+                                            <div class="chat-box-content__item-left">
+                                                <img class="item-left-avatar" src="./assets/imgs/image-17.png" alt="" />
+
+                                                <div class="item-left__content">
+                                                    <div class="item-left__content-head">
+                                                        <span class="primary-color">Kyle Peters</span>
+                                                        <div class="item-left__content-head-info">
+                                                            <span class="secondary-color">Web Designer</span>
+                                                            <span class="secondary-color">12:45 PM</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="item-left__main-content">
+                                                        <div class="main-content__message primary-border light">
+                                                            <span class="primary-color">
+                                                   When you starting a company you are thinking on how to cut expenses. One of such options to cut the
+                                                   startup costs is a company logo design. But is it good idea to order a cheap logo or work without
+                                                   company logo at all?
+                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="chat-box-content__item-right">
+                                                <button class="item-right-button">
+                                          <img class="icon-size-30" src="./assets/icons/heart-icon.svg" alt="" />
+                                       </button>
+                                                <button class="item-right-button hide-480">
+                                          <img class="icon-size-30" src="./assets/icons/flag-icon.svg" alt="" />
+                                       </button>
+                                                <button class="item-right-button">
+                                          <img class="icon-size-30" src="./assets/icons/navigation-more-icon.svg" alt="" />
+                                       </button>
+                                            </div>
+                                        </div>
+                                        <div class="chat-box-content__item">
+                                            <div class="chat-box-content__item-left">
+                                                <img class="item-left-avatar" src="./assets/imgs/image-18.png" alt="" />
+
+                                                <div class="item-left__content">
+                                                    <div class="item-left__content-head">
+                                                        <span class="primary-color">Susan Lane</span>
+                                                        <div class="item-left__content-head-info">
+                                                            <span class="secondary-color">Web Designer</span>
+                                                            <span class="secondary-color">12:45 PM</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="item-left__main-content">
+                                                        <div class="main-content__message primary-border light">
+                                                            <span class="primary-color">
+                                                   When you starting a company you are thinking on how to cut expenses. One of such options to cut the
+                                                   startup costs is a company logo design.
+                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="chat-box-content__item-right">
+                                                <button class="item-right-button">
+                                          <img class="icon-size-30" src="./assets/icons/heart-icon.svg" alt="" />
+                                       </button>
+                                                <button class="item-right-button hide-480">
+                                          <img class="icon-size-30" src="./assets/icons/flag-icon.svg" alt="" />
+                                       </button>
+                                                <button class="item-right-button">
+                                          <img class="icon-size-30" src="./assets/icons/navigation-more-icon.svg" alt="" />
+                                       </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="post-right">
-                                <div class="post-right-box flexRow">
-                                    <button class="btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3536 24.1307C15.5936 24.8207 14.4236 24.8207 13.6636 24.1207L13.5536 24.0207C8.30357 19.2707 4.87357 16.1607 5.00357 12.2807C5.06357 10.5807 5.93357 8.95065 7.34357 7.99065C9.98357 6.19065 13.2436 7.03065 15.0036 9.09065C16.7636 7.03065 20.0236 6.18065 22.6636 7.99065C24.0736 8.95065 24.9436 10.5807 25.0036 12.2807C25.1436 16.1607 21.7036 19.2707 16.4536 24.0407L16.3536 24.1307Z" fill="#FFCB33"/>
-                                        </svg>
-                                    </button>
-                                    <button class="btnFlag btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4 9L17.16 7.8C17.07 7.34 16.66 7 16.18 7H9C8.45 7 8 7.45 8 8V23C8 23.55 8.45 24 9 24C9.55 24 10 23.55 10 23V17H15.6L15.84 18.2C15.93 18.67 16.34 19 16.82 19H22C22.55 19 23 18.55 23 18V10C23 9.45 22.55 9 22 9H17.4Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                    <button class="btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 13C7.9 13 7 13.9 7 15C7 16.1 7.9 17 9 17C10.1 17 11 16.1 11 15C11 13.9 10.1 13 9 13ZM21 13C19.9 13 19 13.9 19 15C19 16.1 19.9 17 21 17C22.1 17 23 16.1 23 15C23 13.9 22.1 13 21 13ZM15 13C13.9 13 13 13.9 13 15C13 16.1 13.9 17 15 17C16.1 17 17 16.1 17 15C17 13.9 16.1 13 15 13Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post flexRow">
-                            <div class="post-left flexRow">
-                                <div class="ava-img-post"><img src="imgs/Avatar 7.png" alt="ava-img-post" width="40px" height="40px"></div>
-                                <div class="content-post flexColumn">
-                                    <div class="header-content-post flexRow">
-                                        <div class="name-title">Edward Goodwin</div>
-                                        <span class="flexRow">
-                                            <div class="channel-title">Web Designer</div>
-                                            <div class="time-title">12:45 PM</div>
-                                        </span>
-                                    </div>
-                                    <div class="content-post-details flexRow">
-                                        <img src="imgs/Image.png" alt="img-post">
-                                        <img src="imgs/Image (1).png" alt="img-post">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-right">
-                                <div class="post-right-box flexRow">
-                                    <button class="btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3536 24.1307C15.5936 24.8207 14.4236 24.8207 13.6636 24.1207L13.5536 24.0207C8.30357 19.2707 4.87357 16.1607 5.00357 12.2807C5.06357 10.5807 5.93357 8.95065 7.34357 7.99065C9.98357 6.19065 13.2436 7.03065 15.0036 9.09065C16.7636 7.03065 20.0236 6.18065 22.6636 7.99065C24.0736 8.95065 24.9436 10.5807 25.0036 12.2807C25.1436 16.1607 21.7036 19.2707 16.4536 24.0407L16.3536 24.1307Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                    <button class="btnFlag btn-hover btn-style btnFlag">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4 9L17.16 7.8C17.07 7.34 16.66 7 16.18 7H9C8.45 7 8 7.45 8 8V23C8 23.55 8.45 24 9 24C9.55 24 10 23.55 10 23V17H15.6L15.84 18.2C15.93 18.67 16.34 19 16.82 19H22C22.55 19 23 18.55 23 18V10C23 9.45 22.55 9 22 9H17.4Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                    <button class="btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 13C7.9 13 7 13.9 7 15C7 16.1 7.9 17 9 17C10.1 17 11 16.1 11 15C11 13.9 10.1 13 9 13ZM21 13C19.9 13 19 13.9 19 15C19 16.1 19.9 17 21 17C22.1 17 23 16.1 23 15C23 13.9 22.1 13 21 13ZM15 13C13.9 13 13 13.9 13 15C13 16.1 13.9 17 15 17C16.1 17 17 16.1 17 15C17 13.9 16.1 13 15 13Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- line-today -->
-                    <div class="line-today">
-                        <button class="btnMsgToday btn-style">Today</button>
-                        <div class="line"></div>
-                    </div>
-
-                    <!-- content-msg-today -->
-                    <div class="content-today-msg-wrapper flexColumn">
-                        <div class="post flexRow">
-                            <div class="post-left flexRow">
-                                <div class="ava-img-post"><img src="imgs/kyle-ava.png" alt="ava-img-post"></div>
-                                <div class="content-post flexColumn">
-                                    <div class="header-content-post flexRow">
-                                        <div class="name-title">Kyle Peters</div>
-                                        <span class="flexRow">
-                                            <div class="channel-title">Web Designer</div>
-                                            <div class="time-title">12:45 PM</div>
-                                        </span>
+                                <div class="right-content__input-form">
+                                    <div class="input-form__left-utils">
+                                        <button class="icon-size-30"><img src="./assets/icons/attachment-icon.svg" alt="" /></button>
+                                        <button class="icon-size-30"><img src="./assets/icons/image-icon.svg" alt="" /></button>
                                     </div>
-                                    <div class="msg-chat">
-                                        <div>
-                                            When you starting a company you are thinking on how to cut expenses. One of such options to cut the startup costs is a company logo design. But is it good idea to order a cheap logo or work without company logo at all?
-                                        </div>
-                                    </div>
+                                    <input class="input-form__input" type="text" placeholder="Type Message" />
+                                    <button class="icon-size-30 input-form__send-btn"><img src="./assets/icons/send-icon.svg" alt="" /></button>
                                 </div>
                             </div>
-                            <div class="post-right">
-                                <div class="post-right-box flexRow">
-                                    <button class="btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3536 24.1307C15.5936 24.8207 14.4236 24.8207 13.6636 24.1207L13.5536 24.0207C8.30357 19.2707 4.87357 16.1607 5.00357 12.2807C5.06357 10.5807 5.93357 8.95065 7.34357 7.99065C9.98357 6.19065 13.2436 7.03065 15.0036 9.09065C16.7636 7.03065 20.0236 6.18065 22.6636 7.99065C24.0736 8.95065 24.9436 10.5807 25.0036 12.2807C25.1436 16.1607 21.7036 19.2707 16.4536 24.0407L16.3536 24.1307Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                    <button class="btnFlag btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4 9L17.16 7.8C17.07 7.34 16.66 7 16.18 7H9C8.45 7 8 7.45 8 8V23C8 23.55 8.45 24 9 24C9.55 24 10 23.55 10 23V17H15.6L15.84 18.2C15.93 18.67 16.34 19 16.82 19H22C22.55 19 23 18.55 23 18V10C23 9.45 22.55 9 22 9H17.4Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                    <button class="btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 13C7.9 13 7 13.9 7 15C7 16.1 7.9 17 9 17C10.1 17 11 16.1 11 15C11 13.9 10.1 13 9 13ZM21 13C19.9 13 19 13.9 19 15C19 16.1 19.9 17 21 17C22.1 17 23 16.1 23 15C23 13.9 22.1 13 21 13ZM15 13C13.9 13 13 13.9 13 15C13 16.1 13.9 17 15 17C16.1 17 17 16.1 17 15C17 13.9 16.1 13 15 13Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post flexRow">
-                            <div class="post-left flexRow">
-                                <div class="ava-img-post"><img src="imgs/susan-ava.png" alt="ava-img-post"></div>
-                                <div class="content-post flexColumn">
-                                    <div class="header-content-post flexRow">
-                                        <div class="name-title">Susan Lane</div>
-                                        <span class="flexRow">
-                                            <div class="channel-title">Web Designer</div>
-                                            <div class="time-title">12:45 PM</div>
-                                        </span>
-                                    </div>
-                                    <div class="msg-chat">
-                                        <div>
-                                            When you starting a company you are thinking on how to cut expenses. One of such options to cut the startup costs is a company logo design.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-right">
-                                <div class="post-right-box flexRow">
-                                    <button class="btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3536 24.1307C15.5936 24.8207 14.4236 24.8207 13.6636 24.1207L13.5536 24.0207C8.30357 19.2707 4.87357 16.1607 5.00357 12.2807C5.06357 10.5807 5.93357 8.95065 7.34357 7.99065C9.98357 6.19065 13.2436 7.03065 15.0036 9.09065C16.7636 7.03065 20.0236 6.18065 22.6636 7.99065C24.0736 8.95065 24.9436 10.5807 25.0036 12.2807C25.1436 16.1607 21.7036 19.2707 16.4536 24.0407L16.3536 24.1307Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                    <button class="btnFlag btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4 9L17.16 7.8C17.07 7.34 16.66 7 16.18 7H9C8.45 7 8 7.45 8 8V23C8 23.55 8.45 24 9 24C9.55 24 10 23.55 10 23V17H15.6L15.84 18.2C15.93 18.67 16.34 19 16.82 19H22C22.55 19 23 18.55 23 18V10C23 9.45 22.55 9 22 9H17.4Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                    <button class="btn-hover btn-style">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 13C7.9 13 7 13.9 7 15C7 16.1 7.9 17 9 17C10.1 17 11 16.1 11 15C11 13.9 10.1 13 9 13ZM21 13C19.9 13 19 13.9 19 15C19 16.1 19.9 17 21 17C22.1 17 23 16.1 23 15C23 13.9 22.1 13 21 13ZM15 13C13.9 13 13 13.9 13 15C13 16.1 13.9 17 15 17C16.1 17 17 16.1 17 15C17 13.9 16.1 13 15 13Z" fill="#DADEE6"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- add-msg -->
-                    <div class="add-msg-wrapper flexRow">
-                        <div class="add-msg-box flexRow">
-                            <div class="left-add-msg flexRow">
-                                <button class="btn-style btn-hover">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.2539 19.5H9.67393C7.58393 19.5 5.72393 17.97 5.52393 15.89C5.29393 13.51 7.16393 11.5 9.50393 11.5H21.8639C23.1739 11.5 24.3639 12.44 24.4939 13.74C24.6439 15.24 23.4739 16.5 22.0039 16.5H11.5039C10.9539 16.5 10.5039 16.05 10.5039 15.5C10.5039 14.95 10.9539 14.5 11.5039 14.5H20.2539C20.6639 14.5 21.0039 14.16 21.0039 13.75C21.0039 13.34 20.6639 13 20.2539 13H11.6439C10.3339 13 9.14393 13.94 9.01393 15.24C8.86393 16.74 10.0339 18 11.5039 18H21.8339C23.9239 18 25.7839 16.47 25.9839 14.39C26.2139 12 24.3439 10 22.0039 10H9.73393C6.86393 10 4.29393 12.1 4.02393 14.96C3.72393 18.25 6.28393 21 9.50393 21H20.2539C20.6639 21 21.0039 20.66 21.0039 20.25C21.0039 19.84 20.6639 19.5 20.2539 19.5Z" fill="#C3CAD9"/>
-                                    </svg>
-                                </button>
-                                <button class="btn-style btn-hover">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24 22V8C24 6.9 23.1 6 22 6H8C6.9 6 6 6.9 6 8V22C6 23.1 6.9 24 8 24H22C23.1 24 24 23.1 24 22ZM11.9 16.98L14 19.51L17.1 15.52C17.3 15.26 17.7 15.26 17.9 15.53L21.41 20.21C21.66 20.54 21.42 21.01 21.01 21.01H9.02C8.6 21.01 8.37 20.53 8.63 20.2L11.12 17C11.31 16.74 11.69 16.73 11.9 16.98Z" fill="#C3CAD9"/>
-                                    </svg>
-                                </button>
-                                <input type="text" placeholder="Type Message">
-                            </div>
-                            <button class="btn-hover btn-style btnSend">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.4 23.8849L23.85 16.4049C24.66 16.0549 24.66 14.9149 23.85 14.5649L6.4 7.08488C5.74 6.79488 5.01 7.28488 5.01 7.99488L5 12.6049C5 13.1049 5.37 13.5349 5.87 13.5949L20 15.4849L5.87 17.3649C5.37 17.4349 5 17.8649 5 18.3649L5.01 22.9749C5.01 23.6849 5.74 24.1749 6.4 23.8849Z" fill="#3361FF"/>
-                                </svg>
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="overlay"></div>
     </div>
 </body>
+<script src="./main.js"></script>
 
 </html>

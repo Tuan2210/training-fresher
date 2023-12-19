@@ -1,244 +1,288 @@
-@media screen and (max-width: 768px) {
-    .container {
-        overflow-x: hidden;
-        max-width: 100%;
-        max-height: 100%;
+$light: #fff;
+$dark: #161414;
+$global-bg: #f7f8fa;
+$primary-color: #4d5e80;
+$secondary-color: #7d8fb3;
+$tertiary-color: #adb8cc;
+$quaternary-color: #6b7a99;
+$quinary-color: #e62e7b;
+$senary-color: #3361ff;
+$septenary-color: #edeff2;
+$octonary-color: #f5f6f7;
+$nonary-color: #8833ff4d;
+$denary-color: #29cc39;
+//
+$primary-color-2: #ffcb33;
+$secondary-color-2: #29cc394d;
+$tertiary-color-2: #ff66334d;
+$quaternary-color-2: #3361ff4d;
+$quinary-color-2: #2ee6ca4d;
+$senary-color-2: #8833ff80;
+$septenary-color-2: #e62e7b66;
+$octonary-color-2: #dadee6;
+$nonary-color-2: rgba(0, 0, 0, 0.5);
+//
+$content-padding: 30px;
+$chat-box-avatar-size: 40px;
+.show-block-1200,
+.show-block-1400,
+.show-block-768,
+.show-block-480,
+.show-flex-1200,
+.show-flex-1400,
+.show-flex-768,
+.show-flex-480 {
+    display: none !important;
+}
+
+@media (max-width: 1400px) {
+    .show-block-1400 {
+        display: block !important;
     }
-    //header
-    header.navigate-header {
-        .content-navigate {
-            width: 100%;
-            .logo {
-                width: 20%;
-            }
-            ul.menu,
-            .search-box {
-                display: none;
-            }
-            .right-box {
-                gap: 50px;
-                .user-box {
-                    width: fit-content;
-                }
-                .control-box {
-                    gap: 10px;
-                    .btnSearch {
-                        visibility: visible;
-                    }
+    .show-flex-1400 {
+        display: flex !important;
+    }
+    .hide-1400 {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .show-block-1200 {
+        display: block !important;
+    }
+    .show-flex-1200 {
+        display: flex !important;
+    }
+    .hide-1200 {
+        display: none;
+    }
+    .main-body-left {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 430px;
+        background-color: $light;
+        transform: translateX(-100%);
+        transition: 0.3s ease;
+        z-index: 1001;
+        &.active {
+            transform: translateX(0);
+        }
+        .header-logo-container {
+            display: flex;
+            .header-logo-container__left {
+                .logo-text {
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 700;
+                    color: $primary-color;
                 }
             }
         }
     }
-    //content-container
-    .content-container {
-        .menu-left {
-            z-index: 0;
-            visibility: hidden;
-            margin-left: -500px;
+    // left menu
+    .left-menu {
+        gap: 50px;
+    }
+    .left-menu__item-list {
+        ul li {
+            border: 2px solid $octonary-color;
         }
-        .sidebar {
-            z-index: 1;
-            visibility: hidden;
-            margin-left: -800px;
+    }
+    .left-menu__back-btn {
+        display: block;
+    }
+    // sidebar
+    .sidebar__project {
+        background-color: $global-bg;
+    }
+    //    sidebar main menu
+    .sidebar__main-menu {
+        .main-menu-header {
+            background-color: $senary-color;
         }
-        .content-wrapper {
-            gap: 0;
-            .sidebar-content-box {
-                z-index: 2;
-                visibility: hidden;
-                margin-left: -500px;
-            }
-            .content-box {
-                z-index: 3;
-                width: 100%;
-                margin-left: -58%;
-                height: 100%;
-                gap: 0;
-                .content-past-msg-wrapper,
-                .content-today-msg-wrapper {
-                    align-self: center;
-                    height: fit-content;
-                    gap: 50%;
-                    .post {
-                        gap: 0;
-                    }
-                }
-                .line-today {
-                    height: 5%;
-                }
-                .add-msg-wrapper {
-                    align-self: center;
-                    height: fit-content;
-                }
+        .main-menu-header__left {
+            span {
+                color: $light !important;
             }
         }
     }
 }
 
-@media screen and (max-width: 360px) {
-    .container {
-        overflow-x: hidden;
-        max-width: 100%;
-        max-height: 100%;
+@media (max-width: 1040px) {
+    .hide-1040 {
+        display: none !important;
     }
-    //header
-    header.navigate-header {
-        gap: 25px;
-        .content-navigate {
-            .logo {
-                width: fit-content;
-                gap: 35px;
+}
+
+@media (max-width: 830px) {
+    // content right content
+    .content__right-content {
+        .right-content__head {
+            padding: 20px 15px;
+            .head-left,
+            .head-right {
+                display: flex;
+                gap: 5px;
             }
-            .right-box {
-                width: fit-content;
-                .user-box {
-                    display: none;
+        }
+        .right-content__chat-box {
+            .chat-box-content {
+                gap: 20px;
+                padding: 20px 15px;
+            }
+            .chat-box-content__item-left {
+                gap: 15px;
+                .item-left__content-head {
+                    flex-direction: column;
+                    gap: 0;
+                    padding-left: calc($chat-box-avatar-size + 15px);
                 }
-                .control-box {
-                    width: fit-content;
-                    .btnSearch,
-                    .btnNotify,
-                    .btnClose {
-                        display: none;
+                .item-left-avatar {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+                .item-left__main-content {
+                    .main-content__img-container {
+                        margin: 0 -5px;
+                        margin-bottom: -5px;
+                        .img-container__img-item {
+                            padding: 0 5px;
+                            margin-bottom: 5px;
+                        }
                     }
                 }
             }
-        }
-    }
-    //content-container
-    .content-container {
-        .menu-left {
-            z-index: 0;
-            visibility: hidden;
-            margin-left: -500px;
-        }
-        .sidebar {
-            z-index: 1;
-            visibility: hidden;
-            margin-left: -800px;
-        }
-        .content-wrapper {
-            gap: 0;
-            grid-template-columns: auto 300px;
-            margin-left: -124px;
-            .sidebar-content-box {
-                z-index: 2;
-                visibility: hidden;
-                margin-left: -500px;
-            }
-            .content-box {
-                z-index: 3;
-                width: 100%;
-                height: 100%;
+            .chat-box-content__item-right {
+                position: absolute;
+                top: 0;
+                right: 0;
                 gap: 0;
-                margin: 0 auto;
-                .head-content-box {
-                    width: 100%;
-                    justify-content: space-between;
-                    padding: 15px 20px;
-                    .head-left {
-                        gap: 0;
-                        width: fit-content;
-                        span {
-                            width: 10%;
-                            gap: 0;
-                            height: 100%;
-                            .btnPhoneCall,
-                            .btnVideoCam {
-                                height: 30px;
-                            }
-                        }
-                        .btnFriends {
-                            visibility: visible;
-                        }
-                        span {
-                            margin-left: 0;
-                        }
-                    }
-                    .head-name {
-                        gap: 0;
-                        width: fit-content;
-                    }
-                    .head-right {
-                        gap: 0;
-                    }
-                }
-                .content-past-msg-wrapper,
-                .content-today-msg-wrapper {
-                    width: 100%;
-                    height: fit-content;
-                    gap: 20%;
-                    padding: 20px 15px;
-                    .post {
-                        gap: 0;
-                        .post-left {
-                            .content-post {
-                                .header-content-post {
-                                    flex-direction: column;
-                                    gap: 0;
-                                    .name-title {
-                                        font-size: 12px;
-                                    }
-                                    .channel-title,
-                                    .time-title {
-                                        font-size: 10px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                .content-past-msg-wrapper {
-                    .post {
-                        gap: 0;
-                        .post-left {
-                            width: 77%;
-                            .content-post {
-                                .file,
-                                .content-post-details {
-                                    margin-left: -30%;
-                                    width: 130%;
-                                }
-                                .file {
-                                    gap: 15px;
-                                    padding: 15px;
-                                    .file-name,
-                                    .file-size,
-                                    .progress span {
-                                        font-size: 12px;
-                                    }
-                                }
-                                .content-post-details {
-                                    gap: 10px;
-                                    img {
-                                        height: 155px;
-                                        width: 130px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                .content-today-msg-wrapper {
-                    .msg-chat {
-                        font-size: 12px;
-                    }
-                }
-                .post-right {
-                    .post-right-box {
-                        button.btnFlag {
-                            display: none;
-                        }
-                    }
-                }
-                .line-today {
-                    height: 5%;
-                }
-                .add-msg-wrapper {
-                    align-self: center;
-                    height: fit-content;
-                }
             }
         }
+        .right-content__input-form {
+            padding: 15px 20px;
+            .input-form__left-utils {
+                gap: 15px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .show-block-768 {
+        display: block !important;
+    }
+    .show-flex-768 {
+        display: flex !important;
+    }
+    // main body content
+    .content {
+        overflow: hidden;
+    }
+    // content sidebar
+    .content__sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $light;
+        transform: translateX(-100%);
+        transition: 0.3s ease;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .hide-640 {
+        display: none !important;
+    }
+    .header {
+        .header-right__utils {
+            margin-left: 0;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+     :root {
+        --content-padding: 15px;
+    }
+    .show-block-480 {
+        display: block !important;
+    }
+    .show-flex-480 {
+        display: flex !important;
+    }
+    .hide-480 {
+        display: none !important;
+    }
+    // content right content
+    .content__right-content {
+        .right-content__head {
+            padding: 20px 15px;
+            .head-left,
+            .head-right {
+                display: flex;
+                gap: 5px;
+            }
+        }
+        .right-content__chat-box {
+            .chat-box-content {
+                gap: 20px;
+                padding: 20px 15px;
+            }
+            .chat-box-content__item-left {
+                gap: 15px;
+                .item-left__content-head {
+                    flex-direction: column;
+                    gap: 0;
+                    padding-left: calc($chat-box-avatar-size + 15px);
+                }
+                .item-left-avatar {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+                .item-left__main-content {
+                    .main-content__img-container {
+                        margin: 0 -5px;
+                        margin-bottom: -5px;
+                        .img-container__img-item {
+                            padding: 0 5px;
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+            }
+            .chat-box-content__item-right {
+                position: absolute;
+                top: 0;
+                right: 0;
+                gap: 0;
+            }
+        }
+        .right-content__input-form {
+            padding: 15px 20px;
+            .input-form__left-utils {
+                gap: 15px;
+            }
+        }
+    }
+    .content__sidebar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 430px) {
+    .hide-430 {
+        display: none !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .hide-360 {
+        display: none !important;
     }
 }
