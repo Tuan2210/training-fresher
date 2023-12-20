@@ -63,15 +63,17 @@ function refreshRealTime() {
 }
 document.addEventListener("DOMContentLoaded", function () {
   refreshRealTime();
-  flatpickr("#start-day-time", {
+  flatpickr("#begin-day-time", {
     enableTime: true,
-    dateFormat: "Y-m-d H:i",
+    dateFormat: "Y-m-d H:i:S",
     minDate: "today",
+    enableSeconds: true,
   });
-  flatpickr("#end-day-time", {
+  flatpickr("#due-day-time", {
     enableTime: true,
-    dateFormat: "Y-m-d H:i",
+    dateFormat: "Y-m-d H:i:S",
     minDate: "today",
+    enableSeconds: true,
   });
 });
 
@@ -92,17 +94,8 @@ function padZero(number) {
   return number < 10 ? `0${number}` : number;
 }
 
-//--array-local-storage--
-var toDoList = [];
-
-//--handle add task--
-function createItem() {
-  var input = document.querySelector("#myInput").value;
-  if (input === "") {
-    alert("The input is empty!\nPlease enter your task 😊");
-    return;
-  }
-
+//--style-new-item
+function newItemStyle(name, beginDate, dueDate, initialDate) {
   const itemToDo = document.createElement("li");
   // item.className("item bg-white flex flex-col justify-between p-3 rounded-xl");
   itemToDo.classList.add(
@@ -112,18 +105,51 @@ function createItem() {
     "flex-col",
     "justify-between",
     "p-3",
-    "rounded-xl"
+    "rounded-xl",
+    "text-sm"
   );
 
   const itemBox = document.createElement("div");
   itemBox.classList.add("item-box", "w-full", "flex", "justify-between");
 
   const itemDetails = document.createElement("div");
-  itemDetails.classList.add("item-details");
-  itemDetails.textContent = input;
+  itemDetails.classList.add(
+    "item-details",
+    "flex",
+    "flex-col",
+    "justify-between",
+    "gap-5"
+  );
+
+  const itemName = document.createElement("div");
+  itemName.classList.add("item-name", "h-20", "overflow-y-auto");
+  itemName.textContent = name;
+
+  const itemDate = document.createElement("div");
+  itemDate.classList.add("item-date", "flex", "flex-col", "gap-2");
+
+  const itemBeginDate = document.createElement("div");
+  itemBeginDate.classList.add("item-begin-date-time");
+  itemBeginDate.textContent = "Begin date:\u00A0" + beginDate;
+
+  const itemSpanBegin = document.createElement("span");
+  itemSpanBegin.textContent = "Begin date:";
+
+  const itemDueDate = document.createElement("div");
+  itemDueDate.classList.add("item-due-date-time");
+  itemDueDate.textContent = "Due date:\u00A0\u00A0\u00A0\u00A0" + dueDate;
+
+  const itemSpanDue = document.createElement("span");
+  itemSpanDue.textContent = "Due date:";
 
   const itemOptions = document.createElement("div");
-  itemOptions.classList.add("item-options", "flex", "flex-col", "gap-4");
+  itemOptions.classList.add(
+    "item-options",
+    "flex",
+    "flex-col",
+    "gap-8",
+    "items-center"
+  );
 
   const inputPreview = document.createElement("div");
   inputPreview.classList.add("inputPreview", "flex", "justify-center");
@@ -138,23 +164,28 @@ function createItem() {
   labelChkb.setAttribute("for", "demo_opt_1");
 
   const faTrash = document.createElement("i");
-  faTrash.classList.add("fa-solid", "fa-trash");
+  faTrash.classList.add("fa-solid", "fa-trash", "fa-xl");
   faTrash.onclick = delItem;
 
   var faPen = document.createElement("i");
-  faPen.classList.add("fa-solid", "fa-pen");
+  faPen.classList.add("fa-solid", "fa-pen", "fa-xl");
 
-  const dueDate = document.createElement("div");
-  dueDate.classList.add("due-date", "text-right");
-
-  const currentDate = new Date(),
-    formattedDateTime = formatDateTime(currentDate);
-  dueDate.innerHTML = `<i>${formattedDateTime}</i>`;
+  const formatInitialDate = document.createElement("div");
+  formatInitialDate.classList.add("initial-date", "text-right", "text-xs");
+  formatInitialDate.innerHTML = `<i>${initialDate}</i>`;
 
   itemToDo.appendChild(itemBox);
 
   itemBox.appendChild(itemDetails);
   itemBox.appendChild(itemOptions);
+
+  itemDetails.appendChild(itemName);
+  itemDetails.appendChild(itemDate);
+
+  // itemDate.appendChild(itemSpanBegin);
+  itemDate.appendChild(itemBeginDate);
+  // itemDate.appendChild(itemSpanDue);
+  itemDate.appendChild(itemDueDate);
 
   itemOptions.appendChild(inputPreview);
 
@@ -164,11 +195,57 @@ function createItem() {
   itemOptions.appendChild(faTrash);
   itemOptions.appendChild(faPen);
 
-  itemToDo.appendChild(dueDate);
+  itemToDo.appendChild(formatInitialDate);
 
   document.querySelector(".items-to-do-list").appendChild(itemToDo);
 
   document.querySelector("#myInput").value = "";
+  document.querySelector("#begin-day-time").value = "";
+  document.querySelector("#due-day-time").value = "";
+}
+
+//--handle add task--
+function createItem() {
+  const input = document.querySelector("#myInput").value,
+    inputBeginDate = document.querySelector("#begin-day-time").value,
+    inputDueDate = document.querySelector("#due-day-time").value;
+
+  //check input and date-time
+  if (input === "") {
+    alert("The input is empty!\nPlease enter your task 😊");
+    return;
+  }
+  if (inputBeginDate === "" || inputDueDate === "") {
+    alert("Please set date and time 😊");
+    return;
+  }
+  if (Date.parse(inputBeginDate) >= Date.parse(inputDueDate)) {
+    alert("The due date must be after the begin date 😊");
+    return;
+  }
+
+  //add-item-localStorage
+  var toDoList = localStorage.getItem("to-do-list")
+    ? JSON.parse(localStorage.getItem("to-do-list"))
+    : [];
+  var previousLength = toDoList.length;
+
+  toDoList.push({
+    name: input,
+    beginDate: formatDateTime(new Date(inputBeginDate + ":00")),
+    dueDate: formatDateTime(new Date(inputDueDate + ":00")),
+    initialDate: formatDateTime(new Date()),
+  });
+  localStorage.setItem("to-do-list", JSON.stringify(toDoList));
+
+  //get-item-localStorage
+  // toDoList.forEach((item) => {
+  //   newItemStyle(item.name, item.beginDate, item.dueDate, item.initialDate);
+  // });
+  for (var i = previousLength; i < toDoList.length; i++) {
+    var item = toDoList[i];
+    newItemStyle(item.name, item.beginDate, item.dueDate, item.initialDate);
+  }
 }
 
 //--handle del task--

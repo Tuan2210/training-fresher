@@ -7,7 +7,10 @@
     <title>Week05_To-do-list</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -18,14 +21,14 @@
             <a href="#" class="flex text-center"><img src="imgs/taskobey_line.png" alt="logo" width="200" height="200"></a>
             <!-- <img src="imgs/clock.gif" id="clock-img" alt="clock-img" width="100"> -->
             <div class="add-box p-3 flex items-center gap-5">
-                <input type="text" id="myInput" placeholder="Type a new task..." class="h-10 rounded-xl">
-                <div class="start-time-box flex flex-row items-center p-2 pl-5 rounded-xl">
+                <input type="text" id="myInput" placeholder="Type a new task..." class="h-10 rounded-xl bg-white">
+                <div class="start-time-box flex flex-row items-center p-2 pl-5 rounded-xl bg-white">
                     <i class="fa-solid fa-hourglass-start" style="color: #068995;"></i>
-                    <input id="start-day-time" placeholder="Start day-time" class="bg-none">
+                    <input id="begin-day-time" placeholder="Begin date-time" class="bg-none outline-none">
                 </div>
-                <div class="end-time-box flex flex-row items-center p-2 pl-5 rounded-xl">
+                <div class="end-time-box flex flex-row items-center p-2 pl-5 rounded-xl bg-white">
                     <i class="fa-solid fa-hourglass-end" style="color: #068995;"></i>
-                    <input id="end-day-time" placeholder="End day-time" class="bg-none">
+                    <input id="due-day-time" placeholder="Due date-time" class="bg-none outline-none">
                 </div>
                 <span onclick="createItem()" class="addBtn p-2 w-25 h-10 text-center text-white cursor-pointer rounded-lg"><b>ADD</b></span>
             </div>
@@ -57,19 +60,25 @@
                     <div class="title text-center text-2xl font-bold p-5">TO DO</div>
                 </span>
                 <ul class="items-to-do-list w-full h-full flex flex-col">
-                    <!-- <li class="item-to-do bg-white flex flex-col justify-between p-3 rounded-xl">
+                    <!-- <li class="item-to-do bg-white flex flex-col justify-between p-3 rounded-xl text-sm">
                         <div class="item-box w-full flex justify-between">
-                            <div class="item-details">11111111111111111111111111112222222222222222222222222222333333333333333333333</div>
-                            <div class="item-options flex flex-col gap-4 items-center">
+                            <div class="item-details flex flex-col justify-between gap-5">
+                                <div class="item-name">11111111111111111111111111112222222222222222222222222222333333333333333333333</div>
+                                <div class="item-date flex flex-col gap-2">
+                                    <div class="item-begin-date-time"><span>Begin date:</span>&nbsp;2023-12-20 10:30:00</div>
+                                    <div class="item-due-date-time"><span>Due date:</span>&nbsp;&nbsp;&nbsp;&nbsp;2023-12-21 16:00:00</div>
+                                </div>
+                            </div>
+                            <div class="item-options flex flex-col gap-8 items-center">
                                 <div class="inputPreview flex justify-center">
                                     <input name="cssCheckbox" id="demo_opt_1" type="checkbox" class="css-checkbox">
                                     <label for="demo_opt_1"></label>
                                 </div>
-                                <i class="fa-solid fa-trash"></i>
-                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash fa-xl"></i>
+                                <i class="fa-solid fa-pen fa-xl"></i>
                             </div>
                         </div>
-                        <div class="due-date text-right"><i>2023/12/18 11:30:00</i></div>
+                        <div class="initial-date text-right"><i>2023/12/18 11:30:00</i></div>
                     </li> -->
                 </ul>
             </div>
