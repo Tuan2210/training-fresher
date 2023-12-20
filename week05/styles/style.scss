@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Fleur+De+Leah&family=Inter:wght@300&family=Mansalva&family=Mystery+Quest&family=Poppins&family=Roboto:wght@500&display=swap');
-:root {
-    --main-color: #09CBD0;
-    --second-color: #0e1538;
-    --bg-content: #F7F8FA;
-    --third-color: #068995
-}
-
+$main-color: #09CBD0;
+$second-color: #0e1538;
+// $bg-content: #F7F8FA;
+$bg-content: #fff;
+$third-color: #068995;
 * {
     margin: 0;
     padding: 0;
@@ -33,7 +31,7 @@ body {
 }
 
 .bg-current {
-    background-color: var(--main-color);
+    background-color: $main-color;
 }
 
 .container {
@@ -43,22 +41,36 @@ body {
             object-fit: cover;
         }
         .add-box {
-            width: 40%;
+            width: 60%;
             input {
-                width: 100%;
+                width: 30%;
                 padding: 0 20px 0 20px;
             }
             input:focus {
                 outline: none;
             }
+            .start-time-box,
+            .end-time-box {
+                width: 225px;
+                background: $bg-content;
+                input {
+                    outline: none;
+                    width: 100%;
+                    color: $third-color;
+                }
+                input::placeholder {
+                    font-style: italic;
+                    color: $third-color;
+                }
+            }
             .addBtn {
                 width: 100px;
                 color: #fff;
-                background: var(--third-color);
+                background: $third-color;
             }
             .addBtn:hover {
-                color: var(--main-color);
-                background: var(--second-color);
+                color: $main-color;
+                background: $second-color;
             }
         }
         .add-box::after {
@@ -67,6 +79,9 @@ body {
             clear: both;
         }
         .time-box {
+            .day-time-box {
+                width: 220px;
+            }
             .clock-time-box {
                 width: 100px;
             }
@@ -79,12 +94,12 @@ body {
         .done-wrapper,
         .to-do-wrapper,
         .doing-wrapper {
-            border-color: var(--main-color);
+            border-color: $main-color;
             span {
                 position: relative;
                 width: 100%;
                 margin: 0 auto;
-                color: var(--main-color);
+                color: $main-color;
                 overflow: hidden;
                 i,
                 .title {
@@ -105,7 +120,7 @@ body {
                 border-radius: 15px;
             }
             span:hover::before {
-                background: var(--main-color);
+                background: $main-color;
                 animation: hoverTitle 5s linear infinite;
             }
             ul.items-done-list,
@@ -117,9 +132,9 @@ body {
                     height: 150px;
                     font-weight: 700;
                     line-height: 20px;
-                    box-shadow: 0 2px 15px 5px var(--third-color);
+                    box-shadow: 0 2px 15px 5px $third-color;
                     .due-date {
-                        color: var(--third-color);
+                        color: $third-color;
                     }
                 }
                 .item-details {
@@ -129,11 +144,11 @@ body {
                 }
                 .fa-trash,
                 .fa-pen {
-                    color: var(--third-color);
+                    color: $third-color;
                 }
                 .fa-trash:hover,
                 .fa-pen:hover {
-                    color: var(--main-color);
+                    color: $main-color;
                     cursor: pointer;
                 }
             }
@@ -179,10 +194,10 @@ body {
     margin-right: 3px;
     width: 20px;
     height: 20px;
-    background-color: var(--third-color);
+    background-color: $third-color;
     border-width: 1px;
     border-style: solid;
-    border-color: var(--third-color);
+    border-color: $third-color;
     border-radius: 2px;
     box-shadow: none;
 }

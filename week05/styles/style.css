@@ -1,11 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Fleur+De+Leah&family=Inter:wght@300&family=Mansalva&family=Mystery+Quest&family=Poppins&family=Roboto:wght@500&display=swap");
-:root {
-  --main-color: #09CBD0;
-  --second-color: #0e1538;
-  --bg-content: #F7F8FA;
-  --third-color: #068995 ;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -33,7 +26,7 @@ body {
 }
 
 .bg-current {
-  background-color: var(--main-color);
+  background-color: #09CBD0;
 }
 
 .container header #clock-img {
@@ -42,28 +35,51 @@ body {
      object-fit: cover;
 }
 .container header .add-box {
-  width: 40%;
+  width: 60%;
 }
 .container header .add-box input {
-  width: 100%;
+  width: 30%;
   padding: 0 20px 0 20px;
 }
 .container header .add-box input:focus {
   outline: none;
 }
+.container header .add-box .start-time-box,
+.container header .add-box .end-time-box {
+  width: 225px;
+  background: #fff;
+}
+.container header .add-box .start-time-box input,
+.container header .add-box .end-time-box input {
+  outline: none;
+  width: 100%;
+  color: #068995;
+}
+.container header .add-box .start-time-box input::-moz-placeholder, .container header .add-box .end-time-box input::-moz-placeholder {
+  font-style: italic;
+  color: #068995;
+}
+.container header .add-box .start-time-box input::placeholder,
+.container header .add-box .end-time-box input::placeholder {
+  font-style: italic;
+  color: #068995;
+}
 .container header .add-box .addBtn {
   width: 100px;
   color: #fff;
-  background: var(--third-color);
+  background: #068995;
 }
 .container header .add-box .addBtn:hover {
-  color: var(--main-color);
-  background: var(--second-color);
+  color: #09CBD0;
+  background: #0e1538;
 }
 .container header .add-box::after {
   content: "";
   display: table;
   clear: both;
+}
+.container header .time-box .day-time-box {
+  width: 220px;
 }
 .container header .time-box .clock-time-box {
   width: 100px;
@@ -76,7 +92,7 @@ body {
 .container .content-container .done-wrapper,
 .container .content-container .to-do-wrapper,
 .container .content-container .doing-wrapper {
-  border-color: var(--main-color);
+  border-color: #09CBD0;
 }
 .container .content-container .done-wrapper span,
 .container .content-container .to-do-wrapper span,
@@ -84,7 +100,7 @@ body {
   position: relative;
   width: 100%;
   margin: 0 auto;
-  color: var(--main-color);
+  color: #09CBD0;
   overflow: hidden;
 }
 .container .content-container .done-wrapper span i,
@@ -115,7 +131,7 @@ body {
 .container .content-container .done-wrapper span:hover::before,
 .container .content-container .to-do-wrapper span:hover::before,
 .container .content-container .doing-wrapper span:hover::before {
-  background: var(--main-color);
+  background: #09CBD0;
   animation: hoverTitle 5s linear infinite;
 }
 .container .content-container .done-wrapper ul.items-done-list,
@@ -142,7 +158,7 @@ body {
   height: 150px;
   font-weight: 700;
   line-height: 20px;
-  box-shadow: 0 2px 15px 5px var(--third-color);
+  box-shadow: 0 2px 15px 5px #068995;
 }
 .container .content-container .done-wrapper ul.items-done-list li.item-to-do .due-date,
 .container .content-container .done-wrapper ul.items-to-do-list li.item-to-do .due-date,
@@ -153,7 +169,7 @@ body {
 .container .content-container .doing-wrapper ul.items-done-list li.item-to-do .due-date,
 .container .content-container .doing-wrapper ul.items-to-do-list li.item-to-do .due-date,
 .container .content-container .doing-wrapper ul.items-doing-list li.item-to-do .due-date {
-  color: var(--third-color);
+  color: #068995;
 }
 .container .content-container .done-wrapper ul.items-done-list .item-details,
 .container .content-container .done-wrapper ul.items-to-do-list .item-details,
@@ -186,7 +202,7 @@ body {
 .container .content-container .doing-wrapper ul.items-to-do-list .fa-pen,
 .container .content-container .doing-wrapper ul.items-doing-list .fa-trash,
 .container .content-container .doing-wrapper ul.items-doing-list .fa-pen {
-  color: var(--third-color);
+  color: #068995;
 }
 .container .content-container .done-wrapper ul.items-done-list .fa-trash:hover,
 .container .content-container .done-wrapper ul.items-done-list .fa-pen:hover,
@@ -206,7 +222,7 @@ body {
 .container .content-container .doing-wrapper ul.items-to-do-list .fa-pen:hover,
 .container .content-container .doing-wrapper ul.items-doing-list .fa-trash:hover,
 .container .content-container .doing-wrapper ul.items-doing-list .fa-pen:hover {
-  color: var(--main-color);
+  color: #09CBD0;
   cursor: pointer;
 }
 
@@ -246,10 +262,10 @@ body {
   margin-right: 3px;
   width: 20px;
   height: 20px;
-  background-color: var(--third-color);
+  background-color: #068995;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--third-color);
+  border-color: #068995;
   border-radius: 2px;
   box-shadow: none;
 }

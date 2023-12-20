@@ -61,7 +61,19 @@ function refreshRealTime() {
 
   setTimeout("refreshRealTime()", 1000);
 }
-document.addEventListener("DOMContentLoaded", refreshRealTime);
+document.addEventListener("DOMContentLoaded", function () {
+  refreshRealTime();
+  flatpickr("#start-day-time", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    minDate: "today",
+  });
+  flatpickr("#end-day-time", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    minDate: "today",
+  });
+});
 
 //--format date-time--
 function formatDateTime(date) {

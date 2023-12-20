@@ -7,19 +7,26 @@
     <title>Week05_To-do-list</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="styles/style.css">
-
-    <script src="main.js"></script>
 </head>
 
 <body>
     <div class="container max-w-full max-h-full">
         <!-- header -->
         <header class="w-full h-20 bg-current p-3 flex justify-between">
-            <img src="imgs/taskobey_line.png" alt="logo" width="200" height="200">
-            <img src="imgs/clock.gif" id="clock-img" alt="clock-img" width="100">
-            <div class="add-box p-3 flex justify-center items-center gap-3">
+            <a href="#" class="flex text-center"><img src="imgs/taskobey_line.png" alt="logo" width="200" height="200"></a>
+            <!-- <img src="imgs/clock.gif" id="clock-img" alt="clock-img" width="100"> -->
+            <div class="add-box p-3 flex items-center gap-5">
                 <input type="text" id="myInput" placeholder="Type a new task..." class="h-10 rounded-xl">
+                <div class="start-time-box flex flex-row items-center p-2 pl-5 rounded-xl">
+                    <i class="fa-solid fa-hourglass-start" style="color: #068995;"></i>
+                    <input id="start-day-time" placeholder="Start day-time" class="bg-none">
+                </div>
+                <div class="end-time-box flex flex-row items-center p-2 pl-5 rounded-xl">
+                    <i class="fa-solid fa-hourglass-end" style="color: #068995;"></i>
+                    <input id="end-day-time" placeholder="End day-time" class="bg-none">
+                </div>
                 <span onclick="createItem()" class="addBtn p-2 w-25 h-10 text-center text-white cursor-pointer rounded-lg"><b>ADD</b></span>
             </div>
             <div class="time-box flex flex-row text-white font-bold gap-5">
@@ -75,9 +82,11 @@
                 </ul>
             </div>
         </div>
-
     </div>
 
+    <!-- scripts -->
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 
 </html>
