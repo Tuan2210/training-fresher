@@ -61,21 +61,22 @@ function refreshRealTime() {
 
   setTimeout("refreshRealTime()", 1000);
 }
-document.addEventListener("DOMContentLoaded", function () {
-  refreshRealTime();
-  flatpickr("#begin-day-time", {
+
+//--custom flatpickr--
+function customFlatpickr(id) {
+  const currentDateTime = new Date();
+  var h = currentDateTime.getHours(),
+    m = currentDateTime.getMinutes();
+  // var s = currentDateTime.getSeconds();
+  flatpickr(id, {
     enableTime: true,
     dateFormat: "Y-m-d H:i:S",
     minDate: "today",
     enableSeconds: true,
+    defaultHour: h,
+    defaultMinute: m,
   });
-  flatpickr("#due-day-time", {
-    enableTime: true,
-    dateFormat: "Y-m-d H:i:S",
-    minDate: "today",
-    enableSeconds: true,
-  });
-});
+}
 
 //--format date-time--
 function formatDateTime(date) {
@@ -95,7 +96,7 @@ function padZero(number) {
 }
 
 //--style-new-item
-function newItemStyle(name, beginDate, dueDate, initialDate) {
+function displayItem(name, beginDate, dueDate, initialDate) {
   const itemToDo = document.createElement("li");
   // item.className("item bg-white flex flex-col justify-between p-3 rounded-xl");
   itemToDo.classList.add(
@@ -219,6 +220,10 @@ function createItem() {
     alert("Please set date and time 😊");
     return;
   }
+  if (new Date() >= Date.parse(inputBeginDate)) {
+    alert("The begin date must be after the current date 😊");
+    return;
+  }
   if (Date.parse(inputBeginDate) >= Date.parse(inputDueDate)) {
     alert("The due date must be after the begin date 😊");
     return;
@@ -232,19 +237,20 @@ function createItem() {
 
   toDoList.push({
     name: input,
-    beginDate: formatDateTime(new Date(inputBeginDate + ":00")),
-    dueDate: formatDateTime(new Date(inputDueDate + ":00")),
+    beginDate: formatDateTime(new Date(inputBeginDate)),
+    dueDate: formatDateTime(new Date(inputDueDate)),
     initialDate: formatDateTime(new Date()),
+    status: "Todo",
   });
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
 
   //get-item-localStorage
   // toDoList.forEach((item) => {
-  //   newItemStyle(item.name, item.beginDate, item.dueDate, item.initialDate);
+  //   displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
   // });
   for (var i = previousLength; i < toDoList.length; i++) {
     var item = toDoList[i];
-    newItemStyle(item.name, item.beginDate, item.dueDate, item.initialDate);
+    displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
   }
 }
 
@@ -263,3 +269,16 @@ function delItem() {
     itemToDo.style.display = "none";
   };
 }
+
+//--DOM-content-load
+document.addEventListener("DOMContentLoaded", function () {
+  refreshRealTime();
+
+  customFlatpickr("#begin-day-time");
+  customFlatpickr("#due-day-time");
+
+  var storedDate = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  storedDate.forEach((item) => {
+    displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
+  });
+});
