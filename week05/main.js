@@ -247,6 +247,7 @@ function createItem() {
   var toDoList = localStorage.getItem("to-do-list")
     ? JSON.parse(localStorage.getItem("to-do-list"))
     : [];
+  var previousLength = toDoList.length;
 
   toDoList.push({
     name: input,
@@ -257,7 +258,11 @@ function createItem() {
   });
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
 
-  getItem();
+  //get-item-localStorage
+  for (var i = previousLength; i < toDoList.length; i++) {
+    var item = toDoList[i];
+    displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
+  }
 }
 
 //--find parent-element--
