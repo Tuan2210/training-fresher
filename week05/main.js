@@ -166,7 +166,7 @@ function displayItem(name, beginDate, dueDate, initialDate) {
 
   const faTrash = document.createElement("i");
   faTrash.classList.add("fa-solid", "fa-trash", "fa-xl");
-  faTrash.onclick = delItem;
+  // faTrash.onclick = delItem;
 
   var faPen = document.createElement("i");
   faPen.classList.add("fa-solid", "fa-pen", "fa-xl");
@@ -205,7 +205,21 @@ function displayItem(name, beginDate, dueDate, initialDate) {
   document.querySelector("#due-day-time").value = "";
 }
 
-//--handle add task--
+//--handle get item
+function getItem() {
+  location.reload();
+
+  var toDoList = localStorage.getItem("to-do-list")
+    ? JSON.parse(localStorage.getItem("to-do-list"))
+    : [];
+  var previousLength = toDoList.length;
+  for (var i = previousLength; i < toDoList.length; i++) {
+    var item = toDoList[i];
+    displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
+  }
+}
+
+//--handle add item--
 function createItem() {
   const input = document.querySelector("#myInput").value,
     inputBeginDate = document.querySelector("#begin-day-time").value,
@@ -233,7 +247,6 @@ function createItem() {
   var toDoList = localStorage.getItem("to-do-list")
     ? JSON.parse(localStorage.getItem("to-do-list"))
     : [];
-  var previousLength = toDoList.length;
 
   toDoList.push({
     name: input,
@@ -244,30 +257,36 @@ function createItem() {
   });
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
 
-  //get-item-localStorage
-  // toDoList.forEach((item) => {
-  //   displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
-  // });
-  for (var i = previousLength; i < toDoList.length; i++) {
-    var item = toDoList[i];
-    displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
-  }
+  getItem();
 }
 
-//--handle del task--
-function delItem() {
-  const trash = document.querySelector(".fa-trash");
-  // for (var i = 0; i < i++; i++) {
-  //   trash[i].onclick = () => {
-  //     alert(trash[i]);
-  //     // const div = this.parentElement;
-  //     // div.style.display = "none";
-  //   };
-  // }
-  trash.onclick = function () {
-    const itemToDo = document.querySelector(".item-to-do");
-    itemToDo.style.display = "none";
-  };
+//--find parent-element--
+function findParent(element, className) {
+  while (
+    (element = element.parentElement) &&
+    !element.classList.contains(className)
+  );
+  return element;
+}
+
+//--find index by value=-
+function findIndexByValue(indexTrashIcon, arr, name, beginDate, dueDate) {
+  if (
+    arr[indexTrashIcon].name === name &&
+    "Begin date:\u00A0" + arr[indexTrashIcon].beginDate === beginDate &&
+    "Due date:\u00A0\u00A0\u00A0\u00A0" + arr[indexTrashIcon].dueDate ===
+      dueDate
+  )
+    return indexTrashIcon;
+  return -1;
+}
+//--handle delete item--
+function delItem(indexTrashIcon) {
+  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  storedData.splice(indexTrashIcon, 1);
+  localStorage.setItem("to-do-list", JSON.stringify(storedData));
+
+  getItem();
 }
 
 //--DOM-content-load
@@ -280,5 +299,12 @@ document.addEventListener("DOMContentLoaded", function () {
   var storedDate = JSON.parse(localStorage.getItem("to-do-list")) || [];
   storedDate.forEach((item) => {
     displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
+  });
+
+  var trashIcons = document.querySelectorAll(".fa-trash");
+  trashIcons.forEach(function (trashIcon, index) {
+    trashIcon.addEventListener("click", function () {
+      delItem(index);
+    });
   });
 });
