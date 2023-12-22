@@ -211,9 +211,11 @@ function getAllItems(arr) {
   var itemListContainer = document.querySelector(".items-to-do-list");
   itemListContainer.innerHTML = "";
 
+  // setTimeout(() => {
   arr.forEach((item) => {
     displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
   });
+  // }, 500);
 }
 
 //--handle add item--
@@ -246,6 +248,7 @@ function createItem() {
     : [];
 
   toDoList.push({
+    id: toDoList.length + 1,
     name: input,
     beginDate: formatDateTime(new Date(inputBeginDate)),
     dueDate: formatDateTime(new Date(inputDueDate)),
@@ -267,24 +270,45 @@ function findParent(element, className) {
   return element;
 }
 
-//--find index by value=-
-function findIndexByValue(indexTrashIcon, arr, name, beginDate, dueDate) {
-  if (
-    arr[indexTrashIcon].name === name &&
-    "Begin date:\u00A0" + arr[indexTrashIcon].beginDate === beginDate &&
-    "Due date:\u00A0\u00A0\u00A0\u00A0" + arr[indexTrashIcon].dueDate ===
-      dueDate
-  )
-    return indexTrashIcon;
-  return -1;
-}
 //--handle delete item--
 function delItem(indexTrashIcon) {
   var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
-  storedData.splice(indexTrashIcon, 1);
-  localStorage.setItem("to-do-list", JSON.stringify(storedData));
+  if (indexTrashIcon < 0 || indexTrashIcon >= storedData.length) return;
+
+  var itemId = storedData[indexTrashIcon].id;
+
+  // storedData.splice(indexTrashIcon, 1);
+  var newStoredData = storedData.filter((item) => item.id !== itemId);
+  if (newStoredData.length === 0) {
+    localStorage.removeItem("to-do-list");
+  } else localStorage.setItem("to-do-list", JSON.stringify(newStoredData));
 
   getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
+}
+
+//--handle update item--
+function updateItem() {
+  const input = document.querySelector("#myInputModal").value,
+    inputBeginDate = document.querySelector("#begin-day-time-modal").value,
+    inputDueDate = document.querySelector("#due-day-time-modal").value;
+
+  //check input and date-time
+  if (input === "") {
+    alert("The input is empty!\nPlease enter your task 😊");
+    return;
+  }
+  if (inputBeginDate === "" || inputDueDate === "") {
+    alert("Please set date and time 😊");
+    return;
+  }
+  if (new Date() >= Date.parse(inputBeginDate)) {
+    alert("The begin date must be after the current date 😊");
+    return;
+  }
+  if (Date.parse(inputBeginDate) >= Date.parse(inputDueDate)) {
+    alert("The due date must be after the begin date 😊");
+    return;
+  }
 }
 
 //--DOM-content-load
@@ -294,16 +318,49 @@ document.addEventListener("DOMContentLoaded", function () {
   customFlatpickr("#begin-day-time");
   customFlatpickr("#due-day-time");
 
+  customFlatpickr("#begin-day-time-modal");
+  customFlatpickr("#due-day-time-modal");
+
+  document.querySelector(".addBtn").addEventListener("click", function () {
+    createItem();
+  });
+  // document.querySelector(".updateBtn").addEventListener("click", function () {
+  //   updateItem();
+  // });
+
   var storedDate = JSON.parse(localStorage.getItem("to-do-list")) || [];
   // getAllItems(storedDate);
   storedDate.forEach((item) => {
     displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
   });
-
-  var trashIcons = document.querySelectorAll(".fa-trash");
-  trashIcons.forEach(function (trashIcon, index) {
-    trashIcon.addEventListener("click", function () {
-      delItem(index);
+  if (storedDate.length > 0) {
+    var trashIcons = document.querySelectorAll(".fa-trash");
+    trashIcons.forEach(function (trashIcon, index) {
+      trashIcon.addEventListener("click", function () {
+        delItem(index);
+      });
     });
-  });
+  }
+  handleModal();
 });
+
+//--handle modal--
+function handleModal() {
+  var openModalBtn = document.querySelector(".penBtn");
+  var modal = document.querySelector("#modal-form");
+  var closeModalSpan = document.querySelector(".close");
+
+  openModalBtn.addEventListener("click", function () {
+    modal.style.display = "flex";
+  });
+
+  closeModalSpan.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  // window.addEventListener("click", function (e) {
+  //   if (e.target === modal) {
+  //     modal.style.display = "none";
+  //   }
+  // });
+}

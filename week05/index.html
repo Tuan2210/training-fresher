@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week05_To-do-list</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -30,9 +31,9 @@
                     <i class="fa-solid fa-hourglass-end" style="color: #068995;"></i>
                     <input id="due-day-time" placeholder="Due date-time" class="bg-none outline-none">
                 </div>
-                <span onclick="createItem()" class="addBtn p-2 w-25 h-10 text-center text-white cursor-pointer rounded-lg"><b>ADD</b></span>
+                <span class="addBtn p-2 w-25 h-10 text-center text-white cursor-pointer rounded-lg"><b>ADD</b></span>
             </div>
-            <div class="time-box flex flex-row text-white font-bold gap-5">
+            <div class="time-box flex flex-row text-white font-bold">
                 <div class="day-time-box flex flex-row items-center gap-4">
                     <i class="fa-solid fa-calendar-days" style="color: #068995;"></i>
                     <div id="day-time"></div>
@@ -65,8 +66,8 @@
                             <div class="item-details flex flex-col justify-between gap-5">
                                 <div class="item-name">11111111111111111111111111112222222222222222222222222222333333333333333333333</div>
                                 <div class="item-date flex flex-col gap-2">
-                                    <div class="item-begin-date-time"><span>Begin date:</span>&nbsp;2023-12-20 10:30:00</div>
-                                    <div class="item-due-date-time"><span>Due date:</span>&nbsp;&nbsp;&nbsp;&nbsp;2023-12-21 16:00:00</div>
+                                    <div class="item-begin-date-time">Begin date:&nbsp;2023-12-20 10:30:00</div>
+                                    <div class="item-due-date-time">Due date:&nbsp;&nbsp;&nbsp;&nbsp;2023-12-21 16:00:00</div>
                                 </div>
                             </div>
                             <div class="item-options flex flex-col gap-8 items-center">
@@ -75,7 +76,9 @@
                                     <label for="demo_opt_1"></label>
                                 </div>
                                 <i class="fa-solid fa-trash fa-xl"></i>
-                                <i class="fa-solid fa-pen fa-xl"></i>
+                                <button class="penBtn" data-toggle="modal" data-target="#modal-form" type="button">
+                                    <i class="fa-solid fa-pen fa-xl"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="initial-date text-right"><i>2023/12/18 11:30:00</i></div>
@@ -89,6 +92,25 @@
                 </span>
                 <ul class="items-doing-list w-full h-full p-5">
                 </ul>
+            </div>
+        </div>
+
+        <!-- modal -->
+        <div id="modal-form" class="modal">
+            <div class="modal-content flex flex-col bg-white rounded-xl p-8">
+                <span class="close"><i class="fa-regular fa-rectangle-xmark" style="color: #068995;"></i></span>
+                <div class="add-box h-full flex items-center gap-5">
+                    <input type="text" id="myInputModal" placeholder="Type a new task..." class="h-10 rounded-xl bg-white">
+                    <div class="start-time-box flex flex-row items-center p-2 pl-5 rounded-xl bg-white">
+                        <i class="fa-solid fa-hourglass-start" style="color: #068995;"></i>
+                        <input id="begin-day-time-modal" placeholder="Begin date-time" class="bg-none outline-none">
+                    </div>
+                    <div class="end-time-box flex flex-row items-center p-2 pl-5 rounded-xl bg-white">
+                        <i class="fa-solid fa-hourglass-end" style="color: #068995;"></i>
+                        <input id="due-day-time-modal" placeholder="Due date-time" class="bg-none outline-none">
+                    </div>
+                    <span onclick="updateItem()" class="updateBtn p-2 w-25 h-10 text-center text-white cursor-pointer rounded-lg"><b>ADD</b></span>
+                </div>
             </div>
         </div>
     </div>
