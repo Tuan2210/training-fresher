@@ -330,13 +330,16 @@ body {
   color: #fff;
   background: #068995;
 }
-.container .modal .modal-content .add-box .addBtn:hover {
+.container .modal .modal-content .add-box .updateBtn:hover {
   background: #0e1538;
 }
 .container .modal .modal-content .add-box::after {
   content: "";
   display: table;
   clear: both;
+}
+.container .modal .modal-content.fadeInModal {
+  animation: fadeInModal 0.3s ease-in-out;
 }
 .container .modal .close {
   position: absolute;
@@ -345,6 +348,10 @@ body {
   font-size: 20px;
   cursor: pointer;
   margin: 5px;
+  color: #068995;
+}
+.container .modal .close:hover {
+  color: #0e1538;
 }
 
 @keyframes hoverTitle {
@@ -410,4 +417,25 @@ body {
   font-size: 10px;
   height: 22px;
   width: 22px;
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    top: 400px;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+@keyframes fadeOutModal {
+  from {
+    opacity: 1;
+    top: 0;
+  }
+  to {
+    opacity: 0;
+    top: -400px;
+  }
 }/*# sourceMappingURL=style.css.map */

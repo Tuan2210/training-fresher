@@ -1,3 +1,6 @@
+var $ = document.querySelector.bind(document);
+var $$ = document.querySelectorAll.bind(document);
+
 //--real-time--
 function refreshRealTime() {
   var d = new Date();
@@ -51,8 +54,8 @@ function refreshRealTime() {
     h = "0" + h;
   }
 
-  const dayTime = document.querySelector("#day-time"),
-    clockTime = document.querySelector("#clock-time");
+  const dayTime = $("#day-time"),
+    clockTime = $("#clock-time");
 
   if (dayTime)
     dayTime.innerHTML =
@@ -168,7 +171,13 @@ function displayItem(name, beginDate, dueDate, initialDate) {
   faTrash.classList.add("fa-solid", "fa-trash", "fa-xl");
   // faTrash.onclick = delItem;
 
-  var faPen = document.createElement("i");
+  const penBtn = document.createElement("button");
+  penBtn.classList.add("penBtn");
+  penBtn.setAttribute("data-toggle", "modal");
+  penBtn.setAttribute("data-target", "#modal-form");
+  penBtn.setAttribute("type", "button");
+
+  const faPen = document.createElement("i");
   faPen.classList.add("fa-solid", "fa-pen", "fa-xl");
 
   const formatInitialDate = document.createElement("div");
@@ -194,21 +203,23 @@ function displayItem(name, beginDate, dueDate, initialDate) {
   inputPreview.appendChild(labelChkb);
 
   itemOptions.appendChild(faTrash);
-  itemOptions.appendChild(faPen);
+  itemOptions.appendChild(penBtn);
+
+  penBtn.appendChild(faPen);
 
   itemToDo.appendChild(formatInitialDate);
 
-  document.querySelector(".items-to-do-list").appendChild(itemToDo);
+  $(".items-to-do-list").appendChild(itemToDo);
 
-  document.querySelector("#myInput").value = "";
-  document.querySelector("#begin-day-time").value = "";
-  document.querySelector("#due-day-time").value = "";
+  $("#myInput").value = "";
+  $("#begin-day-time").value = "";
+  $("#due-day-time").value = "";
 }
 
 //--handle get items--
 function getAllItems(arr) {
   location.reload();
-  var itemListContainer = document.querySelector(".items-to-do-list");
+  var itemListContainer = $(".items-to-do-list");
   itemListContainer.innerHTML = "";
 
   // setTimeout(() => {
@@ -220,9 +231,9 @@ function getAllItems(arr) {
 
 //--handle add item--
 function createItem() {
-  const input = document.querySelector("#myInput").value,
-    inputBeginDate = document.querySelector("#begin-day-time").value,
-    inputDueDate = document.querySelector("#due-day-time").value;
+  const input = $("#myInput").value,
+    inputBeginDate = $("#begin-day-time").value,
+    inputDueDate = $("#due-day-time").value;
 
   //check input and date-time
   if (input === "") {
@@ -262,13 +273,13 @@ function createItem() {
 }
 
 //--find parent-element--
-function findParent(element, className) {
-  while (
-    (element = element.parentElement) &&
-    !element.classList.contains(className)
-  );
-  return element;
-}
+// function findParent(element, className) {
+//   while (
+//     (element = element.parentElement) &&
+//     !element.classList.contains(className)
+//   );
+//   return element;
+// }
 
 //--handle delete item--
 function delItem(indexTrashIcon) {
@@ -288,9 +299,9 @@ function delItem(indexTrashIcon) {
 
 //--handle update item--
 function updateItem() {
-  const input = document.querySelector("#myInputModal").value,
-    inputBeginDate = document.querySelector("#begin-day-time-modal").value,
-    inputDueDate = document.querySelector("#due-day-time-modal").value;
+  const input = $("#myInputModal").value,
+    inputBeginDate = $("#begin-day-time-modal").value,
+    inputDueDate = $("#due-day-time-modal").value;
 
   //check input and date-time
   if (input === "") {
@@ -321,46 +332,73 @@ document.addEventListener("DOMContentLoaded", function () {
   customFlatpickr("#begin-day-time-modal");
   customFlatpickr("#due-day-time-modal");
 
-  document.querySelector(".addBtn").addEventListener("click", function () {
+  $(".addBtn").addEventListener("click", function () {
     createItem();
   });
-  // document.querySelector(".updateBtn").addEventListener("click", function () {
+  // $(".updateBtn").addEventListener("click", function () {
   //   updateItem();
   // });
 
-  var storedDate = JSON.parse(localStorage.getItem("to-do-list")) || [];
-  // getAllItems(storedDate);
-  storedDate.forEach((item) => {
+  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  storedData.forEach((item) => {
     displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
   });
-  if (storedDate.length > 0) {
-    var trashIcons = document.querySelectorAll(".fa-trash");
-    trashIcons.forEach(function (trashIcon, index) {
-      trashIcon.addEventListener("click", function () {
-        delItem(index);
-      });
+
+  var trashIcons = $$(".fa-trash");
+  trashIcons.forEach(function (trashIcon, index) {
+    trashIcon.addEventListener("click", function () {
+      delItem(index);
     });
-  }
-  handleModal();
+  });
+
+  const myInputModal = $("#myInputModal"),
+    beginDayTimeModal = $("#begin-day-time-modal"),
+    dueDayTimeModal = $("#due-day-time-modal");
+  handleModal(myInputModal, beginDayTimeModal, dueDayTimeModal);
 });
 
 //--handle modal--
-function handleModal() {
-  var openModalBtn = document.querySelector(".penBtn");
-  var modal = document.querySelector("#modal-form");
-  var closeModalSpan = document.querySelector(".close");
+function handleModal(myInputModal, beginDayTimeModal, dueDayTimeModal) {
+  var openModalBtn = $$(".penBtn");
+  var modal = $("#modal-form");
+  var modalContent = $(".modal-content");
+  var closeModalSpan = $(".close");
 
-  openModalBtn.addEventListener("click", function () {
-    modal.style.display = "flex";
+  openModalBtn.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      modal.style.display = "flex";
+      modalContent.classList.add("fadeInModal");
+    });
   });
 
   closeModalSpan.addEventListener("click", function () {
     modal.style.display = "none";
+    modalContent.classList.remove("fadeInModal");
+    modalContent.classList.add("fadeOutModal");
   });
 
-  // window.addEventListener("click", function (e) {
-  //   if (e.target === modal) {
-  //     modal.style.display = "none";
-  //   }
-  // });
+  window.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      if (
+        myInputModal.value !== "" ||
+        beginDayTimeModal.value !== "" ||
+        dueDayTimeModal.value !== ""
+      ) {
+        if (confirm("Would you like to exit? 🤔")) {
+          modal.style.display = "none";
+
+          modalContent.classList.remove("fadeInModal");
+          modalContent.classList.add("fadeOutModal");
+
+          myInputModal.value = "";
+          beginDayTimeModal.value = "";
+          dueDayTimeModal.value = "";
+        }
+      } else {
+        modal.style.display = "none";
+        modalContent.classList.remove("fadeInModal");
+        modalContent.classList.add("fadeOutModal");
+      }
+    }
+  });
 }

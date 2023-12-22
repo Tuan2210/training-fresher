@@ -211,7 +211,7 @@ body {
                     color: $bg-content;
                     background: $third-color;
                 }
-                .addBtn:hover {
+                .updateBtn:hover {
                     background: $second-color;
                 }
             }
@@ -219,6 +219,9 @@ body {
                 content: "";
                 display: table;
                 clear: both;
+            }
+            &.fadeInModal {
+                animation: fadeInModal 0.3s ease-in-out;
             }
         }
         .close {
@@ -228,6 +231,10 @@ body {
             font-size: 20px;
             cursor: pointer;
             margin: 5px;
+            color: $third-color;
+        }
+        .close:hover {
+            color: $second-color;
         }
     }
 }
@@ -297,4 +304,27 @@ body {
     font-size: 10px;
     height: 22px;
     width: 22px;
+}
+
+//animation modal
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+        top: 400px
+    }
+    to {
+        opacity: 1;
+        top: 0
+    }
+}
+
+@keyframes fadeOutModal {
+    from {
+        opacity: 1;
+        top: 0
+    }
+    to {
+        opacity: 0;
+        top: -400px
+    }
 }
