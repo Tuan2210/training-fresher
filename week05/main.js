@@ -1,5 +1,5 @@
-var $ = document.querySelector.bind(document);
-var $$ = document.querySelectorAll.bind(document);
+var $$ = document.querySelector.bind(document);
+var $$$ = document.querySelectorAll.bind(document);
 
 //--real-time--
 function refreshRealTime() {
@@ -54,8 +54,8 @@ function refreshRealTime() {
     h = "0" + h;
   }
 
-  const dayTime = $("#day-time"),
-    clockTime = $("#clock-time");
+  const dayTime = $$("#day-time"),
+    clockTime = $$("#clock-time");
 
   if (dayTime)
     dayTime.innerHTML =
@@ -209,17 +209,17 @@ function displayItem(name, beginDate, dueDate, initialDate) {
 
   itemToDo.appendChild(formatInitialDate);
 
-  $(".items-to-do-list").appendChild(itemToDo);
+  $$(".items-to-do-list").appendChild(itemToDo);
 
-  $("#myInput").value = "";
-  $("#begin-day-time").value = "";
-  $("#due-day-time").value = "";
+  $$("#myInput").value = "";
+  $$("#begin-day-time").value = "";
+  $$("#due-day-time").value = "";
 }
 
 //--handle get items--
 function getAllItems(arr) {
   location.reload();
-  var itemListContainer = $(".items-to-do-list");
+  var itemListContainer = $$(".items-to-do-list");
   itemListContainer.innerHTML = "";
 
   // setTimeout(() => {
@@ -231,9 +231,9 @@ function getAllItems(arr) {
 
 //--handle add item--
 function createItem() {
-  const input = $("#myInput").value,
-    inputBeginDate = $("#begin-day-time").value,
-    inputDueDate = $("#due-day-time").value;
+  const input = $$("#myInput").value,
+    inputBeginDate = $$("#begin-day-time").value,
+    inputDueDate = $$("#due-day-time").value;
 
   //check input and date-time
   if (input === "") {
@@ -299,9 +299,9 @@ function delItem(indexTrashIcon) {
 
 //--handle update item--
 function updateItem() {
-  const input = $("#myInputModal").value,
-    inputBeginDate = $("#begin-day-time-modal").value,
-    inputDueDate = $("#due-day-time-modal").value;
+  const input = $$("#myInputModal").value,
+    inputBeginDate = $$("#begin-day-time-modal").value,
+    inputDueDate = $$("#due-day-time-modal").value;
 
   //check input and date-time
   if (input === "") {
@@ -332,10 +332,10 @@ document.addEventListener("DOMContentLoaded", function () {
   customFlatpickr("#begin-day-time-modal");
   customFlatpickr("#due-day-time-modal");
 
-  $(".addBtn").addEventListener("click", function () {
+  $$(".addBtn").addEventListener("click", function () {
     createItem();
   });
-  // $(".updateBtn").addEventListener("click", function () {
+  // $$(".updateBtn").addEventListener("click", function () {
   //   updateItem();
   // });
 
@@ -344,61 +344,64 @@ document.addEventListener("DOMContentLoaded", function () {
     displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
   });
 
-  var trashIcons = $$(".fa-trash");
+  var trashIcons = $$$(".fa-trash");
   trashIcons.forEach(function (trashIcon, index) {
     trashIcon.addEventListener("click", function () {
       delItem(index);
     });
   });
 
-  const myInputModal = $("#myInputModal"),
-    beginDayTimeModal = $("#begin-day-time-modal"),
-    dueDayTimeModal = $("#due-day-time-modal");
+  const myInputModal = $$("#myInputModal"),
+    beginDayTimeModal = $$("#begin-day-time-modal"),
+    dueDayTimeModal = $$("#due-day-time-modal");
   handleModal(myInputModal, beginDayTimeModal, dueDayTimeModal);
 });
 
 //--handle modal--
 function handleModal(myInputModal, beginDayTimeModal, dueDayTimeModal) {
-  var openModalBtn = $$(".penBtn");
-  var modal = $("#modal-form");
-  var modalContent = $(".modal-content");
-  var closeModalSpan = $(".close");
+  var openModalBtn = $$$(".penBtn");
+  var modal = $$("#modal-form");
+  var modalContent = $$(".modal-content");
+  var closeModalSpan = $$(".close");
+
+  function animateCloseModal() {
+    if (
+      myInputModal.value !== "" ||
+      beginDayTimeModal.value !== "" ||
+      dueDayTimeModal.value !== ""
+    ) {
+      if (confirm("Would you like to exit? 🤔")) {
+        modalContent.classList.remove("fadeInModal");
+        modalContent.classList.add("fadeOutModal");
+
+        setTimeout(() => {
+          modal.style.display = "none";
+        }, 250);
+
+        myInputModal.value = "";
+        beginDayTimeModal.value = "";
+        dueDayTimeModal.value = "";
+      }
+    } else {
+      modalContent.classList.remove("fadeInModal");
+      modalContent.classList.add("fadeOutModal");
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 250);
+    }
+  }
 
   openModalBtn.forEach((btn) => {
     btn.addEventListener("click", function () {
       modal.style.display = "flex";
+      modalContent.classList.remove("fadeOutModal");
       modalContent.classList.add("fadeInModal");
     });
   });
 
-  closeModalSpan.addEventListener("click", function () {
-    modal.style.display = "none";
-    modalContent.classList.remove("fadeInModal");
-    modalContent.classList.add("fadeOutModal");
-  });
+  closeModalSpan.addEventListener("click", animateCloseModal);
 
   window.addEventListener("click", function (e) {
-    if (e.target === modal) {
-      if (
-        myInputModal.value !== "" ||
-        beginDayTimeModal.value !== "" ||
-        dueDayTimeModal.value !== ""
-      ) {
-        if (confirm("Would you like to exit? 🤔")) {
-          modal.style.display = "none";
-
-          modalContent.classList.remove("fadeInModal");
-          modalContent.classList.add("fadeOutModal");
-
-          myInputModal.value = "";
-          beginDayTimeModal.value = "";
-          dueDayTimeModal.value = "";
-        }
-      } else {
-        modal.style.display = "none";
-        modalContent.classList.remove("fadeInModal");
-        modalContent.classList.add("fadeOutModal");
-      }
-    }
+    if (e.target === modal) animateCloseModal();
   });
 }

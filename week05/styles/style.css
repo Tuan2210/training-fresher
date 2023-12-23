@@ -341,6 +341,9 @@ body {
 .container .modal .modal-content.fadeInModal {
   animation: fadeInModal 0.3s ease-in-out;
 }
+.container .modal .modal-content.fadeOutModal {
+  animation: fadeOutModal 0.3s ease-in-out;
+}
 .container .modal .close {
   position: absolute;
   top: 0;

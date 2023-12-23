@@ -223,6 +223,9 @@ body {
             &.fadeInModal {
                 animation: fadeInModal 0.3s ease-in-out;
             }
+            &.fadeOutModal {
+                animation: fadeOutModal 0.3s ease-in-out;
+            }
         }
         .close {
             position: absolute;
