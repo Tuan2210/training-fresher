@@ -203,7 +203,7 @@ function getAllItems(arr) {
     location.reload();
   }, 10);
   var itemListContainer = $(".items-to-do-list");
-  itemListContainer.html("");
+  itemListContainer.empty();
   setTimeout(() => {
     itemListContainer.load(
       arr.forEach((item) => {
@@ -241,7 +241,9 @@ function createItem() {
     : [];
 
   toDoList.push({
-    id: toDoList.length + 1,
+    id: Math.floor(Math.random() * 1000)
+      .toString()
+      .padStart(3, "0"),
     name: input,
     beginDate: formatDateTime(new Date(inputBeginDate)),
     dueDate: formatDateTime(new Date(inputDueDate)),
@@ -254,7 +256,7 @@ function createItem() {
 }
 
 //--handle delete item--
-function delItem(indexTrashIcon) {
+function deleteItem(indexTrashIcon) {
   var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
   if (indexTrashIcon < 0 || indexTrashIcon >= storedData.length) return;
 
@@ -295,7 +297,7 @@ function updateItem() {
 }
 
 //--DOM-content-load
-$(document).ready(function () {
+$(function () {
   refreshRealTime();
 
   customFlatpickr("#begin-day-time");
@@ -315,7 +317,30 @@ $(document).ready(function () {
 
   $(".fa-trash").each(function (index) {
     $(this).on("click", function () {
-      delItem(index);
+      $.confirm({
+        title: "",
+        content: "Would you like to delete this task? 🤔",
+        theme: "dark",
+        animation: "zoom",
+        animationSpeed: 500,
+        closeAnimation: "scale",
+        buttons: {
+          delete: function () {
+            deleteItem(index);
+          },
+          cancel: function () {
+            $.alert({
+              title: "",
+              content: "Canceled!",
+              autoClose: "ok|2000",
+              theme: "dark",
+              buttons: {
+                ok: function () {},
+              },
+            });
+          },
+        },
+      });
     });
   });
 
