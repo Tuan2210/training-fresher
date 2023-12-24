@@ -213,29 +213,33 @@ function getAllItems(arr) {
   }, 50);
 }
 
+//--handle check all inputs--
+function checkInputs(input, inputBeginDate, inputDueDate) {
+  var isChecked = true;
+  if (input === "") {
+    alert("The input is empty!\nPlease enter your task 😊");
+    isChecked = false;
+  } else if (inputBeginDate === "" || inputDueDate === "") {
+    alert("Please set date and time 😊");
+    isChecked = false;
+  } else if (new Date() >= Date.parse(inputBeginDate)) {
+    alert("The begin date must be after the current date 😊");
+    isChecked = false;
+  } else if (Date.parse(inputBeginDate) >= Date.parse(inputDueDate)) {
+    alert("The due date must be after the begin date 😊");
+    isChecked = false;
+  } else isChecked = true;
+  return isChecked;
+}
+
 //--handle add item--
 function createItem() {
   const input = $("#myInput").val(),
     inputBeginDate = $("#begin-day-time").val(),
     inputDueDate = $("#due-day-time").val();
 
-  if (input === "") {
-    alert("The input is empty!\nPlease enter your task 😊");
-    return;
-  }
-  if (inputBeginDate === "" || inputDueDate === "") {
-    alert("Please set date and time 😊");
-    return;
-  }
-  if (new Date() >= Date.parse(inputBeginDate)) {
-    alert("The begin date must be after the current date 😊");
-    return;
-  }
-  if (Date.parse(inputBeginDate) >= Date.parse(inputDueDate)) {
-    alert("The due date must be after the begin date 😊");
-    return;
-  }
-
+  var isChecked = checkInputs(input, inputBeginDate, inputDueDate);
+  if (!isChecked) return;
   var toDoList = localStorage.getItem("to-do-list")
     ? JSON.parse(localStorage.getItem("to-do-list"))
     : [];
@@ -255,12 +259,20 @@ function createItem() {
   getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
 }
 
+//--handle find by id--
+function findItemById(index) {
+  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  if (index < 0 || index >= storedData.length) return;
+  else return storedData[index].id;
+}
+
 //--handle delete item--
 function deleteItem(indexTrashIcon) {
   var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
   if (indexTrashIcon < 0 || indexTrashIcon >= storedData.length) return;
 
-  var itemId = storedData[indexTrashIcon].id;
+  var itemId = findItemById(indexTrashIcon);
+  if (!itemId) return;
 
   var newStoredData = storedData.filter((item) => item.id !== itemId);
   if (newStoredData.length === 0) {
@@ -273,27 +285,20 @@ function deleteItem(indexTrashIcon) {
 }
 
 //--handle update item--
-function updateItem() {
+function updateItem(index) {
   const input = $("#myInputModal").val(),
     inputBeginDate = $("#begin-day-time-modal").val(),
     inputDueDate = $("#due-day-time-modal").val();
 
-  if (input === "") {
-    alert("The input is empty!\nPlease enter your task 😊");
-    return;
-  }
-  if (inputBeginDate === "" || inputDueDate === "") {
-    alert("Please set date and time 😊");
-    return;
-  }
-  if (new Date() >= Date.parse(inputBeginDate)) {
-    alert("The begin date must be after the current date 😊");
-    return;
-  }
-  if (Date.parse(inputBeginDate) >= Date.parse(inputDueDate)) {
-    alert("The due date must be after the begin date 😊");
-    return;
-  }
+  var isChecked = checkInputs(input, inputBeginDate, inputDueDate);
+  if (!isChecked) return;
+
+  var itemId = findItemById(index);
+  if (!itemId) return;
+
+  var toDoList = JSON.parse(localStorage.getItem("to-do-list"));
+  var item = toDoList.find((item) => item.id === itemId);
+  
 }
 
 //--DOM-content-load
@@ -321,9 +326,10 @@ $(function () {
         title: "",
         content: "Would you like to delete this task? 🤔",
         theme: "dark",
-        animation: "zoom",
+        animation: "RotateY",
         animationSpeed: 500,
-        closeAnimation: "scale",
+        boxWidth: "30%",
+        useBootstrap: false,
         buttons: {
           delete: function () {
             deleteItem(index);
@@ -334,6 +340,10 @@ $(function () {
               content: "Canceled!",
               autoClose: "ok|2000",
               theme: "dark",
+              animation: "RotateY",
+              animationSpeed: 500,
+              boxWidth: "30%",
+              useBootstrap: false,
               buttons: {
                 ok: function () {},
               },
@@ -348,6 +358,40 @@ $(function () {
     beginDayTimeModal = $("#begin-day-time-modal"),
     dueDayTimeModal = $("#due-day-time-modal");
   handleModal(myInputModal, beginDayTimeModal, dueDayTimeModal);
+
+  $(".penBtn").each(function (index) {
+    $(".updateBtn").on("click", function () {
+      $.confirm({
+        title: "",
+        content: "Would you like to update information? 🤔",
+        theme: "dark",
+        animation: "RotateY",
+        animationSpeed: 500,
+        boxWidth: "30%",
+        useBootstrap: false,
+        buttons: {
+          update: function () {
+            updateItem(index);
+          },
+          cancel: function () {
+            $.alert({
+              title: "",
+              content: "Canceled!",
+              autoClose: "ok|2000",
+              theme: "dark",
+              animation: "RotateY",
+              animationSpeed: 500,
+              boxWidth: "30%",
+              useBootstrap: false,
+              buttons: {
+                ok: function () {},
+              },
+            });
+          },
+        },
+      });
+    });
+  });
 });
 
 //--handle modal--
