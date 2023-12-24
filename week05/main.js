@@ -1,5 +1,12 @@
-var $$ = document.querySelector.bind(document);
-var $$$ = document.querySelectorAll.bind(document);
+var $ = jQuery;
+
+var $$ = function (selector) {
+  return $(selector)[0]; //querySelectorAll
+};
+
+var $$$ = function (selector) {
+  return $(selector); //querySelector
+};
 
 //--real-time--
 function refreshRealTime() {
@@ -100,142 +107,118 @@ function padZero(number) {
 
 //--style-new-item
 function displayItem(name, beginDate, dueDate, initialDate) {
-  const itemToDo = document.createElement("li");
-  // item.className("item bg-white flex flex-col justify-between p-3 rounded-xl");
-  itemToDo.classList.add(
-    "item-to-do",
-    "bg-white",
-    "flex",
-    "flex-col",
-    "justify-between",
-    "p-3",
-    "rounded-xl",
-    "text-sm"
+  const itemToDo = $("<li>").attr(
+    "class",
+    "item-to-do bg-white flex flex-col justify-between p-3 rounded-xl text-sm"
   );
 
-  const itemBox = document.createElement("div");
-  itemBox.classList.add("item-box", "w-full", "flex", "justify-between");
-
-  const itemDetails = document.createElement("div");
-  itemDetails.classList.add(
-    "item-details",
-    "flex",
-    "flex-col",
-    "justify-between",
-    "gap-5"
+  const itemBox = $("<div>").attr(
+    "class",
+    "item-box w-full flex justify-between"
   );
 
-  const itemName = document.createElement("div");
-  itemName.classList.add("item-name", "h-20", "overflow-y-auto");
-  itemName.textContent = name;
-
-  const itemDate = document.createElement("div");
-  itemDate.classList.add("item-date", "flex", "flex-col", "gap-2");
-
-  const itemBeginDate = document.createElement("div");
-  itemBeginDate.classList.add("item-begin-date-time");
-  itemBeginDate.textContent = "Begin date:\u00A0" + beginDate;
-
-  const itemSpanBegin = document.createElement("span");
-  itemSpanBegin.textContent = "Begin date:";
-
-  const itemDueDate = document.createElement("div");
-  itemDueDate.classList.add("item-due-date-time");
-  itemDueDate.textContent = "Due date:\u00A0\u00A0\u00A0\u00A0" + dueDate;
-
-  const itemSpanDue = document.createElement("span");
-  itemSpanDue.textContent = "Due date:";
-
-  const itemOptions = document.createElement("div");
-  itemOptions.classList.add(
-    "item-options",
-    "flex",
-    "flex-col",
-    "gap-8",
-    "items-center"
+  const itemDetails = $("<div>").attr(
+    "class",
+    "item-details flex flex-col justify-between gap-5"
   );
 
-  const inputPreview = document.createElement("div");
-  inputPreview.classList.add("inputPreview", "flex", "justify-center");
+  const itemName = $("<div>").attr("class", "item-name h-20 overflow-y-auto");
+  itemName.text(name);
 
-  const cssCheckbox = document.createElement("input");
-  cssCheckbox.setAttribute("name", "cssCheckbox");
-  cssCheckbox.setAttribute("id", "demo_opt_1");
-  cssCheckbox.setAttribute("type", "checkbox");
-  cssCheckbox.classList.add("css-checkbox");
+  const itemDate = $("<div>").attr("class", "item-date flex flex-col gap-2");
 
-  const labelChkb = document.createElement("label");
-  labelChkb.setAttribute("for", "demo_opt_1");
+  const itemBeginDate = $("<div>").addClass("item-begin-date-time");
+  itemBeginDate.text("Begin date:\u00A0" + beginDate);
 
-  const faTrash = document.createElement("i");
-  faTrash.classList.add("fa-solid", "fa-trash", "fa-xl");
-  // faTrash.onclick = delItem;
+  const itemDueDate = $("<div>").addClass("item-due-date-time");
+  itemDueDate.text("Due date:\u00A0\u00A0\u00A0\u00A0" + dueDate);
 
-  const penBtn = document.createElement("button");
-  penBtn.classList.add("penBtn");
-  penBtn.setAttribute("data-toggle", "modal");
-  penBtn.setAttribute("data-target", "#modal-form");
-  penBtn.setAttribute("type", "button");
+  const itemOptions = $("<div>").attr(
+    "class",
+    "item-options flex flex-col gap-8 items-center"
+  );
 
-  const faPen = document.createElement("i");
-  faPen.classList.add("fa-solid", "fa-pen", "fa-xl");
+  const inputPreview = $("<div>").attr(
+    "class",
+    "inputPreview flex justify-center"
+  );
 
-  const formatInitialDate = document.createElement("div");
-  formatInitialDate.classList.add("initial-date", "text-right", "text-xs");
-  formatInitialDate.innerHTML = `<i>${initialDate}</i>`;
+  const cssCheckbox = $("<input>")
+    .attr("name", "cssCheckbox")
+    .attr("id", "demo_opt_1")
+    .attr("type", "checkbox")
+    .addClass("css-checkbox");
 
-  itemToDo.appendChild(itemBox);
+  const labelChkb = $("<label>").attr("for", "demo_opt_1");
 
-  itemBox.appendChild(itemDetails);
-  itemBox.appendChild(itemOptions);
+  const faTrash = $("<i>").attr("class", "fa-solid fa-trash fa-xl");
 
-  itemDetails.appendChild(itemName);
-  itemDetails.appendChild(itemDate);
+  const penBtn = $("<button>")
+    .addClass("penBtn")
+    .attr("data-toggle", "modal")
+    .attr("data-target", "#modal-form")
+    .attr("type", "button");
 
-  // itemDate.appendChild(itemSpanBegin);
-  itemDate.appendChild(itemBeginDate);
-  // itemDate.appendChild(itemSpanDue);
-  itemDate.appendChild(itemDueDate);
+  const faPen = $("<i>").attr("class", "fa-solid fa-pen fa-xl");
 
-  itemOptions.appendChild(inputPreview);
+  const formatInitialDate = $("<div>").attr(
+    "class",
+    "initial-date text-right text-xs"
+  );
+  formatInitialDate.html(`<i>${initialDate}</i>`);
 
-  inputPreview.appendChild(cssCheckbox);
-  inputPreview.appendChild(labelChkb);
+  itemToDo.append(itemBox);
 
-  itemOptions.appendChild(faTrash);
-  itemOptions.appendChild(penBtn);
+  itemBox.append(itemDetails);
+  itemBox.append(itemOptions);
 
-  penBtn.appendChild(faPen);
+  itemDetails.append(itemName);
+  itemDetails.append(itemDate);
 
-  itemToDo.appendChild(formatInitialDate);
+  itemDate.append(itemBeginDate);
+  itemDate.append(itemDueDate);
 
-  $$(".items-to-do-list").appendChild(itemToDo);
+  itemOptions.append(inputPreview);
 
-  $$("#myInput").value = "";
-  $$("#begin-day-time").value = "";
-  $$("#due-day-time").value = "";
+  inputPreview.append(cssCheckbox);
+  inputPreview.append(labelChkb);
+
+  itemOptions.append(faTrash);
+  itemOptions.append(penBtn);
+
+  penBtn.append(faPen);
+
+  itemToDo.append(formatInitialDate);
+
+  $(".items-to-do-list").append(itemToDo);
+
+  $("#myInput").val("");
+  $("#begin-day-time").val("");
+  $("#due-day-time").val("");
 }
 
 //--handle get items--
 function getAllItems(arr) {
-  location.reload();
-  var itemListContainer = $$(".items-to-do-list");
-  itemListContainer.innerHTML = "";
-
-  // setTimeout(() => {
-  arr.forEach((item) => {
-    displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
-  });
-  // }, 500);
+  setTimeout(() => {
+    location.reload();
+  }, 10);
+  var itemListContainer = $(".items-to-do-list");
+  itemListContainer.html("");
+  setTimeout(() => {
+    itemListContainer.load(
+      arr.forEach((item) => {
+        displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
+      })
+    );
+  }, 50);
 }
 
 //--handle add item--
 function createItem() {
-  const input = $$("#myInput").value,
-    inputBeginDate = $$("#begin-day-time").value,
-    inputDueDate = $$("#due-day-time").value;
+  const input = $("#myInput").val(),
+    inputBeginDate = $("#begin-day-time").val(),
+    inputDueDate = $("#due-day-time").val();
 
-  //check input and date-time
   if (input === "") {
     alert("The input is empty!\nPlease enter your task 😊");
     return;
@@ -253,7 +236,6 @@ function createItem() {
     return;
   }
 
-  //add-item-localStorage
   var toDoList = localStorage.getItem("to-do-list")
     ? JSON.parse(localStorage.getItem("to-do-list"))
     : [];
@@ -268,18 +250,8 @@ function createItem() {
   });
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
 
-  //get-item-localStorage
   getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
 }
-
-//--find parent-element--
-// function findParent(element, className) {
-//   while (
-//     (element = element.parentElement) &&
-//     !element.classList.contains(className)
-//   );
-//   return element;
-// }
 
 //--handle delete item--
 function delItem(indexTrashIcon) {
@@ -288,22 +260,22 @@ function delItem(indexTrashIcon) {
 
   var itemId = storedData[indexTrashIcon].id;
 
-  // storedData.splice(indexTrashIcon, 1);
   var newStoredData = storedData.filter((item) => item.id !== itemId);
   if (newStoredData.length === 0) {
     localStorage.removeItem("to-do-list");
-  } else localStorage.setItem("to-do-list", JSON.stringify(newStoredData));
-
-  getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
+    getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
+  } else {
+    localStorage.setItem("to-do-list", JSON.stringify(newStoredData));
+    getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
+  }
 }
 
 //--handle update item--
 function updateItem() {
-  const input = $$("#myInputModal").value,
-    inputBeginDate = $$("#begin-day-time-modal").value,
-    inputDueDate = $$("#due-day-time-modal").value;
+  const input = $("#myInputModal").val(),
+    inputBeginDate = $("#begin-day-time-modal").val(),
+    inputDueDate = $("#due-day-time-modal").val();
 
-  //check input and date-time
   if (input === "") {
     alert("The input is empty!\nPlease enter your task 😊");
     return;
@@ -323,7 +295,7 @@ function updateItem() {
 }
 
 //--DOM-content-load
-document.addEventListener("DOMContentLoaded", function () {
+$(document).ready(function () {
   refreshRealTime();
 
   customFlatpickr("#begin-day-time");
@@ -332,76 +304,72 @@ document.addEventListener("DOMContentLoaded", function () {
   customFlatpickr("#begin-day-time-modal");
   customFlatpickr("#due-day-time-modal");
 
-  $$(".addBtn").addEventListener("click", function () {
+  $(".addBtn").on("click", function () {
     createItem();
   });
-  // $$(".updateBtn").addEventListener("click", function () {
-  //   updateItem();
-  // });
 
   var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
   storedData.forEach((item) => {
     displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
   });
 
-  var trashIcons = $$$(".fa-trash");
-  trashIcons.forEach(function (trashIcon, index) {
-    trashIcon.addEventListener("click", function () {
+  $(".fa-trash").each(function (index) {
+    $(this).on("click", function () {
       delItem(index);
     });
   });
 
-  const myInputModal = $$("#myInputModal"),
-    beginDayTimeModal = $$("#begin-day-time-modal"),
-    dueDayTimeModal = $$("#due-day-time-modal");
+  const myInputModal = $("#myInputModal"),
+    beginDayTimeModal = $("#begin-day-time-modal"),
+    dueDayTimeModal = $("#due-day-time-modal");
   handleModal(myInputModal, beginDayTimeModal, dueDayTimeModal);
 });
 
 //--handle modal--
 function handleModal(myInputModal, beginDayTimeModal, dueDayTimeModal) {
-  var openModalBtn = $$$(".penBtn");
-  var modal = $$("#modal-form");
-  var modalContent = $$(".modal-content");
-  var closeModalSpan = $$(".close");
+  var openModalBtn = $(".penBtn");
+  var modal = $("#modal-form");
+  var modalContent = $(".modal-content");
+  var closeModalSpan = $(".close");
 
   function animateCloseModal() {
     if (
-      myInputModal.value !== "" ||
-      beginDayTimeModal.value !== "" ||
-      dueDayTimeModal.value !== ""
+      myInputModal.val() !== "" ||
+      beginDayTimeModal.val() !== "" ||
+      dueDayTimeModal.val() !== ""
     ) {
       if (confirm("Would you like to exit? 🤔")) {
-        modalContent.classList.remove("fadeInModal");
-        modalContent.classList.add("fadeOutModal");
+        modalContent.removeClass("fadeInModal");
+        modalContent.addClass("fadeOutModal");
 
         setTimeout(() => {
-          modal.style.display = "none";
+          modal.css("display", "none");
         }, 250);
 
-        myInputModal.value = "";
-        beginDayTimeModal.value = "";
-        dueDayTimeModal.value = "";
+        myInputModal.val("");
+        beginDayTimeModal.val("");
+        dueDayTimeModal.val("");
       }
     } else {
-      modalContent.classList.remove("fadeInModal");
-      modalContent.classList.add("fadeOutModal");
+      modalContent.removeClass("fadeInModal");
+      modalContent.addClass("fadeOutModal");
       setTimeout(() => {
-        modal.style.display = "none";
+        modal.css("display", "none");
       }, 250);
     }
   }
 
-  openModalBtn.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      modal.style.display = "flex";
-      modalContent.classList.remove("fadeOutModal");
-      modalContent.classList.add("fadeInModal");
+  openModalBtn.each(function () {
+    $(this).on("click", function () {
+      modal.css("display", "flex");
+      modalContent.removeClass("fadeOutModal");
+      modalContent.addClass("fadeInModal");
     });
   });
 
-  closeModalSpan.addEventListener("click", animateCloseModal);
+  closeModalSpan.on("click", animateCloseModal);
 
-  window.addEventListener("click", function (e) {
-    if (e.target === modal) animateCloseModal();
+  $(window).on("click", function (e) {
+    if (e.target === modal[0]) animateCloseModal();
   });
 }
