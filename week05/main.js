@@ -108,7 +108,7 @@ function padZero(number) {
 
 //--style-new-item
 function displayItem(id, name, beginDate, dueDate, initialDate) {
-  const itemToDo = $("<li>")
+  const item = $("<li>")
     .attr(
       "class",
       "item-to-do item-drag bg-white flex flex-col justify-between p-3 rounded-xl text-sm"
@@ -174,7 +174,7 @@ function displayItem(id, name, beginDate, dueDate, initialDate) {
   );
   formatInitialDate.html(`<i>${initialDate}</i>`);
 
-  itemToDo.append(itemBox);
+  item.append(itemBox);
 
   itemBox.append(itemId);
   itemBox.append(itemDetails);
@@ -196,9 +196,11 @@ function displayItem(id, name, beginDate, dueDate, initialDate) {
 
   penBtn.append(faPen);
 
-  itemToDo.append(formatInitialDate);
+  item.append(formatInitialDate);
 
-  $(".items-to-do-list").append(itemToDo);
+  // $(".items-done-list").append(item);
+  $(".items-to-do-list").append(item);
+  // $(".items-doing-list").append(item);
 
   $("#myInput").val("");
   $("#begin-date-time").val("");
@@ -206,15 +208,49 @@ function displayItem(id, name, beginDate, dueDate, initialDate) {
 }
 
 //--handle get items--
-function getAllItems(arr, itemList) {
+function getAllItems() {
   setTimeout(() => {
     location.reload();
   }, 10);
-  var itemListContainer = $(itemList);
-  itemListContainer.empty();
+
+  var arr = JSON.parse(localStorage.getItem("to-do-list")),
+    arrDone = arr.filter((item) => item.status === "Done"),
+    arrToDo = arr.filter((item) => item.status === "Todo"),
+    arrDoing = arr.filter((item) => item.status === "Doing");
+
+  var itemDoneList = $(".items-done-list");
+  var itemToDoList = $(".items-to-do-list");
+  var itemDoingList = $(".items-doing-list");
+
+  itemDoneList.empty();
+  itemToDoList.empty();
+  itemDoingList.empty();
+
   setTimeout(() => {
-    itemListContainer.load(
-      arr.forEach((item) => {
+    itemDoneList.load(
+      arrDone.forEach((item) => {
+        displayItem(
+          item.id,
+          item.name,
+          item.beginDate,
+          item.dueDate,
+          item.initialDate
+        );
+      })
+    );
+    itemToDoList.load(
+      arrToDo.forEach((item) => {
+        displayItem(
+          item.id,
+          item.name,
+          item.beginDate,
+          item.dueDate,
+          item.initialDate
+        );
+      })
+    );
+    itemDoingList.load(
+      arrDoing.forEach((item) => {
         displayItem(
           item.id,
           item.name,
@@ -270,10 +306,7 @@ function createItem() {
   });
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
 
-  getAllItems(
-    JSON.parse(localStorage.getItem("to-do-list")),
-    ".items-to-do-list"
-  );
+  getAllItems();
 }
 
 //--handle find item-id by index--
@@ -294,16 +327,10 @@ function deleteItem(indexTrashIcon) {
   var newStoredData = storedData.filter((item) => item.id !== itemId);
   if (newStoredData.length === 0) {
     localStorage.removeItem("to-do-list");
-    getAllItems(
-      JSON.parse(localStorage.getItem("to-do-list")),
-      ".items-to-do-list"
-    );
+    getAllItems();
   } else {
     localStorage.setItem("to-do-list", JSON.stringify(newStoredData));
-    getAllItems(
-      JSON.parse(localStorage.getItem("to-do-list")),
-      ".items-to-do-list"
-    );
+    getAllItems();
   }
 }
 
@@ -335,10 +362,7 @@ function updateItem(itemId) {
   item.dueDate = inputDueDate;
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
 
-  getAllItems(
-    JSON.parse(localStorage.getItem("to-do-list")),
-    ".items-to-do-list"
-  );
+  getAllItems();
 }
 
 //--handle update modal--
@@ -450,7 +474,12 @@ function handleDragItem() {
   itemDrag.on("dragstart", function (e) {
     var itemBox = $(this).find(".item-box");
     var itemId = itemBox.find(".item-id").text();
-    e.originalEvent.dataTransfer.setData("text/plain", itemId);
+    e.originalEvent.dataTransfer.setData("number", itemId);
+
+    // console.log(e);
+    // console.log($(this).parent().attr("class").split(" ")[0]);
+    e.originalEvent.dataTransfer.setData("text/plain", e.target);
+
     $(this).addClass("dragging");
   });
 
@@ -465,14 +494,42 @@ function handleDragItem() {
   itemDragList.on("drop", function (e) {
     e.preventDefault();
 
-    var idData = e.originalEvent.dataTransfer.getData("text/plain");
-    // alert(idData);
-
     var draggedItem = $(".dragging");
 
     $(this).append(draggedItem);
 
     draggedItem.removeClass("dragging");
+
+    var itemId = e.originalEvent.dataTransfer.getData("number");
+    var storedData = JSON.parse(localStorage.getItem("to-do-list"));
+    var item = storedData.find((item) => item.id === itemId);
+    if (!item) return;
+
+    // console.log($(this).parent().attr("class").split(" ")[0]); //class wrapper-name
+    //get parent-class after drop
+    var ulClass = e.target.classList[0];
+    switch (ulClass) {
+      case "items-done-list":
+        item.status = "Done";
+
+        localStorage.setItem("to-do-list", JSON.stringify(storedData));
+        getAllItems();
+        break;
+      case "items-to-do-list":
+        item.status = "Todo";
+
+        localStorage.setItem("to-do-list", JSON.stringify(storedData));
+        getAllItems();
+        break;
+      case "items-doing-list":
+        item.status = "Doing";
+
+        localStorage.setItem("to-do-list", JSON.stringify(storedData));
+        getAllItems();
+        break;
+      default:
+        break;
+    }
   });
 
   // itemDrag.on("dragstart", function () {
