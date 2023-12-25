@@ -18,17 +18,22 @@ body {
     max-width: 100%;
     max-height: 100dvh;
     overflow: hidden;
-    user-select: none;
     font-family: 'Inter';
     font-size: 16px;
     background-image: url(https://c4.wallpaperflare.com/wallpaper/118/216/2/mountains-trees-moon-landscape-wallpaper-preview.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    user-select: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+}
+
+[draggable] {
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
 }
 
 .bg-current {
@@ -135,6 +140,19 @@ body {
             ul.items-doing-list {
                 padding: 30px 0 30px 0;
                 gap: 30px;
+                .item-id {
+                    z-index: -1;
+                }
+                li.item-drag {
+                    cursor: grab;
+                    .dragging {
+                        opacity: 0.6;
+                    }
+                    // .dragging :where(.item-box,
+                    // .initial-date) {
+                    //     opacity: 0;
+                    // }
+                }
                 li.item-to-do {
                     height: 220px;
                     font-weight: 700;
@@ -142,6 +160,9 @@ body {
                     box-shadow: 0 2px 15px 5px $third-color;
                     .initial-date {
                         color: $third-color;
+                    }
+                    .over {
+                        border-top: 2px solid $second-color;
                     }
                 }
                 .item-details {

@@ -107,16 +107,22 @@ function padZero(number) {
 }
 
 //--style-new-item
-function displayItem(name, beginDate, dueDate, initialDate) {
-  const itemToDo = $("<li>").attr(
-    "class",
-    "item-to-do bg-white flex flex-col justify-between p-3 rounded-xl text-sm"
-  );
+function displayItem(id, name, beginDate, dueDate, initialDate) {
+  const itemToDo = $("<li>")
+    .attr(
+      "class",
+      "item-to-do item-drag bg-white flex flex-col justify-between p-3 rounded-xl text-sm"
+    )
+    .attr("draggable", "true");
 
   const itemBox = $("<div>").attr(
     "class",
     "item-box w-full flex justify-between"
   );
+
+  const itemId = $("<div>").attr("class", "item-id text-white fixed");
+  itemId.text(id);
+  // itemId.hide();
 
   const itemDetails = $("<div>").attr(
     "class",
@@ -170,6 +176,7 @@ function displayItem(name, beginDate, dueDate, initialDate) {
 
   itemToDo.append(itemBox);
 
+  itemBox.append(itemId);
   itemBox.append(itemDetails);
   itemBox.append(itemOptions);
 
@@ -199,16 +206,22 @@ function displayItem(name, beginDate, dueDate, initialDate) {
 }
 
 //--handle get items--
-function getAllItems(arr) {
+function getAllItems(arr, itemList) {
   setTimeout(() => {
     location.reload();
   }, 10);
-  var itemListContainer = $(".items-to-do-list");
+  var itemListContainer = $(itemList);
   itemListContainer.empty();
   setTimeout(() => {
     itemListContainer.load(
       arr.forEach((item) => {
-        displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
+        displayItem(
+          item.id,
+          item.name,
+          item.beginDate,
+          item.dueDate,
+          item.initialDate
+        );
       })
     );
   }, 50);
@@ -257,7 +270,10 @@ function createItem() {
   });
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
 
-  getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
+  getAllItems(
+    JSON.parse(localStorage.getItem("to-do-list")),
+    ".items-to-do-list"
+  );
 }
 
 //--handle find item-id by index--
@@ -278,10 +294,16 @@ function deleteItem(indexTrashIcon) {
   var newStoredData = storedData.filter((item) => item.id !== itemId);
   if (newStoredData.length === 0) {
     localStorage.removeItem("to-do-list");
-    getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
+    getAllItems(
+      JSON.parse(localStorage.getItem("to-do-list")),
+      ".items-to-do-list"
+    );
   } else {
     localStorage.setItem("to-do-list", JSON.stringify(newStoredData));
-    getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
+    getAllItems(
+      JSON.parse(localStorage.getItem("to-do-list")),
+      ".items-to-do-list"
+    );
   }
 }
 
@@ -313,64 +335,11 @@ function updateItem(itemId) {
   item.dueDate = inputDueDate;
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
 
-  getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
+  getAllItems(
+    JSON.parse(localStorage.getItem("to-do-list")),
+    ".items-to-do-list"
+  );
 }
-
-//--DOM-content-load
-$(function () {
-  refreshRealTime();
-
-  customFlatpickr("#begin-date-time");
-  customFlatpickr("#due-date-time");
-
-  customFlatpickr("#begin-date-time-modal");
-  customFlatpickr("#due-date-time-modal");
-
-  $(".addBtn").on("click", function () {
-    createItem();
-  });
-
-  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
-  storedData.forEach((item) => {
-    displayItem(item.name, item.beginDate, item.dueDate, item.initialDate);
-  });
-
-  $(".fa-trash").each(function (index) {
-    $(this).on("click", function () {
-      $.confirm({
-        title: "",
-        content: "Would you like to delete this task? 🤔",
-        theme: "dark",
-        animation: "RotateY",
-        animationSpeed: 500,
-        boxWidth: "30%",
-        useBootstrap: false,
-        buttons: {
-          delete: function () {
-            deleteItem(index);
-          },
-          cancel: function () {
-            $.alert({
-              title: "",
-              content: "Canceled!",
-              autoClose: "ok|2000",
-              theme: "dark",
-              animation: "RotateY",
-              animationSpeed: 500,
-              boxWidth: "30%",
-              useBootstrap: false,
-              buttons: {
-                ok: function () {},
-              },
-            });
-          },
-        },
-      });
-    });
-  });
-
-  handleUpdateModal();
-});
 
 //--handle update modal--
 function handleUpdateModal() {
@@ -472,3 +441,142 @@ function handleUpdateModal() {
     });
   });
 }
+
+//--handle drag item--
+function handleDragItem() {
+  const itemDragList = $(".item-drag-list"),
+    itemDrag = $(".item-drag");
+
+  itemDrag.on("dragstart", function (e) {
+    var itemBox = $(this).find(".item-box");
+    var itemId = itemBox.find(".item-id").text();
+    e.originalEvent.dataTransfer.setData("text/plain", itemId);
+    $(this).addClass("dragging");
+  });
+
+  itemDrag.on("dragend", function () {
+    $(this).removeClass("dragging");
+  });
+
+  itemDragList.on("dragover", function (e) {
+    e.preventDefault();
+  });
+
+  itemDragList.on("drop", function (e) {
+    e.preventDefault();
+
+    var idData = e.originalEvent.dataTransfer.getData("text/plain");
+    // alert(idData);
+
+    var draggedItem = $(".dragging");
+
+    $(this).append(draggedItem);
+
+    draggedItem.removeClass("dragging");
+  });
+
+  // itemDrag.on("dragstart", function () {
+  //   const item = $(this);
+  //   setTimeout(function () {
+  //     item.addClass("dragging");
+  //   }, 0);
+  // });
+
+  // itemDrag.on("dragend", function () {
+  //   $(this).removeClass("dragging");
+  // });
+
+  // function initItemDragList(e) {
+  //   e.preventDefault();
+  //   const itemDragging = itemDragList.find(".dragging");
+
+  //   let siblings = itemDragList.find(".item-drag:not(.dragging)").toArray();
+
+  //   let nextSibling = siblings.find(function (sibling) {
+  //     return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+  //   });
+
+  //   // itemDragList[0].insertBefore(itemDragging[0], nextSibling);
+  //   const container = itemDragging.parent();
+
+  //   if (nextSibling) {
+  //     container[0].insertBefore(itemDragging[0], nextSibling);
+  //   } else {
+  //     container.append(itemDragging);
+  //   }
+  // }
+
+  // itemDragList.on("dragover", initItemDragList);
+  // itemDragList.on("dragenter", function (e) {
+  //   e.preventDefault();
+  // });
+}
+
+//--DOM-content-load
+$(function () {
+  refreshRealTime();
+
+  customFlatpickr("#begin-date-time");
+  customFlatpickr("#due-date-time");
+
+  customFlatpickr("#begin-date-time-modal");
+  customFlatpickr("#due-date-time-modal");
+
+  //create-item
+  $(".addBtn").on("click", function () {
+    createItem();
+  });
+
+  //display-item
+  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  storedData.forEach((item) => {
+    displayItem(
+      item.id,
+      item.name,
+      item.beginDate,
+      item.dueDate,
+      item.initialDate
+    );
+  });
+
+  //delete-item
+  $(".fa-trash").each(function (index) {
+    $(this).on("click", function () {
+      $.confirm({
+        title: "",
+        content: "Would you like to delete this task? 🤔",
+        theme: "dark",
+        animation: "RotateY",
+        animationSpeed: 500,
+        boxWidth: "30%",
+        useBootstrap: false,
+        buttons: {
+          delete: function () {
+            deleteItem(index);
+          },
+          cancel: function () {
+            $.alert({
+              title: "",
+              content: "Canceled!",
+              autoClose: "ok|2000",
+              theme: "dark",
+              animation: "RotateY",
+              animationSpeed: 500,
+              boxWidth: "30%",
+              useBootstrap: false,
+              buttons: {
+                ok: function () {},
+              },
+            });
+          },
+        },
+      });
+    });
+  });
+
+  //update-item
+  handleUpdateModal();
+
+  //drag-drop-item
+  handleDragItem();
+});
