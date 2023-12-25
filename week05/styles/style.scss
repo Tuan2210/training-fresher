@@ -37,6 +37,9 @@ body {
 
 .container {
     header {
+        a {
+            top: 2px;
+        }
         #clock-img {
             object-fit: contain;
         }

@@ -30,6 +30,9 @@ body {
   background-color: #09CBD0;
 }
 
+.container header a {
+  top: 2px;
+}
 .container header #clock-img {
   -o-object-fit: contain;
      object-fit: contain;
