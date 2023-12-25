@@ -80,9 +80,10 @@ function customFlatpickr(id) {
   // var s = currentDateTime.getSeconds();
   flatpickr(id, {
     enableTime: true,
-    dateFormat: "Y-m-d H:i:S",
+    dateFormat: "Y/m/d H:i:S",
     minDate: "today",
     enableSeconds: true,
+    time_24hr: true,
     defaultHour: h,
     defaultMinute: m,
   });
@@ -193,8 +194,8 @@ function displayItem(name, beginDate, dueDate, initialDate) {
   $(".items-to-do-list").append(itemToDo);
 
   $("#myInput").val("");
-  $("#begin-day-time").val("");
-  $("#due-day-time").val("");
+  $("#begin-date-time").val("");
+  $("#due-date-time").val("");
 }
 
 //--handle get items--
@@ -235,8 +236,8 @@ function checkInputs(input, inputBeginDate, inputDueDate) {
 //--handle add item--
 function createItem() {
   const input = $("#myInput").val(),
-    inputBeginDate = $("#begin-day-time").val(),
-    inputDueDate = $("#due-day-time").val();
+    inputBeginDate = $("#begin-date-time").val(),
+    inputDueDate = $("#due-date-time").val();
 
   var isChecked = checkInputs(input, inputBeginDate, inputDueDate);
   if (!isChecked) return;
@@ -249,8 +250,8 @@ function createItem() {
       .toString()
       .padStart(3, "0"),
     name: input,
-    beginDate: formatDateTime(new Date(inputBeginDate)),
-    dueDate: formatDateTime(new Date(inputDueDate)),
+    beginDate: inputBeginDate,
+    dueDate: inputDueDate,
     initialDate: formatDateTime(new Date()),
     status: "Todo",
   });
@@ -259,8 +260,8 @@ function createItem() {
   getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
 }
 
-//--handle find by id--
-function findItemById(index) {
+//--handle find item-id by index--
+function findItemIdByIndex(index) {
   var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
   if (index < 0 || index >= storedData.length) return;
   else return storedData[index].id;
@@ -271,7 +272,7 @@ function deleteItem(indexTrashIcon) {
   var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
   if (indexTrashIcon < 0 || indexTrashIcon >= storedData.length) return;
 
-  var itemId = findItemById(indexTrashIcon);
+  var itemId = findItemIdByIndex(indexTrashIcon);
   if (!itemId) return;
 
   var newStoredData = storedData.filter((item) => item.id !== itemId);
@@ -285,31 +286,45 @@ function deleteItem(indexTrashIcon) {
 }
 
 //--handle update item--
-function updateItem(index) {
+function updateItem(itemId) {
   const input = $("#myInputModal").val(),
-    inputBeginDate = $("#begin-day-time-modal").val(),
-    inputDueDate = $("#due-day-time-modal").val();
+    inputBeginDate = $("#begin-date-time-modal").val(),
+    inputDueDate = $("#due-date-time-modal").val();
 
-  var isChecked = checkInputs(input, inputBeginDate, inputDueDate);
-  if (!isChecked) return;
-
-  var itemId = findItemById(index);
-  if (!itemId) return;
+  if (input === "") {
+    alert("The input is empty!\nPlease enter your task 😊");
+    return;
+  }
+  if (inputBeginDate === "" || inputDueDate === "") {
+    alert("Please set date and time 😊");
+    return;
+  }
+  if (Date.parse(inputBeginDate) >= Date.parse(inputDueDate)) {
+    alert("The due date must be after the begin date 😊");
+    return;
+  }
 
   var toDoList = JSON.parse(localStorage.getItem("to-do-list"));
   var item = toDoList.find((item) => item.id === itemId);
-  
+  if (!item) return;
+
+  item.name = input;
+  item.beginDate = inputBeginDate;
+  item.dueDate = inputDueDate;
+  localStorage.setItem("to-do-list", JSON.stringify(toDoList));
+
+  getAllItems(JSON.parse(localStorage.getItem("to-do-list")));
 }
 
 //--DOM-content-load
 $(function () {
   refreshRealTime();
 
-  customFlatpickr("#begin-day-time");
-  customFlatpickr("#due-day-time");
+  customFlatpickr("#begin-date-time");
+  customFlatpickr("#due-date-time");
 
-  customFlatpickr("#begin-day-time-modal");
-  customFlatpickr("#due-day-time-modal");
+  customFlatpickr("#begin-date-time-modal");
+  customFlatpickr("#due-date-time-modal");
 
   $(".addBtn").on("click", function () {
     createItem();
@@ -354,91 +369,106 @@ $(function () {
     });
   });
 
-  const myInputModal = $("#myInputModal"),
-    beginDayTimeModal = $("#begin-day-time-modal"),
-    dueDayTimeModal = $("#due-day-time-modal");
-  handleModal(myInputModal, beginDayTimeModal, dueDayTimeModal);
-
-  $(".penBtn").each(function (index) {
-    $(".updateBtn").on("click", function () {
-      $.confirm({
-        title: "",
-        content: "Would you like to update information? 🤔",
-        theme: "dark",
-        animation: "RotateY",
-        animationSpeed: 500,
-        boxWidth: "30%",
-        useBootstrap: false,
-        buttons: {
-          update: function () {
-            updateItem(index);
-          },
-          cancel: function () {
-            $.alert({
-              title: "",
-              content: "Canceled!",
-              autoClose: "ok|2000",
-              theme: "dark",
-              animation: "RotateY",
-              animationSpeed: 500,
-              boxWidth: "30%",
-              useBootstrap: false,
-              buttons: {
-                ok: function () {},
-              },
-            });
-          },
-        },
-      });
-    });
-  });
+  handleUpdateModal();
 });
 
-//--handle modal--
-function handleModal(myInputModal, beginDayTimeModal, dueDayTimeModal) {
-  var openModalBtn = $(".penBtn");
-  var modal = $("#modal-form");
-  var modalContent = $(".modal-content");
-  var closeModalSpan = $(".close");
+//--handle update modal--
+function handleUpdateModal() {
+  const openModalBtn = $(".penBtn"),
+    modal = $("#modal-form"),
+    modalContent = $(".modal-content"),
+    closeModalSpan = $(".close");
 
-  function animateCloseModal() {
-    if (
-      myInputModal.val() !== "" ||
-      beginDayTimeModal.val() !== "" ||
-      dueDayTimeModal.val() !== ""
-    ) {
-      if (confirm("Would you like to exit? 🤔")) {
-        modalContent.removeClass("fadeInModal");
-        modalContent.addClass("fadeOutModal");
+  openModalBtn.each(function (index) {
+    const itemId = findItemIdByIndex(index);
+    if (!itemId) return;
 
-        setTimeout(() => {
-          modal.css("display", "none");
-        }, 250);
+    var storedData = JSON.parse(localStorage.getItem("to-do-list"));
+    var item = storedData.find((item) => item.id === itemId);
+    if (!item) return;
 
-        myInputModal.val("");
-        beginDayTimeModal.val("");
-        dueDayTimeModal.val("");
-      }
-    } else {
-      modalContent.removeClass("fadeInModal");
-      modalContent.addClass("fadeOutModal");
-      setTimeout(() => {
-        modal.css("display", "none");
-      }, 250);
-    }
-  }
-
-  openModalBtn.each(function () {
     $(this).on("click", function () {
+      $("#myInputModal").val(item.name);
+      $("#begin-date-time-modal").val(item.beginDate);
+      $("#due-date-time-modal").val(item.dueDate);
+
       modal.css("display", "flex");
       modalContent.removeClass("fadeOutModal");
       modalContent.addClass("fadeInModal");
+
+      $(".updateBtn").on("click", function () {
+        const currentInput = $("#myInputModal").val(),
+          currentInputBegin = $("#begin-date-time-modal").val(),
+          currentInputDue = $("#due-date-time-modal").val();
+        if (
+          item.name === currentInput &&
+          item.beginDate === currentInputBegin &&
+          item.dueDate === currentInputDue
+        ) {
+          $.alert({
+            title: "",
+            content: "The information has not been updated yet! 🤨",
+            autoClose: "ok|2000",
+            theme: "dark",
+            animation: "RotateY",
+            animationSpeed: 500,
+            boxWidth: "30%",
+            useBootstrap: false,
+            buttons: {
+              ok: function () {},
+            },
+          });
+        }
+        if (
+          item.name !== currentInput ||
+          item.beginDate !== currentInputBegin ||
+          item.dueDate !== currentInputDue
+        ) {
+          $.confirm({
+            title: "",
+            content: "Would you like to update information? 🤔",
+            theme: "dark",
+            animation: "RotateY",
+            animationSpeed: 500,
+            boxWidth: "30%",
+            useBootstrap: false,
+            buttons: {
+              update: function () {
+                updateItem(item.id);
+              },
+              cancel: function () {
+                $.alert({
+                  title: "",
+                  content: "Canceled!",
+                  autoClose: "ok|2000",
+                  theme: "dark",
+                  animation: "RotateY",
+                  animationSpeed: 500,
+                  boxWidth: "30%",
+                  useBootstrap: false,
+                  buttons: {
+                    ok: function () {},
+                  },
+                });
+              },
+            },
+          });
+        }
+      });
+
+      function animateCloseModal() {
+        modalContent.removeClass("fadeInModal");
+        modalContent.addClass("fadeOutModal");
+        setTimeout(() => {
+          modal.css("display", "none");
+        }, 250);
+      }
+
+      closeModalSpan.on("click", animateCloseModal);
+
+      $(window).on("click", function (e) {
+        if (e.target === modal[0]) animateCloseModal();
+      });
     });
-  });
-
-  closeModalSpan.on("click", animateCloseModal);
-
-  $(window).on("click", function (e) {
-    if (e.target === modal[0]) animateCloseModal();
   });
 }

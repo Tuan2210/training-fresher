@@ -181,10 +181,9 @@ body {
         .modal-content {
             position: relative;
             .add-box {
-                // width: 60%;
                 input {
                     width: 30%;
-                    padding: 0 20px 0 20px;
+                    // padding: 0 20px 0 20px;
                 }
                 input::placeholder {
                     font-style: italic;
@@ -192,6 +191,9 @@ body {
                 }
                 input:focus {
                     outline: none;
+                }
+                #myInputModal {
+                    border-bottom: 2px dashed $third-color;
                 }
                 .start-time-box,
                 .end-time-box {

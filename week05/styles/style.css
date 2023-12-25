@@ -293,7 +293,6 @@ body {
 }
 .container .modal .modal-content .add-box input {
   width: 30%;
-  padding: 0 20px 0 20px;
 }
 .container .modal .modal-content .add-box input::-moz-placeholder {
   font-style: italic;
@@ -305,6 +304,9 @@ body {
 }
 .container .modal .modal-content .add-box input:focus {
   outline: none;
+}
+.container .modal .modal-content .add-box #myInputModal {
+  border-bottom: 2px dashed #068995;
 }
 .container .modal .modal-content .add-box .start-time-box,
 .container .modal .modal-content .add-box .end-time-box {
