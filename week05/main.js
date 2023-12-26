@@ -221,7 +221,6 @@ function displayItemDone(id, name, beginDate, dueDate, initialDate, status) {
 
   const itemId = $("<div>").attr("class", "item-id text-white fixed");
   itemId.text(id);
-  // itemId.hide();
 
   const itemDetails = $("<div>").attr(
     "class",
@@ -277,7 +276,6 @@ function displayItemDoing(id, name, beginDate, dueDate, initialDate, status) {
 
   const itemId = $("<div>").attr("class", "item-id text-white fixed");
   itemId.text(id);
-  // itemId.hide();
 
   const itemDetails = $("<div>").attr(
     "class",
@@ -625,10 +623,7 @@ function handleDragItem() {
     var itemId = itemBox.find(".item-id").text();
     e.originalEvent.dataTransfer.setData("number", itemId);
 
-    // console.log(e);
     // console.log($(this).parent().attr("class").split(" ")[0]);
-    e.originalEvent.dataTransfer.setData("text/plain", e.target);
-
     $(this).addClass("dragging");
   });
 
@@ -638,6 +633,7 @@ function handleDragItem() {
 
   itemDragList.on("dragover", function (e) {
     e.preventDefault();
+    // itemDrag.addClass("over");
   });
 
   itemDragList.on("drop", function (e) {

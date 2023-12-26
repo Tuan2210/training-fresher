@@ -146,12 +146,15 @@ body {
                 li.item-drag {
                     cursor: grab;
                     .dragging {
-                        opacity: 0.6;
+                        opacity: 0.5;
+                        // animation: dragging 2s infinite;
                     }
-                    // .dragging :where(.item-box,
-                    // .initial-date) {
-                    //     opacity: 0;
+                    // .over {
+                    //     border-top: 2px solid #fff;
                     // }
+                }
+                li.item-drag:hover {
+                    box-shadow: 0 2px 15px 5px $third-color;
                 }
                 li.item-to-do,
                 li.item-done,
@@ -159,7 +162,7 @@ body {
                     height: 220px;
                     font-weight: 700;
                     line-height: 20px;
-                    box-shadow: 0 2px 15px 5px $third-color;
+                    box-shadow: 0 0 15px 2px $second-color;
                     .initial-date {
                         color: $third-color;
                     }
@@ -341,6 +344,22 @@ body {
     font-size: 10px;
     height: 22px;
     width: 22px;
+}
+
+//animation item-dragging
+@keyframes dragging {
+    25% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 //animation modal

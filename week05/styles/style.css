@@ -195,7 +195,18 @@ body {
 .container .content-container .doing-wrapper ul.items-done-list li.item-drag .dragging,
 .container .content-container .doing-wrapper ul.items-to-do-list li.item-drag .dragging,
 .container .content-container .doing-wrapper ul.items-doing-list li.item-drag .dragging {
-  opacity: 0.6;
+  opacity: 0.5;
+}
+.container .content-container .done-wrapper ul.items-done-list li.item-drag:hover,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-drag:hover,
+.container .content-container .done-wrapper ul.items-doing-list li.item-drag:hover,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-drag:hover,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-drag:hover,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-drag:hover,
+.container .content-container .doing-wrapper ul.items-done-list li.item-drag:hover,
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-drag:hover,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-drag:hover {
+  box-shadow: 0 2px 15px 5px #068995;
 }
 .container .content-container .done-wrapper ul.items-done-list li.item-to-do,
 .container .content-container .done-wrapper ul.items-done-list li.item-done,
@@ -227,7 +238,7 @@ body {
   height: 220px;
   font-weight: 700;
   line-height: 20px;
-  box-shadow: 0 2px 15px 5px #068995;
+  box-shadow: 0 0 15px 2px #0e1538;
 }
 .container .content-container .done-wrapper ul.items-done-list li.item-to-do .initial-date,
 .container .content-container .done-wrapper ul.items-done-list li.item-done .initial-date,
@@ -550,6 +561,20 @@ body {
   width: 22px;
 }
 
+@keyframes dragging {
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 @keyframes fadeInModal {
   from {
     opacity: 0;
