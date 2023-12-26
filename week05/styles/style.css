@@ -198,39 +198,93 @@ body {
   opacity: 0.6;
 }
 .container .content-container .done-wrapper ul.items-done-list li.item-to-do,
+.container .content-container .done-wrapper ul.items-done-list li.item-done,
+.container .content-container .done-wrapper ul.items-done-list li.item-doing,
 .container .content-container .done-wrapper ul.items-to-do-list li.item-to-do,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-done,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-doing,
 .container .content-container .done-wrapper ul.items-doing-list li.item-to-do,
+.container .content-container .done-wrapper ul.items-doing-list li.item-done,
+.container .content-container .done-wrapper ul.items-doing-list li.item-doing,
 .container .content-container .to-do-wrapper ul.items-done-list li.item-to-do,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-done,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-doing,
 .container .content-container .to-do-wrapper ul.items-to-do-list li.item-to-do,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-done,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-doing,
 .container .content-container .to-do-wrapper ul.items-doing-list li.item-to-do,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-done,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-doing,
 .container .content-container .doing-wrapper ul.items-done-list li.item-to-do,
+.container .content-container .doing-wrapper ul.items-done-list li.item-done,
+.container .content-container .doing-wrapper ul.items-done-list li.item-doing,
 .container .content-container .doing-wrapper ul.items-to-do-list li.item-to-do,
-.container .content-container .doing-wrapper ul.items-doing-list li.item-to-do {
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-done,
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-doing,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-to-do,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-done,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-doing {
   height: 220px;
   font-weight: 700;
   line-height: 20px;
   box-shadow: 0 2px 15px 5px #068995;
 }
 .container .content-container .done-wrapper ul.items-done-list li.item-to-do .initial-date,
+.container .content-container .done-wrapper ul.items-done-list li.item-done .initial-date,
+.container .content-container .done-wrapper ul.items-done-list li.item-doing .initial-date,
 .container .content-container .done-wrapper ul.items-to-do-list li.item-to-do .initial-date,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-done .initial-date,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-doing .initial-date,
 .container .content-container .done-wrapper ul.items-doing-list li.item-to-do .initial-date,
+.container .content-container .done-wrapper ul.items-doing-list li.item-done .initial-date,
+.container .content-container .done-wrapper ul.items-doing-list li.item-doing .initial-date,
 .container .content-container .to-do-wrapper ul.items-done-list li.item-to-do .initial-date,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-done .initial-date,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-doing .initial-date,
 .container .content-container .to-do-wrapper ul.items-to-do-list li.item-to-do .initial-date,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-done .initial-date,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-doing .initial-date,
 .container .content-container .to-do-wrapper ul.items-doing-list li.item-to-do .initial-date,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-done .initial-date,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-doing .initial-date,
 .container .content-container .doing-wrapper ul.items-done-list li.item-to-do .initial-date,
+.container .content-container .doing-wrapper ul.items-done-list li.item-done .initial-date,
+.container .content-container .doing-wrapper ul.items-done-list li.item-doing .initial-date,
 .container .content-container .doing-wrapper ul.items-to-do-list li.item-to-do .initial-date,
-.container .content-container .doing-wrapper ul.items-doing-list li.item-to-do .initial-date {
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-done .initial-date,
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-doing .initial-date,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-to-do .initial-date,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-done .initial-date,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-doing .initial-date {
   color: #068995;
 }
 .container .content-container .done-wrapper ul.items-done-list li.item-to-do .over,
+.container .content-container .done-wrapper ul.items-done-list li.item-done .over,
+.container .content-container .done-wrapper ul.items-done-list li.item-doing .over,
 .container .content-container .done-wrapper ul.items-to-do-list li.item-to-do .over,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-done .over,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-doing .over,
 .container .content-container .done-wrapper ul.items-doing-list li.item-to-do .over,
+.container .content-container .done-wrapper ul.items-doing-list li.item-done .over,
+.container .content-container .done-wrapper ul.items-doing-list li.item-doing .over,
 .container .content-container .to-do-wrapper ul.items-done-list li.item-to-do .over,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-done .over,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-doing .over,
 .container .content-container .to-do-wrapper ul.items-to-do-list li.item-to-do .over,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-done .over,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-doing .over,
 .container .content-container .to-do-wrapper ul.items-doing-list li.item-to-do .over,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-done .over,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-doing .over,
 .container .content-container .doing-wrapper ul.items-done-list li.item-to-do .over,
+.container .content-container .doing-wrapper ul.items-done-list li.item-done .over,
+.container .content-container .doing-wrapper ul.items-done-list li.item-doing .over,
 .container .content-container .doing-wrapper ul.items-to-do-list li.item-to-do .over,
-.container .content-container .doing-wrapper ul.items-doing-list li.item-to-do .over {
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-done .over,
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-doing .over,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-to-do .over,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-done .over,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-doing .over {
   border-top: 2px solid #0e1538;
 }
 .container .content-container .done-wrapper ul.items-done-list .item-details,
@@ -328,6 +382,26 @@ body {
 .container .content-container .doing-wrapper ul.items-doing-list .fa-pen:hover {
   color: #09CBD0;
   cursor: pointer;
+}
+.container .content-container .done-wrapper ul.items-done-list li.item-done .item-options,
+.container .content-container .done-wrapper ul.items-done-list li.item-doing .item-options,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-done .item-options,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-doing .item-options,
+.container .content-container .done-wrapper ul.items-doing-list li.item-done .item-options,
+.container .content-container .done-wrapper ul.items-doing-list li.item-doing .item-options,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-done .item-options,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-doing .item-options,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-done .item-options,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-doing .item-options,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-done .item-options,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-doing .item-options,
+.container .content-container .doing-wrapper ul.items-done-list li.item-done .item-options,
+.container .content-container .doing-wrapper ul.items-done-list li.item-doing .item-options,
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-done .item-options,
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-doing .item-options,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-done .item-options,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-doing .item-options {
+  display: none;
 }
 .container .modal {
   display: none;

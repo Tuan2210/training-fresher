@@ -106,8 +106,8 @@ function padZero(number) {
   return number < 10 ? `0${number}` : number;
 }
 
-//--style-new-item
-function displayItem(id, name, beginDate, dueDate, initialDate) {
+//--display item-to-do--
+function displayItemToDo(id, name, beginDate, dueDate, initialDate, status) {
   const item = $("<li>")
     .attr(
       "class",
@@ -198,69 +198,213 @@ function displayItem(id, name, beginDate, dueDate, initialDate) {
 
   item.append(formatInitialDate);
 
-  // $(".items-done-list").append(item);
   $(".items-to-do-list").append(item);
-  // $(".items-doing-list").append(item);
 
   $("#myInput").val("");
   $("#begin-date-time").val("");
   $("#due-date-time").val("");
 }
 
-//--handle get items--
-function getAllItems() {
-  setTimeout(() => {
-    location.reload();
-  }, 10);
+//--display item-done--
+function displayItemDone(id, name, beginDate, dueDate, initialDate, status) {
+  const item = $("<li>")
+    .attr(
+      "class",
+      "item-done item-drag bg-white flex flex-col justify-between p-3 rounded-xl text-sm"
+    )
+    .attr("draggable", "true");
 
-  var arr = JSON.parse(localStorage.getItem("to-do-list")),
-    arrDone = arr.filter((item) => item.status === "Done"),
-    arrToDo = arr.filter((item) => item.status === "Todo"),
-    arrDoing = arr.filter((item) => item.status === "Doing");
+  const itemBox = $("<div>").attr(
+    "class",
+    "item-box w-full flex justify-between"
+  );
 
-  var itemDoneList = $(".items-done-list");
-  var itemToDoList = $(".items-to-do-list");
-  var itemDoingList = $(".items-doing-list");
+  const itemId = $("<div>").attr("class", "item-id text-white fixed");
+  itemId.text(id);
+  // itemId.hide();
 
-  itemDoneList.empty();
-  itemToDoList.empty();
-  itemDoingList.empty();
+  const itemDetails = $("<div>").attr(
+    "class",
+    "item-details flex flex-col justify-between gap-5"
+  );
 
-  setTimeout(() => {
-    itemDoneList.load(
-      arrDone.forEach((item) => {
-        displayItem(
-          item.id,
-          item.name,
-          item.beginDate,
-          item.dueDate,
-          item.initialDate
-        );
-      })
+  const itemName = $("<div>").attr("class", "item-name h-20 overflow-y-auto");
+  itemName.text(name);
+
+  const itemDate = $("<div>").attr("class", "item-date flex flex-col gap-2");
+
+  const itemBeginDate = $("<div>").addClass("item-begin-date-time");
+  itemBeginDate.text("Begin date:\u00A0" + beginDate);
+
+  const itemDueDate = $("<div>").addClass("item-due-date-time");
+  itemDueDate.text("Due date:\u00A0\u00A0\u00A0\u00A0" + dueDate);
+
+  const formatInitialDate = $("<div>").attr(
+    "class",
+    "initial-date text-right text-xs"
+  );
+  formatInitialDate.html(`<i>${initialDate}</i>`);
+
+  item.append(itemBox);
+
+  itemBox.append(itemId);
+  itemBox.append(itemDetails);
+
+  itemDetails.append(itemName);
+  itemDetails.append(itemDate);
+
+  itemDate.append(itemBeginDate);
+  itemDate.append(itemDueDate);
+
+  item.append(formatInitialDate);
+
+  $(".items-done-list").append(item);
+}
+
+//--display item-doing--
+function displayItemDoing(id, name, beginDate, dueDate, initialDate, status) {
+  const item = $("<li>")
+    .attr(
+      "class",
+      "item-doing item-drag bg-white flex flex-col justify-between p-3 rounded-xl text-sm"
+    )
+    .attr("draggable", "true");
+
+  const itemBox = $("<div>").attr(
+    "class",
+    "item-box w-full flex justify-between"
+  );
+
+  const itemId = $("<div>").attr("class", "item-id text-white fixed");
+  itemId.text(id);
+  // itemId.hide();
+
+  const itemDetails = $("<div>").attr(
+    "class",
+    "item-details flex flex-col justify-between gap-5"
+  );
+
+  const itemName = $("<div>").attr("class", "item-name h-20 overflow-y-auto");
+  itemName.text(name);
+
+  const itemDate = $("<div>").attr("class", "item-date flex flex-col gap-2");
+
+  const itemBeginDate = $("<div>").addClass("item-begin-date-time");
+  itemBeginDate.text("Begin date:\u00A0" + beginDate);
+
+  const itemDueDate = $("<div>").addClass("item-due-date-time");
+  itemDueDate.text("Due date:\u00A0\u00A0\u00A0\u00A0" + dueDate);
+
+  const itemOptions = $("<div>").attr(
+    "class",
+    "item-options flex flex-col gap-8 items-center"
+  );
+
+  const inputPreview = $("<div>").attr(
+    "class",
+    "inputPreview flex justify-center"
+  );
+
+  const cssCheckbox = $("<input>")
+    .attr("name", "cssCheckbox")
+    .attr("id", "demo_opt_1")
+    .attr("type", "checkbox")
+    .addClass("css-checkbox");
+
+  const labelChkb = $("<label>").attr("for", "demo_opt_1");
+
+  const faTrash = $("<i>").attr("class", "fa-solid fa-trash fa-xl");
+
+  const penBtn = $("<button>")
+    .addClass("penBtn")
+    .attr("data-toggle", "modal")
+    .attr("data-target", "#modal-form")
+    .attr("type", "button");
+
+  const faPen = $("<i>").attr("class", "fa-solid fa-pen fa-xl");
+
+  const formatInitialDate = $("<div>").attr(
+    "class",
+    "initial-date text-right text-xs"
+  );
+  formatInitialDate.html(`<i>${initialDate}</i>`);
+
+  item.append(itemBox);
+
+  itemBox.append(itemId);
+  itemBox.append(itemDetails);
+  itemBox.append(itemOptions);
+
+  itemDetails.append(itemName);
+  itemDetails.append(itemDate);
+
+  itemDate.append(itemBeginDate);
+  itemDate.append(itemDueDate);
+
+  itemOptions.append(inputPreview);
+
+  inputPreview.append(cssCheckbox);
+  inputPreview.append(labelChkb);
+
+  itemOptions.append(faTrash);
+  itemOptions.append(penBtn);
+
+  penBtn.append(faPen);
+
+  item.append(formatInitialDate);
+
+  $(".items-doing-list").append(item);
+}
+
+//--handle get all items to-do--
+function getAllItemsToDo() {
+  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  var list = storedData.filter((item) => item.status === "to-do");
+  $(".items-to-do-list").empty();
+  list.forEach((item) => {
+    displayItemToDo(
+      item.id,
+      item.name,
+      item.beginDate,
+      item.dueDate,
+      item.initialDate,
+      item.status
     );
-    itemToDoList.load(
-      arrToDo.forEach((item) => {
-        displayItem(
-          item.id,
-          item.name,
-          item.beginDate,
-          item.dueDate,
-          item.initialDate
-        );
-      })
+  });
+}
+
+//--handle get all items done--
+function getAllItemsDone() {
+  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  var list = storedData.filter((item) => item.status === "done");
+  $(".items-done-list").empty();
+  list.forEach((item) => {
+    displayItemDone(
+      item.id,
+      item.name,
+      item.beginDate,
+      item.dueDate,
+      item.initialDate,
+      item.status
     );
-    itemDoingList.load(
-      arrDoing.forEach((item) => {
-        displayItem(
-          item.id,
-          item.name,
-          item.beginDate,
-          item.dueDate,
-          item.initialDate
-        );
-      })
+  });
+}
+
+//--handle get all items doing--
+function getAllItemsDoing() {
+  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  var list = storedData.filter((item) => item.status === "doing");
+  $(".items-doing-list").empty();
+  list.forEach((item) => {
+    displayItemDoing(
+      item.id,
+      item.name,
+      item.beginDate,
+      item.dueDate,
+      item.initialDate,
+      item.status
     );
-  }, 50);
+  });
 }
 
 //--handle check all inputs--
@@ -302,11 +446,15 @@ function createItem() {
     beginDate: inputBeginDate,
     dueDate: inputDueDate,
     initialDate: formatDateTime(new Date()),
-    status: "Todo",
+    status: "to-do",
   });
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
-
-  getAllItems();
+  location.reload();
+  setTimeout(() => {
+    getAllItemsDone();
+    getAllItemsToDo();
+    getAllItemsDoing();
+  }, 50);
 }
 
 //--handle find item-id by index--
@@ -317,20 +465,19 @@ function findItemIdByIndex(index) {
 }
 
 //--handle delete item--
-function deleteItem(indexTrashIcon) {
+function deleteItem(itemId) {
+  location.reload();
   var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
-  if (indexTrashIcon < 0 || indexTrashIcon >= storedData.length) return;
-
-  var itemId = findItemIdByIndex(indexTrashIcon);
-  if (!itemId) return;
 
   var newStoredData = storedData.filter((item) => item.id !== itemId);
   if (newStoredData.length === 0) {
     localStorage.removeItem("to-do-list");
-    getAllItems();
+    $(".items-to-do-list").empty();
   } else {
     localStorage.setItem("to-do-list", JSON.stringify(newStoredData));
-    getAllItems();
+    getAllItemsDone();
+    getAllItemsToDo();
+    getAllItemsDoing();
   }
 }
 
@@ -361,8 +508,10 @@ function updateItem(itemId) {
   item.beginDate = inputBeginDate;
   item.dueDate = inputDueDate;
   localStorage.setItem("to-do-list", JSON.stringify(toDoList));
-
-  getAllItems();
+  location.reload();
+  getAllItemsDone();
+  getAllItemsToDo();
+  getAllItemsDoing();
 }
 
 //--handle update modal--
@@ -372,8 +521,8 @@ function handleUpdateModal() {
     modalContent = $(".modal-content"),
     closeModalSpan = $(".close");
 
-  openModalBtn.each(function (index) {
-    const itemId = findItemIdByIndex(index);
+  openModalBtn.each(function () {
+    var itemId = $(this).parent().parent().find(".item-id").text();
     if (!itemId) return;
 
     var storedData = JSON.parse(localStorage.getItem("to-do-list"));
@@ -495,9 +644,7 @@ function handleDragItem() {
     e.preventDefault();
 
     var draggedItem = $(".dragging");
-
     $(this).append(draggedItem);
-
     draggedItem.removeClass("dragging");
 
     var itemId = e.originalEvent.dataTransfer.getData("number");
@@ -510,63 +657,25 @@ function handleDragItem() {
     var ulClass = e.target.classList[0];
     switch (ulClass) {
       case "items-done-list":
-        item.status = "Done";
-
+        item.status = "done";
         localStorage.setItem("to-do-list", JSON.stringify(storedData));
-        getAllItems();
         break;
       case "items-to-do-list":
-        item.status = "Todo";
-
+        item.status = "to-do";
         localStorage.setItem("to-do-list", JSON.stringify(storedData));
-        getAllItems();
         break;
       case "items-doing-list":
-        item.status = "Doing";
-
+        item.status = "doing";
         localStorage.setItem("to-do-list", JSON.stringify(storedData));
-        getAllItems();
         break;
       default:
         break;
     }
+    location.reload();
+    getAllItemsDone();
+    getAllItemsToDo();
+    getAllItemsDoing();
   });
-
-  // itemDrag.on("dragstart", function () {
-  //   const item = $(this);
-  //   setTimeout(function () {
-  //     item.addClass("dragging");
-  //   }, 0);
-  // });
-
-  // itemDrag.on("dragend", function () {
-  //   $(this).removeClass("dragging");
-  // });
-
-  // function initItemDragList(e) {
-  //   e.preventDefault();
-  //   const itemDragging = itemDragList.find(".dragging");
-
-  //   let siblings = itemDragList.find(".item-drag:not(.dragging)").toArray();
-
-  //   let nextSibling = siblings.find(function (sibling) {
-  //     return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
-  //   });
-
-  //   // itemDragList[0].insertBefore(itemDragging[0], nextSibling);
-  //   const container = itemDragging.parent();
-
-  //   if (nextSibling) {
-  //     container[0].insertBefore(itemDragging[0], nextSibling);
-  //   } else {
-  //     container.append(itemDragging);
-  //   }
-  // }
-
-  // itemDragList.on("dragover", initItemDragList);
-  // itemDragList.on("dragenter", function (e) {
-  //   e.preventDefault();
-  // });
 }
 
 //--DOM-content-load
@@ -584,21 +693,15 @@ $(function () {
     createItem();
   });
 
-  //display-item
-  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
-  storedData.forEach((item) => {
-    displayItem(
-      item.id,
-      item.name,
-      item.beginDate,
-      item.dueDate,
-      item.initialDate
-    );
-  });
+  //display-items
+  getAllItemsDone();
+  getAllItemsToDo();
+  getAllItemsDoing();
 
   //delete-item
-  $(".fa-trash").each(function (index) {
+  $(".fa-trash").each(function () {
     $(this).on("click", function () {
+      var itemId = $(this).parent().parent().find(".item-id").text();
       $.confirm({
         title: "",
         content: "Would you like to delete this task? 🤔",
@@ -609,7 +712,7 @@ $(function () {
         useBootstrap: false,
         buttons: {
           delete: function () {
-            deleteItem(index);
+            deleteItem(itemId);
           },
           cancel: function () {
             $.alert({
