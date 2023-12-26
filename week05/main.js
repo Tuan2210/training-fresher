@@ -111,7 +111,7 @@ function displayItemToDo(id, name, beginDate, dueDate, initialDate, status) {
   const item = $("<li>")
     .attr(
       "class",
-      "item-to-do item-drag bg-white flex flex-col justify-between p-5 pb-3 rounded-xl text-sm"
+      "item-to-do item-drag bg-white flex flex-col justify-between p-5 rounded-xl text-sm"
     )
     .attr("draggable", "true");
 
@@ -210,7 +210,7 @@ function displayItemDone(id, name, beginDate, dueDate, initialDate, status) {
   const item = $("<li>")
     .attr(
       "class",
-      "item-done item-drag bg-white flex flex-col justify-between p-5 pb-3 rounded-xl text-sm"
+      "item-done item-drag bg-white flex flex-col justify-between p-5 rounded-xl text-sm"
     )
     .attr("draggable", "true");
 
@@ -275,7 +275,7 @@ function displayItemDoing(id, name, beginDate, dueDate, initialDate, status) {
   const item = $("<li>")
     .attr(
       "class",
-      "item-doing item-drag bg-white flex flex-col justify-between p-5 pb-3 rounded-xl text-sm"
+      "item-doing item-drag bg-white flex flex-col justify-between p-5 rounded-xl text-sm"
     )
     .attr("draggable", "true");
 
