@@ -194,12 +194,11 @@ body {
                     color: $main-color;
                     cursor: pointer;
                 }
-                li.item-done,
-                li.item-doing {
-                    .item-options {
-                        display: none;
-                    }
-                }
+                // li.item-done {
+                //     .item-options {
+                //         display: none;
+                //     }
+                // }
             }
         }
     }

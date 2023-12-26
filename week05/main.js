@@ -111,7 +111,7 @@ function displayItemToDo(id, name, beginDate, dueDate, initialDate, status) {
   const item = $("<li>")
     .attr(
       "class",
-      "item-to-do item-drag bg-white flex flex-col justify-between p-3 rounded-xl text-sm"
+      "item-to-do item-drag bg-white flex flex-col justify-between p-5 pb-3 rounded-xl text-sm"
     )
     .attr("draggable", "true");
 
@@ -186,10 +186,10 @@ function displayItemToDo(id, name, beginDate, dueDate, initialDate, status) {
   itemDate.append(itemBeginDate);
   itemDate.append(itemDueDate);
 
-  itemOptions.append(inputPreview);
+  // itemOptions.append(inputPreview);
 
-  inputPreview.append(cssCheckbox);
-  inputPreview.append(labelChkb);
+  // inputPreview.append(cssCheckbox);
+  // inputPreview.append(labelChkb);
 
   itemOptions.append(faTrash);
   itemOptions.append(penBtn);
@@ -210,62 +210,7 @@ function displayItemDone(id, name, beginDate, dueDate, initialDate, status) {
   const item = $("<li>")
     .attr(
       "class",
-      "item-done item-drag bg-white flex flex-col justify-between p-3 rounded-xl text-sm"
-    )
-    .attr("draggable", "true");
-
-  const itemBox = $("<div>").attr(
-    "class",
-    "item-box w-full flex justify-between"
-  );
-
-  const itemId = $("<div>").attr("class", "item-id text-white fixed");
-  itemId.text(id);
-
-  const itemDetails = $("<div>").attr(
-    "class",
-    "item-details flex flex-col justify-between gap-5"
-  );
-
-  const itemName = $("<div>").attr("class", "item-name h-20 overflow-y-auto");
-  itemName.text(name);
-
-  const itemDate = $("<div>").attr("class", "item-date flex flex-col gap-2");
-
-  const itemBeginDate = $("<div>").addClass("item-begin-date-time");
-  itemBeginDate.text("Begin date:\u00A0" + beginDate);
-
-  const itemDueDate = $("<div>").addClass("item-due-date-time");
-  itemDueDate.text("Due date:\u00A0\u00A0\u00A0\u00A0" + dueDate);
-
-  const formatInitialDate = $("<div>").attr(
-    "class",
-    "initial-date text-right text-xs"
-  );
-  formatInitialDate.html(`<i>${initialDate}</i>`);
-
-  item.append(itemBox);
-
-  itemBox.append(itemId);
-  itemBox.append(itemDetails);
-
-  itemDetails.append(itemName);
-  itemDetails.append(itemDate);
-
-  itemDate.append(itemBeginDate);
-  itemDate.append(itemDueDate);
-
-  item.append(formatInitialDate);
-
-  $(".items-done-list").append(item);
-}
-
-//--display item-doing--
-function displayItemDoing(id, name, beginDate, dueDate, initialDate, status) {
-  const item = $("<li>")
-    .attr(
-      "class",
-      "item-doing item-drag bg-white flex flex-col justify-between p-3 rounded-xl text-sm"
+      "item-done item-drag bg-white flex flex-col justify-between p-5 pb-3 rounded-xl text-sm"
     )
     .attr("draggable", "true");
 
@@ -298,18 +243,70 @@ function displayItemDoing(id, name, beginDate, dueDate, initialDate, status) {
     "item-options flex flex-col gap-8 items-center"
   );
 
-  const inputPreview = $("<div>").attr(
+  const faTrash = $("<i>").attr("class", "fa-solid fa-trash fa-xl");
+
+  const formatInitialDate = $("<div>").attr(
     "class",
-    "inputPreview flex justify-center"
+    "initial-date text-right text-xs"
+  );
+  formatInitialDate.html(`<i>${initialDate}</i>`);
+
+  item.append(itemBox);
+
+  itemBox.append(itemId);
+  itemBox.append(itemDetails);
+  itemBox.append(itemOptions);
+
+  itemDetails.append(itemName);
+  itemDetails.append(itemDate);
+
+  itemDate.append(itemBeginDate);
+  itemDate.append(itemDueDate);
+
+  itemOptions.append(faTrash);
+
+  item.append(formatInitialDate);
+
+  $(".items-done-list").append(item);
+}
+
+//--display item-doing--
+function displayItemDoing(id, name, beginDate, dueDate, initialDate, status) {
+  const item = $("<li>")
+    .attr(
+      "class",
+      "item-doing item-drag bg-white flex flex-col justify-between p-5 pb-3 rounded-xl text-sm"
+    )
+    .attr("draggable", "true");
+
+  const itemBox = $("<div>").attr(
+    "class",
+    "item-box w-full flex justify-between"
   );
 
-  const cssCheckbox = $("<input>")
-    .attr("name", "cssCheckbox")
-    .attr("id", "demo_opt_1")
-    .attr("type", "checkbox")
-    .addClass("css-checkbox");
+  const itemId = $("<div>").attr("class", "item-id text-white fixed");
+  itemId.text(id);
 
-  const labelChkb = $("<label>").attr("for", "demo_opt_1");
+  const itemDetails = $("<div>").attr(
+    "class",
+    "item-details flex flex-col justify-between gap-5"
+  );
+
+  const itemName = $("<div>").attr("class", "item-name h-20 overflow-y-auto");
+  itemName.text(name);
+
+  const itemDate = $("<div>").attr("class", "item-date flex flex-col gap-2");
+
+  const itemBeginDate = $("<div>").addClass("item-begin-date-time");
+  itemBeginDate.text("Begin date:\u00A0" + beginDate);
+
+  const itemDueDate = $("<div>").addClass("item-due-date-time");
+  itemDueDate.text("Due date:\u00A0\u00A0\u00A0\u00A0" + dueDate);
+
+  const itemOptions = $("<div>").attr(
+    "class",
+    "item-options flex flex-col gap-8 items-center"
+  );
 
   const faTrash = $("<i>").attr("class", "fa-solid fa-trash fa-xl");
 
@@ -338,11 +335,6 @@ function displayItemDoing(id, name, beginDate, dueDate, initialDate, status) {
 
   itemDate.append(itemBeginDate);
   itemDate.append(itemDueDate);
-
-  itemOptions.append(inputPreview);
-
-  inputPreview.append(cssCheckbox);
-  inputPreview.append(labelChkb);
 
   itemOptions.append(faTrash);
   itemOptions.append(penBtn);
@@ -409,16 +401,18 @@ function getAllItemsDoing() {
 function checkInputs(input, inputBeginDate, inputDueDate) {
   var isChecked = true;
   if (input === "") {
-    alert("The input is empty!\nPlease enter your task 😊");
+    $.alert(customAlert("The input is empty!\nPlease enter your task 😊", {}));
     isChecked = false;
   } else if (inputBeginDate === "" || inputDueDate === "") {
-    alert("Please set date and time 😊");
+    $.alert(customAlert("Please set date and time 😊", {}));
     isChecked = false;
   } else if (new Date() >= Date.parse(inputBeginDate)) {
-    alert("The begin date must be after the current date 😊");
+    $.alert(
+      customAlert("The begin date must be after the current date 😊", {})
+    );
     isChecked = false;
   } else if (Date.parse(inputBeginDate) >= Date.parse(inputDueDate)) {
-    alert("The due date must be after the begin date 😊");
+    $.alert(customAlert("The due date must be after the begin date 😊", {}));
     isChecked = false;
   } else isChecked = true;
   return isChecked;
@@ -545,19 +539,11 @@ function handleUpdateModal() {
           item.beginDate === currentInputBegin &&
           item.dueDate === currentInputDue
         ) {
-          $.alert({
-            title: "",
-            content: "The information has not been updated yet! 🤨",
-            autoClose: "ok|2000",
-            theme: "dark",
-            animation: "RotateY",
-            animationSpeed: 500,
-            boxWidth: "30%",
-            useBootstrap: false,
-            buttons: {
+          $.alert(
+            customAlert("The information has not been updated yet! 🤨", {
               ok: function () {},
-            },
-          });
+            })
+          );
         }
         if (
           item.name !== currentInput ||
@@ -577,19 +563,11 @@ function handleUpdateModal() {
                 updateItem(item.id);
               },
               cancel: function () {
-                $.alert({
-                  title: "",
-                  content: "Canceled!",
-                  autoClose: "ok|2000",
-                  theme: "dark",
-                  animation: "RotateY",
-                  animationSpeed: 500,
-                  boxWidth: "30%",
-                  useBootstrap: false,
-                  buttons: {
+                $.alert(
+                  customAlert("Canceled!", {
                     ok: function () {},
-                  },
-                });
+                  })
+                );
               },
             },
           });
@@ -674,6 +652,22 @@ function handleDragItem() {
   });
 }
 
+//--custom jquery-confirm-alert---
+function customAlert(content, btns) {
+  var customAlert = {
+    title: "",
+    content: content,
+    autoClose: "ok|2000",
+    theme: "dark",
+    animation: "RotateY",
+    animationSpeed: 500,
+    boxWidth: "30%",
+    useBootstrap: false,
+    buttons: btns,
+  };
+  return customAlert;
+}
+
 //--DOM-content-load
 $(function () {
   refreshRealTime();
@@ -711,19 +705,11 @@ $(function () {
             deleteItem(itemId);
           },
           cancel: function () {
-            $.alert({
-              title: "",
-              content: "Canceled!",
-              autoClose: "ok|2000",
-              theme: "dark",
-              animation: "RotateY",
-              animationSpeed: 500,
-              boxWidth: "30%",
-              useBootstrap: false,
-              buttons: {
+            $.alert(
+              customAlert("Canceled!", {
                 ok: function () {},
-              },
-            });
+              })
+            );
           },
         },
       });

@@ -394,26 +394,6 @@ body {
   color: #09CBD0;
   cursor: pointer;
 }
-.container .content-container .done-wrapper ul.items-done-list li.item-done .item-options,
-.container .content-container .done-wrapper ul.items-done-list li.item-doing .item-options,
-.container .content-container .done-wrapper ul.items-to-do-list li.item-done .item-options,
-.container .content-container .done-wrapper ul.items-to-do-list li.item-doing .item-options,
-.container .content-container .done-wrapper ul.items-doing-list li.item-done .item-options,
-.container .content-container .done-wrapper ul.items-doing-list li.item-doing .item-options,
-.container .content-container .to-do-wrapper ul.items-done-list li.item-done .item-options,
-.container .content-container .to-do-wrapper ul.items-done-list li.item-doing .item-options,
-.container .content-container .to-do-wrapper ul.items-to-do-list li.item-done .item-options,
-.container .content-container .to-do-wrapper ul.items-to-do-list li.item-doing .item-options,
-.container .content-container .to-do-wrapper ul.items-doing-list li.item-done .item-options,
-.container .content-container .to-do-wrapper ul.items-doing-list li.item-doing .item-options,
-.container .content-container .doing-wrapper ul.items-done-list li.item-done .item-options,
-.container .content-container .doing-wrapper ul.items-done-list li.item-doing .item-options,
-.container .content-container .doing-wrapper ul.items-to-do-list li.item-done .item-options,
-.container .content-container .doing-wrapper ul.items-to-do-list li.item-doing .item-options,
-.container .content-container .doing-wrapper ul.items-doing-list li.item-done .item-options,
-.container .content-container .doing-wrapper ul.items-doing-list li.item-doing .item-options {
-  display: none;
-}
 .container .modal {
   display: none;
   position: fixed;
