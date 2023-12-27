@@ -292,6 +292,9 @@ body {
             &__header {
                 color: $main-color;
                 font-weight: bold;
+                .fa-bell {
+                    animation: bellMove 1.05s infinite;
+                }
                 .fa-times:hover {
                     color: #fff;
                 }
@@ -430,5 +433,21 @@ body {
 @keyframes toastFadeOut {
     to {
         opacity: 0;
+    }
+}
+
+//animation bell
+@keyframes bellMove {
+    25% {
+        transform: rotate(20deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-20deg);
+    }
+    100% {
+        transform: rotate(0deg);
     }
 }

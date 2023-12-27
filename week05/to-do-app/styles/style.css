@@ -475,6 +475,9 @@ body {
   color: #09CBD0;
   font-weight: bold;
 }
+.container #toast-container .toast__header .fa-bell {
+  animation: bellMove 1.05s infinite;
+}
 .container #toast-container .toast__header .fa-times:hover {
   color: #fff;
 }
@@ -599,5 +602,19 @@ body {
 @keyframes toastFadeOut {
   to {
     opacity: 0;
+  }
+}
+@keyframes bellMove {
+  25% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }/*# sourceMappingURL=style.css.map */

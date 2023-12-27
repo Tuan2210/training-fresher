@@ -706,8 +706,11 @@ function showToast(taskName, dueDate) {
           "<b>${taskName}</b>" <span class="text-red-500">has reached its due date!</span>
         </p>
       </div>
-      <div class="toast__due-date">
-        <i>Due date: ${dueDate}</i>
+      <div class="flex justify-between items-center">
+        <div class="toast__due-date">
+          <i>Due date: ${dueDate}</i>
+        </div>
+        <i class="text-sm text-gray-500">(Auto remind after 5 minutes)</i>
       </div>
     `);
 
