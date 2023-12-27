@@ -278,7 +278,6 @@ body {
     }
     //toast-container
     #toast-container {
-        position: fixed;
         top: 20px;
         right: 20px;
         z-index: 1000;
@@ -290,13 +289,17 @@ body {
             box-shadow: 0 0 15px black;
             transition: opacity 0.5s ease-out;
             opacity: 0;
-            &.show {
-                opacity: 1;
-                pointer-events: auto;
-            }
             &__header {
                 color: $main-color;
                 font-weight: bold;
+            }
+            &.showToast {
+                opacity: 1;
+                pointer-events: auto;
+                animation: toastSlideLeft ease .3s;
+            }
+            &.hideToast {
+                animation: toastFadeOut linear 1s 50s forwards;
             }
         }
     }

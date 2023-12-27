@@ -458,7 +458,6 @@ body {
   color: #0e1538;
 }
 .container #toast-container {
-  position: fixed;
   top: 20px;
   right: 20px;
   z-index: 1000;
@@ -472,13 +471,17 @@ body {
   transition: opacity 0.5s ease-out;
   opacity: 0;
 }
-.container #toast-container .toast.show {
-  opacity: 1;
-  pointer-events: auto;
-}
 .container #toast-container .toast__header {
   color: #09CBD0;
   font-weight: bold;
+}
+.container #toast-container .toast.showToast {
+  opacity: 1;
+  pointer-events: auto;
+  animation: toastSlideLeft ease 0.3s;
+}
+.container #toast-container .toast.hideToast {
+  animation: toastFadeOut linear 1s 50s forwards;
 }
 
 .css-checkbox {

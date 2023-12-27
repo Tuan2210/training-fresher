@@ -688,14 +688,10 @@ function checkDueDate() {
 function showToast(taskName, dueDate) {
   const toastContainer = $("#toast-container");
 
-  const delay = (5000 / 1000).toFixed(2);
-
-  const toast = $("<div>")
-    .attr("class", "toast flex flex-col justify-between gap-4 p-3 rounded-xl")
-    .css(
-      "animation",
-      `toastSlideLeft ease .3s, toastFadeOut linear 1s ${delay}s forwards`
-    ).html(`
+  const toast = $("<div>").attr(
+    "class",
+    "toast flex flex-col justify-between gap-4 p-3 rounded-xl"
+  ).html(`
       <div class="toast__header flex justify-between items-center">
         <div class="toast__left flex flex-row items-center gap-2">
           <i class="fa-solid fa-bell" style="color: #09CBD0;"></i>
@@ -719,18 +715,27 @@ function showToast(taskName, dueDate) {
 
   toast.width();
 
-  toast.addClass("show");
+  toast.addClass("showToast");
 
   //close
   $(".toast__close").each(function () {
     $(this).on("click", function () {
-      $(this).closest(".toast").remove();
+      var singleToast = $(this).closest(".toast");
+      singleToast.removeClass("showToast");
+      singleToast.addClass("hideToast");
+      setTimeout(function () {
+        singleToast.remove();
+      }, 1001);
     });
   });
 
   //auto close
   setTimeout(() => {
-    toast.remove();
+    toast.removeClass("showToast");
+    toast.addClass("hideToast");
+    setTimeout(function () {
+      toast.remove();
+    }, 1500);
   }, 5000);
 }
 
@@ -805,6 +810,7 @@ $(function () {
           showToast(item.name, item.dueDate);
         }
       }, 5000 + 3600 * 5 * 1000); //re-show toast every 5mins after 5s showed
+      // }, 5000 + 10 * 1000); //test re-show toast every 10s after 5s showed
     }, 0);
   });
 });
