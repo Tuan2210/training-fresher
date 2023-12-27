@@ -1,0 +1,45 @@
+@media only screen and (max-width: 768px) {
+  header img {
+    display: none;
+  }
+  header .add-box {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+    padding: 0 !important;
+  }
+  header .add-box #myInput {
+    padding: 2px !important;
+  }
+  header .add-box .start-time-box,
+  header .add-box .end-time-box {
+    padding-left: 5px !important;
+    padding-right: 0px !important;
+    gap: 0px !important;
+  }
+  header .add-box .start-time-box input,
+  header .add-box .end-time-box input {
+    width: 100%;
+  }
+  header .add-box .addBtn {
+    width: 50px !important;
+  }
+  header .time-box {
+    display: none;
+  }
+  .content-container {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 5% !important;
+  }
+  .content-container .to-do-wrapper {
+    order: 1;
+  }
+  .content-container .doing-wrapper {
+    order: 2;
+  }
+  .content-container .done-wrapper {
+    order: 3;
+  }
+}/*# sourceMappingURL=responsive.css.map */

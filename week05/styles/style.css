@@ -475,6 +475,9 @@ body {
   color: #09CBD0;
   font-weight: bold;
 }
+.container #toast-container .toast__header .fa-times:hover {
+  color: #fff;
+}
 .container #toast-container .toast.showToast {
   opacity: 1;
   pointer-events: auto;

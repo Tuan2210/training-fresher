@@ -694,7 +694,7 @@ function showToast(taskName, dueDate) {
   ).html(`
       <div class="toast__header flex justify-between items-center">
         <div class="toast__left flex flex-row items-center gap-2">
-          <i class="fa-solid fa-bell" style="color: #09CBD0;"></i>
+          <i class="fa-solid fa-bell"></i>
           <h3 class="toast__title">Notification!</h3>
         </div>
         <div class="toast__close cursor-pointer">

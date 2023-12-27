@@ -292,6 +292,9 @@ body {
             &__header {
                 color: $main-color;
                 font-weight: bold;
+                .fa-times:hover {
+                    color: #fff;
+                }
             }
             &.showToast {
                 opacity: 1;
