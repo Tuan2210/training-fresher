@@ -668,7 +668,73 @@ function customAlert(content, btns) {
   return customAlert;
 }
 
-//--DOM-content-load
+//--handle check due-date--
+var showToastFlag = {};
+function checkDueDate() {
+  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  var listNotDone = storedData.filter((item) => item.status !== "done");
+
+  listNotDone.forEach(function (item) {
+    var dueDate = new Date(item.dueDate).getTime();
+
+    if (dueDate < new Date().getTime() && !showToastFlag[item.id]) {
+      showToast(item.name, item.dueDate);
+      showToastFlag[item.id] = true; //check displayed this toast-item
+    }
+  });
+}
+
+//--handle toast--
+function showToast(taskName, dueDate) {
+  const toastContainer = $("#toast-container");
+
+  const delay = (5000 / 1000).toFixed(2);
+
+  const toast = $("<div>")
+    .attr("class", "toast flex flex-col justify-between gap-4 p-3 rounded-xl")
+    .css(
+      "animation",
+      `toastSlideLeft ease .3s, toastFadeOut linear 1s ${delay}s forwards`
+    ).html(`
+      <div class="toast__header flex justify-between items-center">
+        <div class="toast__left flex flex-row items-center gap-2">
+          <i class="fa-solid fa-bell" style="color: #09CBD0;"></i>
+          <h3 class="toast__title">Notification!</h3>
+        </div>
+        <div class="toast__close cursor-pointer">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="toast__content">
+        <p class="toast__msg">
+          "<b>${taskName}</b>" <span class="text-red-500">has reached its due date!</span>
+        </p>
+      </div>
+      <div class="toast__due-date">
+        <i>Due date: ${dueDate}</i>
+      </div>
+    `);
+
+  toastContainer.append(toast);
+
+  toast.width();
+
+  toast.addClass("show");
+
+  //close
+  $(".toast__close").each(function () {
+    $(this).on("click", function () {
+      $(this).closest(".toast").remove();
+    });
+  });
+
+  //auto close
+  setTimeout(() => {
+    toast.remove();
+  }, 5000);
+}
+
+//--DOM-content-load--
 $(function () {
   refreshRealTime();
 
@@ -721,4 +787,24 @@ $(function () {
 
   //drag-drop-item
   handleDragItem();
+
+  //check due-date
+  setInterval(function () {
+    checkDueDate(); //first show
+  }, 1000);
+
+  var storedData = JSON.parse(localStorage.getItem("to-do-list")) || [];
+  var listNotDone = storedData.filter((item) => item.status !== "done");
+
+  listNotDone.forEach(function (item) {
+    var dueDate = new Date(item.dueDate).getTime();
+
+    setTimeout(function () {
+      setInterval(function () {
+        if (dueDate < new Date().getTime()) {
+          showToast(item.name, item.dueDate);
+        }
+      }, 5000 + 3600 * 5 * 1000); //re-show toast every 5mins after 5s showed
+    }, 0);
+  });
 });

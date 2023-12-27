@@ -94,7 +94,7 @@ body {
   clear: both;
 }
 .container header .time-box {
-  width: 330px;
+  width: 350px;
 }
 .container header .time-box .day-time-box {
   width: 220px;
@@ -197,6 +197,17 @@ body {
 .container .content-container .doing-wrapper ul.items-doing-list li.item-drag .dragging {
   opacity: 0.5;
 }
+.container .content-container .done-wrapper ul.items-done-list li.item-drag .over,
+.container .content-container .done-wrapper ul.items-to-do-list li.item-drag .over,
+.container .content-container .done-wrapper ul.items-doing-list li.item-drag .over,
+.container .content-container .to-do-wrapper ul.items-done-list li.item-drag .over,
+.container .content-container .to-do-wrapper ul.items-to-do-list li.item-drag .over,
+.container .content-container .to-do-wrapper ul.items-doing-list li.item-drag .over,
+.container .content-container .doing-wrapper ul.items-done-list li.item-drag .over,
+.container .content-container .doing-wrapper ul.items-to-do-list li.item-drag .over,
+.container .content-container .doing-wrapper ul.items-doing-list li.item-drag .over {
+  border-top: 2px solid #fff;
+}
 .container .content-container .done-wrapper ul.items-done-list li.item-drag:hover,
 .container .content-container .done-wrapper ul.items-to-do-list li.item-drag:hover,
 .container .content-container .done-wrapper ul.items-doing-list li.item-drag:hover,
@@ -268,35 +279,6 @@ body {
 .container .content-container .doing-wrapper ul.items-doing-list li.item-done .initial-date,
 .container .content-container .doing-wrapper ul.items-doing-list li.item-doing .initial-date {
   color: #068995;
-}
-.container .content-container .done-wrapper ul.items-done-list li.item-to-do .over,
-.container .content-container .done-wrapper ul.items-done-list li.item-done .over,
-.container .content-container .done-wrapper ul.items-done-list li.item-doing .over,
-.container .content-container .done-wrapper ul.items-to-do-list li.item-to-do .over,
-.container .content-container .done-wrapper ul.items-to-do-list li.item-done .over,
-.container .content-container .done-wrapper ul.items-to-do-list li.item-doing .over,
-.container .content-container .done-wrapper ul.items-doing-list li.item-to-do .over,
-.container .content-container .done-wrapper ul.items-doing-list li.item-done .over,
-.container .content-container .done-wrapper ul.items-doing-list li.item-doing .over,
-.container .content-container .to-do-wrapper ul.items-done-list li.item-to-do .over,
-.container .content-container .to-do-wrapper ul.items-done-list li.item-done .over,
-.container .content-container .to-do-wrapper ul.items-done-list li.item-doing .over,
-.container .content-container .to-do-wrapper ul.items-to-do-list li.item-to-do .over,
-.container .content-container .to-do-wrapper ul.items-to-do-list li.item-done .over,
-.container .content-container .to-do-wrapper ul.items-to-do-list li.item-doing .over,
-.container .content-container .to-do-wrapper ul.items-doing-list li.item-to-do .over,
-.container .content-container .to-do-wrapper ul.items-doing-list li.item-done .over,
-.container .content-container .to-do-wrapper ul.items-doing-list li.item-doing .over,
-.container .content-container .doing-wrapper ul.items-done-list li.item-to-do .over,
-.container .content-container .doing-wrapper ul.items-done-list li.item-done .over,
-.container .content-container .doing-wrapper ul.items-done-list li.item-doing .over,
-.container .content-container .doing-wrapper ul.items-to-do-list li.item-to-do .over,
-.container .content-container .doing-wrapper ul.items-to-do-list li.item-done .over,
-.container .content-container .doing-wrapper ul.items-to-do-list li.item-doing .over,
-.container .content-container .doing-wrapper ul.items-doing-list li.item-to-do .over,
-.container .content-container .doing-wrapper ul.items-doing-list li.item-done .over,
-.container .content-container .doing-wrapper ul.items-doing-list li.item-doing .over {
-  border-top: 2px solid #0e1538;
 }
 .container .content-container .done-wrapper ul.items-done-list .item-details,
 .container .content-container .done-wrapper ul.items-to-do-list .item-details,
@@ -475,15 +457,30 @@ body {
 .container .modal .close:hover {
   color: #0e1538;
 }
-
-@keyframes hoverTitle {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.container #toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  pointer-events: none;
 }
+.container #toast-container .toast {
+  background-color: #333;
+  color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px black;
+  transition: opacity 0.5s ease-out;
+  opacity: 0;
+}
+.container #toast-container .toast.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.container #toast-container .toast__header {
+  color: #09CBD0;
+  font-weight: bold;
+}
+
 .css-checkbox {
   position: absolute;
   overflow: hidden;
@@ -541,6 +538,14 @@ body {
   width: 22px;
 }
 
+@keyframes hoverTitle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @keyframes dragging {
   25% {
     transform: rotate(0deg);
@@ -573,5 +578,20 @@ body {
   to {
     opacity: 0;
     top: -400px;
+  }
+}
+@keyframes toastSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 20px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes toastFadeOut {
+  to {
+    opacity: 0;
   }
 }/*# sourceMappingURL=style.css.map */

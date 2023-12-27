@@ -41,6 +41,7 @@ body {
 }
 
 .container {
+    //haeder
     header {
         a {
             top: 2px;
@@ -90,7 +91,7 @@ body {
             clear: both;
         }
         .time-box {
-            width: 330px;
+            width: 350px;
             .day-time-box {
                 width: 220px;
             }
@@ -99,6 +100,7 @@ body {
             }
         }
     }
+    //content-container
     .content-container {
         background: none;
         height: 100dvh;
@@ -149,9 +151,9 @@ body {
                         opacity: 0.5;
                         // animation: dragging 2s infinite;
                     }
-                    // .over {
-                    //     border-top: 2px solid #fff;
-                    // }
+                    .over {
+                        border-top: 2px solid #fff;
+                    }
                 }
                 li.item-drag:hover {
                     box-shadow: 0 2px 15px 5px $third-color;
@@ -165,9 +167,6 @@ body {
                     box-shadow: 0 0 15px 2px $second-color;
                     .initial-date {
                         color: $third-color;
-                    }
-                    .over {
-                        border-top: 2px solid $second-color;
                     }
                 }
                 .item-details {
@@ -202,6 +201,7 @@ body {
             }
         }
     }
+    //modal
     .modal {
         display: none;
         position: fixed;
@@ -276,14 +276,29 @@ body {
             color: $second-color;
         }
     }
-}
-
-@keyframes hoverTitle {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
+    //toast-container
+    #toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        pointer-events: none;
+        .toast {
+            background-color: #333;
+            color: #fff;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px black;
+            transition: opacity 0.5s ease-out;
+            opacity: 0;
+            &.show {
+                opacity: 1;
+                pointer-events: auto;
+            }
+            &__header {
+                color: $main-color;
+                font-weight: bold;
+            }
+        }
     }
 }
 
@@ -345,6 +360,16 @@ body {
     width: 22px;
 }
 
+//hover title
+@keyframes hoverTitle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 //animation item-dragging
 @keyframes dragging {
     25% {
@@ -381,5 +406,23 @@ body {
     to {
         opacity: 0;
         top: -400px
+    }
+}
+
+//animation toast
+@keyframes toastSlideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 20px));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastFadeOut {
+    to {
+        opacity: 0;
     }
 }
