@@ -420,7 +420,7 @@ function checkInputs(input, inputBeginDate, inputDueDate) {
 
 //--handle add item--
 function createItem() {
-  const input = $("#myInput").val(),
+  const input = $("#myInput").val().trim(),
     inputBeginDate = $("#begin-date-time").val(),
     inputDueDate = $("#due-date-time").val();
 
@@ -475,7 +475,7 @@ function deleteItem(itemId) {
 
 //--handle update item--
 function updateItem(itemId) {
-  const input = $("#myInputModal").val(),
+  const input = $("#myInputModal").val().trim(),
     inputBeginDate = $("#begin-date-time-modal").val(),
     inputDueDate = $("#due-date-time-modal").val();
 
