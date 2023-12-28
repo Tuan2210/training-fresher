@@ -1,4 +1,6 @@
 const apiKey = "60836d7502891317b3d0942b4f1d416b";
+
+//--select place--
 function getPlaces() {
   axios
     .get("https://provinces.open-api.vn/api/")
@@ -20,6 +22,7 @@ function getPlaces() {
     .catch((err) => console.error("Error fetching cities:", err));
 }
 
+//--create and get lat-lon--
 function getCoordinates() {
   const selectedPlace = document.querySelector("#place").value;
   if (selectedPlace.length == 0) return;
@@ -43,6 +46,7 @@ function getCoordinates() {
   }
 }
 
+//--get api weather--
 function getWeather(lat, lon) {
   axios
     .get(
@@ -58,19 +62,17 @@ function getWeather(lat, lon) {
     });
 }
 
+//--display weahter info--
 function displayWeatherInfo(weatherInfo) {
   const weatherInfoContainer = document.querySelector(".wrapper__weather-info");
 
-  // Xóa nội dung cũ trong container (nếu có)
   weatherInfoContainer.innerHTML = "";
 
-  // Hiển thị thông tin thời tiết
   const temperature = (weatherInfo.current.temp * 0.1).toFixed();
   const description = weatherInfo.current.weather[0].description;
   const humidity = weatherInfo.current.humidity;
   const windSpeed = weatherInfo.current.wind_speed.toFixed();
 
-  // Tạo các thẻ HTML để chứa thông tin
   const temperatureElement = document.createElement("p");
   temperatureElement.textContent = `Temperature: ${temperature}°C`;
 
@@ -83,11 +85,37 @@ function displayWeatherInfo(weatherInfo) {
   const windSpeedElement = document.createElement("p");
   windSpeedElement.textContent = `Wind speed: ${windSpeed} km/h`;
 
-  // Thêm các thẻ vào container
   weatherInfoContainer.appendChild(temperatureElement);
   weatherInfoContainer.appendChild(descriptionElement);
   weatherInfoContainer.appendChild(humidityElement);
   weatherInfoContainer.appendChild(windSpeedElement);
+}
+
+//--animation bubble bg--
+function gradientsBgBubble() {
+  const interBubble = document.querySelector(".interactive");
+  let curX = 0;
+  let curY = 0;
+  let tgX = 0;
+  let tgY = 0;
+
+  function move() {
+    curX += (tgX - curX) / 5;
+    curY += (tgY - curY) / 5;
+    interBubble.style.transform = `translate(${Math.round(
+      curX
+    )}px, ${Math.round(curY)}px)`;
+    requestAnimationFrame(() => {
+      move();
+    });
+  }
+
+  window.addEventListener("mousemove", (e) => {
+    tgX = e.clientX - 450;
+    tgY = e.clientY - 250;
+  });
+
+  move();
 }
 
 //--DOM content laod---
@@ -106,9 +134,8 @@ document.addEventListener("DOMContentLoaded", function () {
       selectPlace.addEventListener("change", () => {
         locationIcon.classList.remove("animateLocation");
       });
-      window.addEventListener("click", () => {
-        locationIcon.classList.remove("animateLocation");
-      });
     }, 0);
   });
+
+  gradientsBgBubble();
 });

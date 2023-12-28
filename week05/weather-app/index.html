@@ -19,13 +19,34 @@
     <div class="container flex justify-center items-center">
         <!-- <img src="assets/imgs/bg4.jpg" alt="bg" class="container_bg"> -->
         <div class="wrapper border-solid border-white rounded-xl h-96 p-5">
-            <div class="wrapper__search-box flex justify-between items-center">
-                <i class="fa-solid fa-location-dot text-3xl text-white"></i>
-                <select id="place" class="block text-base text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-2xl p-4 pl-5">
-                    <option class="option-default" value="" selected>Chọn tỉnh/thành phố</option>
-                </select>
+            <div class="wrapper__box">
+                <div class="wrapper__search-box flex justify-between items-center gap-5">
+                    <i class="fa-solid fa-location-dot text-3xl text-white"></i>
+                    <select id="place" class="block w-full text-base text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-2xl p-4 pl-5">
+                        <option class="option-default" value="" selected>Chọn tỉnh/thành phố</option>
+                    </select>
+                </div>
             </div>
             <div class="wrapper__weather-info"></div>
+            <span class="gradient-bg w-full h-40">
+                <svg xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
+                        </filter>
+                    </defs>
+                </svg>
+                <div class="gradients-container">
+                    <div class="g1"></div>
+                    <div class="g2"></div>
+                    <div class="g3"></div>
+                    <div class="g4"></div>
+                    <div class="g5"></div>
+                    <div class="interactive"></div>
+                </div>
+            </span>
         </div>
         <!-- <lord-icon src="./test.json" colors="primary:red,secondary:yellow" trigger="loop" style="width:250px;height:250px" /> -->
     </div>
