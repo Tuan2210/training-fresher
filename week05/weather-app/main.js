@@ -8,6 +8,7 @@ function getPlaces() {
 
       places.forEach((place) => {
         const option = document.createElement("option");
+        option.className = "option-place";
         option.textContent = place.name;
         option.value = place.codename;
 
@@ -21,12 +22,12 @@ function getPlaces() {
 
 function getCoordinates() {
   const selectedPlace = document.querySelector("#place").value;
+  if (selectedPlace.length == 0) return;
+
   const tinh = "tinh_";
-  if (selectedPlace.includes(tinh)) {
+  if (selectedPlace.includes(tinh))
     apiCoordinates(selectedPlace.substring(tinh.length));
-  } else {
-    apiCoordinates(selectedPlace);
-  }
+  else apiCoordinates(selectedPlace);
 
   function apiCoordinates(place) {
     axios
@@ -45,8 +46,6 @@ function getCoordinates() {
 function getWeather(lat, lon) {
   axios
     .get(
-      // `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=${apiKey}&units=metric`
-      // `https://api.openweathermap.org/data/2.5/weather?q=${selectedPlace}&appid=${apiKey}&units=metric`
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${apiKey}`
     )
     .then(function (res) {
@@ -60,7 +59,7 @@ function getWeather(lat, lon) {
 }
 
 function displayWeatherInfo(weatherInfo) {
-  const weatherInfoContainer = document.querySelector(".weather-info");
+  const weatherInfoContainer = document.querySelector(".wrapper__weather-info");
 
   // Xóa nội dung cũ trong container (nếu có)
   weatherInfoContainer.innerHTML = "";
@@ -93,5 +92,23 @@ function displayWeatherInfo(weatherInfo) {
 
 //--DOM content laod---
 document.addEventListener("DOMContentLoaded", function () {
-  getPlaces();
+  setTimeout(() => {
+    getPlaces();
+  }, 0);
+
+  const selectPlace = document.querySelector("#place"),
+    locationIcon = document.querySelector(".fa-location-dot");
+
+  selectPlace.addEventListener("mousedown", () => {
+    locationIcon.classList.add("animateLocation");
+
+    setTimeout(() => {
+      selectPlace.addEventListener("change", () => {
+        locationIcon.classList.remove("animateLocation");
+      });
+      window.addEventListener("click", () => {
+        locationIcon.classList.remove("animateLocation");
+      });
+    }, 0);
+  });
 });

@@ -1,19 +1,77 @@
-body {
-  font-family: "Arial", sans-serif;
-  background-color: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  scroll-behavior: smooth;
 }
 
-.weather-app {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+html,
+body {
+  max-width: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+  font-size: 16px;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
-.weather-app #weather-info {
-  margin-top: 20px;
+
+.container {
+  margin: 0 auto;
+  max-width: 100%;
+  min-height: 100dvh;
+  background: linear-gradient(35deg, purple, rgb(103, 16, 202), cyan);
+}
+.container .wrapper {
+  width: 40%;
+  border-width: 1px;
+}
+.container .wrapper__search-box .fa-location-dot {
+  transition: top 0.5s ease;
+}
+.container .wrapper__search-box .animateLocation {
+  animation: animatedLocation linear 1s infinite;
+}
+.container .wrapper__search-box select#place {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  width: 92%;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg) no-repeat right 0.8em center/1.4em, linear-gradient(to left, rgba(255, 255, 255, 0.3) 3em, rgba(255, 255, 255, 0.2) 3em);
+  color: white;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.container .wrapper__search-box select#place::-ms-expand {
+  display: none;
+}
+.container .wrapper__search-box select#place option {
+  color: black;
+  background-color: white;
+}
+
+@keyframes animatedLocation {
+  0% {
+    margin-top: 0px;
+  }
+  25% {
+    margin-top: -20px;
+  }
+  50% {
+    margin-top: 0px;
+  }
+  75% {
+    margin-top: 20px;
+  }
+  100% {
+    margin-top: 0px;
+  }
 }/*# sourceMappingURL=style.css.map */
