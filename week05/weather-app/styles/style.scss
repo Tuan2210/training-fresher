@@ -52,8 +52,8 @@ body {
         z-index: 2;
         width: 40%;
         border-width: 1px;
-        &__box {
-            &__search-box {
+        .wrapper-box {
+            &__search {
                 .fa-location-dot {
                     transition: top 0.5s ease;
                 }
@@ -85,25 +85,18 @@ body {
         }
     }
     .gradient-bg {
-        // width: 100%;
-        // height: 100%;
         z-index: -1;
-        position: relative;
-        overflow: hidden;
         background: linear-gradient(40deg, $color-bg1, $color-bg2);
-        // top: 0;
-        // left: 0;
+        top: 0;
+        left: 0;
         width: 60%;
         svg {
             display: none;
         }
         .gradients-container {
             filter: url(#goo) blur(40px);
-            width: 100%;
-            height: 100%;
         }
         .g1 {
-            position: absolute;
             background: radial-gradient(circle at center, rgba(18, 113, 255, 0.8) 0, rgba(18, 113, 255, 0) 50%) no-repeat;
             mix-blend-mode: $blending;
             width: $circle-size;
@@ -115,7 +108,6 @@ body {
             opacity: 1;
         }
         .g2 {
-            position: absolute;
             background: radial-gradient(circle at center, rgba(221, 74, 255, 0.8) 0, rgba(221, 74, 255, 0) 50%) no-repeat;
             mix-blend-mode: $blending;
             width: $circle-size;
@@ -127,7 +119,6 @@ body {
             opacity: 1;
         }
         .g3 {
-            position: absolute;
             background: radial-gradient(circle at center, rgba(100, 220, 255, 0.8) 0, rgba(100, 220, 255, 0) 50%) no-repeat;
             mix-blend-mode: $blending;
             width: $circle-size;
@@ -139,7 +130,6 @@ body {
             opacity: 1;
         }
         .g4 {
-            position: absolute;
             background: radial-gradient(circle at center, rgba(200, 50, 50, 0.8) 0, rgba(200, 50, 50, 0) 50%) no-repeat;
             mix-blend-mode: $blending;
             width: $circle-size;
@@ -151,7 +141,6 @@ body {
             opacity: 0.7;
         }
         .g5 {
-            position: absolute;
             background: radial-gradient(circle at center, rgba(180, 180, 50, 0.8) 0, rgba(180, 180, 50, 0) 50%) no-repeat;
             mix-blend-mode: $blending;
             width: calc($circle-size * 2);
@@ -163,7 +152,6 @@ body {
             opacity: 1;
         }
         .interactive {
-            position: absolute;
             background: radial-gradient(circle at center, rgba(140, 100, 255, 0.8) 0, rgba(140, 100, 255, 0) 50%) no-repeat;
             mix-blend-mode: $blending;
             width: 100%;
