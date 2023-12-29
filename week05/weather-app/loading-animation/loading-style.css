@@ -1,0 +1,44 @@
+.loader,
+.loader::before,
+.loader::after {
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    animation: rotate 5s linear infinite;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-color: rgb(103, 16, 202);
+}
+
+.loader::before,
+.loader::after {
+    position: absolute;
+    content: "";
+}
+
+.loader::before {
+    border-color: cyan;
+    width: 100%;
+    height: 100%;
+    animation-delay: .5s
+}
+
+.loader::after {
+    border-color: purple;
+    width: 100%;
+    height: 100%;
+    animation-delay: .10s;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg)
+    }
+}

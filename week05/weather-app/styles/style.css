@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Dongle:wght@300;700&family=Fleur+De+Leah&family=Inter:wght@300&family=Mansalva&family=Mystery+Quest&family=Poppins&family=Roboto:wght@500&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +13,8 @@ body {
   max-width: 100%;
   min-height: 100dvh;
   overflow: hidden;
-  font-size: 16px;
+  font-family: "Dongle", sans-serif;
+  font-size: 1.5rem;
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -36,6 +38,7 @@ body {
   border-width: 1px;
   -webkit-backdrop-filter: blur(15px);
           backdrop-filter: blur(15px);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .container .wrapper .wrapper-box__top .search .fa-location-dot {
   transition: top 0.5s ease;
@@ -67,6 +70,14 @@ body {
 .container .wrapper .wrapper-box__top .search select#place option {
   color: lightcyan;
   background: darkslateblue;
+}
+.container .wrapper__weather-info .loading p {
+  width: 280px;
+  color: lightgray;
+}
+.container .wrapper__weather-info .loading svg {
+  position: relative;
+  padding-bottom: 10%;
 }
 .container .gradient-bg {
   z-index: -1;

@@ -1,9 +1,20 @@
-$arrow-bg: rgba(255, 255, 255, 0.3);
+@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Dongle:wght@300;700&family=Fleur+De+Leah&family=Inter:wght@300&family=Mansalva&family=Mystery+Quest&family=Poppins&family=Roboto:wght@500&display=swap');
+$arrow-bg: rgba(255,
+255,
+255,
+0.3);
 $arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
-$select-bg: rgba(255, 255, 255, 0.2);
+$select-bg: rgba(255,
+255,
+255,
+0.2);
 //
-$color-bg1: rgb(108, 0, 162);
-$color-bg2: rgb(0, 17, 82);
+$color-bg1: rgb(108,
+0,
+162);
+$color-bg2: rgb(0,
+17,
+82);
 $circle-size: 80%;
 $blending: hard-light;
 * {
@@ -20,8 +31,8 @@ body {
     max-width: 100%;
     min-height: 100dvh;
     overflow: hidden;
-    // font-family: 'Inter';
-    font-size: 16px;
+    font-family: 'Dongle', sans-serif;
+    font-size: 1.5rem;
     // background-image: url(../assets/imgs/bg4.jpg);
     // background-repeat: no-repeat;
     // background-size: cover;
@@ -54,6 +65,7 @@ body {
             z-index: 5;
             border-width: 1px;
             backdrop-filter: blur(15px);
+            background-color: $select-bg;
             &__top {
                 .search {
                     .fa-location-dot {
@@ -91,7 +103,20 @@ body {
             }
         }
         &__weather-info {
-            // background-color: red;
+            // background-color: $select-bg;
+            .loading {
+                p {
+                    width: 280px;
+                    color: lightgray;
+                }
+                svg {
+                    position: relative;
+                    padding-bottom: 10%;
+                    // margin: 0 auto;
+                    // max-width: 100%;
+                    // max-height: 100%;
+                }
+            }
         }
     }
     .gradient-bg {
