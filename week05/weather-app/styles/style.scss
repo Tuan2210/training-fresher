@@ -1,6 +1,5 @@
 $arrow-bg: rgba(255, 255, 255, 0.3);
 $arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
-$option-bg: white;
 $select-bg: rgba(255, 255, 255, 0.2);
 //
 $color-bg1: rgb(108, 0, 162);
@@ -49,45 +48,56 @@ body {
     min-height: 100dvh;
     background: linear-gradient(35deg, purple, rgb(103, 16, 202), cyan);
     .wrapper {
-        z-index: 2;
-        width: 40%;
-        border-width: 1px;
+        z-index: 1;
+        width: 60%;
         .wrapper-box {
-            &__search {
-                .fa-location-dot {
-                    transition: top 0.5s ease;
-                }
-                .animateLocation {
-                    animation: animatedLocation linear 1s infinite;
-                }
-                select#place {
-                    appearance: none;
-                    border: 0;
-                    outline: 0;
-                    font: inherit;
-                    background: $arrow-icon no-repeat right 0.8em center / 1.4em, linear-gradient(to left, $arrow-bg 3em, $select-bg 3em);
-                    color: white;
-                    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
-                    cursor: pointer;
-                    &::-ms-expand {
-                        display: none;
+            z-index: 5;
+            border-width: 1px;
+            backdrop-filter: blur(15px);
+            &__top {
+                .search {
+                    .fa-location-dot {
+                        transition: top 0.5s ease;
                     }
-                    &:focus {
-                        outline: none;
-                        // border: 2px solid #fff;
+                    .animateLocation {
+                        animation: animatedLocation linear 1s infinite;
                     }
-                    option {
-                        color: black;
-                        background-color: $option-bg;
+                    select#place {
+                        appearance: none;
+                        border: 0;
+                        outline: 0;
+                        font: inherit;
+                        background: $arrow-icon no-repeat right 0.8em center / 1.4em, linear-gradient(to left, $arrow-bg 3em, $select-bg 3em);
+                        color: white;
+                        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+                        cursor: pointer;
+                        &::-ms-expand {
+                            display: none;
+                        }
+                        &:focus {
+                            outline: none;
+                        }
+                        &:focus :focus>option:checked {
+                            background: #000 !important;
+                        }
+                        option {
+                            // color: darkmagenta;
+                            // background: lightsteelblue;
+                            color: lightcyan;
+                            background: darkslateblue;
+                        }
                     }
                 }
             }
+        }
+        &__weather-info {
+            // background-color: red;
         }
     }
     .gradient-bg {
         z-index: -1;
         background: linear-gradient(40deg, $color-bg1, $color-bg2);
-        top: 0;
+        top: -100%;
         left: 0;
         width: 60%;
         svg {
@@ -96,9 +106,12 @@ body {
         .gradients-container {
             filter: url(#goo) blur(40px);
         }
-        .g1 {
-            background: radial-gradient(circle at center, rgba(18, 113, 255, 0.8) 0, rgba(18, 113, 255, 0) 50%) no-repeat;
+        .g1 .g2 .g3 .g4 .g5 .interactive {
+            // z-index: 1 !important;
             mix-blend-mode: $blending;
+        }
+        .g1 {
+            background: radial-gradient(circle at center, rgba(18, 113, 255, 0.8) 0, rgba(18, 113, 255, 0) 90%) no-repeat;
             width: $circle-size;
             height: $circle-size;
             top: calc(50% - $circle-size / 2);
@@ -108,8 +121,7 @@ body {
             opacity: 1;
         }
         .g2 {
-            background: radial-gradient(circle at center, rgba(221, 74, 255, 0.8) 0, rgba(221, 74, 255, 0) 50%) no-repeat;
-            mix-blend-mode: $blending;
+            background: radial-gradient(circle at center, rgba(221, 74, 255, 0.8) 0, rgba(221, 74, 255, 0) 80%) no-repeat;
             width: $circle-size;
             height: $circle-size;
             top: calc(50% - $circle-size / 2);
@@ -119,8 +131,7 @@ body {
             opacity: 1;
         }
         .g3 {
-            background: radial-gradient(circle at center, rgba(100, 220, 255, 0.8) 0, rgba(100, 220, 255, 0) 50%) no-repeat;
-            mix-blend-mode: $blending;
+            background: radial-gradient(circle at center, rgba(100, 220, 255, 0.8) 0, rgba(100, 220, 255, 0) 70%) no-repeat;
             width: $circle-size;
             height: $circle-size;
             top: calc(50% - $circle-size / 2 + 200px);
@@ -130,8 +141,7 @@ body {
             opacity: 1;
         }
         .g4 {
-            background: radial-gradient(circle at center, rgba(200, 50, 50, 0.8) 0, rgba(200, 50, 50, 0) 50%) no-repeat;
-            mix-blend-mode: $blending;
+            background: radial-gradient(circle at center, rgba(200, 50, 50, 0.8) 0, rgba(200, 50, 50, 0) 60%) no-repeat;
             width: $circle-size;
             height: $circle-size;
             top: calc(50% - $circle-size / 2);
@@ -142,7 +152,6 @@ body {
         }
         .g5 {
             background: radial-gradient(circle at center, rgba(180, 180, 50, 0.8) 0, rgba(180, 180, 50, 0) 50%) no-repeat;
-            mix-blend-mode: $blending;
             width: calc($circle-size * 2);
             height: calc($circle-size * 2);
             top: calc(50% - $circle-size);
@@ -152,8 +161,7 @@ body {
             opacity: 1;
         }
         .interactive {
-            background: radial-gradient(circle at center, rgba(140, 100, 255, 0.8) 0, rgba(140, 100, 255, 0) 50%) no-repeat;
-            mix-blend-mode: $blending;
+            background: radial-gradient(circle at center, rgba(140, 100, 255, 0.8) 0, rgba(140, 100, 255, 0) 90%) no-repeat;
             width: 100%;
             height: 100%;
             top: -50%;

@@ -111,8 +111,8 @@ function gradientsBgBubble() {
   }
 
   window.addEventListener("mousemove", (e) => {
-    tgX = e.clientX - 450;
-    tgY = e.clientY - 250;
+    tgX = e.clientX - 280;
+    tgY = e.clientY - 180;
   });
 
   move();
