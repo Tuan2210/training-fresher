@@ -32,10 +32,7 @@ body {
     min-height: 100dvh;
     overflow: hidden;
     font-family: 'Dongle', sans-serif;
-    font-size: 1.5rem;
-    // background-image: url(../assets/imgs/bg4.jpg);
-    // background-repeat: no-repeat;
-    // background-size: cover;
+    font-size: 1.4rem;
     user-select: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -60,7 +57,7 @@ body {
     background: linear-gradient(35deg, purple, rgb(103, 16, 202), cyan);
     .wrapper {
         z-index: 1;
-        width: 60%;
+        width: 70%;
         .wrapper-box {
             z-index: 5;
             border-width: 1px;
@@ -89,15 +86,16 @@ body {
                         &:focus {
                             outline: none;
                         }
-                        &:focus :focus>option:checked {
-                            background: #000 !important;
-                        }
                         option {
                             // color: darkmagenta;
                             // background: lightsteelblue;
                             color: lightcyan;
                             background: darkslateblue;
                         }
+                    }
+                    #day-time {
+                        width: 280px;
+                        color: purple;
                     }
                 }
             }
@@ -108,14 +106,17 @@ body {
                 p {
                     width: 280px;
                     color: lightgray;
+                    font-weight: bold;
                 }
                 svg {
                     position: relative;
                     padding-bottom: 10%;
-                    // margin: 0 auto;
-                    // max-width: 100%;
-                    // max-height: 100%;
                 }
+            }
+            .detailsInfo {
+                color: purple;
+                font-weight: bold;
+                .detailsInfo-bottom {}
             }
         }
     }

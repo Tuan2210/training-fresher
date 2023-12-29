@@ -1,5 +1,44 @@
 const apiKey = "60836d7502891317b3d0942b4f1d416b";
 
+function refreshRealTime() {
+  var d = new Date();
+
+  var day = d.getDay();
+  var date = d.getDate();
+  var month = d.getMonth();
+  var year = d.getFullYear();
+  var days = new Array(
+    "Chủ nhật",
+    "Thứ hai",
+    "Thứ ba",
+    "Thứ tư",
+    "Thứ năm",
+    "Thứ sáu",
+    "Thứ bảy"
+  );
+  var months = new Array(
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12"
+  );
+
+  const dayTime = document.querySelector("#day-time");
+  if (dayTime)
+    dayTime.textContent =
+      days[day] + " | " + date + "/" + months[month] + "/" + year;
+
+  setTimeout("refreshRealTime()", 1000);
+}
+
 function animationTypingTxt() {
   var words = ["Vui lòng chờ trong giây lát"],
     part,
@@ -105,7 +144,7 @@ function getCoordinates() {
 function getWeather(lat, lon) {
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${apiKey}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&lang=vi&appid=${apiKey}`
     )
     .then(function (res) {
       const weatherInfo = res.data;
@@ -136,23 +175,28 @@ function displayWeatherInfo(weatherInfo) {
     const description = weatherInfo.current.weather[0].description;
     const humidity = weatherInfo.current.humidity;
     const windSpeed = weatherInfo.current.wind_speed.toFixed();
+    const uv = weatherInfo.current.uvi;
 
     const temperatureElement = document.createElement("p");
-    temperatureElement.textContent = `Temperature: ${temperature}°C`;
+    temperatureElement.textContent = `${temperature}°C`;
 
     const descriptionElement = document.createElement("p");
-    descriptionElement.textContent = `Description: ${description}`;
+    descriptionElement.textContent = `${description}`;
 
     const humidityElement = document.createElement("p");
-    humidityElement.textContent = `Humidity: ${humidity}`;
+    humidityElement.textContent = `Độ ẩm: ${humidity}`;
 
     const windSpeedElement = document.createElement("p");
-    windSpeedElement.textContent = `Wind speed: ${windSpeed} km/h`;
+    windSpeedElement.textContent = `Gió: ${windSpeed} km/h`;
+
+    const uvElement = document.createElement("p");
+    uvElement.textContent = `Chỉ số tia UV: ${uv}`;
 
     weatherInfoContainer.appendChild(temperatureElement);
     weatherInfoContainer.appendChild(descriptionElement);
     weatherInfoContainer.appendChild(humidityElement);
     weatherInfoContainer.appendChild(windSpeedElement);
+    weatherInfoContainer.appendChild(uvElement);
   }, 2000);
 }
 
@@ -177,7 +221,7 @@ function gradientsBgBubble() {
 
   window.addEventListener("mousemove", (e) => {
     tgX = e.clientX - 280;
-    tgY = e.clientY - 180;
+    tgY = e.clientY - 100;
   });
 
   move();
@@ -185,6 +229,8 @@ function gradientsBgBubble() {
 
 //--DOM content laod---
 document.addEventListener("DOMContentLoaded", function () {
+  refreshRealTime();
+
   setTimeout(() => {
     getPlaces();
   }, 0);

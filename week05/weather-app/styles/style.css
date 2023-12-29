@@ -14,7 +14,7 @@ body {
   min-height: 100dvh;
   overflow: hidden;
   font-family: "Dongle", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -31,7 +31,7 @@ body {
 }
 .container .wrapper {
   z-index: 1;
-  width: 60%;
+  width: 70%;
 }
 .container .wrapper .wrapper-box {
   z-index: 5;
@@ -64,20 +64,26 @@ body {
 .container .wrapper .wrapper-box__top .search select#place:focus {
   outline: none;
 }
-.container .wrapper .wrapper-box__top .search select#place:focus :focus > option:checked {
-  background: #000 !important;
-}
 .container .wrapper .wrapper-box__top .search select#place option {
   color: lightcyan;
   background: darkslateblue;
 }
+.container .wrapper .wrapper-box__top .search #day-time {
+  width: 280px;
+  color: purple;
+}
 .container .wrapper__weather-info .loading p {
   width: 280px;
   color: lightgray;
+  font-weight: bold;
 }
 .container .wrapper__weather-info .loading svg {
   position: relative;
   padding-bottom: 10%;
+}
+.container .wrapper__weather-info .detailsInfo {
+  color: purple;
+  font-weight: bold;
 }
 .container .gradient-bg {
   z-index: -1;

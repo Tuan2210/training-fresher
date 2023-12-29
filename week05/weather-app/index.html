@@ -27,50 +27,42 @@
                     <div class="search flex justify-between items-center gap-5">
                         <i class="fa-solid fa-location-dot text-3xl text-white"></i>
                         <select id="place" class="block w-full text-base text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-2xl p-2 pl-5">
-                            <option class="option-default" value="" selected style="font-size: 30px;">Chọn tỉnh/thành phố</option>
+                            <option class="option-default" value="" selected>Chọn tỉnh/thành phố</option>
                         </select>
+                        <div id="day-time" class="font-bold"></div>
                     </div>
                     <div class="wrapper__weather-info w-full h-full">
                         <div class="loading hidden justify-center items-center w-full h-full gap-1">
                             <p class="lblLoading"></p>
                             <div class="loader"></div>
-                            <!-- <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" class="flex justify-center items-center">
-                                <defs>
-                                 <filter id="goo">
-                                     <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
-                                     <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm" />
-                                     <feBlend/>
-                                     </filter>     
-                                   <radialGradient id="radial-gradient" cx="20.5" cy="20.32" fx="5.9753758345333345" fy="4.511207610428622" r="23.94" gradientUnits="userSpaceOnUse">
-                                     <stop offset="0.43" stop-color="#feb829"/>
-                                     <stop offset="0.53" stop-color="#fdb125"/>
-                                     <stop offset="0.68" stop-color="#f99d1a"/>
-                                     <stop offset="0.85" stop-color="#f47c09"/>
-                                     <stop offset="0.92" stop-color="#f16c00"/>
-                                   </radialGradient>
-                                   <symbol id="Yolk" data-name="Yolk" viewBox="0 0 41 41">
-                                     <circle cx="20.5" cy="20.5" r="20.5" fill="url(#radial-gradient)"/>
-                                     <path d="M5.59,18.78A15,15,0,0,1,23.65,5.83" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-                                   </symbol>
-                                  
-                                </defs>
-                                <g class="whiteContainer" fill="#ede6e3" filter="url(#goo)">
-                                 
-                                     <circle cx="280" cy="300" r="41"/>
-                                     <circle cx="360" cy="300" r="41"/>
-                                     <circle cx="440" cy="300" r="41"/>
-                                     <circle cx="520" cy="300" r="41"/>
-                                   </g>
-                                <g class="yolkContainer">
-                                <use width="41" height="41" xlink:href="#Yolk" x="260" y="280"/>
-                                <use width="41" height="41" xlink:href="#Yolk" x="340" y="280"/>
-                                <use width="41" height="41" xlink:href="#Yolk" x="420" y="280"/>
-                                <use width="41" height="41" xlink:href="#Yolk" x="500" y="280"/>
-                                </g>
-                            </svg> -->
                         </div>
-                        <div class="detailsInfo hidden">
-
+                        <div class="detailsInfo flex flex-col justify-between w-full h-full gap-2">
+                            <div class="detailsInfo-top flex justify-between items-center gap-20">
+                                <div class="detailsInfo-top_left flex justify-center items-center w-full gap-5">
+                                    <!-- <img width="96" height="96" src="https://img.icons8.com/glassmorphism/96/experimental-clouds-glassmorphism.png" alt="experimental-clouds-glassmorphism" /> -->
+                                    <lord-icon src="assets/clouds.json" trigger="loop" style="width:250px;height:250px">
+                                    </lord-icon>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="temp text-9xl">10°C</p>
+                                        <p class="desc text-5xl" style="margin-top: -20px;">Phê</p>
+                                    </div>
+                                </div>
+                                <div class="detailsInfo-top_right flex flex-col gap-5 w-full">
+                                    <p class="humidity text-3xl">Độ ẩm: 61</p>
+                                    <p class="wind-speed text-3xl">Gió: 2 km/h</p>
+                                    <p class="uv text-3xl">Chỉ số tia UV: 0</p>
+                                </div>
+                            </div>
+                            <div class="detailsInfo-bottom grid grid-cols-8 w-full h-full bg-white gap-3">
+                                <div class="item-weather bg-red-100">0</div>
+                                <div class="item-weather bg-red-100">1</div>
+                                <div class="item-weather bg-red-100">2</div>
+                                <div class="item-weather bg-red-100">3</div>
+                                <div class="item-weather bg-red-100">4</div>
+                                <div class="item-weather bg-red-100">5</div>
+                                <div class="item-weather bg-red-100">6</div>
+                                <div class="item-weather bg-red-100">7</div>
+                            </div>
                         </div>
                     </div>
                 </div>
