@@ -159,7 +159,9 @@ function getWeather(lat, lon) {
 //--get data weather info--
 function getCurrentWeatherInfo(weatherInfo) {
   const iconCode = weatherInfo.current.weather[0].icon,
-    icon = `https://openweathermap.org/img/wn/${iconCode}@2x.png`,
+    // icon = `https://openweathermap.org/img/wn/${iconCode}@2x.png`,
+    icon =
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExamZyb3p1b2FsdmdieXVvNTFyenEwaTgxdzB0YXhibXM3cWJ4NTF2ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/14hw18xwlfhGX1gP3X/giphy.gif",
     temp = (weatherInfo.current.temp * 0.1).toFixed(),
     desc = weatherInfo.current.weather[0].description,
     humidity = weatherInfo.current.humidity,
@@ -169,7 +171,7 @@ function getCurrentWeatherInfo(weatherInfo) {
   displayCurrentWeatherInfo(
     icon,
     temp,
-    desc[0].toUpperCase().concat(desc.slice(1)),
+    desc[0].toUpperCase().concat(desc.slice(1)), //uppercase first letter
     humidity,
     windSpeed,
     uv
@@ -182,21 +184,21 @@ function displayCurrentWeatherInfo(icon, temp, desc, humidity, windSpeed, uv) {
     loading = document.querySelector(".loading");
 
   const detailsInfoContent = `
-    <div class="detailsInfo-top flex justify-between items-center gap-14 order-first">
-      <div class="detailsInfo-top_left flex justify-center items-center w-full gap-2">
-          <img id="weatherIcon" alt="Weather Icon" width="200" height="200" src=${icon} style="align-self: flex-start;">
-          <div class="flex flex-col justify-center">
+    <div class="detailsInfo-top flex justify-center items-center gap-10 order-first">
+      <div class="detailsInfo-top_left flex items-center gap-5">
+          <img id="weatherIcon" alt="Weather Icon" width="300" height="300" src=${icon} style="align-self: flex-start;">
+          <div class="flex flex-col justify-center w-56">
               <p class="temp text-9xl">${temp}&deg;<span style="vertical-align: top; font-size: 130px;">C</span></p>
               <p class="desc text-5xl w-52" style="margin-top: -20px;">${desc}</p>
           </div>
       </div>
-      <div class="detailsInfo-top_right flex flex-col gap-5 w-full">
+      <div class="detailsInfo-top_right flex flex-col gap-5">
           <p class="humidity text-3xl">Độ ẩm: ${humidity}%</p>
           <p class="wind-speed text-3xl">Gió: ${windSpeed}km/h</p>
           <p class="uv text-3xl">Chỉ số tia UV: ${uv}</p>
       </div>
     </div>
-    <div class="detailsInfo-bottom grid grid-cols-8 w-full h-full bg-white gap-3 order-last">
+    <div class="detailsInfo-bottom grid grid-cols-8 w-full h-24 bg-white gap-3 order-last">
       <div class="item-weather bg-red-100">0</div>
       <div class="item-weather bg-red-100">1</div>
       <div class="item-weather bg-red-100">2</div>

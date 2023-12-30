@@ -32,6 +32,7 @@ body {
 .container .wrapper {
   z-index: 1;
   width: 75%;
+  height: 600px;
 }
 .container .wrapper .wrapper-box {
   z-index: 5;
@@ -85,7 +86,7 @@ body {
   color: purple;
   font-weight: bold;
 }
-.container .wrapper__weather-info .detailsInfo .detailsInfo--top__left #weatherIcon {
+.container .wrapper__weather-info .detailsInfo .detailsInfo-top__left #weatherIcon {
   vertical-align: top;
 }
 .container .gradient-bg {

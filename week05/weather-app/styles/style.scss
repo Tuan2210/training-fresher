@@ -58,6 +58,7 @@ body {
     .wrapper {
         z-index: 1;
         width: 75%;
+        height: 600px;
         .wrapper-box {
             z-index: 5;
             border-width: 1px;
@@ -116,7 +117,7 @@ body {
             .detailsInfo {
                 color: purple;
                 font-weight: bold;
-                .detailsInfo--top {
+                .detailsInfo-top {
                     &__left {
                         #weatherIcon {
                             vertical-align: top;
