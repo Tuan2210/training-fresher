@@ -149,17 +149,65 @@ function getWeather(lat, lon) {
     .then(function (res) {
       const weatherInfo = res.data;
       console.log(weatherInfo);
-      displayWeatherInfo(weatherInfo);
+      getCurrentWeatherInfo(weatherInfo);
     })
     .catch(function (err) {
       console.error("Error fetching weather:", err);
     });
 }
 
+//--get data weather info--
+function getCurrentWeatherInfo(weatherInfo) {
+  const iconCode = weatherInfo.current.weather[0].icon,
+    icon = `https://openweathermap.org/img/wn/${iconCode}@2x.png`,
+    temp = (weatherInfo.current.temp * 0.1).toFixed(),
+    desc = weatherInfo.current.weather[0].description,
+    humidity = weatherInfo.current.humidity,
+    windSpeed = (weatherInfo.current.wind_speed * 3.6).toFixed(), // m/s to km/h
+    uv = weatherInfo.current.uvi;
+
+  displayCurrentWeatherInfo(
+    icon,
+    temp,
+    desc[0].toUpperCase().concat(desc.slice(1)),
+    humidity,
+    windSpeed,
+    uv
+  );
+}
+
 //--display weahter info--
-function displayWeatherInfo(weatherInfo) {
+function displayCurrentWeatherInfo(icon, temp, desc, humidity, windSpeed, uv) {
   const weatherInfoContainer = document.querySelector(".detailsInfo"),
     loading = document.querySelector(".loading");
+
+  const detailsInfoContent = `
+    <div class="detailsInfo-top flex justify-between items-center gap-14 order-first">
+      <div class="detailsInfo-top_left flex justify-center items-center w-full gap-2">
+          <img id="weatherIcon" alt="Weather Icon" width="200" height="200" src=${icon} style="align-self: flex-start;">
+          <div class="flex flex-col justify-center">
+              <p class="temp text-9xl">${temp}&deg;<span style="vertical-align: top; font-size: 130px;">C</span></p>
+              <p class="desc text-5xl w-52" style="margin-top: -20px;">${desc}</p>
+          </div>
+      </div>
+      <div class="detailsInfo-top_right flex flex-col gap-5 w-full">
+          <p class="humidity text-3xl">Độ ẩm: ${humidity}%</p>
+          <p class="wind-speed text-3xl">Gió: ${windSpeed}km/h</p>
+          <p class="uv text-3xl">Chỉ số tia UV: ${uv}</p>
+      </div>
+    </div>
+    <div class="detailsInfo-bottom grid grid-cols-8 w-full h-full bg-white gap-3 order-last">
+      <div class="item-weather bg-red-100">0</div>
+      <div class="item-weather bg-red-100">1</div>
+      <div class="item-weather bg-red-100">2</div>
+      <div class="item-weather bg-red-100">3</div>
+      <div class="item-weather bg-red-100">4</div>
+      <div class="item-weather bg-red-100">5</div>
+      <div class="item-weather bg-red-100">6</div>
+      <div class="item-weather bg-red-100">7</div>
+    </div>
+  `;
+  weatherInfoContainer.innerHTML = detailsInfoContent;
 
   animationTypingTxt();
 
@@ -167,36 +215,33 @@ function displayWeatherInfo(weatherInfo) {
     loading.classList.remove("flex");
     loading.classList.add("hidden");
 
-    weatherInfoContainer.innerHTML = "";
     weatherInfoContainer.classList.remove("hidden");
     weatherInfoContainer.classList.add("flex");
 
-    const temperature = (weatherInfo.current.temp * 0.1).toFixed();
-    const description = weatherInfo.current.weather[0].description;
-    const humidity = weatherInfo.current.humidity;
-    const windSpeed = weatherInfo.current.wind_speed.toFixed();
-    const uv = weatherInfo.current.uvi;
+    // const iconElement = document.querySelector("#weatherIcon");
+    // iconElement.src = ``;
 
-    const temperatureElement = document.createElement("p");
-    temperatureElement.textContent = `${temperature}°C`;
+    // const temperatureElement = document.querySelector(".temp");
+    // temperatureElement.textContent = `${temperature}°C`;
 
-    const descriptionElement = document.createElement("p");
-    descriptionElement.textContent = `${description}`;
+    // const descriptionElement = document.querySelector(".desc");
+    // descriptionElement.textContent = `${description}`;
 
-    const humidityElement = document.createElement("p");
-    humidityElement.textContent = `Độ ẩm: ${humidity}`;
+    // const humidityElement = document.querySelector(".humidity");
+    // humidityElement.textContent = `Độ ẩm: ${humidity}`;
 
-    const windSpeedElement = document.createElement("p");
-    windSpeedElement.textContent = `Gió: ${windSpeed} km/h`;
+    // const windSpeedElement = document.querySelector(".wind-speed");
+    // windSpeedElement.textContent = `Gió: ${windSpeed} km/h`;
 
-    const uvElement = document.createElement("p");
-    uvElement.textContent = `Chỉ số tia UV: ${uv}`;
+    // const uvElement = document.querySelector(".uv");
+    // uvElement.textContent = `Chỉ số tia UV: ${uv}`;
 
-    weatherInfoContainer.appendChild(temperatureElement);
-    weatherInfoContainer.appendChild(descriptionElement);
-    weatherInfoContainer.appendChild(humidityElement);
-    weatherInfoContainer.appendChild(windSpeedElement);
-    weatherInfoContainer.appendChild(uvElement);
+    // weatherInfoContainer.appendChild(iconElement);
+    // weatherInfoContainer.appendChild(temperatureElement);
+    // weatherInfoContainer.appendChild(descriptionElement);
+    // weatherInfoContainer.appendChild(humidityElement);
+    // weatherInfoContainer.appendChild(windSpeedElement);
+    // weatherInfoContainer.appendChild(uvElement);
   }, 2000);
 }
 
@@ -229,6 +274,7 @@ function gradientsBgBubble() {
 
 //--DOM content laod---
 document.addEventListener("DOMContentLoaded", function () {
+  gradientsBgBubble();
   refreshRealTime();
 
   setTimeout(() => {
@@ -248,6 +294,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }, 0);
   });
-
-  gradientsBgBubble();
 });

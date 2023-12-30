@@ -57,7 +57,7 @@ body {
     background: linear-gradient(35deg, purple, rgb(103, 16, 202), cyan);
     .wrapper {
         z-index: 1;
-        width: 70%;
+        width: 75%;
         .wrapper-box {
             z-index: 5;
             border-width: 1px;
@@ -94,7 +94,7 @@ body {
                         }
                     }
                     #day-time {
-                        width: 280px;
+                        width: 350px;
                         color: purple;
                     }
                 }
@@ -116,6 +116,13 @@ body {
             .detailsInfo {
                 color: purple;
                 font-weight: bold;
+                .detailsInfo--top {
+                    &__left {
+                        #weatherIcon {
+                            vertical-align: top;
+                        }
+                    }
+                }
                 .detailsInfo-bottom {}
             }
         }
