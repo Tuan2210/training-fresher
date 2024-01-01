@@ -158,11 +158,153 @@ function getWeather(lat, lon) {
 
 //--get data weather info--
 function getCurrentWeatherInfo(weatherInfo) {
-  const iconCode = weatherInfo.current.weather[0].icon,
-    // icon = `https://openweathermap.org/img/wn/${iconCode}@2x.png`,
-    icon =
-      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExamZyb3p1b2FsdmdieXVvNTFyenEwaTgxdzB0YXhibXM3cWJ4NTF2ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/14hw18xwlfhGX1gP3X/giphy.gif",
-    temp = (weatherInfo.current.temp * 0.1).toFixed(),
+  // icon = `https://openweathermap.org/img/wn/${iconCode}@2x.png`,
+  var iconCode = weatherInfo.current.weather[0].icon;
+  var icon;
+  const checkDayNight = iconCode.lastIndexOf("d");
+  if (checkDayNight !== -1) {
+    //icons-day
+    switch (iconCode) {
+      case "01d":
+        icon = {
+          src: "assets/icons/sun.json",
+          colors: "primary:yellow,secondary:orange",
+          state: "loop-spin",
+        };
+        break;
+      case "02d":
+        icon = {
+          src: "assets/icons/clouds-d.json",
+          colors: "primary:orange,secondary:#898176",
+          state: "hover-pinch",
+        };
+        break;
+      case "03d":
+        icon = {
+          src: "assets/icons/cloud.json",
+          colors: "primary:black,secondary:#898176",
+          state: "loop-cycle",
+        };
+        break;
+      case "04d":
+        icon = {
+          src: "assets/icons/clouds.json",
+          colors: "primary:black,secondary:#898176",
+          state: "hover-pinch",
+        };
+        break;
+      case "09d":
+        icon = {
+          src: "assets/icons/rain.json",
+          colors: "",
+          state: "hover-pinch",
+        };
+        break;
+      case "10d":
+        icon = {
+          src: "assets/icons/rain-d.json",
+          colors: "",
+          state: "loop-cycle",
+        };
+        break;
+      case "11d":
+        icon = {
+          src: "assets/icons/storm.json",
+          colors: "",
+          state: "hover-pinch",
+        };
+        break;
+      case "13d":
+        icon = {
+          src: "assets/icons/snow.json",
+          colors: "",
+          state: "hover-pinch",
+        };
+        break;
+      case "50d":
+        icon = {
+          src: "assets/icons/fog.json",
+          colors: "",
+          state: "hover-pinch",
+        };
+        break;
+
+      default:
+        break;
+    }
+  } else {
+    //icons-night
+    switch (iconCode) {
+      case "01n":
+        icon = {
+          src: "assets/icons/moon.json",
+          colors: "primary:#fff,secondary:#898176",
+          state: "hover-pinch",
+        };
+        break;
+      case "02n":
+        icon = {
+          src: "assets/icons/clouds-n.json",
+          colors: "secondary:#898176",
+          state: "hover-pinch",
+        };
+        break;
+      case "03n":
+        icon = {
+          src: "assets/icons/cloud.json",
+          colors: "primary:black,secondary:#898176",
+          state: "loop-cycle",
+        };
+        break;
+      case "04n":
+        icon = {
+          src: "assets/icons/clouds.json",
+          colors: "primary:black,secondary:#898176",
+          state: "hover-pinch",
+        };
+        break;
+      case "09n":
+        icon = {
+          src: "assets/icons/rain.json",
+          colors: "",
+          state: "hover-pinch",
+        };
+        break;
+      case "10n":
+        icon = {
+          src: "assets/icons/rain-n.json",
+          colors: "",
+          state: "loop-cycle",
+        };
+        break;
+      case "11n":
+        icon = {
+          src: "assets/icons/storm.json",
+          colors: "",
+          state: "hover-pinch",
+        };
+        break;
+      case "13n":
+        icon = {
+          src: "assets/icons/snow.json",
+          colors: "",
+          state: "hover-pinch",
+        };
+        break;
+      case "50n":
+        icon = {
+          src: "assets/icons/fog.json",
+          colors: "",
+          state: "hover-pinch",
+        };
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  const temp = (weatherInfo.current.temp * 0.1).toFixed(),
     desc = weatherInfo.current.weather[0].description,
     humidity = weatherInfo.current.humidity,
     windSpeed = (weatherInfo.current.wind_speed * 3.6).toFixed(), // m/s to km/h
@@ -186,7 +328,7 @@ function displayCurrentWeatherInfo(icon, temp, desc, humidity, windSpeed, uv) {
   const detailsInfoContent = `
     <div class="detailsInfo-top flex justify-center items-center gap-10 order-first">
       <div class="detailsInfo-top_left flex items-center gap-5">
-          <img id="weatherIcon" alt="Weather Icon" width="300" height="300" src=${icon} style="align-self: flex-start;">
+          <lord-icon id="weatherIcon" src=${icon.src} colors=${icon.colors} state=${icon.state} trigger="loop" style="width:250px; height:250px; align-self: flex-start;"></lord-icon>
           <div class="flex flex-col justify-center w-56">
               <p class="temp text-9xl">${temp}&deg;<span style="vertical-align: top; font-size: 130px;">C</span></p>
               <p class="desc text-5xl w-52" style="margin-top: -20px;">${desc}</p>
@@ -202,7 +344,7 @@ function displayCurrentWeatherInfo(icon, temp, desc, humidity, windSpeed, uv) {
       <div class="item-weather bg-red-100">0</div>
       <div class="item-weather bg-red-100">1</div>
       <div class="item-weather bg-red-100">2</div>
-      <div class="item-weather bg-red-100">3</div>
+      <div class="item-weather bg-red-100">3</div> 
       <div class="item-weather bg-red-100">4</div>
       <div class="item-weather bg-red-100">5</div>
       <div class="item-weather bg-red-100">6</div>
@@ -267,7 +409,7 @@ function gradientsBgBubble() {
   }
 
   window.addEventListener("mousemove", (e) => {
-    tgX = e.clientX - 280;
+    tgX = e.clientX - 150;
     tgY = e.clientY - 100;
   });
 
