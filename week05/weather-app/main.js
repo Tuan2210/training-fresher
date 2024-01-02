@@ -132,9 +132,23 @@ function getCoordinates() {
         `https://api.openweathermap.org/geo/1.0/direct?q=${place},VN&appid=${apiKey}`
       )
       .then(function (res) {
-        res.data.map((placeInfo) => {
-          getWeather(placeInfo.lat, placeInfo.lon);
-        });
+        // console.log(res);
+
+        //handle expand wrapper
+        const wrapperWeather = document.querySelector(".wrapper__weather-info");
+        wrapperWeather.classList.remove("hidden");
+        if (res.data.length === 0) {
+          setTimeout(() => {
+            wrapperWeather.classList.add("hidden");
+          }, 2000);
+          setTimeout(() => {
+            alert("Không tìm thấy dữ liệu ❌");
+          }, 2100);
+        } else {
+          res.data.map((placeInfo) => {
+            getWeather(placeInfo.lat, placeInfo.lon);
+          });
+        }
       })
       .catch((err) => console.error("Error fetching coordinates:", err));
   }
@@ -148,18 +162,24 @@ function getWeather(lat, lon) {
     )
     .then(function (res) {
       const weatherInfo = res.data;
-      console.log(weatherInfo);
-      getCurrentWeatherInfo(weatherInfo);
+      // console.log(weatherInfo);
+      getWeatherInfo(weatherInfo);
     })
     .catch(function (err) {
       console.error("Error fetching weather:", err);
     });
 }
 
-//--get data weather info--
-function getCurrentWeatherInfo(weatherInfo) {
-  // icon = `https://openweathermap.org/img/wn/${iconCode}@2x.png`,
-  var iconCode = weatherInfo.current.weather[0].icon;
+//--format-date-time--
+function formatDateTime(dt) {
+  const date = new Date(dt * 1000); //convert seconds to milliseconds
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  return `${day}/${month}`;
+}
+
+//--handle display weather-icon--
+function displayWeatherIcon(iconCode) {
   var icon;
   const checkDayNight = iconCode.lastIndexOf("d");
   if (checkDayNight !== -1) {
@@ -303,32 +323,54 @@ function getCurrentWeatherInfo(weatherInfo) {
         break;
     }
   }
+  return icon;
+}
 
+//--get data weather info--
+function getWeatherInfo(weatherInfo) {
+  var currentIconCode = weatherInfo.current.weather[0].icon;
+  const icon = displayWeatherIcon(currentIconCode);
+
+  //current date
   const temp = (weatherInfo.current.temp * 0.1).toFixed(),
     desc = weatherInfo.current.weather[0].description,
     humidity = weatherInfo.current.humidity,
     windSpeed = (weatherInfo.current.wind_speed * 3.6).toFixed(), // m/s to km/h
     uv = weatherInfo.current.uvi;
 
-  displayCurrentWeatherInfo(
+  //daily
+  const daily = weatherInfo.daily;
+
+  displayWeatherInfo(
     icon,
     temp,
-    desc[0].toUpperCase().concat(desc.slice(1)), //uppercase first letter
+    desc[0].toUpperCase().concat(desc.slice(1)), //uppercase first letter in description
     humidity,
     windSpeed,
-    uv
+    uv,
+    daily
   );
 }
 
-//--display weahter info--
-function displayCurrentWeatherInfo(icon, temp, desc, humidity, windSpeed, uv) {
+//--display weather info--
+function displayWeatherInfo(icon, temp, desc, humidity, windSpeed, uv, daily) {
   const weatherInfoContainer = document.querySelector(".detailsInfo"),
     loading = document.querySelector(".loading");
+
+  const formattedDates = daily.map((d) => formatDateTime(d.dt));
+  const dailyIcon = daily.map((date) =>
+    displayWeatherIcon(date.weather[0].icon)
+  );
+  const dailyMinMaxTemp = daily.map((date) => date);
 
   const detailsInfoContent = `
     <div class="detailsInfo-top flex justify-center items-center gap-10 order-first">
       <div class="detailsInfo-top_left flex items-center gap-5">
-          <lord-icon id="weatherIcon" src=${icon.src} colors=${icon.colors} state=${icon.state} trigger="loop" style="width:250px; height:250px; align-self: flex-start;"></lord-icon>
+          <lord-icon id="weatherIcon" src=${icon.src} colors=${
+    icon.colors
+  } state=${
+    icon.state
+  } trigger="loop" style="width:250px; height:250px; align-self: flex-start;"></lord-icon>
           <div class="flex flex-col justify-center w-56">
               <p class="temp text-9xl">${temp}&deg;<span style="vertical-align: top; font-size: 130px;">C</span></p>
               <p class="desc text-5xl w-52" style="margin-top: -20px;">${desc}</p>
@@ -340,15 +382,28 @@ function displayCurrentWeatherInfo(icon, temp, desc, humidity, windSpeed, uv) {
           <p class="uv text-3xl">Chỉ số tia UV: ${uv}</p>
       </div>
     </div>
-    <div class="detailsInfo-bottom grid grid-cols-8 w-full h-24 bg-white gap-3 order-last">
-      <div class="item-weather bg-red-100">0</div>
-      <div class="item-weather bg-red-100">1</div>
-      <div class="item-weather bg-red-100">2</div>
-      <div class="item-weather bg-red-100">3</div> 
-      <div class="item-weather bg-red-100">4</div>
-      <div class="item-weather bg-red-100">5</div>
-      <div class="item-weather bg-red-100">6</div>
-      <div class="item-weather bg-red-100">7</div>
+    <div class="detailsInfo-bottom grid grid-cols-8 w-full h-full gap-3 order-last">
+      ${formattedDates
+        .map(
+          (date, index) => `
+        <div class="item-weather flex flex-col justify-between items-center gap-1 rounded-lg">
+          <div class="item-weather__top flex justify-center items-center">${date}</div>
+          <div class="item-weather__center flex justify-center items-center">
+            <lord-icon id="weatherIcon" src=${dailyIcon[index].src} colors=${
+            dailyIcon[index].colors
+          } state=${
+            dailyIcon[index].state
+          } trigger="loop" style="width:100px; height:100px; align-self: flex-start;"></lord-icon>
+          </div>
+          <div class="item-weather__bottom w-full flex justify-center items-center gap-4">
+            <p>${(dailyMinMaxTemp[index].temp.min * 0.1).toFixed()}&deg;</p>
+            <p>${(dailyMinMaxTemp[index].temp.max * 0.1).toFixed()}&deg;</p>
+          </div>
+        </div>
+      `
+        )
+        .join("")}
+
     </div>
   `;
   weatherInfoContainer.innerHTML = detailsInfoContent;
@@ -361,31 +416,6 @@ function displayCurrentWeatherInfo(icon, temp, desc, humidity, windSpeed, uv) {
 
     weatherInfoContainer.classList.remove("hidden");
     weatherInfoContainer.classList.add("flex");
-
-    // const iconElement = document.querySelector("#weatherIcon");
-    // iconElement.src = ``;
-
-    // const temperatureElement = document.querySelector(".temp");
-    // temperatureElement.textContent = `${temperature}°C`;
-
-    // const descriptionElement = document.querySelector(".desc");
-    // descriptionElement.textContent = `${description}`;
-
-    // const humidityElement = document.querySelector(".humidity");
-    // humidityElement.textContent = `Độ ẩm: ${humidity}`;
-
-    // const windSpeedElement = document.querySelector(".wind-speed");
-    // windSpeedElement.textContent = `Gió: ${windSpeed} km/h`;
-
-    // const uvElement = document.querySelector(".uv");
-    // uvElement.textContent = `Chỉ số tia UV: ${uv}`;
-
-    // weatherInfoContainer.appendChild(iconElement);
-    // weatherInfoContainer.appendChild(temperatureElement);
-    // weatherInfoContainer.appendChild(descriptionElement);
-    // weatherInfoContainer.appendChild(humidityElement);
-    // weatherInfoContainer.appendChild(windSpeedElement);
-    // weatherInfoContainer.appendChild(uvElement);
   }, 2000);
 }
 
