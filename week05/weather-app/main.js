@@ -33,8 +33,7 @@ function refreshRealTime() {
 
   const dayTime = document.querySelector("#day-time");
   if (dayTime)
-    dayTime.textContent =
-      days[day] + " | " + date + "/" + months[month] + "/" + year;
+    dayTime.textContent = days[day] + " | " + date.toString().padStart(2, "0") + "/" + months[month].toString().padStart(2, "0") + "/" + year;
 
   setTimeout("refreshRealTime()", 1000);
 }
@@ -137,9 +136,12 @@ function getCoordinates() {
         //handle expand wrapper
         const wrapperWeather = document.querySelector(".wrapper__weather-info");
         wrapperWeather.classList.remove("hidden");
+        const wrapper = document.querySelector(".wrapper");
+
         if (res.data.length === 0) {
           setTimeout(() => {
             wrapperWeather.classList.add("hidden");
+            wrapper.style.height = "auto";
           }, 2000);
           setTimeout(() => {
             alert("Không tìm thấy dữ liệu ❌");
@@ -366,11 +368,7 @@ function displayWeatherInfo(icon, temp, desc, humidity, windSpeed, uv, daily) {
   const detailsInfoContent = `
     <div class="detailsInfo-top flex justify-center items-center gap-10 order-first">
       <div class="detailsInfo-top_left flex items-center gap-5">
-          <lord-icon id="weatherIcon" src=${icon.src} colors=${
-    icon.colors
-  } state=${
-    icon.state
-  } trigger="loop" style="width:250px; height:250px; align-self: flex-start;"></lord-icon>
+          <lord-icon id="weatherIcon" src=${icon.src} colors=${icon.colors} state=${icon.state} trigger="loop" style="width:250px; height:250px; align-self: flex-start;"></lord-icon>
           <div class="flex flex-col justify-center w-56">
               <p class="temp text-9xl">${temp}&deg;<span style="vertical-align: top; font-size: 130px;">C</span></p>
               <p class="desc text-5xl w-52" style="margin-top: -20px;">${desc}</p>
@@ -387,13 +385,9 @@ function displayWeatherInfo(icon, temp, desc, humidity, windSpeed, uv, daily) {
         .map(
           (date, index) => `
         <div class="item-weather flex flex-col justify-between items-center gap-1 rounded-lg">
-          <div class="item-weather__top flex justify-center items-center">${date}</div>
+          <div class="item-weather__top flex justify-center items-center text-white">${date}</div>
           <div class="item-weather__center flex justify-center items-center">
-            <lord-icon id="weatherIcon" src=${dailyIcon[index].src} colors=${
-            dailyIcon[index].colors
-          } state=${
-            dailyIcon[index].state
-          } trigger="loop" style="width:100px; height:100px; align-self: flex-start;"></lord-icon>
+            <lord-icon id="weatherIcon" src=${dailyIcon[index].src} colors=${dailyIcon[index].colors} state=${dailyIcon[index].state} trigger="loop" style="width:100px; height:100px; align-self: flex-start;"></lord-icon>
           </div>
           <div class="item-weather__bottom w-full flex justify-center items-center gap-4">
             <p>${(dailyMinMaxTemp[index].temp.min * 0.1).toFixed()}&deg;</p>
@@ -410,9 +404,13 @@ function displayWeatherInfo(icon, temp, desc, humidity, windSpeed, uv, daily) {
 
   animationTypingTxt();
 
+  const wrapper = document.querySelector(".wrapper");
+
   setTimeout(() => {
     loading.classList.remove("flex");
     loading.classList.add("hidden");
+
+    wrapper.style.height = "630px";
 
     weatherInfoContainer.classList.remove("hidden");
     weatherInfoContainer.classList.add("flex");
@@ -439,7 +437,7 @@ function gradientsBgBubble() {
   }
 
   window.addEventListener("mousemove", (e) => {
-    tgX = e.clientX - 150;
+    tgX = e.clientX - 100;
     tgY = e.clientY - 100;
   });
 
