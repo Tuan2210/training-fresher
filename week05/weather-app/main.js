@@ -369,9 +369,9 @@ function displayWeatherInfo(icon, temp, desc, humidity, windSpeed, uv, daily) {
     <div class="detailsInfo-top flex justify-center items-center gap-10 order-first">
       <div class="detailsInfo-top_left flex items-center gap-5">
           <lord-icon id="weatherIcon" src=${icon.src} colors=${icon.colors} state=${icon.state} trigger="loop" style="width:250px; height:250px; align-self: flex-start;"></lord-icon>
-          <div class="flex flex-col justify-center w-56">
+          <div class="flex flex-col justify-center w-64">
               <p class="temp text-9xl">${temp}&deg;<span style="vertical-align: top; font-size: 130px;">C</span></p>
-              <p class="desc text-5xl w-52" style="margin-top: -20px;">${desc}</p>
+              <p class="desc text-4xl w-full" style="margin-top: -20px;">${desc}</p>
           </div>
       </div>
       <div class="detailsInfo-top_right flex flex-col gap-5">
