@@ -1,10 +1,12 @@
+import styles from "./Home.module.scss";
+import classNames from "classnames/bind";
+import Header from "../../layouts/Header/Header.js";
 
 function Home() {
-
-    return (
-      <>
-        <h1 className='text-xl font-bold text-red-500'>Hello Vite-React-Tailwind_Home</h1>
-      </>
-    )
+  return (
+    <main className="max-w-full max-h-full">
+      <Header />
+    </main>
+  );
 }
-export default Home
+export default Home;
