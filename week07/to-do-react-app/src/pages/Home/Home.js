@@ -1,12 +1,25 @@
 import styles from "./Home.module.scss";
 import classNames from "classnames/bind";
-import Header from "../../layouts/Header/Header.js";
 
-function Home() {
+import { Link } from "react-router-dom";
+
+import LinkBtn from "../../components/ui/LinkBtn.js";
+
+const cx = classNames.bind(styles);
+
+export default function Home() {
   return (
-    <main className="max-w-full max-h-full">
-      <Header />
-    </main>
+    <div
+      className={cx([
+        "container",
+        "w-full h-full flex flex-col justify-center items-center gap-10",
+      ])}
+    >
+      <div className="flex justify-center items-center gap-5">
+        <LinkBtn to="/" label="Home" className="HomeBtn active" />
+        <LinkBtn to="/to-do" label="To do" className="ToDoBtn" />
+      </div>
+      <p className="h-10 flex items-center">Demo ReactJS</p>
+    </div>
   );
 }
-export default Home;

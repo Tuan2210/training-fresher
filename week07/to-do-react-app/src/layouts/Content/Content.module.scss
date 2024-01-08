@@ -1,0 +1,112 @@
+@import '../../components/GlobalStyles/GlobalStyles.scss';
+
+// .sc-bcXGCL {
+//     background: red;
+// }
+.content-container {
+    .done-wrapper,
+    .to-do-wrapper,
+    .doing-wrapper {
+        border-color: $main-color;
+        span {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            color: $main-color;
+            overflow: hidden;
+            i,
+            .title {
+                z-index: 2;
+            }
+        }
+        span::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 70%;
+        }
+        span::after {
+            content: '';
+            position: absolute;
+            background: #0e1538;
+            inset: 2px;
+            border-radius: 15px;
+        }
+        span:hover::before {
+            background: $main-color;
+            animation: hoverTitle 5s linear infinite;
+        }
+        ul.items-done-list,
+        ul.items-to-do-list,
+        ul.items-doing-list {
+            padding: 30px 0 30px 0;
+            gap: 30px;
+            .item-id {
+                z-index: -1;
+            }
+            li.item-drag {
+                cursor: grab;
+                .dragging {
+                    opacity: 0.5;
+                    // animation: dragging 2s infinite;
+                }
+                .over {
+                    border-top: 2px solid #fff;
+                }
+            }
+            li.item-drag:hover {
+                box-shadow: 0 2px 15px 5px $third-color;
+            }
+            li.item-to-do,
+            li.item-done,
+            li.item-doing {
+                height: 220px;
+                font-weight: 700;
+                line-height: 20px;
+                box-shadow: 0 0 15px 2px $second-color;
+                .initial-date {
+                    color: $third-color;
+                }
+            }
+            .item-details {
+                width: 90%;
+                overflow-wrap: break-word;
+                text-align: justify;
+                .item-begin-date-time,
+                .item-due-date-time {
+                    color: $main-color;
+                }
+            }
+            .inputPreview {
+                margin-bottom: -10px;
+            }
+            .fa-trash,
+            .fa-pen {
+                color: $third-color;
+            }
+            .fa-trash {
+                margin-top: 10px;
+            }
+            .fa-trash:hover,
+            .fa-pen:hover {
+                color: $main-color;
+                cursor: pointer;
+            }
+            // li.item-done {
+            //     .item-options {
+            //         display: none;
+            //     }
+            // }
+        }
+    }
+}
+
+//hover title
+@keyframes hoverTitle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

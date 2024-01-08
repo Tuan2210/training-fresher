@@ -1,0 +1,14 @@
+@import '../GlobalStyles/GlobalStyles.scss';
+
+.active {
+    background: $bg-content;
+    color: $third-color !important;
+    font-weight: bold;
+}
+.btn {
+    color: $bg-content;
+    background: $third-color;
+    &:hover {
+        background: $second-color;
+    }
+}
