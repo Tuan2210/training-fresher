@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Home from "../pages/Home/Home";
-import ToDo from "../pages/Todo/ToDo";
+import Home from "../pages/Home/Home.js";
+import Todo from "../pages/Todo/Todo.js";
 
 const publicRoutes = createBrowserRouter([
   {
@@ -10,7 +10,7 @@ const publicRoutes = createBrowserRouter([
   },
   {
     path: "/to-do",
-    element: <ToDo />,
+    element: <Todo />,
   },
 ]);
 

@@ -4,21 +4,25 @@ import classNames from "classnames/bind";
 import LinkBtn from "../../components/ui/LinkBtn.js";
 
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+
+import flatpickr from "flatpickr";
+import "flatpickr/dist/themes/dark.css";
 
 const cx = classNames.bind(styles);
 
 export default function Header() {
+  ////refresh-real-time
   const [currentTime, setCurrentTime] = useState(new Date());
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-
     return () => clearInterval(intervalId);
   }, []);
 
-  const formatTime = () => {
+  function formatTime() {
     const day = currentTime.getDay();
     const date = currentTime.getDate();
     const month = currentTime.getMonth();
@@ -61,9 +65,55 @@ export default function Header() {
           }`;
 
     return { formattedTime, formattedClock };
-  };
+  }
 
   const { formattedTime, formattedClock } = formatTime();
+  ////
+
+  ////react-hook-form
+  const { register, handleSubmit, setValue } = useForm();
+  ////
+
+  ////custom flatpickr
+  function customFlatpickr(id, fieldName) {
+    const currentDateTime = new Date();
+    var h = currentDateTime.getHours(),
+      m = currentDateTime.getMinutes();
+
+    function formatDateTime(date) {
+      const formattedDate = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      }).format(date);
+
+      return formattedDate;
+    }
+
+    flatpickr(id, {
+      enableTime: true,
+      dateFormat: "Y/m/d H:i:S",
+      minDate: "today",
+      enableSeconds: true,
+      time_24hr: true,
+      defaultHour: h,
+      defaultMinute: m,
+      onChange: (selectedDates) => {
+        setValue(fieldName, formatDateTime(selectedDates[0]));
+      },
+    });
+  }
+  useEffect(() => {
+    customFlatpickr("#begin-date-time", "beginDate");
+    customFlatpickr("#due-date-time", "dueDate");
+
+    // customFlatpickr("#begin-date-time-modal");
+    // customFlatpickr("#due-date-time-modal");
+  }, []);
+  ////
 
   return (
     <header className="w-full h-20 p-3 flex justify-between">
@@ -74,9 +124,15 @@ export default function Header() {
       </div>
 
       {/* add-box */}
-      <div className={cx(["add-box", "p-3 flex items-center gap-5"])}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          console.log("data", data);
+        })}
+        className={cx(["add-box", "p-3 flex items-center gap-5"])}
+      >
         {/* input new task */}
         <input
+          {...register("name", { required: true })}
           type="text"
           id="myInput"
           placeholder="Type a new task..."
@@ -94,6 +150,7 @@ export default function Header() {
             style={{ color: "#068995" }}
           />
           <input
+            {...register("beginDate")}
             id="begin-date-time"
             placeholder="Begin date-time"
             className="bg-none outline-none"
@@ -111,21 +168,22 @@ export default function Header() {
             style={{ color: "#068995" }}
           />
           <input
+            {...register("dueDate")}
             id="due-date-time"
             placeholder="Due date-time"
             className="bg-none outline-none"
           />
         </div>
         {/* addBtn */}
-        <span
+        <input
           className={cx([
             "addBtn",
-            "p-2 w-5 h-10 text-center text-white cursor-pointer rounded-lg",
+            "p-2 w-5 h-10 text-center cursor-pointer rounded-lg text-white",
           ])}
-        >
-          <b>ADD</b>
-        </span>
-      </div>
+          value="ADD"
+          type="submit"
+        />
+      </form>
 
       {/* time-box */}
       <div
