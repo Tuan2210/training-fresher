@@ -7,12 +7,18 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
+import { addTodo } from "../../redux/features/todoSlice.js";
+
 import flatpickr from "flatpickr";
 import "flatpickr/dist/themes/dark.css";
 
 const cx = classNames.bind(styles);
 
 export default function Header() {
+  ////react-redux
+  const dispatch = useDispatch();
+  ////
+
   ////refresh-real-time
   const [currentTime, setCurrentTime] = useState(new Date());
   useEffect(() => {
@@ -95,7 +101,7 @@ export default function Header() {
 
     flatpickr(id, {
       enableTime: true,
-      dateFormat: "Y/m/d H:i:S",
+      dateFormat: "m/d/Y, H:i:S",
       minDate: "today",
       enableSeconds: true,
       time_24hr: true,
@@ -115,6 +121,19 @@ export default function Header() {
   }, []);
   ////
 
+  ////submit data
+  function onSubmit(data) {
+    const newTodo = {
+      id: Math.floor(Math.random() * 1000)
+        .toString()
+        .padStart(3, "0"),
+      ...data,
+    };
+    // console.log(newTodo);
+    dispatch(addTodo(newTodo));
+  }
+  ////
+
   return (
     <header className="w-full h-20 p-3 flex justify-between">
       {/* link-btns */}
@@ -125,9 +144,7 @@ export default function Header() {
 
       {/* add-box */}
       <form
-        onSubmit={handleSubmit((data) => {
-          console.log("data", data);
-        })}
+        onSubmit={handleSubmit((data) => onSubmit(data))}
         className={cx(["add-box", "p-3 flex items-center gap-5"])}
       >
         {/* input new task */}

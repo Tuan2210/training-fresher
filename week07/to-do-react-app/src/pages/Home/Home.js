@@ -17,7 +17,9 @@ export default function Home() {
         <LinkBtn to="/" label="Home" className="HomeBtn active" />
         <LinkBtn to="/to-do" label="To do" className="ToDoBtn" />
       </div>
-      <p className="h-10 flex items-center">Demo ReactJS</p>
+      <p className="h-10 flex items-center">
+        <b>Demo ReactJS</b>
+      </p>
     </div>
   );
 }

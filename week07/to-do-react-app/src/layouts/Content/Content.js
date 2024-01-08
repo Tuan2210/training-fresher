@@ -3,9 +3,17 @@ import classNames from "classnames/bind";
 
 import styled from "styled-components";
 
+import { useSelector } from "react-redux";
+import TodoItem from "../../components/ui/TodoItem";
+
 const cx = classNames.bind(styles);
 
 export default function Content() {
+  // const todos = useSelector((state) => state.todos.value);
+  const todos = useSelector((state) => state.todos);
+  if (todos.length === 0) console.log("data empty");
+  console.log(todos);
+
   return (
     <StyledContent
       className={cx([
@@ -40,7 +48,19 @@ export default function Content() {
             TO DO
           </div>
         </span>
-        <ul className="items-to-do-list item-drag-list w-full h-full flex flex-col"></ul>
+        <ul className="items-to-do-list item-drag-list w-full h-full flex flex-col">
+          {todos.map((todo) => {
+            {
+              /* <li key={todo.id}>{todo.name}</li>; */
+            }
+            <TodoItem
+              id={todo.id}
+              name={todo.name}
+              beginDate={todo.beginDate}
+              dueDate={todo.dueDate}
+            />;
+          })}
+        </ul>
       </div>
 
       {/* col-doing */}

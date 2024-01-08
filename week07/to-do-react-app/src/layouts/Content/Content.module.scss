@@ -41,57 +41,58 @@
         ul.items-doing-list {
             padding: 30px 0 30px 0;
             gap: 30px;
-            .item-id {
-                z-index: -1;
-            }
-            li.item-drag {
-                cursor: grab;
-                .dragging {
-                    opacity: 0.5;
-                    // animation: dragging 2s infinite;
-                }
-                .over {
-                    border-top: 2px solid #fff;
-                }
-            }
-            li.item-drag:hover {
-                box-shadow: 0 2px 15px 5px $third-color;
-            }
-            li.item-to-do,
-            li.item-done,
-            li.item-doing {
-                height: 220px;
-                font-weight: 700;
-                line-height: 20px;
-                box-shadow: 0 0 15px 2px $second-color;
-                .initial-date {
-                    color: $third-color;
-                }
-            }
-            .item-details {
-                width: 90%;
-                overflow-wrap: break-word;
-                text-align: justify;
-                .item-begin-date-time,
-                .item-due-date-time {
-                    color: $main-color;
-                }
-            }
-            .inputPreview {
-                margin-bottom: -10px;
-            }
-            .fa-trash,
-            .fa-pen {
-                color: $third-color;
-            }
-            .fa-trash {
-                margin-top: 10px;
-            }
-            .fa-trash:hover,
-            .fa-pen:hover {
-                color: $main-color;
-                cursor: pointer;
-            }
+            // .item-id {
+            //     z-index: -1;
+            // }
+            // li.item-drag {
+            //     cursor: grab;
+            //     .dragging {
+            //         opacity: 0.5;
+            //         // animation: dragging 2s infinite;
+            //     }
+            //     .over {
+            //         border-top: 2px solid #fff;
+            //     }
+            // }
+            // li.item-drag:hover {
+            //     box-shadow: 0 2px 15px 5px $third-color;
+            // }
+            // li.item-to-do,
+            // li.item-done,
+            // li.item-doing {
+            //     height: 220px;
+            //     font-weight: 700;
+            //     line-height: 20px;
+            //     box-shadow: 0 0 15px 2px $second-color;
+            //     .initial-date {
+            //         color: $third-color;
+            //     }
+            // }
+            // .item-details {
+            //     width: 90%;
+            //     overflow-wrap: break-word;
+            //     text-align: justify;
+            //     .item-begin-date-time,
+            //     .item-due-date-time {
+            //         color: $main-color;
+            //     }
+            // }
+            // .inputPreview {
+            //     margin-bottom: -10px;
+            // }
+            // .fa-trash,
+            // .fa-pen {
+            //     color: $third-color;
+            // }
+            // .fa-trash {
+            //     margin-top: 10px;
+            // }
+            // .fa-trash:hover,
+            // .fa-pen:hover {
+            //     color: $main-color;
+            //     cursor: pointer;
+            // }
+            
             // li.item-done {
             //     .item-options {
             //         display: none;
