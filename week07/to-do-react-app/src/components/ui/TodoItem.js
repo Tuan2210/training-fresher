@@ -6,6 +6,7 @@ export default function TodoItem({
   beginDate,
   dueDate,
   onClickDelete,
+  onClickUpdate,
 }) {
   return (
     <StyledTodoItem className="item-to-do bg-white flex flex-col justify-between p-5 rounded-xl text-sm">
@@ -25,6 +26,7 @@ export default function TodoItem({
             data-toggle="modal"
             data-target="#modal-form"
             type="button"
+            onClick={onClickUpdate}
           >
             <i className="fa-solid fa-pen fa-xl" />
           </button>

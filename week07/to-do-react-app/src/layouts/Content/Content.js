@@ -4,12 +4,13 @@ import classNames from "classnames/bind";
 import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { fetchTodos, deleteTodo } from "../../services/api/todoAPI";
 import { getTodosStatus, selectAllTodos } from "../../redux/features/todoSlice";
 
 import TodoItem from "../../components/ui/TodoItem";
+import Modal from "../../components/ui/Modal";
 
 const cx = classNames.bind(styles);
 
@@ -30,6 +31,12 @@ export default function Content() {
   //delete item todo
   function handledeleteTodo(id) {
     dispatch(deleteTodo(id));
+  }
+
+  //update todo info
+  const [showModal, setShowModal] = useState(false);
+  function handleUpdateTodo() {
+    setShowModal(true);
   }
 
   return (
@@ -75,6 +82,7 @@ export default function Content() {
               beginDate={todo.beginDate}
               dueDate={todo.dueDate}
               onClickDelete={() => handledeleteTodo(todo.id)}
+              onClickUpdate={() => handleUpdateTodo()}
             />
           ))}
         </ul>
@@ -95,6 +103,11 @@ export default function Content() {
         </span>
         <ul className="items-doing-list item-drag-list w-full h-full flex flex-col"></ul>
       </div>
+
+      {/* modal update */}
+      {showModal && (
+        <Modal isDisplay="flex" onClose={() => setShowModal(false)} />
+      )}
     </StyledContent>
   );
 }
