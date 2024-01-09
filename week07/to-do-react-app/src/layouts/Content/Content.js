@@ -12,7 +12,6 @@ export default function Content() {
   // const todos = useSelector((state) => state.todos.value);
   const todos = useSelector((state) => state.todos);
   if (todos.length === 0) console.log("data empty");
-  console.log(todos);
 
   return (
     <StyledContent
@@ -48,18 +47,16 @@ export default function Content() {
             TO DO
           </div>
         </span>
-        <ul className="items-to-do-list item-drag-list w-full h-full flex flex-col">
-          {todos.map((todo) => {
-            {
-              /* <li key={todo.id}>{todo.name}</li>; */
-            }
+        <ul className="items-to-do-list w-full h-full flex flex-col pt-7 pb-7">
+          {todos.map((todo) => (
             <TodoItem
+              key={todo.id}
               id={todo.id}
               name={todo.name}
               beginDate={todo.beginDate}
               dueDate={todo.dueDate}
-            />;
-          })}
+            />
+          ))}
         </ul>
       </div>
 
