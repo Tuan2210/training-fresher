@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export default function TodoItem({ id, name, beginDate, dueDate }) {
+export default function TodoItem({
+  id,
+  name,
+  beginDate,
+  dueDate,
+  onClickDelete,
+}) {
   return (
     <StyledTodoItem className="item-to-do bg-white flex flex-col justify-between p-5 rounded-xl text-sm">
       <div className="item-box w-full h-full flex justify-between">
@@ -13,7 +19,7 @@ export default function TodoItem({ id, name, beginDate, dueDate }) {
           </div>
         </div>
         <div className="item-options flex flex-col gap-8 items-center">
-          <i className="fa-solid fa-trash fa-xl" />
+          <i className="fa-solid fa-trash fa-xl" onClick={onClickDelete} />
           <button
             className="penBtn"
             data-toggle="modal"

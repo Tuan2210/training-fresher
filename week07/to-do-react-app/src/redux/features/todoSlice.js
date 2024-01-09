@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchTodos, addTodo } from "../../services/api/todoAPI";
+import { fetchTodos, addTodo, deleteTodo } from "../../services/api/todoAPI";
 
 export const todoSlice = createSlice({
   name: "todos",
@@ -35,6 +35,10 @@ export const todoSlice = createSlice({
           status: "to-do",
         };
         state.data.push(newTodo);
+      })
+      //delete todo
+      .addCase(deleteTodo.fulfilled, (state, action) => {
+        state.data = state.data.filter((todo) => todo.id !== action.payload);
       });
   },
 });

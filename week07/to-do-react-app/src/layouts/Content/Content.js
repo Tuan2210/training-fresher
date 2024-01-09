@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import { fetchTodos } from "../../services/api/todoAPI";
+import { fetchTodos, deleteTodo } from "../../services/api/todoAPI";
 import { getTodosStatus, selectAllTodos } from "../../redux/features/todoSlice";
 
 import TodoItem from "../../components/ui/TodoItem";
@@ -26,6 +26,11 @@ export default function Content() {
   useEffect(() => {
     if (todoStatus === "idle") dispatch(fetchTodos());
   }, [todoStatus, dispatch]);
+
+  //delete item todo
+  function handledeleteTodo(id) {
+    dispatch(deleteTodo(id));
+  }
 
   return (
     <StyledContent
@@ -69,6 +74,7 @@ export default function Content() {
               name={todo.name}
               beginDate={todo.beginDate}
               dueDate={todo.dueDate}
+              onClickDelete={() => handledeleteTodo(todo.id)}
             />
           ))}
         </ul>

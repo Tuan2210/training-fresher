@@ -12,3 +12,11 @@ export const addTodo = createAsyncThunk("todos/addTodo", async (todo) => {
   const response = await axios.post(TODO_URL, todo);
   return response.data;
 });
+
+export const deleteTodo = createAsyncThunk(
+  "todos/deleteTodo",
+  async (todoId) => {
+    await axios.delete(`${TODO_URL}/${todoId}`);
+    return todoId;
+  }
+);
