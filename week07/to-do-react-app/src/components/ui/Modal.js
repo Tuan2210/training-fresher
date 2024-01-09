@@ -4,14 +4,64 @@ import { useForm } from "react-hook-form";
 
 import styled from "styled-components";
 
+import { updateTodo } from "../../services/api/todoAPI";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+import flatpickr from "flatpickr";
+import "flatpickr/dist/themes/dark.css";
+
 const cx = classNames.bind(styles);
 
-export default function Modal({ isDisplay, onClose }) {
+export default function Modal({ isDisplay, onClose, todoId }) {
+  const dispatch = useDispatch();
   const { register, handleSubmit, setValue } = useForm();
+
+  ////custom flatpickr
+  function customFlatpickr(id, fieldName) {
+    const currentDateTime = new Date();
+    var h = currentDateTime.getHours(),
+      m = currentDateTime.getMinutes();
+
+    function formatDateTime(date) {
+      const formattedDate = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      }).format(date);
+
+      return formattedDate;
+    }
+
+    flatpickr(id, {
+      enableTime: true,
+      dateFormat: "m/d/Y, H:i:S",
+      minDate: "today",
+      enableSeconds: true,
+      time_24hr: true,
+      defaultHour: h,
+      defaultMinute: m,
+      onChange: (selectedDates) => {
+        setValue(fieldName, formatDateTime(selectedDates[0]));
+      },
+    });
+  }
+  useEffect(() => {
+    customFlatpickr("#begin-date-time-modal");
+    customFlatpickr("#due-date-time-modal");
+  }, []);
+
+  //submit data
+  function onSubmit(data) {
+    dispatch(updateTodo({ id: todoId, ...data }));
+  }
 
   return (
     <StyledModal
-      onSubmit={() => {}}
+      onSubmit={handleSubmit((data) => onSubmit(data))}
       id="modal-form"
       className={cx("modal")}
       style={{ display: isDisplay ? "flex" : "none" }}
@@ -33,7 +83,7 @@ export default function Modal({ isDisplay, onClose }) {
             placeholder="Update task"
             className="h-10 bg-white"
           />
-          <div
+          {/* <div
             className={cx([
               "start-time-box",
               "flex flex-row items-center p-2 pl-5 rounded-xl bg-white gap-3",
@@ -66,7 +116,7 @@ export default function Modal({ isDisplay, onClose }) {
               placeholder="Due date-time"
               className="bg-none outline-none"
             />
-          </div>
+          </div> */}
           <input
             className={cx([
               "updateBtn",

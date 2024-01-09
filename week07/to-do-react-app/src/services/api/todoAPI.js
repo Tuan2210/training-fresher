@@ -20,3 +20,11 @@ export const deleteTodo = createAsyncThunk(
     return todoId;
   }
 );
+
+export const updateTodo = createAsyncThunk(
+  "todos/updateTodo",
+  async (todoData) => {
+    const res = await axios.put(`${TODO_URL}/${todoData.id}`, todoData);
+    return res.data;
+  }
+);

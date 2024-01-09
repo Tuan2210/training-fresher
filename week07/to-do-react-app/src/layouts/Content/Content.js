@@ -35,8 +35,10 @@ export default function Content() {
 
   //update todo info
   const [showModal, setShowModal] = useState(false);
-  function handleUpdateTodo() {
+  const [id, setId] = useState("");
+  function handleUpdateTodo(todoId) {
     setShowModal(true);
+    setId(todoId);
   }
 
   return (
@@ -82,7 +84,7 @@ export default function Content() {
               beginDate={todo.beginDate}
               dueDate={todo.dueDate}
               onClickDelete={() => handledeleteTodo(todo.id)}
-              onClickUpdate={() => handleUpdateTodo()}
+              onClickUpdate={() => handleUpdateTodo(todo.id)}
             />
           ))}
         </ul>
@@ -106,7 +108,11 @@ export default function Content() {
 
       {/* modal update */}
       {showModal && (
-        <Modal isDisplay="flex" onClose={() => setShowModal(false)} />
+        <Modal
+          isDisplay="flex"
+          onClose={() => setShowModal(false)}
+          todoId={id}
+        />
       )}
     </StyledContent>
   );

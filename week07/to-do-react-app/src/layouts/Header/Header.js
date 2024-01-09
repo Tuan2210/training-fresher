@@ -9,8 +9,8 @@ import { useForm } from "react-hook-form";
 
 import { addTodo } from "../../services/api/todoAPI.js";
 
-import flatpickr from "flatpickr";
-import "flatpickr/dist/themes/dark.css";
+// import flatpickr from "flatpickr";
+// import "flatpickr/dist/themes/dark.css";
 
 const cx = classNames.bind(styles);
 
@@ -81,44 +81,41 @@ export default function Header() {
   ////
 
   ////custom flatpickr
-  function customFlatpickr(id, fieldName) {
-    const currentDateTime = new Date();
-    var h = currentDateTime.getHours(),
-      m = currentDateTime.getMinutes();
+  // function customFlatpickr(id, fieldName) {
+  //   const currentDateTime = new Date();
+  //   var h = currentDateTime.getHours(),
+  //     m = currentDateTime.getMinutes();
 
-    function formatDateTime(date) {
-      const formattedDate = new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      }).format(date);
+  //   function formatDateTime(date) {
+  //     const formattedDate = new Intl.DateTimeFormat("en-US", {
+  //       year: "numeric",
+  //       month: "2-digit",
+  //       day: "2-digit",
+  //       hour: "2-digit",
+  //       minute: "2-digit",
+  //       second: "2-digit",
+  //     }).format(date);
 
-      return formattedDate;
-    }
+  //     return formattedDate;
+  //   }
 
-    flatpickr(id, {
-      enableTime: true,
-      dateFormat: "m/d/Y, H:i:S",
-      minDate: "today",
-      enableSeconds: true,
-      time_24hr: true,
-      defaultHour: h,
-      defaultMinute: m,
-      onChange: (selectedDates) => {
-        setValue(fieldName, formatDateTime(selectedDates[0]));
-      },
-    });
-  }
-  useEffect(() => {
-    customFlatpickr("#begin-date-time", "beginDate");
-    customFlatpickr("#due-date-time", "dueDate");
-
-    // customFlatpickr("#begin-date-time-modal");
-    // customFlatpickr("#due-date-time-modal");
-  }, []);
+  //   flatpickr(id, {
+  //     enableTime: true,
+  //     dateFormat: "m/d/Y, H:i:S",
+  //     minDate: "today",
+  //     enableSeconds: true,
+  //     time_24hr: true,
+  //     defaultHour: h,
+  //     defaultMinute: m,
+  //     onChange: (selectedDates) => {
+  //       setValue(fieldName, formatDateTime(selectedDates[0]));
+  //     },
+  //   });
+  // }
+  // useEffect(() => {
+  //   customFlatpickr("#begin-date-time", "beginDate");
+  //   customFlatpickr("#due-date-time", "dueDate");
+  // }, []);
   ////
 
   ////submit data
@@ -156,7 +153,7 @@ export default function Header() {
           className="h-10 rounded-xl bg-white"
         />
         {/* start-time-box */}
-        <div
+        {/* <div
           className={cx([
             "start-time-box",
             "flex flex-row items-center p-2 pl-5 rounded-xl bg-white",
@@ -172,9 +169,9 @@ export default function Header() {
             placeholder="Begin date-time"
             className="bg-none outline-none"
           />
-        </div>
+        </div> */}
         {/* end-time-box */}
-        <div
+        {/* <div
           className={cx([
             "end-time-box",
             "flex flex-row items-center p-2 pl-5 rounded-xl bg-white",
@@ -190,7 +187,7 @@ export default function Header() {
             placeholder="Due date-time"
             className="bg-none outline-none"
           />
-        </div>
+        </div> */}
         {/* addBtn */}
         <input
           className={cx([
