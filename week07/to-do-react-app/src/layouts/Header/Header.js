@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
-import { addTodo } from "../../redux/features/todoSlice.js";
+import { addTodo } from "../../services/api/todoAPI.js";
 
 import flatpickr from "flatpickr";
 import "flatpickr/dist/themes/dark.css";

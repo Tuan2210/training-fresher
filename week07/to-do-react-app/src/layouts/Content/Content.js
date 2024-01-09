@@ -3,15 +3,29 @@ import classNames from "classnames/bind";
 
 import styled from "styled-components";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+import { fetchTodos } from "../../services/api/todoAPI";
+import { getTodosStatus, selectAllTodos } from "../../redux/features/todoSlice";
+
 import TodoItem from "../../components/ui/TodoItem";
 
 const cx = classNames.bind(styles);
 
 export default function Content() {
-  // const todos = useSelector((state) => state.todos.value);
-  const todos = useSelector((state) => state.todos);
-  if (todos.length === 0) console.log("data empty");
+  const dispatch = useDispatch();
+  const todos = useSelector(selectAllTodos);
+  const todoStatus = useSelector(getTodosStatus);
+  // const err = useSelector(getTodosError);
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (todoStatus === "idle") dispatch(fetchTodos());
+  }, [todoStatus, dispatch]);
 
   return (
     <StyledContent
@@ -47,7 +61,7 @@ export default function Content() {
             TO DO
           </div>
         </span>
-        <ul className="items-to-do-list w-full h-full flex flex-col pt-7 pb-7">
+        <ul className="items-to-do-list w-full h-full flex flex-col pt-7 pb-7 gap-7">
           {todos.map((todo) => (
             <TodoItem
               key={todo.id}
