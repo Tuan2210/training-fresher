@@ -1,8 +1,12 @@
+import { RouterProvider } from "react-router-dom";
+
+import { publicRoutes } from "./routes";
+
 function App() {
   return (
-    <>
-      <h1 className="font-bold text-red-500">Hello thegioidien</h1>
-    </>
+    <div className="wrpall max-w-full h-screen mx-auto pl-9 pr-9">
+      <RouterProvider router={publicRoutes} />
+    </div>
   );
 }
 

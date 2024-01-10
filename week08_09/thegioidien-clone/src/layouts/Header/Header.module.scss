@@ -1,0 +1,25 @@
+.menu-header-item, 
+.registerBtn {
+    &:hover {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), #B21E02);
+    }
+}
+.header-content {
+    // grid-template-columns: 350px auto auto;
+    &__left {
+        width: 338px;
+        .logo {
+            object-fit: contain;
+        }
+    }
+    &__center {
+        span {
+            line-height: 1.4;    
+        }
+    }
+    &__right {
+        .rsrow {
+            grid-template-columns: 135px 1fr;
+        }
+    }
+}
