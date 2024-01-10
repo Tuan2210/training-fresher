@@ -5,6 +5,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { MdOutlineLock, MdOutlineLockOpen } from "react-icons/md";
+import { IoSearchOutline } from "react-icons/io5";
+import { PiShoppingCartLight } from "react-icons/pi";
+
 import PrdListMenu from "../../components/ui/PrdListMenu/PrdListMenu";
 
 const cx = classNames.bind(styles);
@@ -145,7 +148,7 @@ export default function Header() {
         <div
           className={cx([
             "header-content__right",
-            "col-span-3 block p-2 rounded-sm bg-[#DBDBDB]",
+            "col-span-3 w-full block p-2 rounded-sm bg-[#DBDBDB]",
           ])}
         >
           <div className={cx(["rsrow", "w-full grid items-center"])}>
@@ -211,12 +214,29 @@ export default function Header() {
       <div
         className={cx([
           "header-bottom",
-          "h-10 grid grid-cols-12 grid-flow-row gap-3",
+          "grid grid-cols-12 grid-flow-row gap-4",
         ])}
       >
         <PrdListMenu />
-        <div className="col-span-6 bg-[#B21E02]"></div>
-        <div className="col-span-3 bg-[#B21E02]"></div>
+        <div className={cx(["srwrp", "col-span-6 p-[4px] bg-[#B21E02]"])}>
+          <div className="pnSearch w-full flex justify-between items-center bg-[#FFFFE6]">
+            <input
+              type="text"
+              placeholder="Tìm sản phẩm..."
+              className="w-full focus:outline-none bg-[#FFFFE6]"
+            />
+            <IoSearchOutline className="text-3xl text-[#1D8DD9] pr-2" />
+          </div>
+        </div>
+        <div className="col-span-3 flex justify-center items-center bg-[#B21E02]">
+          <a
+            id="lktodtdt"
+            className="aspNetDisabled text-white flex justify-center items-center gap-1"
+          >
+            <PiShoppingCartLight className="text-3xl text-[#FFFF00]" />
+            <span>0 Sản phẩm</span>
+          </a>
+        </div>
       </div>
     </div>
   );
