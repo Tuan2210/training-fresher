@@ -2,6 +2,14 @@ export const dataItems = [
   {
     title: "Công tắc ổ cắm và phụ kiện",
     subMenu: [
+      // {
+      //   title: "",
+      //   subMenu: [
+      //     {
+      //       title: '',
+      //     }
+      //   ]
+      // }
       {
         title: "Clipsal/Schneider",
         subMenu: [
@@ -26,47 +34,84 @@ export const dataItems = [
           {
             title: "Series Zencelo A Màu Trắng",
           },
-        ],
-      },
-      {
-        title: "Ó Cắm Âm Sàn, Để Âm, Hộp Nối",
-        subMenu: [
+          //
+          {
+            title: "Series Zencelo Màu Trắng",
+          },
+          {
+            title: "Series Zencelo Màu Xám",
+          },
+          {
+            title: "Series Zencelo Màu Đồng",
+          },
+          {
+            title: "Series Vivace Màu Trắng",
+          },
+          {
+            title: "Series Vivace Màu Xám",
+          },
+          //
+          {
+            title: "Series AvatarOn A",
+          },
+          {
+            title: "Series AvatarOn Màu Trắng",
+          },
+          {
+            title: "Series AvatarOn Vàng Ánh Kim",
+          },
+          {
+            title: "Series AvatarOn Màu Gỗ",
+          },
+          {
+            title: "Ổ Cắm Âm Sàn, Đế Âm, Hộp Nổi",
+          },
+          //
           {
             title: "Phích Cắm Công Nghiệp",
           },
           {
-            title: "Ô Cắm Nối Công Nghiệp",
+            title: "Ổ Cắm Nối Công Nghiệp",
           },
           {
-            title: "Ô Cắm Công Nghiệp Gắn Âm",
+            title: "Ổ Cắm Công Nghiệp Gắn Âm",
           },
           {
-            title: "Ô Cắm Công Nghiệp Gắn Nổi",
+            title: "Ổ Cắm Công Nghiệp Gắn Nổi",
           },
           {
             title: "Series 56, Isolator IP66",
           },
+          //
+          {
+            title: "Ổ cắm kéo dài Thorsman",
+          },
+          {
+            title: "Series Mureva",
+          },
+          {
+            title: "Tủ điện Mini Pragma, Easy9",
+          },
+          {
+            title: "Tủ điện kim loại Acti9",
+          },
         ],
       },
       {
-        title: "Ô cắm kéo dài Thorsman",
-      },
-      {
-        title: "Series Mureva",
-      },
-      {
-        title: "Tủ điện Mini Pragma, Easy9",
-      },
-      {
-        title: "Tủ điện kim loại Acti9",
+        title: "Panasonic",
+        subMenu: [
+          {
+            title: "Dòng Full Color",
+          },
+        ],
       },
     ],
   },
   {
-    title: "Công tắc ổ cắm và phụ kiện 2222222222",
+    title: "Phụ Kiện Tủ Điện, Vỏ Tủ Điện",
     subMenu: [
       {
-        title: "Clipsal/Schneider",
+        title: "Clipsal/Schneider 222222",
         subMenu: [
           {
             title: "Series E30",

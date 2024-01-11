@@ -217,7 +217,10 @@ export default function Header() {
           "grid grid-cols-12 grid-flow-row gap-4",
         ])}
       >
+        {/* prds list */}
         <PrdListMenu />
+
+        {/* search-prd */}
         <div className={cx(["srwrp", "col-span-6 p-[4px] bg-[#B21E02]"])}>
           <div className="pnSearch w-full flex justify-between items-center bg-[#FFFFE6]">
             <input
@@ -228,6 +231,8 @@ export default function Header() {
             <IoSearchOutline className="text-3xl text-[#1D8DD9] pr-2" />
           </div>
         </div>
+
+        {/* quantities prds */}
         <div className="col-span-3 flex justify-center items-center bg-[#B21E02]">
           <a
             id="lktodtdt"
@@ -238,6 +243,7 @@ export default function Header() {
           </a>
         </div>
       </div>
+      <div className="">{/* <PrdListMenu.CDropdownMenu /> */}</div>
     </div>
   );
 }
