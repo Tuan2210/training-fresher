@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { MdOutlineLock, MdOutlineLockOpen } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { PiShoppingCartLight } from "react-icons/pi";
+import { LiaCartArrowDownSolid } from "react-icons/lia";
 
 import PrdsMenu from "../../components/ui/PrdsMenu/PrdsMenu";
 
@@ -236,14 +237,19 @@ export default function Header() {
         <div className="col-span-3 flex justify-center items-center bg-[#B21E02]">
           <a
             id="lktodtdt"
-            className="aspNetDisabled text-white flex justify-center items-center gap-1"
+            className="aspNetDisabled text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <PiShoppingCartLight className="text-3xl text-[#FFFF00]" />
+            {isHovered ? (
+              <LiaCartArrowDownSolid className="text-3xl text-[#FFFF00]" />
+            ) : (
+              <PiShoppingCartLight className="text-3xl text-[#FFFF00]" />
+            )}
             <span>0 Sản phẩm</span>
           </a>
         </div>
       </div>
-      <div className="">{/* <PrdListMenu.CDropdownMenu /> */}</div>
     </div>
   );
 }

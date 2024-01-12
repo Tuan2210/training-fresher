@@ -7,7 +7,6 @@ import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
 import { Link } from "react-router-dom";
 
 export default function ItemChild({ item }) {
-  console.log("itemchild-page", item);
   return (
     <CDropdownMenu className="bg-yellow-300">
       <Link
