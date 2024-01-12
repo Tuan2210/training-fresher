@@ -8,7 +8,7 @@ import { MdOutlineLock, MdOutlineLockOpen } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { PiShoppingCartLight } from "react-icons/pi";
 
-import PrdListMenu from "../../components/ui/PrdListMenu/PrdListMenu";
+import PrdsMenu from "../../components/ui/PrdsMenu/PrdsMenu";
 
 const cx = classNames.bind(styles);
 
@@ -218,7 +218,7 @@ export default function Header() {
         ])}
       >
         {/* prds list */}
-        <PrdListMenu />
+        <PrdsMenu />
 
         {/* search-prd */}
         <div className={cx(["srwrp", "col-span-6 p-[4px] bg-[#B21E02]"])}>

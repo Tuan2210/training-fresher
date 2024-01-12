@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { dataItems } from "./dataPrdListMenu";
+import { dataItems } from "./dataPrdsMenu";
 
 import { MdMenu } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
@@ -9,25 +9,22 @@ import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
 
 import MenuList from "./MenuList";
 
-export default function PrdListMenu() {
+export default function PrdsMenu() {
   const [isDisplay, setIsDisplay] = useState("none");
-  function handleClickListItem() {
-    setIsDisplay(isDisplay === "none" ? "flex" : "none");
-  }
 
   return (
     <>
       <CDropdown className="col-span-3 bg-[#B21E02] hover:bg-[#9B1A01] relative">
         <CDropdownToggle
           className="flex justify-between items-center w-full h-full p-[0.7rem] text-white text-[1.1rem]"
-          onClick={handleClickListItem}
+          onClick={() => setIsDisplay(isDisplay === "none" ? "flex" : "none")}
         >
           <MdMenu className="text-2xl" />
           <span>DANH MỤC SẢN PHẨM</span>
           {isDisplay.match("none") ? (
             <FaPlus className="text-lg" />
           ) : (
-            <IoIosArrowUp className="text-2xl text-[#FFC2D4]" />
+            <IoIosArrowUp className="text-2xl mr-[-0.2rem] text-[#FFC2D4]" />
           )}
         </CDropdownToggle>
       </CDropdown>

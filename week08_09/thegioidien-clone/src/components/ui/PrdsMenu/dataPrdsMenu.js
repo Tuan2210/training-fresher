@@ -1,18 +1,10 @@
 export const dataItems = [
   {
     title: "Công Tắc Ổ Cắm và Phụ Kiện",
-    firstSubMenu: [
-      // {
-      //   title: "",
-      //   subMenu: [
-      //     {
-      //       title: '',
-      //     }
-      //   ]
-      // }
+    subMenu: [
       {
         title: "Clipsal/Schneider",
-        secondSubMenu: [
+        childrenItem: [
           {
             title: "Series E30",
           },
@@ -99,7 +91,7 @@ export const dataItems = [
       },
       {
         title: "Panasonic",
-        secondSubMenu: [
+        childrenItem: [
           {
             title: "Dòng Full Color",
           },
@@ -109,7 +101,7 @@ export const dataItems = [
   },
   {
     title: "Phụ Kiện Tủ Điện, Vỏ Tủ Điện",
-    firstSubMenu: [
+    subMenu: [
       {
         title: "Lelipole",
       },
