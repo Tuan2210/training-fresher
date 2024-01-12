@@ -1,6 +1,6 @@
 export const dataItems = [
   {
-    title: "Công tắc ổ cắm và phụ kiện",
+    title: "Công Tắc Ổ Cắm và Phụ Kiện",
     firstSubMenu: [
       // {
       //   title: "",

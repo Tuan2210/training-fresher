@@ -5,56 +5,14 @@ import { MdMenu } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { IoIosArrowUp } from "react-icons/io";
 
-import {
-  CDropdown,
-  CDropdownToggle,
-  CDropdownMenu,
-  CDropdownItem,
-  CDropdownDivider,
-} from "@coreui/react";
+import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
 
-import { Link } from "react-router-dom";
-import SubPrdMenu from "./SubPrdMenu";
+import MenuList from "./MenuList";
 
 export default function PrdListMenu() {
   const [isDisplay, setIsDisplay] = useState("none");
   function handleClickListItem() {
     setIsDisplay(isDisplay === "none" ? "flex" : "none");
-  }
-
-  const [activeItem, setActiveItem] = useState(null);
-  function handleClickSubListItem(e, item) {
-    setActiveItem(item === activeItem ? null : item);
-  }
-
-  function MenuList({ item, index }) {
-    return (
-      <>
-        <CDropdown
-          component="div"
-          className="w-full h-full text-white bg-[#48322A] hover:bg-[#B82F15] duration-[0.4s]"
-        >
-          <CDropdownToggle
-            className={`w-full p-[0.7rem] flex items-center justify-between border border-solid border-[#48322A] hover:border-[#B82F15] ${
-              index !== 0 ? "border-t-[#CBCBCB] hover:border-t-[#CBCBCB]" : ""
-            }`}
-            onClick={(e) => handleClickSubListItem(e, item)}
-          >
-            <div className="flex items-center">
-              <i className="fas fa-caret-right fa-fw fa-lg mr-3" />
-              <Link
-                to="#"
-                className="pl-[0.7rem] pr-[0.7rem] text-[1.1rem] hover:bg-[#1C8DD9]"
-              >
-                {item.title}
-              </Link>
-            </div>
-            <FaPlus className="text-lg" />
-          </CDropdownToggle>
-        </CDropdown>
-        <SubPrdMenu item={item} activeItem={activeItem} />
-      </>
-    );
   }
 
   return (
