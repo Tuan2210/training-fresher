@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function PrdsBlockHeader() {
+export default function PrdsBlockHeader({ prdWrp }) {
   return (
     <StyledHeader className="flex w-full">
       <Link
         to="#"
         className="text-[1.2rem] p-[0.5rem] text-white hover:text-[#FFFF00]"
       >
-        Công Tắc Ổ Cắm và Phụ Kiện
+        {prdWrp.title}
       </Link>
     </StyledHeader>
   );

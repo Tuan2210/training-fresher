@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { dataSub } from "../data/dataSub";
 import { useState } from "react";
 
-export default function PrdsBlockSub() {
+export default function PrdsBlockSub({ prdWrp }) {
   const [isHover, setIsHover] = useState(false);
   return (
     <StyledSub className="grid grid-cols-12 grid-flow-row w-full p-2 gap-2">
-      {dataSub[0].brandsLogo.map((item, index) => (
+      {prdWrp.brandsLogo.map((item, index) => (
         <Link
           to="#"
           key={index}
