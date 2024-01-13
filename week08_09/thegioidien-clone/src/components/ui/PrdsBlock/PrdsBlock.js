@@ -10,7 +10,7 @@ export default function PrdsBlock() {
       {prdsData.map((prd, index) => (
         <div
           key={index}
-          className="prds-bl w-full mt-4 border border-solid border-[#B21E02]"
+          className="w-full mt-4 border border-solid border-[#B21E02]"
         >
           <PrdsBlockHeader prdWrp={prd} />
           <PrdsBlockSub prdWrp={prd} />
