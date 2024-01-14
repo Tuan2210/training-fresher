@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function PrdsBlockContent({ prdWrp }) {
-  function formatNumberWithDots(number) {
+  function formatPrice(number) {
     return number.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
@@ -38,7 +38,7 @@ export default function PrdsBlockContent({ prdWrp }) {
               {item.discount !== 0 && (
                 <>
                   <span className="text-[1.2rem] text-[#936B62] mr-[0.3rem] line-through">
-                    {formatNumberWithDots(item.regularPrice)}
+                    {formatPrice(item.regularPrice)}
                   </span>
                   <sup className="text-[#585858]">đ</sup>
                 </>
@@ -47,7 +47,7 @@ export default function PrdsBlockContent({ prdWrp }) {
           </div>
           <div className="ctprice flex justify-center items-center p-2 border-t border-solid border-t-white">
             <span className="text-[1.3rem] text-[#890F00] mr-[0.3rem]">
-              {formatNumberWithDots(item.salePrice)}
+              {formatPrice(item.salePrice)}
             </span>
             <sup className="text-[#585858]">đ</sup>
           </div>

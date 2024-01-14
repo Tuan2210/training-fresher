@@ -2,7 +2,7 @@ import PrdsBlockContent from "./PrdsBlockCt/PrdsBlockContent";
 import PrdsBlockSub from "./PrdsBlockSub/PrdsBlockSub";
 import PrdsBlockHeader from "./PrdsBlockHd/PrdsBlockHeader";
 
-import prdsData from "./data/prdsData.json";
+import prdsData from "../../../data/prdsData.json";
 
 export default function PrdsBlock() {
   return (

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useState } from "react";
 
 export default function PrdsBlockSub({ prdWrp }) {
-  const [isHover, setIsHover] = useState(false);
   return (
     <StyledSub className="grid grid-cols-12 grid-flow-row w-full p-2 gap-2">
       {prdWrp.brandsLogo.map((item, index) => (
