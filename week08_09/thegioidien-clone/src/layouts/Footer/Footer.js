@@ -1,5 +1,6 @@
 import PrdsCarousel from "../../components/ui/PrdsCarousel/PrdsCarousel";
 import FooterCenterBlock from "../../components/ui/FooterCenterBlock/FooterCenterBlock";
+import FooterBottomBlock from "../../components/ui/FooterBottomBlock/FooterBottomBlock";
 
 export default function Footer() {
   return (
@@ -7,6 +8,9 @@ export default function Footer() {
       <PrdsCarousel />
       <div className="footer-center grid grid-cols-3 gap-4 mt-1">
         <FooterCenterBlock />
+      </div>
+      <div className="footer-bottom">
+        <FooterBottomBlock />
       </div>
     </div>
   );

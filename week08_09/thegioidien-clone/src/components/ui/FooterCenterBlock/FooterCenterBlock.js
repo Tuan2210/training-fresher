@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
 import BlockHd from "./BlockHd";
 import BlockCt from "./BlockCt";
+
+import { FaRegFilePdf } from "react-icons/fa";
 
 export default function FooterCenterBlock() {
   return (
@@ -48,7 +48,7 @@ export default function FooterCenterBlock() {
       {/* Tài liệu kỹ thuật */}
       <div className="bg-[#EDEDED] border-[3px] border-t-0 border-l-0 border-r-0 border-solid border-b-[#94AAB1]">
         <BlockHd>
-          <i className="far fa-file-pdf text-[#DFCA00]" />
+          <FaRegFilePdf className="text-[#DFCA00]" />
           <p className="text-white hover:text-[#F9EEDD]">Tài liệu kỹ thuật</p>
         </BlockHd>
         <BlockCt>
