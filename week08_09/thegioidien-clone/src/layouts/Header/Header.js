@@ -162,17 +162,17 @@ export default function Header() {
           ])}
         >
           <div className={cx(["rsrow", "w-full grid items-center"])}>
-            <div className="rscoll w-[115px]">
+            <div className="rscoll">
               <i className="far fa-user fa-fw pl-1 pr-6 text-[#003B4F]" />
               <span className="text-[#8D1802]">Tài khoản</span>
             </div>
-            <div className="rscolr">
+            <div className="rscolr flex">
               <input
                 name="txtEmail"
                 type="text"
                 id="txtEmailLG"
                 placeholder="Email hoặc điện thoại"
-                className="w-[190px] border border-solid border-[#4F4F4F] placeholder-gray-500"
+                className="w-full border border-solid border-[#4F4F4F] placeholder-gray-500"
               />
             </div>
           </div>
@@ -192,7 +192,7 @@ export default function Header() {
                 name="txtPass"
                 type="password"
                 id="txtPassLG"
-                className="w-[190px] border border-solid border-[#4F4F4F] placeholder-gray-500"
+                className="w-full border border-solid border-[#4F4F4F] placeholder-gray-500"
               />
             </div>
           </div>
@@ -206,7 +206,7 @@ export default function Header() {
             </Link>
             <Link
               to=""
-              className="flex justify-center items-center w-32 rounded pt-2 pb-2 pl-[0.7rem] pr-[0.7rem] gap-1 bg-[#1C8DD9] hover:bg-[#1c8dd9e0]"
+              className="w-fit flex justify-center items-center rounded pt-2 pb-2 pl-[0.7rem] pr-[0.7rem] gap-1 bg-[#1C8DD9] hover:bg-[#1c8dd9e0]"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
@@ -215,7 +215,7 @@ export default function Header() {
               ) : (
                 <MdOutlineLock className="text-xl text-[#FFFF00] font-bold" />
               )}
-              <span className="text-white">Đăng nhập</span>
+              <span className="text-white">Đăng Nhập</span>
             </Link>
           </div>
         </div>
