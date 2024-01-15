@@ -2,9 +2,8 @@ import { useState } from "react";
 
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
-import { IoIosArrowUp } from "react-icons/io";
 
-import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
+import { CDropdownMenu } from "@coreui/react";
 
 import { Link } from "react-router-dom";
 
@@ -12,19 +11,10 @@ import ItemChild from "./ItemChild";
 
 export default function SubMenu({ activeItem, item }) {
   const [isActive, setIsActive] = useState(null);
-  const [isDisplayItem, setIsDisplayItem] = useState("none");
-  const [target, setTarget] = useState("");
 
   function onClick(e, subItem) {
-    // console.log(e.target.innerText);
-    // console.log(subItem);
     setIsActive(e.target.innerText !== subItem.title ? null : subItem.title);
-    // setIsActive(item.subMenu === isActive ? null : item.subMenu);
-    // console.log(isActive);
-    // setIsDisplayItem(e.target.innerText === subItem.title ? "flex" : "none");
-    // if (e.target.innerText === subItem.title && isDisplayItem.match("none"))
-    //   setIsActive(subItem.title);
-    // else setIsDisplayItem(null);
+    if (isActive !== null) setIsActive(null);
   }
   return (
     <>
@@ -36,7 +26,6 @@ export default function SubMenu({ activeItem, item }) {
           }`}
           onClick={(e) => onClick(e, subItem)}
         >
-          {/* {item.subMenu.map((subItem, index) => ( */}
           <div
             key={index}
             className="border border-solid border-l-0 border-r-0 border-t-[#CBCBCB] border-b-[#F1FAFE] hover:cursor-pointer"
@@ -57,13 +46,11 @@ export default function SubMenu({ activeItem, item }) {
             {subItem.childrenItem && (
               <ItemChild
                 isActive={isActive}
-                isDisplayItem={isDisplayItem}
                 childrenItem={subItem.childrenItem}
                 subItem={subItem}
               />
             )}
           </div>
-          {/* ))} */}
         </CDropdownMenu>
       ))}
     </>

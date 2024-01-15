@@ -1,17 +1,8 @@
-import { useState } from "react";
-import { CDropdownMenu } from "@coreui/react";
 import { BsLightning } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
 
-export default function ItemChild({
-  isActive,
-  isDisplayItem,
-  childrenItem,
-  subItem,
-}) {
-  console.log("isActive", isActive);
-  console.log("isDisplayItem", isDisplayItem);
+export default function ItemChild({ isActive, childrenItem, subItem }) {
   function ItemChildMenu({ item }) {
     return (
       <Link
@@ -29,8 +20,6 @@ export default function ItemChild({
       className={`${
         isActive === subItem.title ? "block" : "hidden"
       } w-full pt-[0.3rem] pl-8 pb-2 pr-4`}
-      // className={`block w-full pt-[0.3rem] pl-8 pb-2 pr-4`}
-      // style={{ display: isDisplayItem }}
     >
       <div className="flex flex-row flex-wrap gap-[2px]">
         {childrenItem.map((item, index) => (
