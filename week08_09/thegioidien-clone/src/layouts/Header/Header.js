@@ -9,8 +9,6 @@ import { IoSearchOutline } from "react-icons/io5";
 import { PiShoppingCartLight } from "react-icons/pi";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
 
-// import PrdsMenu from "../../components/ui/PrdsMenu/PrdsMenu";
-
 import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
 
 import { MdMenu } from "react-icons/md";
