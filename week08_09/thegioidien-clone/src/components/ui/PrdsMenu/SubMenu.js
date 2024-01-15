@@ -13,47 +13,59 @@ import ItemChild from "./ItemChild";
 export default function SubMenu({ activeItem, item }) {
   const [isActive, setIsActive] = useState(null);
   const [isDisplayItem, setIsDisplayItem] = useState("none");
+  const [target, setTarget] = useState("");
 
-  function onClick() {
-    setIsActive(item.subMenu === isActive ? null : item.subMenu);
-    setIsDisplayItem(isDisplayItem === "none" ? "flex" : "none");
+  function onClick(e, subItem) {
+    // console.log(e.target.innerText);
+    // console.log(subItem);
+    setIsActive(e.target.innerText !== subItem.title ? null : subItem.title);
+    // setIsActive(item.subMenu === isActive ? null : item.subMenu);
+    // console.log(isActive);
+    // setIsDisplayItem(e.target.innerText === subItem.title ? "flex" : "none");
+    // if (e.target.innerText === subItem.title && isDisplayItem.match("none"))
+    //   setIsActive(subItem.title);
+    // else setIsDisplayItem(null);
   }
   return (
-    <CDropdownMenu
-      className={`flex-col bg-[#646461] ${
-        activeItem === item ? "block" : "hidden"
-      }`}
-      onClick={onClick}
-    >
+    <>
       {item.subMenu.map((subItem, index) => (
-        <div
+        <CDropdownMenu
           key={index}
-          className="border border-solid border-l-0 border-r-0 border-t-[#CBCBCB] border-b-[#F1FAFE] hover:cursor-pointer"
+          className={`flex-col bg-[#646461] ${
+            activeItem === item ? "block" : "hidden"
+          }`}
+          onClick={(e) => onClick(e, subItem)}
         >
-          <div className="flex items-center justify-between p-[0.7rem] text-white">
-            <div className="ml-4 flex items-center justify-between gap-3">
-              <MdKeyboardArrowRight className="text-3xl" />
-              <Link
-                to="#"
-                key={index}
-                className="text-[1.1rem] hover:bg-[#1C8DD9]"
-              >
-                {subItem.title}
-              </Link>
+          {/* {item.subMenu.map((subItem, index) => ( */}
+          <div
+            key={index}
+            className="border border-solid border-l-0 border-r-0 border-t-[#CBCBCB] border-b-[#F1FAFE] hover:cursor-pointer"
+          >
+            <div className="flex items-center justify-between p-[0.7rem] text-white">
+              <div className="ml-4 flex items-center justify-between gap-3">
+                <MdKeyboardArrowRight className="text-3xl" />
+                <Link
+                  to="#"
+                  key={index}
+                  className="text-[1.1rem] hover:bg-[#1C8DD9]"
+                >
+                  {subItem.title}
+                </Link>
+              </div>
+              <FaPlus className="text-lg" />
             </div>
-            <FaPlus className="text-lg" />
+            {subItem.childrenItem && (
+              <ItemChild
+                isActive={isActive}
+                isDisplayItem={isDisplayItem}
+                childrenItem={subItem.childrenItem}
+                subItem={subItem}
+              />
+            )}
           </div>
-
-          {subItem.childrenItem && (
-            <ItemChild
-              key={index}
-              isActive={isActive}
-              isDisplayItem={isDisplayItem}
-              childrenItem={subItem.childrenItem}
-            />
-          )}
-        </div>
+          {/* ))} */}
+        </CDropdownMenu>
       ))}
-    </CDropdownMenu>
+    </>
   );
 }

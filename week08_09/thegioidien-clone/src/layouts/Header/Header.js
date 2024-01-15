@@ -8,6 +8,7 @@ import { MdOutlineLock, MdOutlineLockOpen } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { PiShoppingCartLight } from "react-icons/pi";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
+import { FaRegFilePdf } from "react-icons/fa";
 
 import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
 
@@ -36,7 +37,7 @@ export default function Header() {
               "flex justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
             ])}
           >
-            <i className="far fa-file-pdf text-[#DFCA00]" />
+            <FaRegFilePdf className="text-[#DFCA00]" />
             <p className="text-white">Tài liệu kỹ thuật</p>
           </Link>
           <Link
