@@ -16,7 +16,7 @@ export default function PrdsBlockContent({ prdWrp }) {
           className="ctitem flex flex-col text-[1rem] relative"
         >
           {item.discount !== 0 && (
-            <div className="stick absolute top-0 right-0 w-[42px] h-[42px] text-center text-[#FFFF00] z-[100]">
+            <div className="stick absolute top-0 right-0 w-[42px] h-[42px] text-center text-[#FFFF00] z-[1]">
               <span>-{item.discount}%</span>
             </div>
           )}

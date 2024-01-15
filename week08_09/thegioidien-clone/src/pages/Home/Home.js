@@ -4,7 +4,7 @@ import Header from "../../layouts/Header/Header";
 
 export default function Home() {
   return (
-    <div className="w-full h-full bg-white">
+    <div className="home w-full bg-white">
       <Header />
       <Content />
       <Footer />

@@ -107,4 +107,84 @@ export const dataItems = [
       },
     ],
   },
+  {
+    title: "Dụng cụ cầm tay, Dụng Cụ Tools",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
+  {
+    title: "Thiết Bị Chống Sét, Kim Thu Sét",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
+  {
+    title: "Điện Dân Dụng và Phụ Kiện",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
+  {
+    title: "Thiết Bị Đóng Cắt, Chống Rò Điện",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
+  {
+    title: "Đèn Chiếu Sáng - Đèn Trang Trí",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
+  {
+    title: "Thiết Bị Điều Khiển, Tự Động Hóa",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
+  {
+    title: "ATS, MTS, UPS, Cầu Dao Đảo",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
+  {
+    title: "Cáp Điện, Cáp Tín Hiệu - Điều Khiển",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
+  {
+    title: "Thiết Bị Điện Trung Thế, Đường Dây",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
+  {
+    title: "Biến Áp, Ổn Áp, Tụ bù, Cuộn kháng",
+    subMenu: [
+      {
+        title: "",
+      },
+    ],
+  },
 ];

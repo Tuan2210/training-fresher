@@ -7,15 +7,15 @@ import styled, { keyframes } from "styled-components";
 export default function PrdsCarousel() {
   return (
     <StyledPrdsCarousel className="footer-top carousel-container bg-[#83857A] pt-[8px] pl-[13px] pb-[8px] pr-[13px] inline-block whitespace-nowrap">
-      <div className="flex overflow-hidden">
-        <MarqueeGroup className="flex items-center justify-around gap-2 mr-2">
+      <div className="flex overflow-hidden animated-wrp">
+        <MarqueeGroup className="animated-wrp-ele flex items-center justify-around gap-2 mr-2">
           {carouselLogoData.map((item, index) => (
             <Link key={index} to="#" className="grid img-grp w-24 h-12">
               <img src={item.logo} className="w-full h-full" />
             </Link>
           ))}
         </MarqueeGroup>
-        <MarqueeGroup className="flex items-center justify-around gap-2">
+        <MarqueeGroup className="animated-wrp-ele flex items-center justify-around gap-2">
           {carouselLogoData.map((item, index) => (
             <Link key={index} to="#" className="grid img-grp w-24 h-12">
               <img src={item.logo} className="w-full h-full" />
@@ -39,12 +39,17 @@ const scrollX = keyframes`
 const MarqueeGroup = styled.div`
   flex-shrink: 0;
   white-space: nowrap;
-  animation: ${scrollX} 30s linear infinite;
-  /* &:hover {
-    animation: none;
-  } */
+  animation: ${scrollX} 50s linear infinite;
+  &:hover {
+    animation-play-state: paused;
+  }
 `;
 
 const StyledPrdsCarousel = styled.div`
   grid-area: th;
+  .animated-wrp:hover {
+    .animated-wrp-ele {
+      animation-play-state: paused;
+    }
+  }
 `;

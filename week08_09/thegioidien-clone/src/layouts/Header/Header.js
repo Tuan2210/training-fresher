@@ -9,12 +9,22 @@ import { IoSearchOutline } from "react-icons/io5";
 import { PiShoppingCartLight } from "react-icons/pi";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
 
-import PrdsMenu from "../../components/ui/PrdsMenu/PrdsMenu";
+// import PrdsMenu from "../../components/ui/PrdsMenu/PrdsMenu";
+
+import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
+
+import { MdMenu } from "react-icons/md";
+import { FaPlus } from "react-icons/fa6";
+import { IoIosArrowUp } from "react-icons/io";
+
+import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
+import MenuList from "../../components/ui/PrdsMenu/MenuList";
 
 const cx = classNames.bind(styles);
 
 export default function Header() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isDisplay, setIsDisplay] = useState("none");
 
   return (
     <div className="header flex flex-col gap-4">
@@ -219,7 +229,20 @@ export default function Header() {
         ])}
       >
         {/* prds list */}
-        <PrdsMenu />
+        <CDropdown className="col-span-3 bg-[#B21E02] hover:bg-[#9B1A01]">
+          <CDropdownToggle
+            className="flex justify-between items-center w-full h-full p-[0.7rem] text-white text-[1.1rem]"
+            onClick={() => setIsDisplay(isDisplay === "none" ? "flex" : "none")}
+          >
+            <MdMenu className="text-2xl" />
+            <span>DANH MỤC SẢN PHẨM</span>
+            {isDisplay.match("none") ? (
+              <FaPlus className="text-lg" />
+            ) : (
+              <IoIosArrowUp className="text-2xl mr-[-0.2rem] text-[#FFC2D4]" />
+            )}
+          </CDropdownToggle>
+        </CDropdown>
 
         {/* search-prd */}
         <div className={cx(["srwrp", "col-span-6 p-[4px] bg-[#B21E02]"])}>
@@ -250,6 +273,14 @@ export default function Header() {
           </a>
         </div>
       </div>
+      <CDropdownMenu
+        className="col-span-12 mt-[-1rem] flex-col rounded left-0 w-full z-10"
+        style={{ display: isDisplay, marginBottom: "-40%" }}
+      >
+        {dataItems.map((item, index) => (
+          <MenuList key={index} item={item} index={index} />
+        ))}
+      </CDropdownMenu>
     </div>
   );
 }
