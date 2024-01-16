@@ -2,12 +2,14 @@ import BlockHd from "./BlockHd";
 import BlockCt from "./BlockCt";
 
 import { FaRegFilePdf } from "react-icons/fa";
+import styled from "styled-components";
+import MoreBtn from "../MoreBtn/MoreBtn";
 
 export default function FooterCenterBlock() {
   return (
     <>
       {/* Hướng dẫn - Câu hỏi thường gặp */}
-      <div className="bg-[#EDEDED] border-[3px] border-t-0 border-l-0 border-r-0 border-solid border-b-[#94AAB1]">
+      <StyledWrp className="bg-[#EDEDED] border-[3px] border-t-0 border-l-0 border-r-0 border-solid border-b-[#94AAB1]">
         <BlockHd>
           <i className="far fa-question-circle text-[#DFCA00]" />
           <p className="text-white hover:text-[#F9EEDD]">
@@ -44,9 +46,12 @@ export default function FooterCenterBlock() {
             <span>Hướng dẫn tìm sản phẩm tại thegioidien.com (P2)</span>
           </div>
         </BlockCt>
-      </div>
+        <div className="moreBtn hidden justify-end p-4">
+          <MoreBtn />
+        </div>
+      </StyledWrp>
       {/* Tài liệu kỹ thuật */}
-      <div className="bg-[#EDEDED] border-[3px] border-t-0 border-l-0 border-r-0 border-solid border-b-[#94AAB1]">
+      <StyledWrp className="bg-[#EDEDED] border-[3px] border-t-0 border-l-0 border-r-0 border-solid border-b-[#94AAB1]">
         <BlockHd>
           <FaRegFilePdf className="text-[#DFCA00]" />
           <p className="text-white hover:text-[#F9EEDD]">Tài liệu kỹ thuật</p>
@@ -81,9 +86,12 @@ export default function FooterCenterBlock() {
             <span>T.LUG - Đầu Cos</span>
           </div>
         </BlockCt>
-      </div>
+        <div className="moreBtn hidden justify-end p-4">
+          <MoreBtn />
+        </div>
+      </StyledWrp>
       {/* Bảng giá sản phẩm< */}
-      <div className="bg-[#EDEDED] border-[3px] border-t-0 border-l-0 border-r-0 border-solid border-b-[#94AAB1]">
+      <StyledWrp className="bg-[#EDEDED] border-[3px] border-t-0 border-l-0 border-r-0 border-solid border-b-[#94AAB1]">
         <BlockHd>
           <i className="far fa-dollar-sign text-[#DFCA00]" />
           <p className="text-white hover:text-[#F9EEDD]">Bảng giá sản phẩm</p>
@@ -124,7 +132,19 @@ export default function FooterCenterBlock() {
             </span>
           </div>
         </BlockCt>
-      </div>
+        <div className="moreBtn hidden justify-end p-4">
+          <MoreBtn />
+        </div>
+      </StyledWrp>
     </>
   );
 }
+
+const StyledWrp = styled.div`
+  @media screen and (max-width: 768px) {
+    grid-column: span 12;
+    .moreBtn {
+      display: flex !important;
+    }
+  }
+`;

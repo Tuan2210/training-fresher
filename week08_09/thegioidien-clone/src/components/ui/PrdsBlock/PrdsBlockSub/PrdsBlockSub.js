@@ -35,7 +35,12 @@ const StyledSub = styled.div`
       height: 60px;
     }
   }
+
   @media screen and (max-width: 991px) {
     grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 `;

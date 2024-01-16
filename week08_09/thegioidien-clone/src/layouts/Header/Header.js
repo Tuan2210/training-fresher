@@ -334,6 +334,56 @@ export default function Header() {
           </a>
         </div>
       </div>
+      {/* header-bottom-768 */}
+      <div
+        className={cx([
+          "header-bottom-768",
+          "hidden grid-cols-12 grid-flow-row gap-4",
+        ])}
+      >
+        {/* prds list */}
+        <CDropdown
+          className={cx([
+            "prdsMenuBtn",
+            "col-span-6 bg-[#B21E02] hover:bg-[#9B1A01]",
+          ])}
+        >
+          <CDropdownToggle
+            className="flex justify-between items-center w-full h-full p-[0.7rem] text-white text-[1.1rem]"
+            onClick={() => setIsDisplay(isDisplay === "none" ? "flex" : "none")}
+          >
+            <MdMenu className="text-2xl" />
+            <span>DANH MỤC SẢN PHẨM</span>
+            {isDisplay.match("none") ? (
+              <FaPlus className="text-lg" />
+            ) : (
+              <IoIosArrowUp className="text-2xl mr-[-0.2rem] text-[#FFC2D4]" />
+            )}
+          </CDropdownToggle>
+        </CDropdown>
+
+        {/* quantities prds */}
+        <div
+          className={cx([
+            "sc-ct",
+            "col-span-6 flex justify-center items-center bg-[#B21E02]",
+          ])}
+        >
+          <a
+            id="lktodtdt"
+            className="aspNetDisabled text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {isHovered ? (
+              <LiaCartArrowDownSolid className="text-3xl text-[#FFFF00]" />
+            ) : (
+              <PiShoppingCartLight className="text-3xl text-[#FFFF00]" />
+            )}
+            <span>0 Sản phẩm</span>
+          </a>
+        </div>
+      </div>
       <CDropdownMenu
         className="col-span-12 mt-[-1rem] flex-col rounded left-0 w-full z-10"
         style={{ display: isDisplay, marginBottom: "-40%" }}

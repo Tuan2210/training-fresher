@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
-import { PiCaretDoubleRightBold } from "react-icons/pi";
+import MoreBtn from "../../MoreBtn/MoreBtn";
 
 export default function PrdsBlockContent({ prdWrp }) {
   function formatPrice(number) {
@@ -58,14 +57,7 @@ export default function PrdsBlockContent({ prdWrp }) {
         ))}
       </StyledDiv>
       <div className="moreBtn hidden justify-end p-4">
-        <Link>
-          <StyledSpan className="bg-[#B21E02] rounded-[3px] flex items-center pt-2 pb-2 pl-[0.7rem] pr-[0.7rem]">
-            <PiCaretDoubleRightBold className="text-[#FFFF00] mr-2" />
-            <span className="text-[#EDEDED]" style={{ lineHeight: 1.4 }}>
-              Xem thêm
-            </span>
-          </StyledSpan>
-        </Link>
+        <MoreBtn />
       </div>
     </StyledWrp>
   );
@@ -106,15 +98,4 @@ const StyledWrp = styled.div`
       display: flex !important;
     }
   }
-`;
-
-const StyledSpan = styled.span`
-  background-image: linear-gradient(
-    to bottom,
-    #b21e02,
-    #b21e02,
-    #b93016,
-    #b21e02,
-    #b21e02
-  );
 `;
