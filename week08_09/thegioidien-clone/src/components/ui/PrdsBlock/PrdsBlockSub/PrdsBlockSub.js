@@ -43,4 +43,8 @@ const StyledSub = styled.div`
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
+
+  @media screen and (max-width: 575px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 `;

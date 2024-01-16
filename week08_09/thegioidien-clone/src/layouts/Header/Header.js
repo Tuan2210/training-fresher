@@ -28,8 +28,13 @@ export default function Header() {
   return (
     <div className="header w-full flex flex-col gap-4">
       {/* header-top */}
-      <div className="header-top flex justify-between items-center bg-[#6A1300]">
-        <div className="menu-header-top flex justify-center gap-0.5">
+      <div
+        className={cx([
+          "header-top",
+          "flex justify-between items-center bg-[#6A1300]",
+        ])}
+      >
+        <div className={cx(["menu-header-top", "flex justify-center gap-0.5"])}>
           <Link
             to=""
             className={cx([
@@ -71,16 +76,28 @@ export default function Header() {
             <p className="text-white">Liên hệ</p>
           </Link>
         </div>
-        <Link
-          to=""
-          className={cx([
-            "registerBtn",
-            "flex justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
-          ])}
-        >
-          <i className="fa-solid fa-user-plus text-[#FFFF00]" />
-          <p className="text-white">Đăng ký</p>
-        </Link>
+        <div className={cx(["register-header-top"])}>
+          <Link
+            to=""
+            className={cx([
+              "registerBtn",
+              "flex justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
+            ])}
+          >
+            <i className="fa-solid fa-user-plus text-[#FFFF00]" />
+            <p className="text-white">Đăng ký</p>
+          </Link>
+          <Link
+            to=""
+            className={cx([
+              "registerBtn-574",
+              "hidden justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
+            ])}
+          >
+            <i className="fas fa-user-tie text-[#FFFF00]"></i>
+            <p className="text-white">Tài khoản</p>
+          </Link>
+        </div>
       </div>
       {/* header-content */}
       <div
@@ -341,6 +358,45 @@ export default function Header() {
           "hidden grid-cols-12 grid-flow-row gap-4",
         ])}
       >
+        {/* quantities prds-574 */}
+        <div
+          className={cx([
+            "sc-ct-574",
+            "hidden col-span-6 justify-center items-center bg-[#B21E02]",
+          ])}
+        >
+          <a
+            id="lktodtdt"
+            className="aspNetDisabled text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {isHovered ? (
+              <LiaCartArrowDownSolid className="text-3xl text-[#FFFF00]" />
+            ) : (
+              <PiShoppingCartLight className="text-3xl text-[#FFFF00]" />
+            )}
+            <span>0 Sản phẩm</span>
+          </a>
+        </div>
+
+        {/* search-prd-574 */}
+        <div
+          className={cx([
+            "srwrp-574",
+            "hidden col-span-6 p-[4px] bg-[#B21E02]",
+          ])}
+        >
+          <div className="pnSearch w-full flex justify-between items-center bg-[#FFFFE6]">
+            <input
+              type="text"
+              placeholder="Tìm sản phẩm..."
+              className="w-full focus:outline-none bg-[#FFFFE6] placeholder:text-[#757575]"
+            />
+            <IoSearchOutline className="text-3xl text-[#1D8DD9] pr-2" />
+          </div>
+        </div>
+
         {/* prds list */}
         <CDropdown
           className={cx([

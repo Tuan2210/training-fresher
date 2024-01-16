@@ -5,7 +5,6 @@
     }
 }
 .header-content {
-    // grid-template-columns: 350px auto auto;
     &__left {
         .logo {
             object-fit: contain;
@@ -51,6 +50,14 @@
 }
 
 @media screen and (max-width: 991px) { //change in 990
+    .header-top {
+        .menu-header-top {
+            display: none !important;
+        }
+        .register-header-top {
+            margin-left: auto;
+        }
+    }
     .header-content {
         &__left, &__right {
             grid-column: span 6 !important;
@@ -95,4 +102,55 @@
     .header-bottom-768 {
         display: grid !important;
     }
+}
+
+@media screen and (max-width: 575px) { //change in 574
+    .header-top {
+        .registerBtn {
+            display: none !important;
+        }
+        .registerBtn-574 {
+            display: flex !important;
+        }
+    }
+    .header-content {
+        &__left {
+            grid-column: span 12 !important;
+            img {
+                width: 80%;
+                margin: 0 auto;
+            }
+        }
+        &__right {
+            display: none !important;
+        }
+    }
+    .srwrp {
+        display: none !important;
+    }
+    .header-bottom-768 {
+        .sc-ct {
+            display: none !important;
+        }
+        .sc-ct-574 {
+            display: flex !important;
+            order: 1 !important;
+            grid-column: span 12 !important;
+        }
+        .srwrp-574 {
+            display: block !important;
+            order: 2 !important;
+            grid-column: span 12 !important;
+        }
+        .prdsMenuBtn {
+            order: 3 !important;
+            grid-column: span 12 !important;
+        }
+        // .srwrp {
+        //     grid-column: span 12 !important;
+        // }
+    }
+    // .header-bottom-768 {
+    //     display: grid !important;
+    // }
 }
