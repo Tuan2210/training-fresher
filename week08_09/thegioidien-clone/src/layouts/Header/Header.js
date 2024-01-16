@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -78,7 +78,7 @@ export default function Header() {
         </div>
         <div className={cx(["register-header-top"])}>
           <Link
-            to=""
+            to="/dangky"
             className={cx([
               "registerBtn",
               "flex justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",

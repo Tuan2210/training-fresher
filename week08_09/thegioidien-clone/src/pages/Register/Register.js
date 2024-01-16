@@ -6,7 +6,7 @@ import GoupBtn from "../../components/ui/GoupBtn/GoupBtn";
 
 import { useLocation } from "react-router-dom";
 
-export default function Home() {
+export default function Register() {
   return (
     <div className="home w-full bg-white">
       <Header />
