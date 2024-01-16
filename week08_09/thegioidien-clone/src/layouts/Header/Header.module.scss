@@ -7,7 +7,6 @@
 .header-content {
     // grid-template-columns: 350px auto auto;
     &__left {
-        width: 338px;
         .logo {
             object-fit: contain;
         }
@@ -29,5 +28,22 @@
         input {
             font-size: 1.2rem !important;
         }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .header-content {
+        &__left {
+            grid-column: span 3 / span 3 !important;
+        }
+        &__center {
+            grid-column: span 5 / span 5 !important;
+        }
+        &__right {
+            grid-column: span 4 / span 4 !important;
+        }
+    }
+    .prdsMenuBtn, .srwrp, .sc-ct {
+        grid-column: span 4 / span 4 !important;
     }
 }

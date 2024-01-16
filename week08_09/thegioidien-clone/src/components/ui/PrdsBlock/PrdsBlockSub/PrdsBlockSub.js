@@ -28,4 +28,11 @@ const StyledSub = styled.div`
     #dbdbdb,
     #dbdbdb
   );
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    img {
+      height: 60px;
+    }
+  }
 `;

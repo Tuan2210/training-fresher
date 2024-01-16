@@ -26,7 +26,7 @@ export default function Header() {
   const [isDisplay, setIsDisplay] = useState("none");
 
   return (
-    <div className="header flex flex-col gap-4">
+    <div className="header w-full flex flex-col gap-4">
       {/* header-top */}
       <div className="header-top flex justify-between items-center bg-[#6A1300]">
         <div className="menu-header-top flex justify-center gap-0.5">
@@ -107,7 +107,7 @@ export default function Header() {
         <div
           className={cx([
             "header-content__center",
-            "col-span-6 flex justify-around",
+            "col-span-6 flex flex-wrap-reverse items-center justify-around",
           ])}
         >
           <div
@@ -228,7 +228,12 @@ export default function Header() {
         ])}
       >
         {/* prds list */}
-        <CDropdown className="col-span-3 bg-[#B21E02] hover:bg-[#9B1A01]">
+        <CDropdown
+          className={cx([
+            "prdsMenuBtn",
+            "col-span-3 bg-[#B21E02] hover:bg-[#9B1A01]",
+          ])}
+        >
           <CDropdownToggle
             className="flex justify-between items-center w-full h-full p-[0.7rem] text-white text-[1.1rem]"
             onClick={() => setIsDisplay(isDisplay === "none" ? "flex" : "none")}
@@ -249,14 +254,19 @@ export default function Header() {
             <input
               type="text"
               placeholder="Tìm sản phẩm..."
-              className="w-full focus:outline-none bg-[#FFFFE6]"
+              className="w-full focus:outline-none bg-[#FFFFE6] placeholder:text-[#757575]"
             />
             <IoSearchOutline className="text-3xl text-[#1D8DD9] pr-2" />
           </div>
         </div>
 
         {/* quantities prds */}
-        <div className="col-span-3 flex justify-center items-center bg-[#B21E02]">
+        <div
+          className={cx([
+            "sc-ct",
+            "col-span-3 flex justify-center items-center bg-[#B21E02]",
+          ])}
+        >
           <a
             id="lktodtdt"
             className="aspNetDisabled text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]"
