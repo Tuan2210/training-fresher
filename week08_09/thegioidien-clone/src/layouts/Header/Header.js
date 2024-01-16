@@ -219,6 +219,58 @@ export default function Header() {
             </Link>
           </div>
         </div>
+        {/* header-content__center_990 */}
+        <div
+          className={cx([
+            "header-content__center-990",
+            "col-span-12 hidden flex-wrap-reverse items-center justify-around",
+          ])}
+        >
+          <div
+            className={cx([
+              "btctleft",
+              "flex justify-center items-center gap-2",
+            ])}
+          >
+            <div className="p-2 flex justify-around items-center">
+              <img
+                src="/assets/imgs/fa-phone-office.png"
+                alt="phone-office"
+                width={50}
+                height={50}
+              />
+              <div className="btspsub flex flex-col pl-3">
+                <span className="text-xl text-[#0D427A]">
+                  028 3720 2968 - 0967 266 277
+                </span>
+                <span className="text-[#8D8D8D]">
+                  Thứ 2-6: 8-17H; Thứ 7: 8-12H
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className={cx([
+              "btctright",
+              "flex justify-center items-center gap-2",
+            ])}
+          >
+            <div className="p-2 flex justify-around items-center">
+              <i
+                className="fa-regular fa-envelope text-[#1D8DD9]"
+                style={{ fontSize: "35px" }}
+              />
+              <div className="btspsub flex flex-col pl-5">
+                <span className="text-xl text-[#0D427A]">
+                  sales@thegioidien.com
+                </span>
+                <span className="text-[#8D8D8D]">
+                  Trả lời 24h trong giờ hành chính
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       {/* header-bottom */}
       <div
