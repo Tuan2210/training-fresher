@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+
+import axios from "axios";
 
 import styled from "styled-components";
 
 import { IoHomeOutline } from "react-icons/io5";
 import { SlArrowRight } from "react-icons/sl";
-import { useState, useEffect } from "react";
+
+import { PROVINCES_URL } from "../../../constants/apiUrl";
 
 export default function RegisterBlock() {
   const [randomFirstNumber, setRandomFirstNumber] = useState(0);
@@ -19,6 +23,41 @@ export default function RegisterBlock() {
     return Math.floor(Math.random() * 9) + 1;
   }
 
+  ////call api provinces-cities & districts
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [selectedProvince, setSelectedProvince] = useState(false);
+  useEffect(() => {
+    async function fetchProvinces() {
+      try {
+        const res = await axios.get(`${PROVINCES_URL}?depth=1`);
+        setProvinces(res.data);
+      } catch (error) {
+        console.error("Error fetching provinces:", error);
+      }
+    }
+
+    fetchProvinces();
+  }, []);
+
+  async function callApiDistrict(provCode) {
+    try {
+      const res = await axios.get(`${PROVINCES_URL}p/${provCode}?depth=2`);
+      setDistricts(res.data.districts);
+    } catch (error) {
+      console.error("Error fetching districts:", error);
+    }
+  }
+
+  function onChangeProvince(value) {
+    if (value === "default") setSelectedProvince(false);
+    else {
+      setSelectedProvince(value);
+      callApiDistrict(value);
+    }
+  }
+  ////
+
   const [isChecked, setIsChecked] = useState(true);
   const [isCheckedEmail, setIsCheckedEmail] = useState(true);
 
@@ -27,6 +66,7 @@ export default function RegisterBlock() {
     handleSubmit,
     watch,
     control,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -35,6 +75,11 @@ export default function RegisterBlock() {
   function onSubmit(data) {
     console.log(data);
   }
+
+  const [isPlace, setIsPlace] = useState();
+  // useEffect(() => {
+  //   console.log(isPlace);
+  // }, [isPlace]);
 
   return (
     <StyledDiv className="w-full flex flex-col mt-4 gap-4">
@@ -225,18 +270,32 @@ export default function RegisterBlock() {
               <span className="lbl w-full text-[#3B3B3B]">Tỉnh/Thành</span>
               <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
                 <select
-                  name=""
                   id="place"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
                   defaultValue="default"
+                  {...register("place")}
+                  onChange={(e) => {
+                    setValue("place", e.target.value);
+                    onChangeProvince(e.target.value);
+                  }}
                 >
-                  <option className="option-default" value="default" disabled>
+                  <option className="option-default" value="default">
                     -- Chọn tỉnh thành
                   </option>
+                  {provinces.map((province) => (
+                    <option key={province.code} value={province.code}>
+                      {province.name}
+                    </option>
+                  ))}
                 </select>
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
+                {/* {errors.place === undefined && (
+                  <span className="text-[#CC0000]">
+                    Vui lòng chọn tỉnh thành!
+                  </span>
+                )} */}
               </div>
             </StyledFormRow>
 
@@ -248,7 +307,21 @@ export default function RegisterBlock() {
                   name=""
                   id="district"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                ></select>
+                  {...register("district")}
+                >
+                  <option
+                    className="option-default"
+                    value="default"
+                    disabled={!selectedProvince}
+                  >
+                    -- Chọn quận/huyện
+                  </option>
+                  {districts.map((district) => (
+                    <option key={district.code} value={district.code}>
+                      {district.name}
+                    </option>
+                  ))}
+                </select>
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
