@@ -22,7 +22,19 @@ export default function RegisterBlock() {
   const [isChecked, setIsChecked] = useState(true);
   const [isCheckedEmail, setIsCheckedEmail] = useState(true);
 
-  const { register, handleSubmit, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const rePassword = watch("password", "");
+
+  function onSubmit(data) {
+    console.log(data);
+  }
 
   return (
     <StyledDiv className="w-full flex flex-col mt-4 gap-4">
@@ -49,7 +61,10 @@ export default function RegisterBlock() {
             <span className="text-[#FF6600] mr-2 text-xl">*</span>
             <span className="text-[#8D8D8D]">là thông tin bắt buộc</span>
           </div>
-          <div className="register-form-wrp">
+          <form
+            className="register-form-wrp"
+            onSubmit={handleSubmit((data) => onSubmit(data))}
+          >
             {/* Họ tên */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Họ tên</span>
@@ -57,10 +72,21 @@ export default function RegisterBlock() {
                 <input
                   type="text"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                  {...register("name", {
+                    required: "Vui lòng nhập họ tên!",
+                    pattern: {
+                      value: /^[a-zA-Z\s]+$/u, // u means Unicode for Vietnamese
+                      // value: '/^[A-Z]{1}\w+(  [A-Z]{1}\w+)*$/',
+                      message: "Họ tên không hợp lệ",
+                    },
+                  })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
+                {errors.name && (
+                  <span className="text-[#CC0000]">{errors.name.message}</span>
+                )}
               </div>
             </StyledFormRow>
 
@@ -71,10 +97,22 @@ export default function RegisterBlock() {
                 <input
                   type="text"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                  {...register("phoneNumber", {
+                    required: "Vui lòng nhập số điện thoại!",
+                    pattern: {
+                      value: /^0[0-9]{9}$/u,
+                      message: "Số điện thoại không hợp lệ",
+                    },
+                  })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
+                {errors.phoneNumber && (
+                  <span className="text-[#CC0000]">
+                    {errors.phoneNumber.message}
+                  </span>
+                )}
               </div>
             </StyledFormRow>
 
@@ -85,10 +123,20 @@ export default function RegisterBlock() {
                 <input
                   type="email"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                  {...register("email", {
+                    required: "Vui lòng nhập email!",
+                    pattern: {
+                      value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+                      message: "Email không hợp lệ",
+                    },
+                  })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
+                {errors.email && (
+                  <span className="text-[#CC0000]">{errors.email.message}</span>
+                )}
               </div>
             </StyledFormRow>
 
@@ -99,10 +147,23 @@ export default function RegisterBlock() {
                 <input
                   type="password"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                  {...register("password", {
+                    required: "Vui lòng nhập mật khẩu!",
+                    pattern: {
+                      value:
+                        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                      message: "Mật khẩu không hợp lệ",
+                    },
+                  })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
+                {errors.password && (
+                  <span className="text-[#CC0000]">
+                    {errors.password.message}
+                  </span>
+                )}
               </div>
             </StyledFormRow>
 
@@ -115,10 +176,20 @@ export default function RegisterBlock() {
                 <input
                   type="password"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                  {...register("confirmPassword", {
+                    required: "Vui lòng xác nhận mật khẩu!",
+                    validate: (value) =>
+                      value === rePassword || "Mật khẩu không khớp",
+                  })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
+                {errors.confirmPassword && (
+                  <span className="text-[#CC0000]">
+                    {errors.confirmPassword.message}
+                  </span>
+                )}
               </div>
             </StyledFormRow>
 
@@ -130,10 +201,22 @@ export default function RegisterBlock() {
                   type="text"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676] placeholder:text-[#757575]"
                   placeholder="Số nhà, tên đường, phường/xã"
+                  {...register("address", {
+                    required: "Vui lòng nhập địa chỉ!",
+                    pattern: {
+                      value: /^.{1,255}$/u,
+                      message: "Địa chỉ không hợp lệ",
+                    },
+                  })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
+                {errors.address && (
+                  <span className="text-[#CC0000]">
+                    {errors.address.message}
+                  </span>
+                )}
               </div>
             </StyledFormRow>
 
@@ -249,7 +332,7 @@ export default function RegisterBlock() {
                 </button>
               </div>
             </StyledFormRow>
-          </div>
+          </form>
         </div>
       </div>
     </StyledDiv>
