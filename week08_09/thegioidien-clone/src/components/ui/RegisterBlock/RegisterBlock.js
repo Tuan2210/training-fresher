@@ -27,8 +27,9 @@ export default function RegisterBlock() {
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState(false);
+  const [isDisable, setIsDisable] = useState(false);
   useEffect(() => {
-    async function fetchProvinces() {
+    async function handleFetchProvinces() {
       try {
         const res = await axios.get(`${PROVINCES_URL}?depth=1`);
         setProvinces(res.data);
@@ -37,23 +38,28 @@ export default function RegisterBlock() {
       }
     }
 
-    fetchProvinces();
+    handleFetchProvinces();
   }, []);
 
-  async function callApiDistrict(provCode) {
+  async function handleFetchDistricts(provCode) {
+    if (provCode === null || provCode === undefined) return;
     try {
       const res = await axios.get(`${PROVINCES_URL}p/${provCode}?depth=2`);
-      setDistricts(res.data.districts);
+      if (res) setDistricts(res.data.districts);
     } catch (error) {
+      setDistricts([]);
       console.error("Error fetching districts:", error);
     }
   }
 
   function onChangeProvince(value) {
-    if (value === "default") setSelectedProvince(false);
-    else {
+    if (value === "default") {
+      setSelectedProvince(false);
+      handleFetchDistricts(null);
+    } else {
+      setIsDisable(true);
       setSelectedProvince(value);
-      callApiDistrict(value);
+      handleFetchDistricts(value);
     }
   }
   ////
@@ -67,13 +73,13 @@ export default function RegisterBlock() {
     watch,
     control,
     setValue,
-    formState: { errors },
+    formState: { errors, isSubmitted },
   } = useForm();
 
   const rePassword = watch("password", "");
 
-  function onSubmit(data) {
-    console.log(data);
+  function onSubmit(e) {
+    e.preventDefault();
   }
 
   const [isPlace, setIsPlace] = useState();
@@ -101,13 +107,13 @@ export default function RegisterBlock() {
           <i className="fa-solid fa-user-plus mr-2 text-[#FFFF00]" />
           <span>Đăng ký thành viên</span>
         </div>
-        <div className="register-form p-4">
+        <div className="register-wrp__ct p-4">
           <div className="form-note flex items-center flex-wrap justify-end">
             <span className="text-[#FF6600] mr-2 text-xl">*</span>
             <span className="text-[#8D8D8D]">là thông tin bắt buộc</span>
           </div>
           <form
-            className="register-form-wrp"
+            className="register-form"
             onSubmit={handleSubmit((data) => onSubmit(data))}
           >
             {/* Họ tên */}
@@ -270,16 +276,21 @@ export default function RegisterBlock() {
               <span className="lbl w-full text-[#3B3B3B]">Tỉnh/Thành</span>
               <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
                 <select
-                  id="place"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
                   defaultValue="default"
-                  {...register("place")}
+                  {...register("placeProv", {
+                    required: "Vui lòng chọn tỉnh thành!",
+                  })}
                   onChange={(e) => {
                     setValue("place", e.target.value);
                     onChangeProvince(e.target.value);
                   }}
                 >
-                  <option className="option-default" value="default">
+                  <option
+                    className="option-default"
+                    value=""
+                    disabled={isDisable}
+                  >
                     -- Chọn tỉnh thành
                   </option>
                   {provinces.map((province) => (
@@ -291,11 +302,11 @@ export default function RegisterBlock() {
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
-                {/* {errors.place === undefined && (
+                {errors.placeProv && (
                   <span className="text-[#CC0000]">
-                    Vui lòng chọn tỉnh thành!
+                    {errors.placeProv.message}
                   </span>
-                )} */}
+                )}
               </div>
             </StyledFormRow>
 
@@ -307,24 +318,32 @@ export default function RegisterBlock() {
                   name=""
                   id="district"
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                  {...register("district")}
+                  {...register("placeDis", {
+                    required: "Vui lòng chọn quận huyện!",
+                  })}
                 >
                   <option
                     className="option-default"
-                    value="default"
+                    value=""
                     disabled={!selectedProvince}
                   >
                     -- Chọn quận/huyện
                   </option>
-                  {districts.map((district) => (
-                    <option key={district.code} value={district.code}>
-                      {district.name}
-                    </option>
-                  ))}
+                  {selectedProvince &&
+                    districts.map((district) => (
+                      <option key={district.code} value={district.code}>
+                        {district.name}
+                      </option>
+                    ))}
                 </select>
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
                   *
                 </span>
+                {selectedProvince && errors.placeDis && (
+                  <span className="text-[#CC0000]">
+                    {errors.placeDis.message}
+                  </span>
+                )}
               </div>
             </StyledFormRow>
 
@@ -345,10 +364,14 @@ export default function RegisterBlock() {
                 <input
                   type="number"
                   className="w-[60px] p-2 text-[16px] border border-solid border-[#767676]"
+                  {...register("sum", { required: "Vui lòng làm phép tính" })}
                 />
                 <span className="err-alert text-[#FF6600] ml-1 mr-2 text-lg">
                   *
                 </span>
+                {errors.sum && (
+                  <span className="text-[#CC0000]">{errors.sum.message}</span>
+                )}
               </div>
             </StyledFormRow>
 
