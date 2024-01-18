@@ -45,14 +45,35 @@ const loginFormSchema = yup
               .isValidSync(value);
           }
         }
+      )
+      .test(
+        "is-exist-email",
+        "Sai email, vui lòng nhập lại!",
+        function (value) {
+          return value === accounts[0]?.email;
+        }
       ),
+    // .test(
+    //   "is-exist-phoneNumber",
+    //   "Sai số điện thoại, vui lòng nhập lai!",
+    //   function (value) {
+    //     return value === accounts[0]?.phoneNumber;
+    //   }
+    // ),
     ["Mật khẩu"]: yup
       .string()
       .required("Vui lòng nhập mật khẩu!")
       .test("is-pw-length", "4-20 ký tự!", function (value) {
         if (!value) return true;
         return value.length >= 4 && value.length <= 20;
-      }),
+      })
+      .test(
+        "is-exist-confirmPW",
+        "Sai mật khẩu, vui lòng nhập lai!",
+        function (value) {
+          return value === accounts[0]?.confirmPassword;
+        }
+      ),
     // fieldValue: yup.string().oneOf(accounts, "Giá trị không hợp lệ"),
   })
   .required();
@@ -76,7 +97,7 @@ export default function LoginBlock() {
   ////
 
   function onSubmit(acc) {
-    console.log(acc);
+    console.log("Đăng nhập thành công!", acc);
   }
 
   return (
