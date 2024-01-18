@@ -31,8 +31,9 @@ export default function RegisterBlock() {
   useEffect(() => {
     async function handleFetchProvinces() {
       try {
-        const res = await axios.get(`${PROVINCES_URL}?depth=1`);
+        const res = await axios.get(`${PROVINCES_URL}?depth=2`);
         setProvinces(res.data);
+        // console.log(res.data);
       } catch (error) {
         console.error("Error fetching provinces:", error);
       }
@@ -41,15 +42,9 @@ export default function RegisterBlock() {
     handleFetchProvinces();
   }, []);
 
-  async function handleFetchDistricts(provCode) {
-    if (provCode === null || provCode === undefined) return;
-    try {
-      const res = await axios.get(`${PROVINCES_URL}p/${provCode}?depth=2`);
-      if (res) setDistricts(res.data.districts);
-    } catch (error) {
-      setDistricts([]);
-      console.error("Error fetching districts:", error);
-    }
+  async function handleFetchDistricts(value) {
+    const provObj = provinces.find((item) => item.name === value);
+    if (provObj) setDistricts(provObj.districts);
   }
 
   function onChangeProvince(value) {
@@ -58,7 +53,7 @@ export default function RegisterBlock() {
       handleFetchDistricts(null);
     } else {
       setIsDisable(true);
-      setSelectedProvince(value);
+      setSelectedProvince(true);
       handleFetchDistricts(value);
     }
   }
@@ -103,13 +98,12 @@ export default function RegisterBlock() {
     register,
     handleSubmit,
     watch,
-    setValue,
     formState: { errors },
   } = useForm();
 
-  function onSubmit(data) {
+  async function onSubmit(acc) {
     // e.preventDefault();
-    console.log(data);
+    console.log(acc);
   }
 
   return (
@@ -139,7 +133,7 @@ export default function RegisterBlock() {
           </div>
           <form
             className="register-form"
-            onSubmit={handleSubmit((data) => onSubmit(data))}
+            onSubmit={handleSubmit((acc) => onSubmit(acc))}
           >
             {/* Họ tên */}
             <StyledFormRow className="flex flex-col mt-2">
@@ -311,7 +305,6 @@ export default function RegisterBlock() {
                       required: "Vui lòng chọn tỉnh thành!",
                     })}
                     onChange={(e) => {
-                      setValue("place", e.target.value);
                       onChangeProvince(e.target.value);
                     }}
                   >
@@ -323,7 +316,7 @@ export default function RegisterBlock() {
                       -- Chọn tỉnh thành
                     </option>
                     {provinces.map((province) => (
-                      <option key={province.code} value={province.code}>
+                      <option key={province.code} value={province.name}>
                         {province.name}
                       </option>
                     ))}
@@ -362,7 +355,7 @@ export default function RegisterBlock() {
                     </option>
                     {selectedProvince &&
                       districts.map((district) => (
-                        <option key={district.code} value={district.code}>
+                        <option key={district.code} value={district.name}>
                           {district.name}
                         </option>
                       ))}
@@ -517,7 +510,7 @@ const StyledFormRow = styled.div`
       input[type="password"],
       input[type="email"],
       select {
-        width: 300px;
+        width: 350px;
       }
     }
     .reg-btn-row {
