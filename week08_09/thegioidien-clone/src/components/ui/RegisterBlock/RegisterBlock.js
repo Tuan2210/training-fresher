@@ -14,16 +14,16 @@ import { PROVINCES_URL, GGCAPTCHA_SITE_KEY } from "../../../constants/apiUrl";
 import ReCAPTCHA from "react-google-recaptcha";
 
 export default function RegisterBlock() {
-  const [randomFirstNumber, setRandomFirstNumber] = useState(0);
-  const [randomSecondNumber, setRandomSecondNumber] = useState(0);
-  useEffect(() => {
-    setRandomFirstNumber(handleGenerateRandomNumber());
-    setRandomSecondNumber(handleGenerateRandomNumber());
-  }, []);
+  // const [randomFirstNumber, setRandomFirstNumber] = useState(0);
+  // const [randomSecondNumber, setRandomSecondNumber] = useState(0);
+  // useEffect(() => {
+  //   setRandomFirstNumber(handleGenerateRandomNumber());
+  //   setRandomSecondNumber(handleGenerateRandomNumber());
+  // }, []);
 
-  function handleGenerateRandomNumber() {
-    return Math.floor(Math.random() * 9) + 1;
-  }
+  // function handleGenerateRandomNumber() {
+  //   return Math.floor(Math.random() * 9) + 1;
+  // }
 
   ////call api provinces-cities & districts
   const [provinces, setProvinces] = useState([]);

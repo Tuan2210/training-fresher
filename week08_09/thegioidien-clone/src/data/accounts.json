@@ -1,0 +1,14 @@
+[
+    {
+      "address": "111",
+      "agreeChkBox": "Đồng ý",
+      "confirmPassword": "admin@123456",
+      "email": "admin@gmail.com",
+      "emailChkBox": "Đồng ý",
+      "fullName": "new a",
+      "password": "admin@123456",
+      "phoneNumber": "0944302210",
+      "placeDis": "Quận Hoàn Kiếm",
+      "placeProv": "Thành phố Hà Nội"
+    }
+  ]

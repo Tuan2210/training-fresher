@@ -1,3 +1,4 @@
+import LoginBlock from "../../components/ui/LoginBlock/LoginBlock";
 import PrdsBlock from "../../components/ui/PrdsBlock/PrdsBlock";
 import RegisterBlock from "../../components/ui/RegisterBlock/RegisterBlock";
 
@@ -8,6 +9,8 @@ export default function Content({ pathname }) {
         return <PrdsBlock />;
       case "/dangky":
         return <RegisterBlock />;
+      case "/dangnhap":
+        return <LoginBlock />;
       default:
         return;
     }

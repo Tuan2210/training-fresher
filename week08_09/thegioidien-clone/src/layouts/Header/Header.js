@@ -88,7 +88,7 @@ export default function Header() {
             <p className="text-white">Đăng ký</p>
           </Link>
           <Link
-            to=""
+            to="/dangnhap"
             className={cx([
               "registerBtn-574",
               "hidden justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
