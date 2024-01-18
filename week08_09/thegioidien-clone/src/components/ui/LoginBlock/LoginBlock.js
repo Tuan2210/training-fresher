@@ -185,7 +185,7 @@ export default function LoginBlock() {
               <span className="lbl w-full text-[#3B3B3B]"></span>
               <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
                 <div className="input-row__wrp w-full flex">
-                  <Link to="" className="flex items-center gap-2">
+                  <Link to="/quenmatkhau" className="flex items-center gap-2">
                     <LuKeyRound className="text-[#8D1802] text-xl" />
                     <span className="text-[#003B4F]">Quên mật khẩu?</span>
                   </Link>
