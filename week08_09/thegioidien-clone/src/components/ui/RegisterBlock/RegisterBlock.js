@@ -9,7 +9,9 @@ import styled from "styled-components";
 import { IoHomeOutline } from "react-icons/io5";
 import { SlArrowRight } from "react-icons/sl";
 
-import { PROVINCES_URL } from "../../../constants/apiUrl";
+import { PROVINCES_URL, GGCAPTCHA_SITE_KEY } from "../../../constants/apiUrl";
+
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function RegisterBlock() {
   const [randomFirstNumber, setRandomFirstNumber] = useState(0);
@@ -84,10 +86,12 @@ export default function RegisterBlock() {
   function handleValidateAddress(value) {
     if (!/^[a-zA-Z0-9\s/\-]+$/.test(value)) return "Địa chỉ không hợp lệ!";
   }
-  function handleCheckSum(value) {
-    if (randomFirstNumber + randomSecondNumber !== parseInt(value))
-      return "Kết quả phép tính không đúng!";
-  }
+  // function handleCheckSum(value) {
+  //   if (randomFirstNumber + randomSecondNumber !== parseInt(value))
+  //     return "Kết quả phép tính không đúng!";
+  // }
+  const [capVal, setCapVal] = useState(null);
+  const [isExpired, setIsExpired] = useState(true);
   function handleCheckAgreeChkBox() {
     if (!isChecked) return "Vui lòng đồng ý để tiếp tục!";
   }
@@ -103,6 +107,7 @@ export default function RegisterBlock() {
 
   async function onSubmit(acc) {
     // e.preventDefault();
+    if (isExpired) return;
     console.log(acc);
   }
 
@@ -143,7 +148,7 @@ export default function RegisterBlock() {
                   <input
                     type="text"
                     className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                    {...register("name", {
+                    {...register("fullName", {
                       required: "Vui lòng nhập họ tên!",
                       validate: handleValidateFullName,
                     })}
@@ -152,9 +157,9 @@ export default function RegisterBlock() {
                     *
                   </span>
                 </div>
-                {errors.name && (
+                {errors.fullName && (
                   <span className="text-[#CC0000] w-full mt-1">
-                    {errors.name.message}
+                    {errors.fullName.message}
                   </span>
                 )}
               </div>
@@ -373,7 +378,7 @@ export default function RegisterBlock() {
             </StyledFormRow>
 
             {/* Làm phép tính */}
-            <StyledFormRow className="flex flex-col mt-2">
+            {/* <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Làm phép tính</span>
               <div className="flex flex-wrap items-center mt-[0.3rem] mb-[0.3rem] gap-1">
                 <div className="addition flex gap-1">
@@ -400,6 +405,29 @@ export default function RegisterBlock() {
                 {errors.sum && (
                   <span className="text-[#CC0000] mt-1">
                     {errors.sum.message}
+                  </span>
+                )}
+              </div>
+            </StyledFormRow> */}
+
+            {/* GG-ReCAPTCHA */}
+            <StyledFormRow className="flex flex-col mt-2">
+              <span className="lbl w-full text-[#3B3B3B]"></span>
+              <div className="flex flex-wrap items-center mt-[0.3rem] mb-[0.3rem] gap-1">
+                <ReCAPTCHA
+                  sitekey={GGCAPTCHA_SITE_KEY}
+                  onExpired={() => {
+                    setIsExpired(true);
+                    setCapVal(null);
+                  }}
+                  onChange={(val) => {
+                    setIsExpired(false);
+                    setCapVal(val);
+                  }}
+                />
+                {!isExpired && !capVal && (
+                  <span className="text-[#CC0000] mt-1 ml-1">
+                    Vui lòng nhấn reCAPTCHA!
                   </span>
                 )}
               </div>
