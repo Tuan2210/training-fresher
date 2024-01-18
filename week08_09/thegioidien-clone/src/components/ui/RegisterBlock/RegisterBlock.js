@@ -144,20 +144,24 @@ export default function RegisterBlock() {
             {/* Họ tên */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Họ tên</span>
-              <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <input
-                  type="text"
-                  className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                  {...register("name", {
-                    required: "Vui lòng nhập họ tên!",
-                    validate: handleValidateFullName,
-                  })}
-                />
-                <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
-                  *
-                </span>
+              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                <div className="input-row__wrp w-full flex">
+                  <input
+                    type="text"
+                    className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                    {...register("name", {
+                      required: "Vui lòng nhập họ tên!",
+                      validate: handleValidateFullName,
+                    })}
+                  />
+                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                    *
+                  </span>
+                </div>
                 {errors.name && (
-                  <span className="text-[#CC0000]">{errors.name.message}</span>
+                  <span className="text-[#CC0000] w-full mt-1">
+                    {errors.name.message}
+                  </span>
                 )}
               </div>
             </StyledFormRow>
@@ -165,20 +169,22 @@ export default function RegisterBlock() {
             {/* Điện thoại */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Điện thoại</span>
-              <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <input
-                  type="text"
-                  className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                  {...register("phoneNumber", {
-                    required: "Vui lòng nhập số điện thoại!",
-                    validate: handleValidatePhoneNumber,
-                  })}
-                />
-                <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
-                  *
-                </span>
+              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                <div className="input-row__wrp w-full flex">
+                  <input
+                    type="text"
+                    className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                    {...register("phoneNumber", {
+                      required: "Vui lòng nhập số điện thoại!",
+                      validate: handleValidatePhoneNumber,
+                    })}
+                  />
+                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                    *
+                  </span>
+                </div>
                 {errors.phoneNumber && (
-                  <span className="text-[#CC0000]">
+                  <span className="text-[#CC0000] w-full mt-1">
                     {errors.phoneNumber.message}
                   </span>
                 )}
@@ -188,20 +194,24 @@ export default function RegisterBlock() {
             {/* Email */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Email</span>
-              <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <input
-                  type="email"
-                  className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                  {...register("email", {
-                    required: "Vui lòng nhập email!",
-                    validate: handleValidateEmail,
-                  })}
-                />
-                <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
-                  *
-                </span>
+              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                <div className="input-row__wrp w-full flex">
+                  <input
+                    type="email"
+                    className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                    {...register("email", {
+                      required: "Vui lòng nhập email!",
+                      validate: handleValidateEmail,
+                    })}
+                  />
+                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                    *
+                  </span>
+                </div>
                 {errors.email && (
-                  <span className="text-[#CC0000]">{errors.email.message}</span>
+                  <span className="text-[#CC0000] w-full mt-1">
+                    {errors.email.message}
+                  </span>
                 )}
               </div>
             </StyledFormRow>
@@ -209,25 +219,27 @@ export default function RegisterBlock() {
             {/* Mật khẩu */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Mật khẩu</span>
-              <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <input
-                  type="password"
-                  className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                  {...register("password", {
-                    required: "Vui lòng nhập mật khẩu!",
-                    validate: handleValidatePassword,
-                    // pattern: {
-                    //   value:
-                    //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    //   message: "Mật khẩu không hợp lệ",
-                    // },
-                  })}
-                />
-                <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
-                  *
-                </span>
+              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                <div className="input-row__wrp w-full flex">
+                  <input
+                    type="password"
+                    className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                    {...register("password", {
+                      required: "Vui lòng nhập mật khẩu!",
+                      validate: handleValidatePassword,
+                      // pattern: {
+                      //   value:
+                      //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                      //   message: "Mật khẩu không hợp lệ",
+                      // },
+                    })}
+                  />
+                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                    *
+                  </span>
+                </div>
                 {errors.password && (
-                  <span className="text-[#CC0000]">
+                  <span className="text-[#CC0000] w-full mt-1">
                     {errors.password.message}
                   </span>
                 )}
@@ -239,20 +251,22 @@ export default function RegisterBlock() {
               <span className="lbl w-full text-[#3B3B3B]">
                 Xác nhận mật khẩu
               </span>
-              <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <input
-                  type="password"
-                  className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                  {...register("confirmPassword", {
-                    required: "Vui lòng xác nhận mật khẩu!",
-                    validate: handleValidateConfirmPw,
-                  })}
-                />
-                <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
-                  *
-                </span>
+              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                <div className="input-row__wrp w-full flex">
+                  <input
+                    type="password"
+                    className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                    {...register("confirmPassword", {
+                      required: "Vui lòng xác nhận mật khẩu!",
+                      validate: handleValidateConfirmPw,
+                    })}
+                  />
+                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                    *
+                  </span>
+                </div>
                 {errors.confirmPassword && (
-                  <span className="text-[#CC0000]">
+                  <span className="text-[#CC0000] w-full mt-1">
                     {errors.confirmPassword.message}
                   </span>
                 )}
@@ -262,21 +276,23 @@ export default function RegisterBlock() {
             {/* Địa chỉ */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Địa chỉ</span>
-              <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <input
-                  type="text"
-                  className="w-full p-2 text-[16px] border border-solid border-[#767676] placeholder:text-[#757575]"
-                  placeholder="Số nhà, tên đường, phường/xã"
-                  {...register("address", {
-                    required: "Vui lòng nhập địa chỉ!",
-                    validate: handleValidateAddress,
-                  })}
-                />
-                <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
-                  *
-                </span>
+              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                <div className="input-row__wrp w-full flex">
+                  <input
+                    type="text"
+                    className="w-full p-2 text-[16px] border border-solid border-[#767676] placeholder:text-[#757575]"
+                    placeholder="Số nhà, tên đường, phường/xã"
+                    {...register("address", {
+                      required: "Vui lòng nhập địa chỉ!",
+                      validate: handleValidateAddress,
+                    })}
+                  />
+                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                    *
+                  </span>
+                </div>
                 {errors.address && (
-                  <span className="text-[#CC0000]">
+                  <span className="text-[#CC0000] w-full mt-1">
                     {errors.address.message}
                   </span>
                 )}
@@ -286,36 +302,38 @@ export default function RegisterBlock() {
             {/* Tỉnh/Thành */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Tỉnh/Thành</span>
-              <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <select
-                  className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                  defaultValue="default"
-                  {...register("placeProv", {
-                    required: "Vui lòng chọn tỉnh thành!",
-                  })}
-                  onChange={(e) => {
-                    setValue("place", e.target.value);
-                    onChangeProvince(e.target.value);
-                  }}
-                >
-                  <option
-                    className="option-default"
-                    value=""
-                    disabled={isDisable}
+              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                <div className="input-row__wrp w-full flex">
+                  <select
+                    className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                    defaultValue="default"
+                    {...register("placeProv", {
+                      required: "Vui lòng chọn tỉnh thành!",
+                    })}
+                    onChange={(e) => {
+                      setValue("place", e.target.value);
+                      onChangeProvince(e.target.value);
+                    }}
                   >
-                    -- Chọn tỉnh thành
-                  </option>
-                  {provinces.map((province) => (
-                    <option key={province.code} value={province.code}>
-                      {province.name}
+                    <option
+                      className="option-default"
+                      value=""
+                      disabled={isDisable}
+                    >
+                      -- Chọn tỉnh thành
                     </option>
-                  ))}
-                </select>
-                <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
-                  *
-                </span>
+                    {provinces.map((province) => (
+                      <option key={province.code} value={province.code}>
+                        {province.name}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                    *
+                  </span>
+                </div>
                 {errors.placeProv && (
-                  <span className="text-[#CC0000]">
+                  <span className="text-[#CC0000] w-full mt-1">
                     {errors.placeProv.message}
                   </span>
                 )}
@@ -325,34 +343,36 @@ export default function RegisterBlock() {
             {/* Quận/Huyện */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Quận/Huyện</span>
-              <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <select
-                  name=""
-                  id="district"
-                  className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                  {...register("placeDis", {
-                    required: "Vui lòng chọn quận huyện!",
-                  })}
-                >
-                  <option
-                    className="option-default"
-                    value=""
-                    disabled={!selectedProvince}
+              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                <div className="input-row__wrp w-full flex">
+                  <select
+                    name=""
+                    id="district"
+                    className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                    {...register("placeDis", {
+                      required: "Vui lòng chọn quận huyện!",
+                    })}
                   >
-                    -- Chọn quận/huyện
-                  </option>
-                  {selectedProvince &&
-                    districts.map((district) => (
-                      <option key={district.code} value={district.code}>
-                        {district.name}
-                      </option>
-                    ))}
-                </select>
-                <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
-                  *
-                </span>
+                    <option
+                      className="option-default"
+                      value=""
+                      disabled={!selectedProvince}
+                    >
+                      -- Chọn quận/huyện
+                    </option>
+                    {selectedProvince &&
+                      districts.map((district) => (
+                        <option key={district.code} value={district.code}>
+                          {district.name}
+                        </option>
+                      ))}
+                  </select>
+                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                    *
+                  </span>
+                </div>
                 {selectedProvince && errors.placeDis && (
-                  <span className="text-[#CC0000]">
+                  <span className="text-[#CC0000] w-full mt-1">
                     {errors.placeDis.message}
                   </span>
                 )}
@@ -385,7 +405,9 @@ export default function RegisterBlock() {
                   *
                 </span>
                 {errors.sum && (
-                  <span className="text-[#CC0000]">{errors.sum.message}</span>
+                  <span className="text-[#CC0000] mt-1">
+                    {errors.sum.message}
+                  </span>
                 )}
               </div>
             </StyledFormRow>
@@ -489,11 +511,14 @@ const StyledFormRow = styled.div`
       justify-content: flex-end;
       padding-right: 0.5rem;
     }
-    input[type="text"],
-    input[type="password"],
-    input[type="email"],
-    select {
-      width: 300px;
+    .input-row {
+      flex-direction: row !important;
+      input[type="text"],
+      input[type="password"],
+      input[type="email"],
+      select {
+        width: 300px;
+      }
     }
     .reg-btn-row {
       justify-content: flex-start;
