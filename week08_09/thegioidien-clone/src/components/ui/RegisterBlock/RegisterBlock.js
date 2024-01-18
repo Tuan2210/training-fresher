@@ -80,6 +80,9 @@ export default function RegisterBlock() {
     if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value))
       return "Email không hợp lệ!";
   }
+  function handleValidatePassword(value) {
+    if (value.length < 4 || value.length > 20) return "4-20 ký tự!";
+  }
   function handleValidateConfirmPw(value) {
     if (value !== watch("password", "")) return "Xác nhận mật khẩu không đúng!";
   }
@@ -104,8 +107,9 @@ export default function RegisterBlock() {
     formState: { errors },
   } = useForm();
 
-  function onSubmit(e) {
-    e.preventDefault();
+  function onSubmit(data) {
+    // e.preventDefault();
+    console.log(data);
   }
 
   return (
@@ -211,6 +215,7 @@ export default function RegisterBlock() {
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
                   {...register("password", {
                     required: "Vui lòng nhập mật khẩu!",
+                    validate: handleValidatePassword,
                     // pattern: {
                     //   value:
                     //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
