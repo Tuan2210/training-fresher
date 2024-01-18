@@ -67,25 +67,46 @@ export default function RegisterBlock() {
   const [isChecked, setIsChecked] = useState(true);
   const [isCheckedEmail, setIsCheckedEmail] = useState(true);
 
+  ////validate inputs & chkboxs
+  function handleValidateFullName(value) {
+    if (!/^[a-zA-Z\s]+$/u.test(value))
+      // u means Unicode for Vietnamese
+      return "Họ tên không hợp lệ!";
+  }
+  function handleValidatePhoneNumber(value) {
+    if (!/^0[0-9]{9}$/.test(value)) return "Số điện thoại không hợp lệ!";
+  }
+  function handleValidateEmail(value) {
+    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value))
+      return "Email không hợp lệ!";
+  }
+  function handleValidateConfirmPw(value) {
+    if (value !== watch("password", "")) return "Xác nhận mật khẩu không đúng!";
+  }
+  function handleValidateAddress(value) {
+    if (!/^[a-zA-Z0-9\s/\-]+$/.test(value)) return "Địa chỉ không hợp lệ!";
+  }
+  function handleCheckSum(value) {
+    if (randomFirstNumber + randomSecondNumber !== parseInt(value))
+      return "Kết quả phép tính không đúng!";
+  }
+  function handleCheckAgreeChkBox() {
+    if (!isChecked) return "Vui lòng đồng ý để tiếp tục!";
+  }
+  function handleCheckEmailChkBox() {}
+  ////
+
   const {
     register,
     handleSubmit,
     watch,
-    control,
     setValue,
-    formState: { errors, isSubmitted },
+    formState: { errors },
   } = useForm();
-
-  const rePassword = watch("password", "");
 
   function onSubmit(e) {
     e.preventDefault();
   }
-
-  const [isPlace, setIsPlace] = useState();
-  // useEffect(() => {
-  //   console.log(isPlace);
-  // }, [isPlace]);
 
   return (
     <StyledDiv className="w-full flex flex-col mt-4 gap-4">
@@ -125,11 +146,7 @@ export default function RegisterBlock() {
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
                   {...register("name", {
                     required: "Vui lòng nhập họ tên!",
-                    pattern: {
-                      value: /^[a-zA-Z\s]+$/u, // u means Unicode for Vietnamese
-                      // value: '/^[A-Z]{1}\w+(  [A-Z]{1}\w+)*$/',
-                      message: "Họ tên không hợp lệ",
-                    },
+                    validate: handleValidateFullName,
                   })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
@@ -150,10 +167,7 @@ export default function RegisterBlock() {
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
                   {...register("phoneNumber", {
                     required: "Vui lòng nhập số điện thoại!",
-                    pattern: {
-                      value: /^0[0-9]{9}$/u,
-                      message: "Số điện thoại không hợp lệ",
-                    },
+                    validate: handleValidatePhoneNumber,
                   })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
@@ -176,10 +190,7 @@ export default function RegisterBlock() {
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
                   {...register("email", {
                     required: "Vui lòng nhập email!",
-                    pattern: {
-                      value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-                      message: "Email không hợp lệ",
-                    },
+                    validate: handleValidateEmail,
                   })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
@@ -200,11 +211,11 @@ export default function RegisterBlock() {
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
                   {...register("password", {
                     required: "Vui lòng nhập mật khẩu!",
-                    pattern: {
-                      value:
-                        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                      message: "Mật khẩu không hợp lệ",
-                    },
+                    // pattern: {
+                    //   value:
+                    //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                    //   message: "Mật khẩu không hợp lệ",
+                    // },
                   })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
@@ -229,8 +240,7 @@ export default function RegisterBlock() {
                   className="w-full p-2 text-[16px] border border-solid border-[#767676]"
                   {...register("confirmPassword", {
                     required: "Vui lòng xác nhận mật khẩu!",
-                    validate: (value) =>
-                      value === rePassword || "Mật khẩu không khớp",
+                    validate: handleValidateConfirmPw,
                   })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
@@ -254,10 +264,7 @@ export default function RegisterBlock() {
                   placeholder="Số nhà, tên đường, phường/xã"
                   {...register("address", {
                     required: "Vui lòng nhập địa chỉ!",
-                    pattern: {
-                      value: /^.{1,255}$/u,
-                      message: "Địa chỉ không hợp lệ",
-                    },
+                    validate: handleValidateAddress,
                   })}
                 />
                 <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg">
@@ -364,7 +371,10 @@ export default function RegisterBlock() {
                 <input
                   type="number"
                   className="w-[60px] p-2 text-[16px] border border-solid border-[#767676]"
-                  {...register("sum", { required: "Vui lòng làm phép tính" })}
+                  {...register("sum", {
+                    required: "Vui lòng làm phép tính",
+                    validate: handleCheckSum,
+                  })}
                 />
                 <span className="err-alert text-[#FF6600] ml-1 mr-2 text-lg">
                   *
@@ -378,12 +388,15 @@ export default function RegisterBlock() {
             {/* Đồng ý điều khoản */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full"></span>
-              <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <label>
+              <div className="mt-[0.3rem] mb-[0.3rem]">
+                <label className="flex flex-nowrap items-center pb-[0.3rem]">
                   <input
                     type="checkbox"
                     value="Đồng ý"
                     checked={isChecked}
+                    {...register("agreeChkBox", {
+                      validate: handleCheckAgreeChkBox,
+                    })}
                     onChange={() => {
                       setIsChecked(!isChecked);
                     }}
@@ -393,11 +406,16 @@ export default function RegisterBlock() {
                     thegioidien.com
                   </span>
                 </label>
+                {errors.agreeChkBox && (
+                  <span className="text-[#CC0000]">
+                    {errors.agreeChkBox.message}
+                  </span>
+                )}
               </div>
             </StyledFormRow>
 
             {/* Nhận info qua email */}
-            <StyledFormRow className="flex flex-col mt-2">
+            <StyledFormRow className="flex flex-col">
               <span className="lbl w-full"></span>
               <div className="flex flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
                 <label>
@@ -405,6 +423,9 @@ export default function RegisterBlock() {
                     type="checkbox"
                     value="Đồng ý"
                     checked={isCheckedEmail}
+                    {...register("emailChkBox", {
+                      validate: handleCheckEmailChkBox,
+                    })}
                     onChange={() => {
                       setIsCheckedEmail(!isCheckedEmail);
                     }}
