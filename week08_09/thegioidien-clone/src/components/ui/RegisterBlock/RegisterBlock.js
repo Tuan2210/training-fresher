@@ -9,6 +9,13 @@ import styled from "styled-components";
 import { IoHomeOutline } from "react-icons/io5";
 import { SlArrowRight } from "react-icons/sl";
 
+import {
+  REGEX_ADDRESS,
+  REGEX_EMAIL,
+  REGEX_FULLNAME,
+  REGEX_PHONENUMBER,
+} from "../../../constants/regexValidate";
+
 import { PROVINCES_URL, GGCAPTCHA_SITE_KEY } from "../../../constants/apiUrl";
 
 import ReCAPTCHA from "react-google-recaptcha";
@@ -66,16 +73,15 @@ export default function RegisterBlock() {
 
   ////validate inputs & chkboxs
   function handleValidateFullName(value) {
-    if (!/^[a-zA-Z\s]+$/u.test(value))
+    if (!REGEX_FULLNAME.test(value))
       // u means Unicode for Vietnamese
       return "Họ tên không hợp lệ!";
   }
   function handleValidatePhoneNumber(value) {
-    if (!/^0[0-9]{9}$/.test(value)) return "Số điện thoại không hợp lệ!";
+    if (!REGEX_PHONENUMBER.test(value)) return "Số điện thoại không hợp lệ!";
   }
   function handleValidateEmail(value) {
-    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value))
-      return "Email không hợp lệ!";
+    if (!REGEX_EMAIL.test(value)) return "Email không hợp lệ!";
   }
   function handleValidatePassword(value) {
     if (value.length < 4 || value.length > 20) return "4-20 ký tự!";
@@ -84,7 +90,7 @@ export default function RegisterBlock() {
     if (value !== watch("password", "")) return "Xác nhận mật khẩu không đúng!";
   }
   function handleValidateAddress(value) {
-    if (!/^[a-zA-Z0-9\s/\-]+$/.test(value)) return "Địa chỉ không hợp lệ!";
+    if (!REGEX_ADDRESS.test(value)) return "Địa chỉ không hợp lệ!";
   }
   // function handleCheckSum(value) {
   //   if (randomFirstNumber + randomSecondNumber !== parseInt(value))
@@ -425,11 +431,11 @@ export default function RegisterBlock() {
                     setCapVal(val);
                   }}
                 />
-                {!isExpired && !capVal && (
+                {/* {!isExpired && !capVal && (
                   <span className="text-[#CC0000] mt-1 ml-1">
                     Vui lòng nhấn reCAPTCHA!
                   </span>
-                )}
+                )} */}
               </div>
             </StyledFormRow>
 

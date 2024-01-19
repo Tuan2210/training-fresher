@@ -15,6 +15,11 @@ import { LuKeyRound } from "react-icons/lu";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import {
+  REGEX_EMAIL,
+  REGEX_PHONENUMBER,
+} from "../../../constants/regexValidate";
+
 import accounts from "../../../data/accounts.json";
 
 const loginFormSchema = yup
@@ -30,7 +35,7 @@ const loginFormSchema = yup
           if (value.includes("@")) {
             return yup
               .string()
-              .matches(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/, {
+              .matches(REGEX_EMAIL, {
                 message: "Email không hợp lệ!",
                 excludeEmptyString: true,
               })
@@ -38,7 +43,7 @@ const loginFormSchema = yup
           } else {
             return yup
               .string()
-              .matches(/^0[0-9]{9}$/, {
+              .matches(REGEX_PHONENUMBER, {
                 message: "Số điện thoại không hợp lệ!",
                 excludeEmptyString: true,
               })
