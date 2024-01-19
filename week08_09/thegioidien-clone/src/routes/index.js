@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import PrdDetails from "../pages/PrdDetails/PrdDetails";
 
 const publicRoutes = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const publicRoutes = createBrowserRouter([
   {
     path: "/quenmatkhau",
     element: <ForgotPassword />,
+  },
+  {
+    path: "/sanpham/:prdName",
+    element: <PrdDetails />,
   },
 ]);
 

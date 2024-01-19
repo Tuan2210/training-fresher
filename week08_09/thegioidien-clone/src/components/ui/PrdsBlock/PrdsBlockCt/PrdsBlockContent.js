@@ -24,16 +24,23 @@ export default function PrdsBlockContent({ prdWrp }) {
             )}
             <div className="ctitct flex flex-col h-full">
               <div className="ctitcemter flex justify-center">
-                <Link to="#">
+                <Link to={`/sanpham/${encodeURIComponent(item.prdName)}`}>
+                  {/* <Link to={`/sanpham/${item.prdName}`}> */}
                   <img src={item.img} alt="prd-img" />
                 </Link>
               </div>
               <div className="ctitemma flex justify-center mt-2">
-                <Link>
+                <Link
+                  to={`/sanpham/${encodeURIComponent(item.prdName)}`}
+                  className="hover:text-[#003B4F]"
+                >
                   <b>{item.id}</b>
                 </Link>
               </div>
-              <Link className="ctname p-2 flex overflow-hidden">
+              <Link
+                to={`/sanpham/${encodeURIComponent(item.prdName)}`}
+                className="ctname p-2 flex overflow-hidden hover:text-[#003B4F]"
+              >
                 {item.prdName}
               </Link>
               <div className="ctprsale flex justify-center items-center mt-auto">
