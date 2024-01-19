@@ -34,7 +34,7 @@ export default function PrdDetailsMainNav({ prdName }) {
   ///
 
   return (
-    <div className="main-nav flex flex-wrap items-center font-medium">
+    <div className="main-nav flex flex-wrap items-center font-medium mb-4">
       <Link
         to="/"
         className="flex items-center text-[1.2rem] gap-1 pt-2 pb-2 pl-2 mr-2"
