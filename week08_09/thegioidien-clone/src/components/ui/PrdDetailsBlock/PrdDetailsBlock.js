@@ -122,9 +122,9 @@ export default function PrdDetailsBlock() {
         </div>
 
         {/* boddy */}
-        <div className="prd-details-view__body grid grid-cols-12 p-2 pr-0 h-[30rem]">
+        <div className="prd-details-view__body grid grid-cols-12 p-2 pr-0">
           {/* slide-thumbnail */}
-          <div className="img-wrp col-span-5 flex flex-col">
+          <div className="img-wrp col-span-12 flex flex-col">
             <div className="prd-slide flex items-center justify-center p-2">
               <img
                 src="https://thegioidien.com/PrdGallery/6365255567.jpg"
@@ -139,7 +139,7 @@ export default function PrdDetailsBlock() {
             </div>
           </div>
           {/* details-info */}
-          <div className="details-info-wrp col-span-7 overflow-y-auto pl-4 flex flex-col gap-4">
+          <div className="details-info-wrp col-span-12 overflow-y-auto ml-2 flex flex-col gap-4 border-b border-solid border-[#E8E8E8]">
             <p className="text-[#003b4f] pt-4">
               <b>Ổ cắm nối 5P 32A 6H IP44</b>
             </p>
@@ -170,11 +170,11 @@ export default function PrdDetailsBlock() {
             {/* Thông số kỹ thuật */}
             <table className="w-full border border-collapse border-gray-300">
               <thead
-                className="w-full border border-collapse border-gray-300 text-lg"
+                className="text-lg"
                 style={{ fontFamily: "Arial Helvetica sans-serif" }}
               >
                 <tr>
-                  <th className="flex p-2 pl-0 gap-2" colSpan="2">
+                  <th className="flex p-2 pl-0 gap-2 w-max" colSpan="2">
                     <img
                       className="object-contain"
                       src="https://thegioidien.com/fckupload/tc_kt.png"
@@ -378,6 +378,12 @@ const PrdDetailsView = styled.div`
           }
         }
       }
+      &__body {
+        padding: 0.5rem !important;
+        .details-info-wrp {
+          padding: 0 !important;
+        }
+      }
     }
   }
 
@@ -389,6 +395,13 @@ const PrdDetailsView = styled.div`
         }
         .right-wrp {
           width: 100% !important;
+        }
+      }
+      &__body {
+        height: 480px;
+        .img-wrp,
+        .details-info-wrp {
+          grid-column: span 6 !important;
         }
       }
     }
@@ -405,8 +418,12 @@ const PrdDetailsView = styled.div`
             flex-direction: row !important;
             align-items: flex-end;
           }
-          /* margin-left: -2rem !important; */
-          /* margin-right: -2rem !important; */
+        }
+      }
+      &__body {
+        .img-wrp {
+        }
+        .details-info-wrp {
         }
       }
     }
@@ -417,9 +434,13 @@ const PrdDetailsView = styled.div`
         .left-wrp {
           width: 75% !important;
         }
-        .right-wrp {
-          /* width: 100% !important; */
-          /* margin-left: 5% !important; */
+      }
+      &__body {
+        .img-wrp {
+          grid-column: span 5 !important;
+        }
+        .details-info-wrp {
+          grid-column: span 7 !important;
         }
       }
     }
@@ -429,10 +450,6 @@ const PrdDetailsView = styled.div`
       &__top {
         .left-wrp {
           width: 75% !important;
-        }
-        .right-wrp {
-          /* width: 100% !important; */
-          /* margin-left: 0 !important; */
         }
       }
     }
