@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import PrdDetailsMainNav from "./PrdDetailsMainNav";
 import PrdDetailsBlockHd from "./PrdDetailsBlockHd";
 import PrdReviewCmtBlock from "./PrdReviewCmtBlock";
@@ -6,7 +7,10 @@ import PrdReviewCmtBlock from "./PrdReviewCmtBlock";
 import styled from "styled-components";
 
 import { PiShoppingCartLight } from "react-icons/pi";
-import { useState } from "react";
+import { FaStream } from "react-icons/fa";
+
+import prdsData from "../../../data/prdsData.json";
+import PrdsBlockContent from "../PrdsBlock/PrdsBlockCt/PrdsBlockContent";
 
 export default function PrdDetailsBlock() {
   const { prdName } = useParams();
@@ -22,6 +26,8 @@ export default function PrdDetailsBlock() {
   function handleIncrease() {
     setQuantity(quantity + 1);
   }
+
+  const firstTwelvePrds = prdsData.slice(0, 1);
 
   return (
     <div className="w-full flex flex-col mt-4">
@@ -328,6 +334,21 @@ export default function PrdDetailsBlock() {
 
         {/* prd-review */}
         <PrdReviewCmtBlock />
+
+        {/* Sản phẩm khác */}
+        <StyledOtherPrdsHd className="w-full p-2 flex items-center border-t border-solid border-[#B21E02] bg-[#F2D9D4]">
+          <Link to="#" className="flex items-center gap-2 ml-2">
+            <FaStream className="text-[#E24B01]" />
+            <span className="text-lg text-[#3E0B00] hover:text-[#002F3F]">
+              Sản Phẩm Khác Thuộc Dòng Wide - Panasonic
+            </span>
+          </Link>
+        </StyledOtherPrdsHd>
+        {firstTwelvePrds.map((prd, index) => (
+          <div key={index} className="w-full mt-4">
+            <PrdsBlockContent prdWrp={prd} />
+          </div>
+        ))}
       </PrdDetailsView>
     </div>
   );
@@ -454,4 +475,8 @@ const PrdDetailsView = styled.div`
       }
     }
   }
+`;
+
+const StyledOtherPrdsHd = styled.div`
+  background-image: linear-gradient(to bottom, #f2d9d4, #fff);
 `;
