@@ -50,7 +50,7 @@ const StyledDiv = styled.div`
   );
   color: #fff;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     flex-direction: column !important;
     .nav-left {
       width: 100%;
