@@ -20,6 +20,8 @@ import { PROVINCES_URL, GGCAPTCHA_SITE_KEY } from "../../../constants/apiUrl";
 
 import ReCAPTCHA from "react-google-recaptcha";
 
+import { registerUser } from "../../../services/authApiRequest";
+
 export default function RegisterBlock() {
   // const [randomFirstNumber, setRandomFirstNumber] = useState(0);
   // const [randomSecondNumber, setRandomSecondNumber] = useState(0);
@@ -115,6 +117,7 @@ export default function RegisterBlock() {
     // e.preventDefault();
     if (isExpired) return;
     console.log(acc);
+    // registerUser(acc);
   }
 
   return (
