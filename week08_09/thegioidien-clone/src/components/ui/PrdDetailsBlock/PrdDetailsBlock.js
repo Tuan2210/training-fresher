@@ -109,21 +109,16 @@ export default function PrdDetailsBlock() {
                     </button>
                   </div>
                   <span>Cái</span>
-                  <button
-                    type="submit"
+                  <Link
+                    to="/muahang"
                     className="w-fit ml-3 flex justify-center items-center rounded pt-2 pb-2 pl-4 pr-4 gap-2 bg-[#1C8DD9] hover:bg-[#1c8dd9e0]"
                   >
                     <PiShoppingCartLight className="text-[#FFFF00] text-3xl" />
                     <p className="text-white">Mua hàng</p>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
-            {/* <div className="grid grid-cols-7">
-              <div className="col-span-7">
-                <div className=""></div>
-              </div>
-            </div> */}
           </div>
         </div>
 

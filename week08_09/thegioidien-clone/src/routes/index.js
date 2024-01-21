@@ -5,6 +5,7 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import PrdDetails from "../pages/PrdDetails/PrdDetails";
+import Checkout from "../pages/Checkout/Checkout";
 
 const publicRoutes = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const publicRoutes = createBrowserRouter([
   {
     path: "/sanpham/:prdName",
     element: <PrdDetails />,
+  },
+  {
+    path: "/muahang",
+    element: <Checkout />,
   },
 ]);
 

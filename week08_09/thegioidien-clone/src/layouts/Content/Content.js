@@ -3,6 +3,7 @@ import RegisterBlock from "../../components/ui/RegisterBlock/RegisterBlock";
 import LoginBlock from "../../components/ui/LoginBlock/LoginBlock";
 import ForgotPwBlock from "../../components/ui/ForgotPwBlock/ForgotPwBlock";
 import PrdDetailsBlock from "../../components/ui/PrdDetailsBlock/PrdDetailsBlock";
+import CheckoutBlock from "../../components/ui/CheckoutBlock/CheckoutBlock";
 
 import { useParams } from "react-router-dom";
 
@@ -22,6 +23,8 @@ export default function Content({ pathname }) {
         return <ForgotPwBlock />;
       case url_tensp:
         return <PrdDetailsBlock />;
+      case "/muahang":
+        return <CheckoutBlock />;
       default:
         return;
     }
