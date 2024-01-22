@@ -9,11 +9,15 @@ import styled from "styled-components";
 import { IoHomeOutline } from "react-icons/io5";
 import { SlArrowRight } from "react-icons/sl";
 
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
 import {
-  REGEX_ADDRESS,
-  REGEX_EMAIL,
-  REGEX_FULLNAME,
-  REGEX_PHONENUMBER,
+  FULLNAME_REGEX,
+  PHONENUMBER_REGEX,
+  EMAIL_REGEX,
+  PASSWORD_REGEX,
+  ADDRESS_REGEX,
 } from "../../../constants/regexValidate";
 
 import { PROVINCES_URL, GGCAPTCHA_SITE_KEY } from "../../../constants/apiUrl";
@@ -22,18 +26,95 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 import { registerUser } from "../../../services/authApiRequest";
 
+const registerFormSchema = yup
+  .object()
+  .shape({
+    fullName: yup
+      .string()
+      .required("Vui lòng nhập họ tên!")
+      .test("is-fullname", "Họ tên không hợp lệ!", function (value) {
+        return yup
+          .string()
+          .matches(FULLNAME_REGEX, {
+            message: "Họ tên không hợp lệ!",
+            excludeEmptyString: true,
+          })
+          .isValidSync(value);
+      }),
+    phoneNumber: yup
+      .string()
+      .required("Vui lòng nhập số điện thoại!")
+      // .test("is-phone-number", "Số điện thoại không hợp lệ!", function (value) {
+      //   return yup
+      //     .string()
+      //     .matches(/^0[0-9]{9}$/, {
+      //       message: "Số điện thoại không hợp lệ!",
+      //       excludeEmptyString: true,
+      //     })
+      //     .isValidSync(value);
+      // })
+      .test(
+        "is-phone-number-vn",
+        // "Số điện thoại không hợp lệ!",
+        "Vui lòng nhập SĐT theo mẫu: +84xxxxxxxxx",
+        function (value) {
+          // const handlePhoneNumber = `+84${value.slice(1)}`;
+          return yup
+            .string()
+            .matches(PHONENUMBER_REGEX, {
+              message: "Vui lòng nhập SĐT theo mẫu: +84xxxxxxxxx",
+              excludeEmptyString: true,
+            })
+            .isValidSync(value);
+        }
+      ),
+    email: yup
+      .string()
+      .required("Vui lòng nhập email!")
+      .test("is-email", "Email không hợp lệ!", function (value) {
+        return yup
+          .string()
+          .matches(EMAIL_REGEX, {
+            message: "Email không hợp lệ!",
+            excludeEmptyString: true,
+          })
+          .isValidSync(value);
+      }),
+    password: yup
+      .string()
+      .required("Vui lòng nhập mật khẩu!")
+      // .test("is-length-pw", "4-20 ký tự!", function (value) {
+      //   return value.length >= 4 && value.length <= 20;
+      // })
+      .test("is-pw", "Mật khẩu không hợp lệ!", function (value) {
+        return yup
+          .string()
+          .matches(PASSWORD_REGEX, {
+            message: "Mật khẩu không hợp lệ!",
+            excludeEmptyString: true,
+          })
+          .isValidSync(value);
+      }),
+    confirmPassword: yup
+      .string()
+      .required("Vui lòng xác nhận mật khẩu!")
+      .oneOf([yup.ref("password"), null], "Mật khẩu xác nhận không đúng!"),
+    address: yup
+      .string()
+      .required("Vui lòng nhập địa chỉ!")
+      .test("is-address", "Địa chỉ không hợp lệ!", function (value) {
+        return yup
+          .string()
+          .matches(ADDRESS_REGEX, {
+            message: "Địa chỉ không hợp lệ!",
+            excludeEmptyString: true,
+          })
+          .isValidSync(value);
+      }),
+  })
+  .required();
+
 export default function RegisterBlock() {
-  // const [randomFirstNumber, setRandomFirstNumber] = useState(0);
-  // const [randomSecondNumber, setRandomSecondNumber] = useState(0);
-  // useEffect(() => {
-  //   setRandomFirstNumber(handleGenerateRandomNumber());
-  //   setRandomSecondNumber(handleGenerateRandomNumber());
-  // }, []);
-
-  // function handleGenerateRandomNumber() {
-  //   return Math.floor(Math.random() * 9) + 1;
-  // }
-
   ////call api provinces-cities & districts
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -73,31 +154,6 @@ export default function RegisterBlock() {
   const [isChecked, setIsChecked] = useState(true);
   const [isCheckedEmail, setIsCheckedEmail] = useState(true);
 
-  ////validate inputs & chkboxs
-  function handleValidateFullName(value) {
-    if (!REGEX_FULLNAME.test(value))
-      // u means Unicode for Vietnamese
-      return "Họ tên không hợp lệ!";
-  }
-  function handleValidatePhoneNumber(value) {
-    if (!REGEX_PHONENUMBER.test(value)) return "Số điện thoại không hợp lệ!";
-  }
-  function handleValidateEmail(value) {
-    if (!REGEX_EMAIL.test(value)) return "Email không hợp lệ!";
-  }
-  function handleValidatePassword(value) {
-    if (value.length < 4 || value.length > 20) return "4-20 ký tự!";
-  }
-  function handleValidateConfirmPw(value) {
-    if (value !== watch("password", "")) return "Xác nhận mật khẩu không đúng!";
-  }
-  function handleValidateAddress(value) {
-    if (!REGEX_ADDRESS.test(value)) return "Địa chỉ không hợp lệ!";
-  }
-  // function handleCheckSum(value) {
-  //   if (randomFirstNumber + randomSecondNumber !== parseInt(value))
-  //     return "Kết quả phép tính không đúng!";
-  // }
   const [capVal, setCapVal] = useState(null);
   const [isExpired, setIsExpired] = useState(true);
   function handleCheckAgreeChkBox() {
@@ -109,15 +165,21 @@ export default function RegisterBlock() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(registerFormSchema) });
 
   async function onSubmit(acc) {
     // e.preventDefault();
     if (isExpired) return;
-    console.log(acc);
-    // registerUser(acc);
+
+    const userAcc = {
+      email: acc.email,
+      password: acc.confirmPassword,
+      phone: acc.phoneNumber,
+      name: acc.fullName,
+      address: acc.address + ", " + acc.placeDis + ", " + acc.placeProv,
+    };
+    registerUser(userAcc);
   }
 
   return (
@@ -157,10 +219,7 @@ export default function RegisterBlock() {
                   <input
                     type="text"
                     className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                    {...register("fullName", {
-                      required: "Vui lòng nhập họ tên!",
-                      validate: handleValidateFullName,
-                    })}
+                    {...register("fullName")}
                   />
                   <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
                     *
@@ -182,10 +241,7 @@ export default function RegisterBlock() {
                   <input
                     type="text"
                     className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                    {...register("phoneNumber", {
-                      required: "Vui lòng nhập số điện thoại!",
-                      validate: handleValidatePhoneNumber,
-                    })}
+                    {...register("phoneNumber")}
                   />
                   <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
                     *
@@ -207,10 +263,7 @@ export default function RegisterBlock() {
                   <input
                     type="email"
                     className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                    {...register("email", {
-                      required: "Vui lòng nhập email!",
-                      validate: handleValidateEmail,
-                    })}
+                    {...register("email")}
                   />
                   <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
                     *
@@ -232,15 +285,7 @@ export default function RegisterBlock() {
                   <input
                     type="password"
                     className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                    {...register("password", {
-                      required: "Vui lòng nhập mật khẩu!",
-                      validate: handleValidatePassword,
-                      // pattern: {
-                      //   value:
-                      //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                      //   message: "Mật khẩu không hợp lệ",
-                      // },
-                    })}
+                    {...register("password")}
                   />
                   <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
                     *
@@ -264,10 +309,7 @@ export default function RegisterBlock() {
                   <input
                     type="password"
                     className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                    {...register("confirmPassword", {
-                      required: "Vui lòng xác nhận mật khẩu!",
-                      validate: handleValidateConfirmPw,
-                    })}
+                    {...register("confirmPassword")}
                   />
                   <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
                     *
@@ -290,10 +332,7 @@ export default function RegisterBlock() {
                     type="text"
                     className="w-full p-2 text-[16px] border border-solid border-[#767676] placeholder:text-[#757575]"
                     placeholder="Số nhà, tên đường, phường/xã"
-                    {...register("address", {
-                      required: "Vui lòng nhập địa chỉ!",
-                      validate: handleValidateAddress,
-                    })}
+                    {...register("address")}
                   />
                   <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
                     *
@@ -385,39 +424,6 @@ export default function RegisterBlock() {
                 )}
               </div>
             </StyledFormRow>
-
-            {/* Làm phép tính */}
-            {/* <StyledFormRow className="flex flex-col mt-2">
-              <span className="lbl w-full text-[#3B3B3B]">Làm phép tính</span>
-              <div className="flex flex-wrap items-center mt-[0.3rem] mb-[0.3rem] gap-1">
-                <div className="addition flex gap-1">
-                  <span className="text-[1.5rem] text-[#0000FF] first-number">
-                    {randomFirstNumber}
-                  </span>
-                  <span className="text-[1.5rem] text-[#0000FF]">+</span>
-                  <span className="text-[1.5rem] text-[#0000FF] second-number">
-                    {randomSecondNumber}
-                  </span>
-                  <span className="text-[1.5rem] text-[#0000FF]">=</span>
-                </div>
-                <input
-                  type="number"
-                  className="w-[60px] p-2 text-[16px] border border-solid border-[#767676]"
-                  {...register("sum", {
-                    required: "Vui lòng làm phép tính",
-                    validate: handleCheckSum,
-                  })}
-                />
-                <span className="err-alert text-[#FF6600] ml-1 mr-2 text-lg">
-                  *
-                </span>
-                {errors.sum && (
-                  <span className="text-[#CC0000] mt-1">
-                    {errors.sum.message}
-                  </span>
-                )}
-              </div>
-            </StyledFormRow> */}
 
             {/* GG-ReCAPTCHA */}
             <StyledFormRow className="flex flex-col mt-2">

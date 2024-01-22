@@ -8,7 +8,6 @@ import styled from "styled-components";
 
 import { IoHomeOutline } from "react-icons/io5";
 import { SlArrowRight } from "react-icons/sl";
-import { PiSignIn } from "react-icons/pi";
 import { LuKeyRound } from "react-icons/lu";
 import { FaPaperPlane } from "react-icons/fa";
 
@@ -17,7 +16,7 @@ import * as yup from "yup";
 
 import accounts from "../../../data/accounts.json";
 
-import { REGEX_EMAIL } from "../../../constants/regexValidate";
+import { EMAIL_REGEX } from "../../../constants/regexValidate";
 
 import ReCAPTCHA from "react-google-recaptcha";
 import { GGCAPTCHA_SITE_KEY } from "../../../constants/apiUrl";
@@ -29,7 +28,7 @@ const forgotPwSchema = yup.object().shape({
     .test("is-email", "Email không hợp lệ!", function (value) {
       return yup
         .string()
-        .matches(REGEX_EMAIL, {
+        .matches(EMAIL_REGEX, {
           message: "Email không hợp lệ!",
           excludeEmptyString: true,
         })

@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
-import { REGEX_FULLNAME, REGEX_EMAIL } from "../../../constants/regexValidate";
+import { FULLNAME_REGEX, EMAIL_REGEX } from "../../../constants/regexValidate";
 
 const CmtReviewSchema = yup.object().shape({
   ["Họ tên"]: yup
@@ -15,7 +15,7 @@ const CmtReviewSchema = yup.object().shape({
     .test("is-fullname", "Họ tên không hợp lệ!", function (value) {
       return yup
         .string()
-        .matches(REGEX_FULLNAME, {
+        .matches(FULLNAME_REGEX, {
           message: "Họ tên không hợp lệ!",
           excludeEmptyString: true,
         })
@@ -27,7 +27,7 @@ const CmtReviewSchema = yup.object().shape({
     .test("is-email", "Email không hợp lệ!", function (value) {
       return yup
         .string()
-        .matches(REGEX_EMAIL, {
+        .matches(EMAIL_REGEX, {
           message: "Email không hợp lệ!",
           excludeEmptyString: true,
         })

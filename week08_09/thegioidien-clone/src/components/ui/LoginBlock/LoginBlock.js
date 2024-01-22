@@ -16,8 +16,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import {
-  REGEX_EMAIL,
-  REGEX_PHONENUMBER,
+  EMAIL_REGEX,
+  PHONENUMBER_REGEX,
 } from "../../../constants/regexValidate";
 
 import accounts from "../../../data/accounts.json";
@@ -35,7 +35,7 @@ const loginFormSchema = yup
           if (value.includes("@")) {
             return yup
               .string()
-              .matches(REGEX_EMAIL, {
+              .matches(EMAIL_REGEX, {
                 message: "Email không hợp lệ!",
                 excludeEmptyString: true,
               })
@@ -43,7 +43,7 @@ const loginFormSchema = yup
           } else {
             return yup
               .string()
-              .matches(REGEX_PHONENUMBER, {
+              .matches(PHONENUMBER_REGEX, {
                 message: "Số điện thoại không hợp lệ!",
                 excludeEmptyString: true,
               })
