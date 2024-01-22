@@ -172,14 +172,14 @@ export default function RegisterBlock() {
     // e.preventDefault();
     if (isExpired) return;
 
-    const userAcc = {
+    const registerUser = {
       email: acc.email,
       password: acc.confirmPassword,
       phone: acc.phoneNumber,
       name: acc.fullName,
       address: acc.address + ", " + acc.placeDis + ", " + acc.placeProv,
     };
-    registerUser(userAcc);
+    registerUser(registerUser);
   }
 
   return (

@@ -1,6 +1,8 @@
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
+
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Link } from "react-router-dom";
 
@@ -9,21 +11,97 @@ import { IoSearchOutline } from "react-icons/io5";
 import { PiShoppingCartLight } from "react-icons/pi";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
 import { FaRegFilePdf } from "react-icons/fa";
-
-import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
-
 import { MdMenu } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { IoIosArrowUp } from "react-icons/io";
 
-import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
 import MenuList from "../../components/ui/PrdsMenu/MenuList";
+import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
+
+import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+import {
+  EMAIL_REGEX,
+  PASSWORD_REGEX,
+  PHONENUMBER_REGEX,
+} from "../../constants/regexValidate";
 
 const cx = classNames.bind(styles);
 
+const loginFormSchema = yup
+  .object()
+  .shape({
+    ["email-phoneNumber"]: yup
+      .string()
+      .required()
+      .test(
+        "is-email-or-phone",
+        "Email hoặc số điện thoại không hợp lệ",
+        (value) => {
+          if (value.includes("@")) {
+            return yup
+              .string()
+              .matches(EMAIL_REGEX, {
+                message: "Email không hợp lệ!",
+                excludeEmptyString: true,
+              })
+              .isValidSync(value);
+          } else {
+            return yup
+              .string()
+              .matches(PHONENUMBER_REGEX, {
+                message: "Số điện thoại không hợp lệ!",
+                excludeEmptyString: true,
+              })
+              .isValidSync(value);
+          }
+        }
+      ),
+    password: yup
+      .string()
+      .required()
+      .test("is-pw", "Mật khẩu không hợp lệ!", function (value) {
+        return yup
+          .string()
+          .matches(PASSWORD_REGEX, {
+            message: "Mật khẩu không hợp lệ!",
+            excludeEmptyString: true,
+          })
+          .isValidSync(value);
+      }),
+    // fieldValue: yup.string().oneOf(accounts, "Giá trị không hợp lệ"),
+  })
+  .required();
+
 export default function Header() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isHoveredBtn, setIsHoveredBtn] = useState(false);
   const [isDisplay, setIsDisplay] = useState("none");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(loginFormSchema) });
+
+  function onSubmit(acc) {
+    if (/@/.test(acc["email-phoneNumber"])) {
+      const loginUser = {
+        email: acc["email-phoneNumber"],
+        password: acc.password,
+      };
+      console.log(loginUser);
+    } else if (/\+84/.test(acc["email-phoneNumber"])) {
+      const loginUser = {
+        phoneNumber: acc["email-phoneNumber"],
+        password: acc.password,
+      };
+      console.log(loginUser);
+    }
+  }
 
   return (
     <div className="header w-full flex flex-col gap-4">
@@ -172,11 +250,12 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <div
+        <form
           className={cx([
             "header-content__right",
             "col-span-3 w-full block p-2 rounded-sm bg-[#DBDBDB]",
           ])}
+          onSubmit={handleSubmit((acc) => onSubmit(acc))}
         >
           <div className={cx(["rsrow", "w-full grid items-center"])}>
             <div className="rscoll">
@@ -190,6 +269,7 @@ export default function Header() {
                 id="txtEmailLG"
                 placeholder="Email hoặc điện thoại"
                 className="w-full border border-solid border-[#4F4F4F] placeholder-gray-500"
+                {...register("email-phoneNumber")}
               />
             </div>
           </div>
@@ -210,6 +290,7 @@ export default function Header() {
                 type="password"
                 id="txtPassLG"
                 className="w-full border border-solid border-[#4F4F4F] placeholder-gray-500"
+                {...register("password")}
               />
             </div>
           </div>
@@ -221,21 +302,21 @@ export default function Header() {
             >
               Quên mật khẩu?
             </Link>
-            <Link
-              to=""
+            <button
+              type="submit"
               className="w-fit flex justify-center items-center rounded pt-2 pb-2 pl-[0.7rem] pr-[0.7rem] gap-1 bg-[#1C8DD9] hover:bg-[#1c8dd9e0]"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsHoveredBtn(true)}
+              onMouseLeave={() => setIsHoveredBtn(false)}
             >
-              {isHovered ? (
+              {isHoveredBtn ? (
                 <MdOutlineLockOpen className="text-xl text-[#FFFF00] font-bold" />
               ) : (
                 <MdOutlineLock className="text-xl text-[#FFFF00] font-bold" />
               )}
               <span className="text-white">Đăng Nhập</span>
-            </Link>
+            </button>
           </div>
-        </div>
+        </form>
         {/* header-content__center_990 */}
         <div
           className={cx([
