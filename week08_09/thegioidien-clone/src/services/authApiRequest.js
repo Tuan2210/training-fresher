@@ -3,8 +3,11 @@ import { API_URL } from "../constants/apiUrl";
 
 import {
   registerStart,
-  registerFailed,
   registerSuccess,
+  registerFailed,
+  loginStart,
+  loginSuccess,
+  loginFailed,
 } from "../redux/features/authSlice";
 
 export const registerUser = async (account, dispatch, navigate) => {
@@ -18,11 +21,15 @@ export const registerUser = async (account, dispatch, navigate) => {
   }
 };
 
-export const loginUser = async (account) => {
+export const loginUser = async (account, dispatch, navigate) => {
+  dispatch(loginStart());
   try {
-    const res = await axios.post(`${API_URL}/api/v1/login`, account);
-    console.log(res.data);
+    const res = await axios.post(`${API_URL}/api/v1/login`, account, {
+      withCredentials: true,
+    });
+    dispatch(loginSuccess(res.data));
+    // navigate('/');
   } catch (error) {
-    console.log(error);
+    dispatch(loginFailed());
   }
 };
