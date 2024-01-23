@@ -4,11 +4,15 @@ import App from './App.js'
 import './index.scss'
 import GlobalStyles from "./components/GlobalStyles/GlobalStyles.js";
 
+import { store } from './redux/store.js';
+import { Provider } from 'react-redux';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <GlobalStyles>
-      <App />
-    </GlobalStyles>
+    <Provider store={store}>
+      <GlobalStyles>
+        <App />
+      </GlobalStyles>
+    </Provider>
   </React.StrictMode>,
 )

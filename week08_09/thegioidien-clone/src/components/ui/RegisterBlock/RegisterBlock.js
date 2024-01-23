@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 import axios from "axios";
 
@@ -115,6 +116,9 @@ const registerFormSchema = yup
   .required();
 
 export default function RegisterBlock() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   ////call api provinces-cities & districts
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -172,14 +176,14 @@ export default function RegisterBlock() {
     // e.preventDefault();
     if (isExpired) return;
 
-    const registerUser = {
+    const newUser = {
       email: acc.email,
       password: acc.confirmPassword,
       phone: acc.phoneNumber,
       name: acc.fullName,
       address: acc.address + ", " + acc.placeDis + ", " + acc.placeProv,
     };
-    registerUser(registerUser);
+    registerUser(newUser, dispatch, navigate);
   }
 
   return (

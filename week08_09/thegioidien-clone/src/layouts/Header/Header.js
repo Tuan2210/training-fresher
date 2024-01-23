@@ -15,9 +15,6 @@ import { MdMenu } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { IoIosArrowUp } from "react-icons/io";
 
-import MenuList from "../../components/ui/PrdsMenu/MenuList";
-import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
-
 import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -28,6 +25,10 @@ import {
   PASSWORD_REGEX,
   PHONENUMBER_REGEX,
 } from "../../constants/regexValidate";
+
+import MenuList from "../../components/ui/PrdsMenu/MenuList";
+import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
+import { loginUser } from "../../services/authApiRequest";
 
 const cx = classNames.bind(styles);
 
@@ -88,19 +89,16 @@ export default function Header() {
   } = useForm({ resolver: yupResolver(loginFormSchema) });
 
   function onSubmit(acc) {
-    if (/@/.test(acc["email-phoneNumber"])) {
-      const loginUser = {
-        email: acc["email-phoneNumber"],
-        password: acc.password,
-      };
-      console.log(loginUser);
-    } else if (/\+84/.test(acc["email-phoneNumber"])) {
-      const loginUser = {
-        phoneNumber: acc["email-phoneNumber"],
-        password: acc.password,
-      };
-      console.log(loginUser);
-    }
+    let user = {};
+
+    if (/@/.test(acc["email-phoneNumber"]))
+      user = { email: acc["email-phoneNumber"] };
+    else if (/\+84/.test(acc["email-phoneNumber"]))
+      user = { phoneNumber: acc["email-phoneNumber"] };
+
+    user.password = acc.password;
+    console.log(user);
+    // loginUser(user);
   }
 
   return (
