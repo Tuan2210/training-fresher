@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IoSearchOutline } from "react-icons/io5";
 import { PiShoppingCartLight } from "react-icons/pi";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
-import { FaRegFilePdf } from "react-icons/fa";
+import { FaRegFilePdf, FaSignOutAlt } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { IoIosArrowUp } from "react-icons/io";
@@ -81,26 +81,42 @@ export default function Header() {
           </Link>
         </div>
         <div className={cx(["register-header-top"])}>
-          <Link
-            to="/dangky"
-            className={cx([
-              "registerBtn",
-              "flex justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
-            ])}
-          >
-            <i className="fa-solid fa-user-plus text-[#FFFF00]" />
-            <p className="text-white">Đăng ký</p>
-          </Link>
-          <Link
-            to="/dangnhap"
-            className={cx([
-              "registerBtn-574",
-              "hidden justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
-            ])}
-          >
-            <i className="fas fa-user-tie text-[#FFFF00]"></i>
-            <p className="text-white">Tài khoản</p>
-          </Link>
+          {user ? (
+            <Link
+              to="/"
+              className={cx([
+                "logoutBtn",
+                "flex justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
+              ])}
+            >
+              <FaSignOutAlt className="text-[#FFFF00]" />
+              {/* <i className="fa-solid fa-user-plus text-[#FFFF00]" /> */}
+              <p className="text-white">Thoát</p>
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/dangky"
+                className={cx([
+                  "registerBtn",
+                  "flex justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
+                ])}
+              >
+                <i className="fa-solid fa-user-plus text-[#FFFF00]" />
+                <p className="text-white">Đăng ký</p>
+              </Link>
+              <Link
+                to="/dangnhap"
+                className={cx([
+                  "registerBtn-574",
+                  "hidden justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
+                ])}
+              >
+                <i className="fas fa-user-tie text-[#FFFF00]"></i>
+                <p className="text-white">Tài khoản</p>
+              </Link>
+            </>
+          )}
         </div>
       </div>
       {/* header-content */}
