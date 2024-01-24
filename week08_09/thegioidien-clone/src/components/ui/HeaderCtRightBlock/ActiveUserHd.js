@@ -10,7 +10,7 @@ import { getUserLogined } from "../../../services/userApiRequest";
 
 const cx = classNames.bind(styles);
 
-export default function UserInfoHd() {
+export default function ActiveUserHd() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.login?.currentUser);

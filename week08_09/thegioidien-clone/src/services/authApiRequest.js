@@ -28,7 +28,8 @@ export const loginUser = async (account, dispatch, navigate) => {
       withCredentials: true,
     });
     dispatch(loginSuccess(res.data));
-    navigate("/thanhvien");
+    // navigate("/thanhvien");
+    navigate("/");
   } catch (error) {
     dispatch(loginFailed());
   }

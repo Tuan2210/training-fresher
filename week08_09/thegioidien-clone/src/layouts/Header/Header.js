@@ -18,8 +18,8 @@ import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
 
 import MenuList from "../../components/ui/PrdsMenu/MenuList";
 import LoginFormHd from "../../components/ui/HeaderCtRightBlock/LoginFormHd";
+import ActiveUserHd from "../../components/ui/HeaderCtRightBlock/ActiveUserHd";
 import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
-import UserInfoHd from "../../components/ui/UserInfoHd/UserInfoHd";
 
 const cx = classNames.bind(styles);
 
@@ -176,7 +176,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        {user ? <UserInfoHd /> : <LoginFormHd />}
+        {user ? <ActiveUserHd /> : <LoginFormHd />}
         {/* header-content__center_990 */}
         <div
           className={cx([
