@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { IoSearchOutline } from "react-icons/io5";
 import { PiShoppingCartLight } from "react-icons/pi";
@@ -25,13 +25,6 @@ const cx = classNames.bind(styles);
 
 export default function Header() {
   const user = useSelector((state) => state.auth.login?.currentUser);
-  const [isActiveUser, setIsActiveUser] = useState(true);
-
-  // useEffect(() => {
-  //   if (user) {
-  //     console.log(user);
-  //   }
-  // });
 
   const [isHovered, setIsHovered] = useState(false);
   const [isDisplay, setIsDisplay] = useState("none");
@@ -183,7 +176,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        {user ? <UserInfoHd activeUser={user} /> : <LoginFormHd />}
+        {user ? <UserInfoHd /> : <LoginFormHd />}
         {/* header-content__center_990 */}
         <div
           className={cx([

@@ -3,14 +3,24 @@ import classNames from "classnames/bind";
 import { useEffect } from "react";
 
 import { FaRegUserCircle, FaFileInvoiceDollar } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { getUserLogined } from "../../../services/userApiRequest";
 
 const cx = classNames.bind(styles);
 
-export default function UserInfoHd({ activeUser }) {
+export default function UserInfoHd() {
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.auth.login?.currentUser);
+  const accessToken = user?.accessToken;
+
   useEffect(() => {
-    console.log(activeUser);
-  });
+    if (user) getUserLogined(accessToken, dispatch);
+  }, []);
+
+  const userInfo = useSelector((state) => state.user.currentUser?.info);
   return (
     <div
       className={cx([
@@ -18,9 +28,11 @@ export default function UserInfoHd({ activeUser }) {
         "col-span-3 w-full block p-2 rounded-sm bg-[#DBDBDB]",
       ])}
     >
-      <div className={cx(["", "mt-2 w-full text-[1.1rem] text-[#003B4F]"])}>
-        Xin chào Tuan
-      </div>
+      {userInfo && (
+        <div className={cx(["", "mt-2 w-full text-[1.1rem] text-[#003B4F]"])}>
+          Xin chào {userInfo.name}
+        </div>
+      )}
       <Link
         to="#"
         className={cx([
