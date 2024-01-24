@@ -8,3 +8,7 @@ Content-Type: application/json
     "name": "a",
     "address": "1A"
 }
+
+###
+GET http://localhost:8080/api/v1/users/user-info
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjMWMwZGVhMTFlOGY0ZTU5YTA1MDNkYmQxNzczNDE5YyIsInVzZXJJZCI6Mywic3ViIjoiYUBnbWFpbC5jb20iLCJyZWZyZXNoSWQiOiJhYTY3MGM4MDBiNjY0NzU5YTM3YTk3M2Q3MGUyOTlhZiIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwibWZhIjpmYWxzZSwiaWF0IjoxNzA2MDY5ODY3LCJleHAiOjE3MDYwNzM0Njd9.zYEiPuDLfG_0Gqd2Ro1_rbqyMoNJI09bGXHOgIgu9Jw

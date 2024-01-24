@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import PrdDetails from "../pages/PrdDetails/PrdDetails";
 import Checkout from "../pages/Checkout/Checkout";
+import Member from "../pages/Member/Member";
 
 const publicRoutes = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const publicRoutes = createBrowserRouter([
   {
     path: "/muahang",
     element: <Checkout />,
+  },
+  {
+    path: "/thanhvien",
+    element: <Member />,
   },
 ]);
 

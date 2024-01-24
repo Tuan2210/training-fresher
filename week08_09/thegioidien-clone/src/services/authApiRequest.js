@@ -28,7 +28,7 @@ export const loginUser = async (account, dispatch, navigate) => {
       withCredentials: true,
     });
     dispatch(loginSuccess(res.data));
-    // navigate('/');
+    navigate("/thanhvien");
   } catch (error) {
     dispatch(loginFailed());
   }

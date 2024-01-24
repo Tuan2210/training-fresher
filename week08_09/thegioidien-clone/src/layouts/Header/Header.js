@@ -19,18 +19,19 @@ import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
 import MenuList from "../../components/ui/PrdsMenu/MenuList";
 import LoginFormHd from "../../components/ui/HeaderCtRightBlock/LoginFormHd";
 import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
+import UserInfoHd from "../../components/ui/UserInfoHd/UserInfoHd";
 
 const cx = classNames.bind(styles);
 
 export default function Header() {
-  const user = useSelector((state) => state.auth?.login?.currentUser);
+  const user = useSelector((state) => state.auth.login?.currentUser);
   const [isActiveUser, setIsActiveUser] = useState(true);
 
-  useEffect(() => {
-    if (user) {
-      console.log(user);
-    }
-  });
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log(user);
+  //   }
+  // });
 
   const [isHovered, setIsHovered] = useState(false);
   const [isDisplay, setIsDisplay] = useState("none");
@@ -182,7 +183,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <LoginFormHd />
+        {user ? <UserInfoHd activeUser={user} /> : <LoginFormHd />}
         {/* header-content__center_990 */}
         <div
           className={cx([

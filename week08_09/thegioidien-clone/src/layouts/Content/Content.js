@@ -4,6 +4,7 @@ import LoginBlock from "../../components/ui/LoginBlock/LoginBlock";
 import ForgotPwBlock from "../../components/ui/ForgotPwBlock/ForgotPwBlock";
 import PrdDetailsBlock from "../../components/ui/PrdDetailsBlock/PrdDetailsBlock";
 import CheckoutBlock from "../../components/ui/CheckoutBlock/CheckoutBlock";
+import MemberBlock from "../../components/ui/MemberBlock/MemberBlock";
 
 import { useParams } from "react-router-dom";
 
@@ -25,6 +26,8 @@ export default function Content({ pathname }) {
         return <PrdDetailsBlock />;
       case "/muahang":
         return <CheckoutBlock />;
+      case "/thanhvien":
+        return <MemberBlock />;
       default:
         return;
     }
