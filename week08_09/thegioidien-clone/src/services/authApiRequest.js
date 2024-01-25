@@ -21,16 +21,18 @@ export const registerUser = async (account, dispatch, navigate) => {
   }
 };
 
-export const loginUser = async (account, dispatch, navigate) => {
+export const loginUser = async (account, dispatch, navigate, setIsLogined) => {
   dispatch(loginStart());
   try {
     const res = await axios.post(`${API_URL}/api/v1/login`, account, {
       withCredentials: true,
     });
     dispatch(loginSuccess(res.data));
+    setIsLogined(true);
     // navigate("/thanhvien");
     navigate("/");
   } catch (error) {
     dispatch(loginFailed());
+    setIsLogined(false);
   }
 };

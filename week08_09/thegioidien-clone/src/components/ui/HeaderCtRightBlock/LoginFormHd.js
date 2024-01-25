@@ -69,9 +69,12 @@ const loginFormSchema = yup
 export default function LoginFormHd() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { register, handleSubmit } = useForm({
     resolver: yupResolver(loginFormSchema),
   });
+
+  const [isLogined, setIsLogined] = useState(true);
 
   function onSubmit(acc) {
     let user = {};
@@ -82,7 +85,7 @@ export default function LoginFormHd() {
       user = { phoneNumber: acc["email-phoneNumber"] };
 
     user.password = acc.password;
-    loginUser(user, dispatch, navigate);
+    loginUser(user, dispatch, navigate, setIsLogined);
   }
 
   const [isHoveredBtn, setIsHoveredBtn] = useState(false);
@@ -132,6 +135,11 @@ export default function LoginFormHd() {
           />
         </div>
       </div>
+      {!isLogined && (
+        <div className={cx("rsrow", "text-[#CC0000] text-sm mt-1")}>
+          Đăng nhập thất bại, vui lòng đăng nhập lại!
+        </div>
+      )}
       <div className={cx(["rsrow", "w-full mt-2 grid items-center"])}>
         <Link
           to=""
