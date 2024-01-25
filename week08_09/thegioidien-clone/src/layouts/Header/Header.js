@@ -20,11 +20,16 @@ import MenuList from "../../components/ui/PrdsMenu/MenuList";
 import LoginFormHd from "../../components/ui/HeaderCtRightBlock/LoginFormHd";
 import ActiveUserHd from "../../components/ui/HeaderCtRightBlock/ActiveUserHd";
 import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
+import { loginSuccess } from "../../redux/features/authSlice";
 
 const cx = classNames.bind(styles);
 
 export default function Header() {
-  const user = useSelector((state) => state.auth.login?.currentUser);
+  // const currentUser = useSelector((state) => state.auth.login?.currentUser);
+
+  const dispatch = useDispatch();
+
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   const [isHovered, setIsHovered] = useState(false);
   const [isDisplay, setIsDisplay] = useState("none");
@@ -81,7 +86,7 @@ export default function Header() {
           </Link>
         </div>
         <div className={cx(["register-header-top"])}>
-          {user ? (
+          {isLoggedIn ? (
             <Link
               to="/"
               className={cx([
@@ -192,7 +197,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        {user ? <ActiveUserHd /> : <LoginFormHd />}
+        {isLoggedIn ? <ActiveUserHd /> : <LoginFormHd />}
         {/* header-content__center_990 */}
         <div
           className={cx([

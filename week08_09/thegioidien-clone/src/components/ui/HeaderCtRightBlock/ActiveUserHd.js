@@ -13,11 +13,12 @@ const cx = classNames.bind(styles);
 export default function ActiveUserHd() {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.auth.login?.currentUser);
-  const accessToken = user?.accessToken;
+  // const currentUser = useSelector((state) => state.auth.login?.currentUser);
+  // const accessToken = currentUser?.accessToken;
+  const currentUSerInfo = JSON.parse(localStorage.getItem("currentUSer"));
 
   useEffect(() => {
-    if (user) getUserLogined(accessToken, dispatch);
+    getUserLogined(currentUSerInfo?.accessToken, dispatch);
   }, []);
 
   const userInfo = useSelector((state) => state.user.currentUser?.info);
