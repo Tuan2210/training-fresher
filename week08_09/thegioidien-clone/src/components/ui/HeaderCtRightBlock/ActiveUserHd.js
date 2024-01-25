@@ -6,7 +6,7 @@ import { FaRegUserCircle, FaFileInvoiceDollar } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getUserLogined } from "../../../services/userApiRequest";
+import { getLoggedInUser } from "../../../services/userApiRequest";
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +18,7 @@ export default function ActiveUserHd() {
   const currentUSerInfo = JSON.parse(localStorage.getItem("currentUSer"));
 
   useEffect(() => {
-    getUserLogined(currentUSerInfo?.accessToken, dispatch);
+    getLoggedInUser(currentUSerInfo?.accessToken, dispatch);
   }, []);
 
   const userInfo = useSelector((state) => state.user.currentUser?.info);

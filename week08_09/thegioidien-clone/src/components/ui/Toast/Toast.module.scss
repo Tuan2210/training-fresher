@@ -1,0 +1,68 @@
+$main-color: #09CBD0;
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    pointer-events: none;
+    .toast {
+        background-color: #333;
+        color: #fff;
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px black;
+        transition: opacity 0.5s ease-out;
+        opacity: 0;
+        &__header {
+            color: $main-color;
+            font-weight: bold;
+            .fa-bell {
+                animation: bellMove 1.05s infinite;
+            }
+            .fa-times:hover {
+                color: #fff;
+            }
+        }
+        &.showToast {
+            opacity: 1;
+            pointer-events: auto;
+            animation: toastSlideLeft ease .3s;
+        }
+        &.hideToast {
+            animation: toastFadeOut linear 1s 50s forwards;
+        }
+    }
+}
+
+//animation toast
+@keyframes toastSlideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 20px));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastFadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+//animation bell
+@keyframes bellMove {
+    25% {
+        transform: rotate(20deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-20deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}

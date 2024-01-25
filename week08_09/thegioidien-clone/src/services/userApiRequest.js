@@ -7,7 +7,7 @@ import {
   getUserFailed,
 } from "../redux/features/userSlice";
 
-export const getUserLogined = async (accessToken, dispatch) => {
+export const getLoggedInUser = async (accessToken, dispatch) => {
   dispatch(getUserStart());
   try {
     const res = await axios.get(`${API_URL}/api/v1/users/user-info`, {

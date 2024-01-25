@@ -1,7 +1,7 @@
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +21,9 @@ import LoginFormHd from "../../components/ui/HeaderCtRightBlock/LoginFormHd";
 import ActiveUserHd from "../../components/ui/HeaderCtRightBlock/ActiveUserHd";
 import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
 import { loginSuccess } from "../../redux/features/authSlice";
+import Toast from "../../components/ui/Toast/Toast";
+import { getLoggedInUser } from "../../services/userApiRequest";
+import { refreshAccessToken } from "../../services/authApiRequest";
 
 const cx = classNames.bind(styles);
 
@@ -30,6 +33,20 @@ export default function Header() {
   const dispatch = useDispatch();
 
   const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const currentUSerInfo = JSON.parse(localStorage.getItem("currentUSer"));
+
+  // const [isExpireAT, setIsExpireAT] = useState(false);
+  const expireAccessToken = new Date(currentUSerInfo?.expireTime);
+  useEffect(() => {
+    const currentDate = new Date();
+    if (expireAccessToken - currentDate <= 0) {
+      refreshAccessToken(
+        currentUSerInfo?.accessToken,
+        currentUSerInfo?.refreshToken,
+        dispatch
+      );
+    }
+  });
 
   const [isHovered, setIsHovered] = useState(false);
   const [isDisplay, setIsDisplay] = useState("none");
@@ -410,6 +427,7 @@ export default function Header() {
           <MenuList key={index} item={item} index={index} />
         ))}
       </CDropdownMenu>
+      {/* <Toast /> */}
     </div>
   );
 }
