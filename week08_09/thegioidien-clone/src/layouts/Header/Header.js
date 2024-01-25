@@ -1,28 +1,24 @@
-import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
+import styles from "./Header.module.scss";
 
-import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { IoSearchOutline } from "react-icons/io5";
-import { PiShoppingCartLight } from "react-icons/pi";
-import { LiaCartArrowDownSolid } from "react-icons/lia";
 import { FaRegFilePdf, FaSignOutAlt } from "react-icons/fa";
-import { MdMenu } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { IoIosArrowUp } from "react-icons/io";
+import { IoSearchOutline } from "react-icons/io5";
+import { LiaCartArrowDownSolid } from "react-icons/lia";
+import { MdMenu } from "react-icons/md";
+import { PiShoppingCartLight } from "react-icons/pi";
 
-import { CDropdown, CDropdownToggle, CDropdownMenu } from "@coreui/react";
+import { CDropdown, CDropdownMenu, CDropdownToggle } from "@coreui/react";
 
-import MenuList from "../../components/ui/PrdsMenu/MenuList";
-import LoginFormHd from "../../components/ui/HeaderCtRightBlock/LoginFormHd";
 import ActiveUserHd from "../../components/ui/HeaderCtRightBlock/ActiveUserHd";
+import LoginFormHd from "../../components/ui/HeaderCtRightBlock/LoginFormHd";
+import MenuList from "../../components/ui/PrdsMenu/MenuList";
 import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
-import { loginSuccess } from "../../redux/features/authSlice";
-import Toast from "../../components/ui/Toast/Toast";
-import { getLoggedInUser } from "../../services/userApiRequest";
 import { refreshAccessToken } from "../../services/authApiRequest";
 
 const cx = classNames.bind(styles);
