@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../constants/apiUrl";
+import { API_URL, USER_ACCESS_TOKEN_HEADER } from "../constants/apiUrl";
 
 import {
   getUserStart,
@@ -11,7 +11,7 @@ export const getLoggedInUser = async (accessToken, dispatch) => {
   dispatch(getUserStart());
   try {
     const res = await axios.get(`${API_URL}/api/v1/users/user-info`, {
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { [USER_ACCESS_TOKEN_HEADER]: accessToken },
     });
     dispatch(getUserSuccess(res.data));
   } catch (error) {
