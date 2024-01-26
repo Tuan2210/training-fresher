@@ -16,6 +16,9 @@ import {
   refreshAccessTokenStart,
   refreshAccessTokenSuccess,
   refreshAccessTokenFailed,
+  logoutStart,
+  logoutSuccess,
+  logoutFailed,
 } from "../redux/features/authSlice";
 
 export const registerUser = async (account, dispatch, navigate) => {
@@ -83,3 +86,23 @@ export const refreshAccessToken = async (
     dispatch(refreshAccessTokenFailed());
   }
 };
+
+// export const logout = async (accessToken, dispatch, navigate) => {
+//   dispatch(logoutStart());
+//   try {
+//     await axios.delete(`${API_URL}/api/v1/users/logout`, {
+//       headers: {
+//         [USER_ACCESS_TOKEN_HEADER]: accessToken,
+//       },
+//     });
+
+//     localStorage.setItem("isLoggedIn", false);
+//     // localStorage.removeItem("isLoggedIn");
+//     localStorage.removeItem("currentUSer");
+
+//     dispatch(logoutSuccess());
+//     navigate("/");
+//   } catch (error) {
+//     dispatch(logoutFailed());
+//   }
+// };

@@ -3,7 +3,7 @@ import styles from "./Header.module.scss";
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { FaRegFilePdf, FaSignOutAlt } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
@@ -21,28 +21,57 @@ import MenuList from "../../components/ui/PrdsMenu/MenuList";
 import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
 import { refreshAccessToken } from "../../services/authApiRequest";
 
+import { jwtDecode } from "jwt-decode";
+
 const cx = classNames.bind(styles);
 
 export default function Header() {
   // const currentUser = useSelector((state) => state.auth.login?.currentUser);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const itemLoggedIn = localStorage.getItem("isLoggedIn")
+    ? localStorage.getItem("isLoggedIn")
+    : null;
+  const [isLoggedIn, setIsLoggedIn] = useState(itemLoggedIn);
+
   const currentUSerInfo = JSON.parse(localStorage.getItem("currentUSer"));
 
-  // const [isExpireAT, setIsExpireAT] = useState(false);
   const expireAccessToken = new Date(currentUSerInfo?.expireTime);
-  useEffect(() => {
+  const decodedRefreshToken = currentUSerInfo?.refreshToken
+    ? jwtDecode(currentUSerInfo?.refreshToken)
+    : null;
+
+  function handleCheckATAndRT(
+    currentUSerInfo,
+    expireAccessToken,
+    decodedRefreshToken
+  ) {
     const currentDate = new Date();
-    if (expireAccessToken - currentDate <= 0) {
-      refreshAccessToken(
-        currentUSerInfo?.accessToken,
-        currentUSerInfo?.refreshToken,
-        dispatch
-      );
+    if (currentUSerInfo && isLoggedIn) {
+      //access exp
+      if (expireAccessToken - currentDate <= 0) {
+        //refresh no exp
+        if (decodedRefreshToken?.exp >= currentDate.getTime() / 1000) {
+          refreshAccessToken(
+            currentUSerInfo?.accessToken,
+            currentUSerInfo?.refreshToken,
+            dispatch
+          );
+        } else {
+          setIsLoggedIn(false);
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("currentUSer");
+          navigate("/dangnhap");
+        }
+      }
     }
-  });
+  }
+
+  useEffect(() => {
+    handleCheckATAndRT(currentUSerInfo, expireAccessToken, decodedRefreshToken);
+  }, [itemLoggedIn, isLoggedIn, currentUSerInfo]);
 
   const [isHovered, setIsHovered] = useState(false);
   const [isDisplay, setIsDisplay] = useState("none");

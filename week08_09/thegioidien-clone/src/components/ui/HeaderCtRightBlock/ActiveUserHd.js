@@ -15,9 +15,12 @@ export default function ActiveUserHd() {
 
   // const currentUser = useSelector((state) => state.auth.login?.currentUser);
   // const accessToken = currentUser?.accessToken;
-  const currentUSerInfo = JSON.parse(localStorage.getItem("currentUSer"));
+  const currentUSerInfo = localStorage.getItem("currentUSer")
+    ? JSON.parse(localStorage.getItem("currentUSer"))
+    : null;
 
   useEffect(() => {
+    // console.log("render!!");
     getLoggedInUser(currentUSerInfo?.accessToken, dispatch);
   }, []);
 
