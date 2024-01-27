@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import axios from "axios";
@@ -9,7 +10,6 @@ import styled from "styled-components";
 import { IoHomeOutline } from "react-icons/io5";
 import { SlArrowRight } from "react-icons/sl";
 import { PiSignIn } from "react-icons/pi";
-
 import { LuKeyRound } from "react-icons/lu";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,14 +18,16 @@ import * as yup from "yup";
 import {
   EMAIL_REGEX,
   PHONENUMBER_REGEX,
+  PASSWORD_REGEX,
 } from "../../../constants/regexValidate";
 
 import accounts from "../../../data/accounts.json";
+import { loginUser } from "../../../services/authApiRequest";
 
 const loginFormSchema = yup
   .object()
   .shape({
-    ["Tài khoản"]: yup
+    ["email-phoneNumber"]: yup
       .string()
       .required("Vui lòng nhập email hoặc số điện thoại!")
       .test(
@@ -50,40 +52,27 @@ const loginFormSchema = yup
               .isValidSync(value);
           }
         }
-      )
-      .test(
-        "is-exist-email",
-        "Sai email, vui lòng nhập lại!",
-        function (value) {
-          return value === accounts[0]?.email;
-        }
       ),
-    // .test(
-    //   "is-exist-phoneNumber",
-    //   "Sai số điện thoại, vui lòng nhập lai!",
-    //   function (value) {
-    //     return value === accounts[0]?.phoneNumber;
-    //   }
-    // ),
-    ["Mật khẩu"]: yup
+    password: yup
       .string()
       .required("Vui lòng nhập mật khẩu!")
-      .test("is-pw-length", "4-20 ký tự!", function (value) {
-        if (!value) return true;
-        return value.length >= 4 && value.length <= 20;
-      })
-      .test(
-        "is-exist-confirmPW",
-        "Sai mật khẩu, vui lòng nhập lai!",
-        function (value) {
-          return value === accounts[0]?.confirmPassword;
-        }
-      ),
+      .test("is-pw", "Mật khẩu không hợp lệ!", function (value) {
+        return yup
+          .string()
+          .matches(PASSWORD_REGEX, {
+            message: "Mật khẩu không hợp lệ!",
+            excludeEmptyString: true,
+          })
+          .isValidSync(value);
+      }),
     // fieldValue: yup.string().oneOf(accounts, "Giá trị không hợp lệ"),
   })
   .required();
 
 export default function LoginBlock() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   ////validate inputs
   const {
     register,
@@ -101,8 +90,18 @@ export default function LoginBlock() {
   //   }
   ////
 
+  const [loginSuccess, setLoginSuccess] = useState(true);
+
   function onSubmit(acc) {
-    console.log("Đăng nhập thành công!", acc);
+    let user = {};
+
+    if (/@/.test(acc["email-phoneNumber"]))
+      user = { email: acc["email-phoneNumber"] };
+    else if (/\+84/.test(acc["email-phoneNumber"]))
+      user = { phoneNumber: acc["email-phoneNumber"] };
+
+    user.password = acc.password;
+    loginUser(user, dispatch, navigate, setLoginSuccess);
   }
 
   return (
@@ -146,15 +145,15 @@ export default function LoginBlock() {
                       type="text"
                       placeholder="Email hoặc số điện thoại"
                       className="w-full p-2 text-[16px] border border-solid border-[#767676] placeholder:text-[#7C7C7C]"
-                      {...register("Tài khoản")}
+                      {...register("email-phoneNumber")}
                     />
                     <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-1">
                       *
                     </span>
                   </div>
-                  {errors["Tài khoản"] && (
+                  {errors["email-phoneNumber"] && (
                     <span className="text-[#CC0000] mt-2">
-                      {errors["Tài khoản"]?.message}
+                      {errors["email-phoneNumber"]?.message}
                     </span>
                   )}
                 </div>
@@ -170,20 +169,29 @@ export default function LoginBlock() {
                     <input
                       type="password"
                       className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                      {...register("Mật khẩu")}
+                      {...register("password")}
                     />
                     <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
                       *
                     </span>
                   </div>
-                  {errors["Mật khẩu"] && (
+                  {errors.password && (
                     <span className="text-[#CC0000] mt-2">
-                      {errors["Mật khẩu"]?.message}
+                      {errors.password.message}
                     </span>
                   )}
                 </div>
               </div>
             </StyledFormRow>
+
+            {!loginSuccess && (
+              <StyledFormRow className="flex flex-col mt-2">
+                <span className="lbl w-full text-[#3B3B3B]"></span>
+                <span className="text-[#CC0000] text-sm">
+                  Đăng nhập thất bại, vui lòng đăng nhập lại!
+                </span>
+              </StyledFormRow>
+            )}
 
             {/* Quện mật khẩu */}
             <StyledFormRow className="flex flex-col mt-2">

@@ -49,8 +49,8 @@ export const loginUser = async (
     localStorage.setItem("isLoggedIn", true);
     localStorage.setItem("currentUSer", JSON.stringify(res.data));
 
-    // navigate("/thanhvien");
-    navigate("/");
+    navigate("/thanhvien");
+    // navigate("/");
   } catch (error) {
     dispatch(loginFailed());
     setLoginSuccess(false);

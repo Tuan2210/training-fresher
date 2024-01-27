@@ -67,6 +67,7 @@ const loginFormSchema = yup
   .required();
 
 export default function LoginFormHd() {
+  console.log("render");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -87,8 +88,6 @@ export default function LoginFormHd() {
     user.password = acc.password;
     loginUser(user, dispatch, navigate, setLoginSuccess);
   }
-
-  const [isHoveredBtn, setIsHoveredBtn] = useState(false);
 
   return (
     <form
@@ -150,15 +149,17 @@ export default function LoginFormHd() {
         </Link>
         <button
           type="submit"
-          className="w-fit flex justify-center items-center rounded pt-2 pb-2 pl-[0.7rem] pr-[0.7rem] gap-1 bg-[#1C8DD9] hover:bg-[#1c8dd9e0]"
-          onMouseEnter={() => setIsHoveredBtn(true)}
-          onMouseLeave={() => setIsHoveredBtn(false)}
+          className={cx([
+            "loginBtn",
+            "w-fit flex justify-center items-center rounded pt-2 pb-2 pl-[0.7rem] pr-[0.7rem] gap-1 bg-[#1C8DD9] hover:bg-[#1c8dd9e0]",
+          ])}
         >
-          {isHoveredBtn ? (
-            <MdOutlineLockOpen className="text-xl text-[#FFFF00] font-bold" />
-          ) : (
-            <MdOutlineLock className="text-xl text-[#FFFF00] font-bold" />
-          )}
+          <MdOutlineLock
+            className={cx(["lock-icon", "text-xl text-[#FFFF00] font-bold"])}
+          />
+          <MdOutlineLockOpen
+            className={cx(["unlock-icon", "text-xl text-[#FFFF00] font-bold"])}
+          />
           <span className="text-white">Đăng Nhập</span>
         </button>
       </div>

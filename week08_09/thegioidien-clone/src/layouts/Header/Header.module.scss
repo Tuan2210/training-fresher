@@ -19,6 +19,17 @@
     &__right {
         .rsrow {
             grid-template-columns: 135px 1fr;
+            .loginBtn{
+                .unlock-icon {
+                    display: none;
+                }
+                &:hover {
+                    .lock-icon {display: none;}
+                    .unlock-icon {
+                        display: flex;
+                    }
+                }
+            }
         }
     }
 }
@@ -27,6 +38,19 @@
         background-image: linear-gradient(to top right, #B21E02, #BF3E26, #FF6600, #BF442D, #FF6600, #B21E02);
         input {
             font-size: 1.2rem !important;
+        }
+    }
+    .lktodtdt {
+        .cart-arrow-icon {
+            display: none;
+        }
+        &:hover {
+            .cart-icon {
+                display: none;
+            }
+            .cart-arrow-icon {
+                display: flex;
+            }
         }
     }
 }

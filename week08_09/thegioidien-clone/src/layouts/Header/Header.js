@@ -73,7 +73,6 @@ export default function Header() {
     handleCheckATAndRT(currentUSerInfo, expireAccessToken, decodedRefreshToken);
   }, [itemLoggedIn, isLoggedIn, currentUSerInfo]);
 
-  const [isHovered, setIsHovered] = useState(false);
   const [isDisplay, setIsDisplay] = useState("none");
 
   return (
@@ -340,19 +339,21 @@ export default function Header() {
             "col-span-3 flex justify-center items-center bg-[#B21E02]",
           ])}
         >
-          <a
-            id="lktodtdt"
-            className="aspNetDisabled text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+          <Link
+            to="#"
+            className={cx([
+              "lktodtdt",
+              " text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]",
+            ])}
           >
-            {isHovered ? (
-              <LiaCartArrowDownSolid className="text-3xl text-[#FFFF00]" />
-            ) : (
-              <PiShoppingCartLight className="text-3xl text-[#FFFF00]" />
-            )}
+            <PiShoppingCartLight
+              className={cx(["cart-icon", "text-3xl text-[#FFFF00]"])}
+            />
+            <LiaCartArrowDownSolid
+              className={cx(["cart-arrow-icon", "text-3xl text-[#FFFF00]"])}
+            />
             <span>0 Sản phẩm</span>
-          </a>
+          </Link>
         </div>
       </div>
       {/* header-bottom-768 */}
@@ -369,19 +370,21 @@ export default function Header() {
             "hidden col-span-6 justify-center items-center bg-[#B21E02]",
           ])}
         >
-          <a
-            id="lktodtdt"
-            className="aspNetDisabled text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+          <Link
+            to="#"
+            className={cx([
+              "lktodtdt",
+              " text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]",
+            ])}
           >
-            {isHovered ? (
-              <LiaCartArrowDownSolid className="text-3xl text-[#FFFF00]" />
-            ) : (
-              <PiShoppingCartLight className="text-3xl text-[#FFFF00]" />
-            )}
+            <PiShoppingCartLight
+              className={cx(["cart-icon", "text-3xl text-[#FFFF00]"])}
+            />
+            <LiaCartArrowDownSolid
+              className={cx(["cart-arrow-icon", "text-3xl text-[#FFFF00]"])}
+            />
             <span>0 Sản phẩm</span>
-          </a>
+          </Link>
         </div>
 
         {/* search-prd-574 */}
@@ -429,19 +432,21 @@ export default function Header() {
             "col-span-6 flex justify-center items-center bg-[#B21E02]",
           ])}
         >
-          <a
-            id="lktodtdt"
-            className="aspNetDisabled text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+          <Link
+            to="#"
+            className={cx([
+              "lktodtdt",
+              " text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]",
+            ])}
           >
-            {isHovered ? (
-              <LiaCartArrowDownSolid className="text-3xl text-[#FFFF00]" />
-            ) : (
-              <PiShoppingCartLight className="text-3xl text-[#FFFF00]" />
-            )}
+            <PiShoppingCartLight
+              className={cx(["cart-icon", "text-3xl text-[#FFFF00]"])}
+            />
+            <LiaCartArrowDownSolid
+              className={cx(["cart-arrow-icon", "text-3xl text-[#FFFF00]"])}
+            />
             <span>0 Sản phẩm</span>
-          </a>
+          </Link>
         </div>
       </div>
       <CDropdownMenu
