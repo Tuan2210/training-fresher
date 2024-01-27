@@ -20,7 +20,6 @@ export default function ActiveUserHd() {
     : null;
 
   useEffect(() => {
-    // console.log("render!!");
     getLoggedInUser(currentUSerInfo?.accessToken, dispatch);
   }, []);
 

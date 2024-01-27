@@ -67,7 +67,6 @@ const loginFormSchema = yup
   .required();
 
 export default function LoginFormHd() {
-  console.log("render");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
