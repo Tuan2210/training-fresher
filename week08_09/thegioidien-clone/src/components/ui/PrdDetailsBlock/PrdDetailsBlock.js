@@ -31,7 +31,7 @@ export default function PrdDetailsBlock() {
 
   return (
     <div className="w-full flex flex-col mt-4">
-      <PrdDetailsMainNav prdName={prdName} />
+      <PrdDetailsMainNav prdName={prdName} member={null} />
       <PrdDetailsBlockHd prdName={prdName} />
       <PrdDetailsView className="prd-details-view border border-t-0 border-solid border-[#b21e02]">
         {/* top */}

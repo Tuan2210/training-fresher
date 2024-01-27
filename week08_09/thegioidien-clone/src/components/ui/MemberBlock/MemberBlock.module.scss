@@ -1,0 +1,27 @@
+.user-info-wrp {
+    &__top {
+        background-color: #B21E02;
+        background-image: linear-gradient(to bottom, #B21E02, #B21E02, #B93016, #B21E02, #B21E02);
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .member-menu {
+        display: grid !important;
+        grid-gap: 1px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .member-menu {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media screen and (min-width: 1401px) {
+    .member-menu {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        border-bottom: 1px solid #fff;
+    }
+}

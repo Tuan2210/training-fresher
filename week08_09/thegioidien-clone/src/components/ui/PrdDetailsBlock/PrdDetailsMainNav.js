@@ -9,13 +9,14 @@ import { SlArrowRight } from "react-icons/sl";
 import prdsData from "../../../data/prdsData.json";
 import { dataItems } from "../PrdsMenu/dataPrdsMenu";
 
-export default function PrdDetailsMainNav({ prdName }) {
+export default function PrdDetailsMainNav({ prdName, member }) {
   ///findTitleByPrdName
   function findTitleByPrdName(tensp) {
+    if (!prdName) return;
     const product = prdsData.find((p) =>
       p.infos.some((info) => info.prdName === tensp)
     );
-    return product ? product.title : null;
+    return product?.title;
   }
   const foundTitle = findTitleByPrdName(prdName);
   ////
@@ -42,9 +43,11 @@ export default function PrdDetailsMainNav({ prdName }) {
         <IoHomeOutline className="text-[#E24B01] text-[1.6rem]" />
         <span className=" text-[#3E0B00]">Trang chủ</span>
       </Link>
+
       <div className="flex items-center text-[1.2rem] pt-2 pb-2 gap-1">
         <SlArrowRight className="text-[#E24B01]" />
-        <span className="">{foundTitle}</span>
+        {member && <span className="">{member}</span>}
+        {prdName && <span className="">{foundTitle}</span>}
       </div>
       {/* <div className="flex items-center text-[1.2rem] pt-2 pb-2 gap-1">
         <SlArrowRight className="text-[#E24B01]" />

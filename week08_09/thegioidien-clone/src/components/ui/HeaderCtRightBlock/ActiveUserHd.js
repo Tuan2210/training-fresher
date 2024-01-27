@@ -37,7 +37,7 @@ export default function ActiveUserHd() {
         </div>
       )}
       <Link
-        to="#"
+        to="/thanhvien"
         className={cx([
           "",
           "w-full mt-4 flex items-center pt-[0.4rem] pb-[0.4rem] pl-[0.7rem] pr-[0.7rem] gap-2 bg-[#EAEAEA] rounded-[3px] hover:bg-[#F1F1F1]",
