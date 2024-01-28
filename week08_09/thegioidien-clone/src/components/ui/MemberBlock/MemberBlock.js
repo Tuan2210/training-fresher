@@ -62,12 +62,6 @@ export default function MemberBlock() {
   ];
 
   const [isUpdatePwForm, setIsUpdatePwForm] = useState(false);
-
-  const fullAddress = userInfo?.address?.split(", ") ?? [];
-  const address = fullAddress[0] ?? "",
-    district = fullAddress[1] ?? "",
-    province = fullAddress[2] ?? "";
-
   function UpdatePwForm() {
     return (
       <form className="pt-1 pb-1 flex flex-col gap-2">
@@ -125,7 +119,93 @@ export default function MemberBlock() {
               setIsUpdatePwForm(false);
             }}
           >
-            <FaTimes className="text-[#FFFF00]" />
+            <FaTimes className="text-[#FFFF00] text-lg" />
+            <span className="text-white">Hủy</span>
+          </button>
+        </div>
+      </form>
+    );
+  }
+
+  const fullAddress = userInfo?.address?.split(", ") ?? [];
+  const address = fullAddress[0] ?? "",
+    district = fullAddress[1] ?? "",
+    province = fullAddress[2] ?? "";
+
+  const [isUpdateContactForm, setIsUpdateContactForm] = useState(false);
+  function UpdateContactForm() {
+    return (
+      <form className="pt-1 pb-1 flex flex-col gap-2">
+        {/* fullname-wrp */}
+        <div className="flex flex-col gap-1">
+          <span>Họ tên</span>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              className="old-pw w-full p-2 text-base h-8 border border-solid border-[#767676] rounded-sm"
+              defaultValue={userInfo?.name}
+            />
+            <span className="text-[#FF6600]">*</span>
+          </div>
+          <span className="text-[#CC0000]">Vui lòng nhập họ tên!</span>
+        </div>
+        {/* phone-wrp */}
+        <div className="flex flex-col gap-1">
+          <span>Điện thoại</span>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              className="new-pw w-full p-2 text-base h-8 border border-solid border-[#767676] rounded-sm"
+              defaultValue={userInfo?.phone}
+            />
+            <span className="text-[#FF6600]">*</span>
+          </div>
+          <span className="text-[#CC0000]">Vui lòng nhập số điện thoại!</span>
+        </div>
+        {/* address-wrp */}
+        <div className="flex flex-col gap-1">
+          <span>Địa chỉ</span>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              className="new-pw w-full p-2 text-base h-8 border border-solid border-[#767676] rounded-sm"
+              defaultValue={address}
+            />
+            <span className="text-[#FF6600]">*</span>
+          </div>
+          <span className="text-[#CC0000]">Vui lòng nhập địa chỉ!</span>
+        </div>
+        {/* province */}
+        <div className="flex flex-col gap-1">
+          <span>Tỉnh thành</span>
+          <select defaultValue={province}>
+            <option value={province}>{province}</option>
+          </select>
+          <span className="text-[#CC0000]">Vui lòng chọn tỉnh thành!</span>
+        </div>
+        {/* district */}
+        <div className="flex flex-col gap-1">
+          <span>Quận huyện</span>
+          <select defaultValue={district}>
+            <option value={district}>{district}</option>
+          </select>
+          <span className="text-[#CC0000]">Vui lòng chọn quận huyện!</span>
+        </div>
+        <div className="btns-row flex items-center justify-center mt-4 mb-4 gap-4 text-sm">
+          <button
+            className="changePwBtn flex items-center p-2 gap-2 bg-[#1C8DD9] rounded-[3px]"
+            // onClick={() => {}}
+          >
+            <FaSync className="text-[#FFFF00]" />
+            <span className="text-white">Cập nhật</span>
+          </button>
+          <button
+            className="changePwBtn flex items-center p-2 gap-2 bg-[#1C8DD9] rounded-[3px]"
+            onClick={() => {
+              setIsUpdateContactForm(false);
+            }}
+          >
+            <FaTimes className="text-[#FFFF00] text-lg" />
             <span className="text-white">Hủy</span>
           </button>
         </div>
@@ -260,47 +340,63 @@ export default function MemberBlock() {
                 " flex flex-col p-4 overflow-hidden",
               ])}
             >
-              {/* fullname */}
-              <div className={cx(["info-row", "grid items-center pt-1 pb-1"])}>
-                <span>Họ tên:</span>
-                {userInfo && <span>{userInfo.name}</span>}
-              </div>
-              {/* phone-number */}
-              <div className={cx(["info-row", "grid items-center pt-1 pb-1"])}>
-                <span>Điện thoại:</span>
-                {userInfo && <span>{userInfo.phone}</span>}
-              </div>
-              {/* address */}
-              <div className={cx(["info-row", "grid items-center pt-1 pb-1"])}>
-                <span>Địa chỉ:</span>
-                <span>{address}</span>
-              </div>
-              {/* province */}
-              <div className={cx(["info-row", "grid items-center pt-1 pb-1"])}>
-                <span>Tỉnh thành:</span>
-                <select defaultValue={province} disabled>
-                  <option>{province}</option>
-                </select>
-              </div>
-              {/* district */}
-              <div className={cx(["info-row", "grid items-center pt-1 pb-1"])}>
-                <span>Quận huyện:</span>
-                <select defaultValue={district} disabled>
-                  <option>{district}</option>
-                </select>
-              </div>
-              {/* contact-info-rows + updateBtn | UpdateContactInfoForm */}
-              <div className="change-pw-row flex items-center justify-center mt-4 mb-4">
-                <button
-                  className="changePwBtn flex items-center p-2 gap-2 bg-[#1C8DD9] rounded-[3px]"
-                  // onClick={() => {
-                  //   setIsUpdatePwForm(true);
-                  // }}
-                >
-                  <FaRegEdit className="text-[#FFFF00] text-lg" />
-                  <span className="text-white">Sửa</span>
-                </button>
-              </div>
+              {isUpdateContactForm ? (
+                <UpdateContactForm />
+              ) : (
+                <>
+                  {/* fullname */}
+                  <div
+                    className={cx(["info-row", "grid items-center pt-1 pb-1"])}
+                  >
+                    <span>Họ tên:</span>
+                    {userInfo && <span>{userInfo.name}</span>}
+                  </div>
+                  {/* phone-number */}
+                  <div
+                    className={cx(["info-row", "grid items-center pt-1 pb-1"])}
+                  >
+                    <span>Điện thoại:</span>
+                    {userInfo && <span>{userInfo.phone}</span>}
+                  </div>
+                  {/* address */}
+                  <div
+                    className={cx(["info-row", "grid items-center pt-1 pb-1"])}
+                  >
+                    <span>Địa chỉ:</span>
+                    <span>{address}</span>
+                  </div>
+                  {/* province */}
+                  <div
+                    className={cx(["info-row", "grid items-center pt-1 pb-1"])}
+                  >
+                    <span>Tỉnh thành:</span>
+                    <select defaultValue={province} disabled>
+                      <option>{province}</option>
+                    </select>
+                  </div>
+                  {/* district */}
+                  <div
+                    className={cx(["info-row", "grid items-center pt-1 pb-1"])}
+                  >
+                    <span>Quận huyện:</span>
+                    <select defaultValue={district} disabled>
+                      <option>{district}</option>
+                    </select>
+                  </div>
+                  {/* contact-info-rows + updateBtn | UpdateContactInfoForm */}
+                  <div className="change-pw-row flex items-center justify-center mt-4 mb-4">
+                    <button
+                      className="changePwBtn flex items-center p-2 gap-2 bg-[#1C8DD9] rounded-[3px]"
+                      onClick={() => {
+                        setIsUpdateContactForm(true);
+                      }}
+                    >
+                      <FaRegEdit className="text-[#FFFF00] text-lg" />
+                      <span className="text-white">Sửa</span>
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
