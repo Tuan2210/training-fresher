@@ -3,6 +3,15 @@
         background-color: #B21E02;
         background-image: linear-gradient(to bottom, #B21E02, #B21E02, #B93016, #B21E02, #B21E02);
     }
+    &__bottom {
+        .login-info {
+            &__ct {
+                .info-row {
+                    grid-template-columns: 110px minmax(0, 1fr);
+                }
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 576px) {
