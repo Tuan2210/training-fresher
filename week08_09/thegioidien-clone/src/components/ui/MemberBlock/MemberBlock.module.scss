@@ -4,7 +4,8 @@
         background-image: linear-gradient(to bottom, #B21E02, #B21E02, #B93016, #B21E02, #B21E02);
     }
     &__bottom {
-        .login-info {
+        .login-info,
+        .contact-info {
             &__ct {
                 .info-row {
                     grid-template-columns: 110px minmax(0, 1fr);

@@ -63,6 +63,11 @@ export default function MemberBlock() {
 
   const [isUpdatePwForm, setIsUpdatePwForm] = useState(false);
 
+  const fullAddress = userInfo?.address?.split(", ") ?? [];
+  const address = fullAddress[0] ?? "",
+    district = fullAddress[1] ?? "",
+    province = fullAddress[2] ?? "";
+
   function UpdatePwForm() {
     return (
       <form className="pt-1 pb-1 flex flex-col gap-2">
@@ -263,12 +268,26 @@ export default function MemberBlock() {
               {/* phone-number */}
               <div className={cx(["info-row", "grid items-center pt-1 pb-1"])}>
                 <span>Điện thoại:</span>
-                {userInfo && <span>{userInfo.name}</span>}
+                {userInfo && <span>{userInfo.phone}</span>}
               </div>
               {/* address */}
               <div className={cx(["info-row", "grid items-center pt-1 pb-1"])}>
                 <span>Địa chỉ:</span>
-                {userInfo && <span>{userInfo.name}</span>}
+                <span>{address}</span>
+              </div>
+              {/* province */}
+              <div className={cx(["info-row", "grid items-center pt-1 pb-1"])}>
+                <span>Tỉnh thành:</span>
+                <select defaultValue={province} disabled>
+                  <option>{province}</option>
+                </select>
+              </div>
+              {/* district */}
+              <div className={cx(["info-row", "grid items-center pt-1 pb-1"])}>
+                <span>Quận huyện:</span>
+                <select defaultValue={district} disabled>
+                  <option>{district}</option>
+                </select>
               </div>
               {/* contact-info-rows + updateBtn | UpdateContactInfoForm */}
               <div className="change-pw-row flex items-center justify-center mt-4 mb-4">
