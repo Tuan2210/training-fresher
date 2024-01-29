@@ -23,20 +23,17 @@ export const getLoggedInUser = async (accessToken, dispatch) => {
 };
 
 export const changePw = async (
-  oldPw,
-  confirmNewPw,
+  dataObj,
   accessToken,
   dispatch,
-  navigate
+  navigate,
+  setMsgChangePw
 ) => {
   dispatch(changePwStart());
   try {
     await axiosInstance.patch(
       `${API_URL}/api/v1/users/change-password`,
-      {
-        oldPassword: oldPw,
-        newPassword: confirmNewPw,
-      },
+      dataObj,
       {
         headers: { [USER_ACCESS_TOKEN_HEADER]: accessToken },
       }
@@ -46,8 +43,9 @@ export const changePw = async (
     localStorage.removeItem("currentUSer");
 
     navigate("/dangnhap");
+    setMsgChangePw("");
   } catch (error) {
-    console.log(error);
     dispatch(changePwFailed());
+    setMsgChangePw("Đổi mật khẩu thất bại, vui lòng thử lại!");
   }
 };
