@@ -8,6 +8,9 @@ import {
   changePwStart,
   changePwSuccess,
   changePwFailed,
+  updateContactStart,
+  updateContactSuccess,
+  updateContactFailed,
 } from "../redux/features/userSlice";
 
 export const getLoggedInUser = async (accessToken, dispatch) => {
@@ -47,5 +50,30 @@ export const changePw = async (
   } catch (error) {
     dispatch(changePwFailed());
     setMsgChangePw("Đổi mật khẩu thất bại, vui lòng thử lại!");
+  }
+};
+
+export const updateContactInfo = async (
+  contactInfo,
+  accessToken,
+  dispatch,
+  setIsUpdateContactForm,
+  navigate
+) => {
+  dispatch(updateContactStart());
+  try {
+    await axiosInstance.put(
+      `${API_URL}/api/v1/users/contact-info`,
+      contactInfo,
+      {
+        headers: { [USER_ACCESS_TOKEN_HEADER]: accessToken },
+      }
+    );
+    dispatch(updateContactSuccess());
+    setIsUpdateContactForm(false);
+    navigate("/");
+  } catch (error) {
+    dispatch(updateContactFailed());
+    setIsUpdateContactForm(true);
   }
 };

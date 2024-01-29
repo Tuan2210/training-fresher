@@ -13,6 +13,11 @@ const userSlice = createSlice({
       error: false,
       success: false,
     },
+    updateContact: {
+      isFetching: false,
+      error: false,
+      success: false,
+    },
   },
   reducers: {
     getUserStart: (state) => {
@@ -40,6 +45,20 @@ const userSlice = createSlice({
       state.changePw.success = false;
       state.changePw.error = true;
     },
+    //
+    updateContactStart: (state) => {
+      state.updateContact.isFetching = true;
+    },
+    updateContactSuccess: (state) => {
+      state.updateContact.isFetching = false;
+      state.updateContact.success = true;
+      state.updateContact.error = false;
+    },
+    updateContactFailed: (state) => {
+      state.updateContact.isFetching = false;
+      state.updateContact.success = false;
+      state.updateContact.error = true;
+    },
   },
 });
 
@@ -50,6 +69,9 @@ export const {
   changePwStart,
   changePwSuccess,
   changePwFailed,
+  updateContactStart,
+  updateContactSuccess,
+  updateContactFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

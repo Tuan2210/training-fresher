@@ -12,6 +12,7 @@ import {
   FULLNAME_REGEX,
   PHONENUMBER_REGEX,
 } from "../../../constants/regexValidate";
+import { updateContactInfo } from "../../../services/userApiRequest";
 
 const updateFormSchema = yup
   .object()
@@ -62,6 +63,13 @@ const updateFormSchema = yup
 export default function UpdateContactForm({ setIsUpdateContactForm }) {
   const userInfo = useSelector((state) => state.user.currentUser?.info);
 
+  const currentUserInfo = localStorage.getItem("currentUSer")
+    ? JSON.parse(localStorage.getItem("currentUSer"))
+    : null;
+
+  const dispatch = useDispatch(),
+    navigate = useNavigate();
+
   const fullAddress = userInfo?.address?.split(", ") ?? [];
   const address = fullAddress[0] ?? "",
     district = fullAddress[1] ?? "",
@@ -74,7 +82,18 @@ export default function UpdateContactForm({ setIsUpdateContactForm }) {
   } = useForm({ resolver: yupResolver(updateFormSchema) });
 
   function onSubmitUpdateContact(data) {
-    console.log(data);
+    const contactInfo = {
+      phone: data.phoneNumberCt,
+      name: data.fullNameCt,
+      address: data.addressCt + ", " + data.placeProv + ", " + data.placeDis,
+    };
+    updateContactInfo(
+      contactInfo,
+      currentUserInfo?.accessToken,
+      dispatch,
+      setIsUpdateContactForm,
+      navigate
+    );
   }
 
   return (
