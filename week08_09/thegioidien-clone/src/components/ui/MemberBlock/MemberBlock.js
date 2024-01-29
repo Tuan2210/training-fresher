@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 import classNames from "classnames/bind";
 import styles from "./MemberBlock.module.scss";
@@ -19,13 +20,88 @@ import {
 } from "react-icons/fa";
 import { LuFileCheck, LuFileMinus, LuKeyRound } from "react-icons/lu";
 
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+import { PASSWORD_REGEX } from "../../../constants/regexValidate";
+
+import { changePw } from "../../../services/userApiRequest";
+import { useNavigate } from "react-router-dom";
+
 const cx = classNames.bind(styles);
 
+const updateFormSchema = yup
+  .object()
+  .shape({
+    oldPw: yup
+      .string()
+      .required("Vui lòng nhập mật khẩu cũ!")
+      .test("is-oldPw", "Mật khẩu cũ không hợp lệ!", function (value) {
+        return yup
+          .string()
+          .matches(PASSWORD_REGEX, {
+            message: "Mật khẩu cũ không hợp lệ!",
+            excludeEmptyString: true,
+          })
+          .isValidSync(value);
+      }),
+    newPw: yup
+      .string()
+      .required("Vui lòng nhập mật khẩu mới!")
+      .test("is-newPw", "Mật khẩu mới không hợp lệ!", (value) => {
+        return yup
+          .string()
+          .matches(PASSWORD_REGEX, {
+            message: "Mật khẩu mới không hợp lệ!",
+            excludeEmptyString: true,
+          })
+          .isValidSync(value);
+      }),
+    // .oneOf([yup.ref("oldPw"), null], "Mật khẩu mới trùng mật khẩu cũ!"),
+    confirmNewPw: yup
+      .string()
+      .required("Vui lòng xác nhận mật khẩu mới!")
+      .test("is-newPw", "Xác nhận mật khẩu mới không hợp lệ!", (value) => {
+        return yup
+          .string()
+          .matches(PASSWORD_REGEX, {
+            message: "Xác nhận mật khẩu mới không hợp lệ!",
+            excludeEmptyString: true,
+          })
+          .isValidSync(value);
+      })
+      .oneOf([yup.ref("newPw"), null], "Mật khẩu xác nhận không đúng!"),
+  })
+  .required();
+
 export default function MemberBlock() {
+  const dispatch = useDispatch(),
+    navigate = useNavigate();
+
   const userInfo = useSelector((state) => state.user.currentUser?.info);
+  const currentUserInfo = localStorage.getItem("currentUSer")
+    ? JSON.parse(localStorage.getItem("currentUSer"))
+    : null;
 
   // console.log(userInfo);
-  // {address: '11 BC, Quận Tân Bình, Thành phố Hồ Chí Minh', name: 'a', id: 3, email: 'a@gmail.com'}
+  // address
+  // :
+  // "11 BC, Quận Tân Bình, Thành phố Hồ Chí Minh"
+  // email
+  // :
+  // "a@gmail.com"
+  // id
+  // :
+  // 3
+  // name
+  // :
+  // "a"
+  // password
+  // :
+  // "$2a$10$WqKbLXNlGPyFj4QhiR0Lwu8xKZQ/BaIiZq8Ur5f9ZOAk1ADZShwTi"
+  // phone
+  // :
+  // "+8494430220"
 
   //handle render menu-items
   const menuItems = [
@@ -61,10 +137,20 @@ export default function MemberBlock() {
     },
   ];
 
-  const [isUpdatePwForm, setIsUpdatePwForm] = useState(false);
-  function UpdatePwForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(updateFormSchema) });
+
+  ///update-pw-form
+  const [isChangePwForm, setIsChangePwForm] = useState(false);
+  function ChangePwForm() {
     return (
-      <form className="pt-1 pb-1 flex flex-col gap-2">
+      <form
+        className="pt-1 pb-1 flex flex-col gap-2"
+        onSubmit={handleSubmit((data) => onSubmitUpdatePw(data))}
+      >
         {/* old-pw-wrp */}
         <div className="flex flex-col gap-1">
           <span>Mật khẩu cũ</span>
@@ -72,10 +158,13 @@ export default function MemberBlock() {
             <input
               type="password"
               className="old-pw w-full p-2 text-base h-8 border border-solid border-[#767676] rounded-sm"
+              {...register("oldPw")}
             />
             <span className="text-[#FF6600]">*</span>
           </div>
-          <span className="text-[#CC0000]">Vui lòng nhập mật khẩu cũ!</span>
+          {errors.oldPw && (
+            <span className="text-[#CC0000]">{errors.oldPw.message}</span>
+          )}
         </div>
         {/* new-pw-wrp */}
         <div className="flex flex-col gap-1">
@@ -84,10 +173,13 @@ export default function MemberBlock() {
             <input
               type="password"
               className="new-pw w-full p-2 text-base h-8 border border-solid border-[#767676] rounded-sm"
+              {...register("newPw")}
             />
             <span className="text-[#FF6600]">*</span>
           </div>
-          <span className="text-[#CC0000]">Vui lòng nhập mật khẩu mới!</span>
+          {errors.newPw && (
+            <span className="text-[#CC0000]">{errors.newPw.message}</span>
+          )}
         </div>
         {/* confirm-pw-wrp */}
         <div className="flex flex-col gap-1">
@@ -96,27 +188,33 @@ export default function MemberBlock() {
             <input
               type="password"
               className="new-pw w-full p-2 text-base h-8 border border-solid border-[#767676] rounded-sm"
+              {...register("confirmNewPw")}
             />
             <span className="text-[#FF6600]">*</span>
           </div>
-          <span className="text-[#CC0000]">
-            Vui lòng xác nhận mật khẩu mới!
-          </span>
+          {errors.confirmNewPw && (
+            <span className="text-[#CC0000]">
+              {errors.confirmNewPw.message}
+            </span>
+          )}
         </div>
         <div className="btns-row flex items-center justify-center mt-4 mb-4 gap-4 text-sm">
+          {/* update-pw-btn */}
           <button
+            type="submit"
             className="changePwBtn flex items-center p-2 gap-2 bg-[#1C8DD9] rounded-[3px]"
             // onClick={() => {
-            //   setIsUpdatePwForm(true);
+            //   setIsChangePwForm(true);
             // }}
           >
             <FaSync className="text-[#FFFF00]" />
             <span className="text-white">Cập nhật</span>
           </button>
+          {/* cancel-btn */}
           <button
             className="changePwBtn flex items-center p-2 gap-2 bg-[#1C8DD9] rounded-[3px]"
             onClick={() => {
-              setIsUpdatePwForm(false);
+              setIsChangePwForm(false);
             }}
           >
             <FaTimes className="text-[#FFFF00] text-lg" />
@@ -126,12 +224,23 @@ export default function MemberBlock() {
       </form>
     );
   }
+  function onSubmitUpdatePw(data) {
+    changePw(
+      data.oldPw,
+      data.confirmNewPw,
+      currentUserInfo?.accessToken,
+      dispatch,
+      navigate
+    );
+  }
+  ///
 
   const fullAddress = userInfo?.address?.split(", ") ?? [];
   const address = fullAddress[0] ?? "",
     district = fullAddress[1] ?? "",
     province = fullAddress[2] ?? "";
 
+  ///update-contact-form
   const [isUpdateContactForm, setIsUpdateContactForm] = useState(false);
   function UpdateContactForm() {
     return (
@@ -212,6 +321,7 @@ export default function MemberBlock() {
       </form>
     );
   }
+  ///
 
   return (
     <div className="w-full flex flex-col mt-4">
@@ -291,9 +401,9 @@ export default function MemberBlock() {
                 <span>Email:</span>
                 {userInfo && <span>{userInfo.email}</span>}
               </div>
-              {/* pw-row + changePwBtn | UpdatePwForm */}
-              {isUpdatePwForm ? (
-                <UpdatePwForm />
+              {/* pw-row + changePwBtn | ChangePwForm */}
+              {isChangePwForm ? (
+                <ChangePwForm />
               ) : (
                 <>
                   <div
@@ -306,7 +416,7 @@ export default function MemberBlock() {
                     <button
                       className="changePwBtn flex items-center p-2 gap-2 bg-[#1C8DD9] rounded-[3px]"
                       onClick={() => {
-                        setIsUpdatePwForm(true);
+                        setIsChangePwForm(true);
                       }}
                     >
                       <FaRegEdit className="text-[#FFFF00] text-lg" />
@@ -370,7 +480,11 @@ export default function MemberBlock() {
                     className={cx(["info-row", "grid items-center pt-1 pb-1"])}
                   >
                     <span>Tỉnh thành:</span>
-                    <select defaultValue={province} disabled>
+                    <select
+                      defaultValue={province}
+                      disabled
+                      className="border border-solid border-[#D6D6D6] rounded-sm"
+                    >
                       <option>{province}</option>
                     </select>
                   </div>
@@ -379,7 +493,11 @@ export default function MemberBlock() {
                     className={cx(["info-row", "grid items-center pt-1 pb-1"])}
                   >
                     <span>Quận huyện:</span>
-                    <select defaultValue={district} disabled>
+                    <select
+                      defaultValue={district}
+                      disabled
+                      className="border border-solid border-[#D6D6D6] rounded-sm"
+                    >
                       <option>{district}</option>
                     </select>
                   </div>

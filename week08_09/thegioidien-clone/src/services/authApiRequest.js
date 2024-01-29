@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosInstance from "../configs/axiosConfig";
 import {
   API_URL,
   REFRESH_TOKEN_URL,
@@ -64,7 +65,7 @@ export const refreshAccessToken = async (
 ) => {
   dispatch(refreshAccessTokenStart());
   try {
-    const res = await axios.post(
+    const res = await axiosInstance.post(
       `${API_URL}/api/v1/${REFRESH_TOKEN_URL}`,
       null,
       {
@@ -87,22 +88,33 @@ export const refreshAccessToken = async (
   }
 };
 
-// export const logout = async (accessToken, dispatch, navigate) => {
-//   dispatch(logoutStart());
-//   try {
-//     await axios.delete(`${API_URL}/api/v1/users/logout`, {
-//       headers: {
-//         [USER_ACCESS_TOKEN_HEADER]: accessToken,
-//       },
-//     });
+export const logout = async (
+  accessToken,
+  setIsLoggedIn,
+  dispatch,
+  navigate
+) => {
+  dispatch(logoutStart());
+  try {
+    await axiosInstance.delete(`${API_URL}/api/v1/users/logout`, {
+      headers: {
+        [USER_ACCESS_TOKEN_HEADER]: accessToken,
+      },
+    });
 
-//     localStorage.setItem("isLoggedIn", false);
-//     // localStorage.removeItem("isLoggedIn");
-//     localStorage.removeItem("currentUSer");
+    // localStorage.setItem("isLoggedIn", false);
+    // // localStorage.removeItem("isLoggedIn");
+    // localStorage.removeItem("currentUSer");
 
-//     dispatch(logoutSuccess());
-//     navigate("/");
-//   } catch (error) {
-//     dispatch(logoutFailed());
-//   }
-// };
+    dispatch(logoutSuccess());
+
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("currentUSer");
+
+    setIsLoggedIn(false);
+    // navigate("/");
+    navigate("/dangnhap");
+  } catch (error) {
+    dispatch(logoutFailed());
+  }
+};

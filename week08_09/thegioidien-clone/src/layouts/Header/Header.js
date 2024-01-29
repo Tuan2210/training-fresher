@@ -19,7 +19,7 @@ import ActiveUserHd from "../../components/ui/HeaderCtRightBlock/ActiveUserHd";
 import LoginFormHd from "../../components/ui/HeaderCtRightBlock/LoginFormHd";
 import MenuList from "../../components/ui/PrdsMenu/MenuList";
 import { dataItems } from "../../components/ui/PrdsMenu/dataPrdsMenu";
-import { refreshAccessToken } from "../../services/authApiRequest";
+import { logout, refreshAccessToken } from "../../services/authApiRequest";
 
 import { jwtDecode } from "jwt-decode";
 
@@ -43,6 +43,7 @@ export default function Header() {
     ? jwtDecode(currentUSerInfo?.refreshToken)
     : null;
 
+  ///check access-refresh-token
   function handleCheckATAndRT(
     currentUSerInfo,
     expireAccessToken,
@@ -68,10 +69,16 @@ export default function Header() {
       }
     }
   }
-
   useEffect(() => {
     handleCheckATAndRT(currentUSerInfo, expireAccessToken, decodedRefreshToken);
   }, [itemLoggedIn, isLoggedIn, currentUSerInfo]);
+  ///
+
+  ///handle logout
+  function handleLogout() {
+    logout(currentUSerInfo?.accessToken, setIsLoggedIn, dispatch, navigate);
+  }
+  ///
 
   const [isDisplay, setIsDisplay] = useState("none");
 
@@ -128,17 +135,17 @@ export default function Header() {
         </div>
         <div className={cx(["register-header-top"])}>
           {isLoggedIn ? (
-            <Link
-              to="/"
+            <button
               className={cx([
                 "logoutBtn",
                 "flex justify-center items-center p-2 pl-3 pr-3 gap-2 bg-[#B21E02]",
               ])}
+              onClick={handleLogout}
             >
               <FaSignOutAlt className="text-[#FFFF00]" />
               {/* <i className="fa-solid fa-user-plus text-[#FFFF00]" /> */}
               <p className="text-white">Thoát</p>
-            </Link>
+            </button>
           ) : (
             <>
               <Link
