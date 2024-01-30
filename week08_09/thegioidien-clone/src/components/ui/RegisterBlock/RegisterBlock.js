@@ -25,6 +25,10 @@ import { PROVINCES_URL, GGCAPTCHA_SITE_KEY } from "../../../constants/apiUrl";
 
 import ReCAPTCHA from "react-google-recaptcha";
 
+import {
+  handleFetchProvinces,
+  handleFetchDistricts,
+} from "../../../services/prov_distApiRequest";
 import { registerUser } from "../../../services/authApiRequest";
 
 const registerFormSchema = yup
@@ -126,46 +130,18 @@ export default function RegisterBlock() {
   const [isDisable, setIsDisable] = useState(false);
   const [registerMsg, setRegisterMsg] = useState("");
   useEffect(() => {
-    async function handleFetchProvinces() {
-      try {
-        // const res = await axios.get(`${PROVINCES_URL}?depth=2`);
-        // setProvinces(res.data);
-        const res = await axios.get(`${PROVINCES_URL}/api/province`);
-        setProvinces(res.data.results);
-      } catch (error) {
-        console.error("Error fetching provinces:", error);
-      }
-    }
-
-    handleFetchProvinces();
+    handleFetchProvinces(setProvinces);
   }, []);
-
-  async function handleFetchDistricts(value) {
-    // const provObj = provinces.find((item) => item.name === value);
-    // if (provObj) setDistricts(provObj.districts);
-    const provObj = provinces.find((item) => item.province_id === value);
-    if (provObj) {
-      try {
-        const res = await axios.get(
-          `${PROVINCES_URL}/api/province/district/${provObj.province_id}`
-        );
-        setDistricts(res.data.results);
-        setSelectedProvince(true);
-      } catch (error) {
-        console.error("Error fetching provinces:", error);
-      }
-    }
-  }
 
   function onChangeProvince(value) {
     setSelectedProvince(false);
     if (value === "default") {
       // setSelectedProvince(false);
-      handleFetchDistricts(null);
+      handleFetchDistricts(null, provinces, setDistricts, setSelectedProvince);
     } else {
       setIsDisable(true);
       // setSelectedProvince(true);
-      handleFetchDistricts(value);
+      handleFetchDistricts(value, provinces, setDistricts, setSelectedProvince);
     }
   }
   ////
@@ -196,28 +172,25 @@ export default function RegisterBlock() {
     if (isExpired || !provObj) return;
 
     //check wrong or not district in province
-    try {
-      const res = await axios.get(
-        `${PROVINCES_URL}/api/province/district/${provObj.province_id}`
-      );
-      const findDisId = res.data.results.find(
-        (item) => item.district_name === acc.placeDis
-      );
+    handleFetchDistricts(
+      provObj.province_id,
+      provinces,
+      setDistricts,
+      setSelectedProvince
+    );
+    const findDisId = districts.find(
+      (item) => item.district_name === acc.placeDis
+    );
+    if (!findDisId) return;
 
-      if (!findDisId) return;
-
-      const newUser = {
-        email: acc.email,
-        password: acc.confirmPassword,
-        phone: acc.phoneNumber,
-        name: acc.fullName,
-        address:
-          acc.address + ", " + acc.placeDis + ", " + provObj.province_name,
-      };
-      registerUser(newUser, dispatch, navigate, setRegisterMsg);
-    } catch (error) {
-      console.log(error);
-    }
+    const newUser = {
+      email: acc.email,
+      password: acc.confirmPassword,
+      phone: acc.phoneNumber,
+      name: acc.fullName,
+      address: acc.address + ", " + acc.placeDis + ", " + provObj.province_name,
+    };
+    registerUser(newUser, dispatch, navigate, setRegisterMsg);
   }
 
   return (
