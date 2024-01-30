@@ -22,7 +22,12 @@ import {
   logoutFailed,
 } from "../redux/features/authSlice";
 
-export const registerUser = async (account, dispatch, navigate) => {
+export const registerUser = async (
+  account,
+  dispatch,
+  navigate,
+  setRegisterMsg
+) => {
   dispatch(registerStart());
   try {
     await axios.post(`${API_URL}/api/v1/register`, account);
@@ -30,6 +35,8 @@ export const registerUser = async (account, dispatch, navigate) => {
     navigate("/dangnhap");
   } catch (error) {
     dispatch(registerFailed());
+    if (error.response.data.status === 400)
+      setRegisterMsg("Tài khoản đã tồn tại!");
   }
 };
 

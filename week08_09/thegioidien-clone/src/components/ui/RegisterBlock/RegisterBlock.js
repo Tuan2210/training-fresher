@@ -124,12 +124,14 @@ export default function RegisterBlock() {
   const [districts, setDistricts] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
+  const [registerMsg, setRegisterMsg] = useState("");
   useEffect(() => {
     async function handleFetchProvinces() {
       try {
-        const res = await axios.get(`${PROVINCES_URL}?depth=2`);
-        setProvinces(res.data);
-        // console.log(res.data);
+        // const res = await axios.get(`${PROVINCES_URL}?depth=2`);
+        // setProvinces(res.data);
+        const res = await axios.get(`${PROVINCES_URL}/api/province`);
+        setProvinces(res.data.results);
       } catch (error) {
         console.error("Error fetching provinces:", error);
       }
@@ -139,17 +141,30 @@ export default function RegisterBlock() {
   }, []);
 
   async function handleFetchDistricts(value) {
-    const provObj = provinces.find((item) => item.name === value);
-    if (provObj) setDistricts(provObj.districts);
+    // const provObj = provinces.find((item) => item.name === value);
+    // if (provObj) setDistricts(provObj.districts);
+    const provObj = provinces.find((item) => item.province_id === value);
+    if (provObj) {
+      try {
+        const res = await axios.get(
+          `${PROVINCES_URL}/api/province/district/${provObj.province_id}`
+        );
+        setDistricts(res.data.results);
+        setSelectedProvince(true);
+      } catch (error) {
+        console.error("Error fetching provinces:", error);
+      }
+    }
   }
 
   function onChangeProvince(value) {
+    setSelectedProvince(false);
     if (value === "default") {
-      setSelectedProvince(false);
+      // setSelectedProvince(false);
       handleFetchDistricts(null);
     } else {
       setIsDisable(true);
-      setSelectedProvince(true);
+      // setSelectedProvince(true);
       handleFetchDistricts(value);
     }
   }
@@ -174,16 +189,35 @@ export default function RegisterBlock() {
 
   async function onSubmit(acc) {
     // e.preventDefault();
-    if (isExpired) return;
+    const provObj = provinces.find(
+      (item) => item.province_id === acc.placeProv
+    );
 
-    const newUser = {
-      email: acc.email,
-      password: acc.confirmPassword,
-      phone: acc.phoneNumber,
-      name: acc.fullName,
-      address: acc.address + ", " + acc.placeDis + ", " + acc.placeProv,
-    };
-    registerUser(newUser, dispatch, navigate);
+    if (isExpired || !provObj) return;
+
+    //check wrong or not district in province
+    try {
+      const res = await axios.get(
+        `${PROVINCES_URL}/api/province/district/${provObj.province_id}`
+      );
+      const findDisId = res.data.results.find(
+        (item) => item.district_name === acc.placeDis
+      );
+
+      if (!findDisId) return;
+
+      const newUser = {
+        email: acc.email,
+        password: acc.confirmPassword,
+        phone: acc.phoneNumber,
+        name: acc.fullName,
+        address:
+          acc.address + ", " + acc.placeDis + ", " + provObj.province_name,
+      };
+      registerUser(newUser, dispatch, navigate, setRegisterMsg);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -372,9 +406,17 @@ export default function RegisterBlock() {
                     >
                       -- Chọn tỉnh thành
                     </option>
-                    {provinces.map((province) => (
+                    {/* {provinces.map((province) => (
                       <option key={province.code} value={province.name}>
                         {province.name}
+                      </option>
+                    ))} */}
+                    {provinces.map((province) => (
+                      <option
+                        key={province.province_id}
+                        value={province.province_id}
+                      >
+                        {province.province_name}
                       </option>
                     ))}
                   </select>
@@ -393,40 +435,44 @@ export default function RegisterBlock() {
             {/* Quận/Huyện */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Quận/Huyện</span>
-              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                <div className="input-row__wrp w-full flex">
-                  <select
-                    name=""
-                    id="district"
-                    className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                    {...register("placeDis", {
-                      required: "Vui lòng chọn quận huyện!",
-                    })}
-                  >
-                    <option
-                      className="option-default"
-                      value=""
-                      disabled={!selectedProvince}
+              {selectedProvince && (
+                <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                  <div className="input-row__wrp w-full flex">
+                    <select
+                      name=""
+                      id="district"
+                      className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                      {...register("placeDis", {
+                        required: "Vui lòng chọn quận huyện!",
+                      })}
                     >
-                      -- Chọn quận/huyện
-                    </option>
-                    {selectedProvince &&
-                      districts.map((district) => (
-                        <option key={district.code} value={district.name}>
-                          {district.name}
+                      <option
+                        className="option-default"
+                        value=""
+                        disabled={!selectedProvince}
+                      >
+                        -- Chọn quận/huyện
+                      </option>
+                      {districts.map((district) => (
+                        <option
+                          key={district.district_id}
+                          value={district.district_name}
+                        >
+                          {district.district_name}
                         </option>
                       ))}
-                  </select>
-                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
-                    *
-                  </span>
+                    </select>
+                    <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                      *
+                    </span>
+                  </div>
+                  {selectedProvince && errors.placeDis && (
+                    <span className="text-[#CC0000] w-full mt-1">
+                      {errors.placeDis.message}
+                    </span>
+                  )}
                 </div>
-                {selectedProvince && errors.placeDis && (
-                  <span className="text-[#CC0000] w-full mt-1">
-                    {errors.placeDis.message}
-                  </span>
-                )}
-              </div>
+              )}
             </StyledFormRow>
 
             {/* GG-ReCAPTCHA */}
@@ -503,6 +549,15 @@ export default function RegisterBlock() {
                 </label>
               </div>
             </StyledFormRow>
+
+            {registerMsg && (
+              <StyledFormRow className="flex flex-col">
+                <span className="lbl w-full"></span>
+                <div className="flex flex-nowrap items-center mt-4 mb-[0.3rem]">
+                  <span className="text-[#FF6600]">{registerMsg}</span>
+                </div>
+              </StyledFormRow>
+            )}
 
             {/* Nút đăng ký */}
             <StyledFormRow className="flex flex-col mt-2">
