@@ -1,0 +1,54 @@
+.cart-wrp,
+.checkout-wrp {
+    &__hd {
+        background-color: #b21e02;
+        background-image: linear-gradient( to bottom, #b21e02, #b21e02, #b93016, #b21e02, #b21e02);
+    }
+}
+
+.estimate-cart {
+    &__hd {
+        background-color: #CBCBCB;
+        background-image: linear-gradient(to bottom, #CBCBCB, #DFDFDF, #CBCBCB);
+    }
+    &__title,
+    &__item,
+    &__sum {
+        grid-template-columns: 40px 50px minmax(60px, 1fr) 200px !important;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .estimate-cart {
+        &__hd {
+            span {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .cart-wrp {
+        &__ct {
+            select {
+                width: 50% !important;
+            }
+            .estimate-cart {
+                &__title,
+                &__item,
+                &__sum {
+                    grid-template-columns: 40px 50px minmax(50px, 1fr) 600px !important;
+                }
+                &__title {
+                    .quantity,
+                    .dvt,
+                    .prd-price,
+                    .paid {
+                        display: flex !important;
+                    }
+                }
+            }
+        }
+    }
+}
