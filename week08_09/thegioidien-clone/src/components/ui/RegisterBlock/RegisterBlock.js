@@ -408,25 +408,25 @@ export default function RegisterBlock() {
             {/* Quận/Huyện */}
             <StyledFormRow className="flex flex-col mt-2">
               <span className="lbl w-full text-[#3B3B3B]">Quận/Huyện</span>
-              {selectedProvince && (
-                <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
-                  <div className="input-row__wrp w-full flex">
-                    <select
-                      name=""
-                      id="district"
-                      className="w-full p-2 text-[16px] border border-solid border-[#767676]"
-                      {...register("placeDis", {
-                        required: "Vui lòng chọn quận huyện!",
-                      })}
+              <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
+                <div className="input-row__wrp w-full flex">
+                  <select
+                    name=""
+                    id="district"
+                    className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                    {...register("placeDis", {
+                      required: "Vui lòng chọn quận huyện!",
+                    })}
+                  >
+                    <option
+                      className="option-default"
+                      value=""
+                      disabled={selectedProvince}
                     >
-                      <option
-                        className="option-default"
-                        value=""
-                        disabled={!selectedProvince}
-                      >
-                        -- Chọn quận/huyện
-                      </option>
-                      {districts.map((district) => (
+                      -- Chọn quận/huyện
+                    </option>
+                    {selectedProvince &&
+                      districts.map((district) => (
                         <option
                           key={district.district_id}
                           value={district.district_name}
@@ -434,18 +434,17 @@ export default function RegisterBlock() {
                           {district.district_name}
                         </option>
                       ))}
-                    </select>
-                    <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
-                      *
-                    </span>
-                  </div>
-                  {selectedProvince && errors.placeDis && (
-                    <span className="text-[#CC0000] w-full mt-1">
-                      {errors.placeDis.message}
-                    </span>
-                  )}
+                  </select>
+                  <span className="err-alert text-[#FF6600] ml-2 mr-2 text-lg mt-2">
+                    *
+                  </span>
                 </div>
-              )}
+                {selectedProvince && errors.placeDis && (
+                  <span className="text-[#CC0000] w-full mt-1">
+                    {errors.placeDis.message}
+                  </span>
+                )}
+              </div>
             </StyledFormRow>
 
             {/* GG-ReCAPTCHA */}

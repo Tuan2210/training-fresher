@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -12,7 +13,14 @@ import {
   FULLNAME_REGEX,
   PHONENUMBER_REGEX,
 } from "../../../constants/regexValidate";
+
+import {
+  handleFetchDistricts,
+  handleFetchProvinces,
+} from "../../../services/prov_distApiRequest";
 import { updateContactInfo } from "../../../services/userApiRequest";
+import axios from "axios";
+import { PROVINCES_URL } from "../../../constants/apiUrl";
 
 const updateFormSchema = yup
   .object()
@@ -71,15 +79,40 @@ export default function UpdateContactForm({ setIsUpdateContactForm }) {
     navigate = useNavigate();
 
   const fullAddress = userInfo?.address?.split(", ") ?? [];
-  const address = fullAddress[0] ?? "",
-    district = fullAddress[1] ?? "",
-    province = fullAddress[2] ?? "";
+  const address = fullAddress[0].trim() ?? "";
+  const [disDefault, setDisDefault] = useState(fullAddress[1].trim() ?? "");
+  const [provDefault, setProvDefault] = useState(fullAddress[2].trim() ?? "");
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(updateFormSchema) });
+
+  ////call api provinces-cities & districts
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [selectedProvince, setSelectedProvince] = useState(false);
+  const [updateContactMsg, setUpdateContactMsg] = useState("");
+
+  function onChangeProvince(value) {
+    setSelectedProvince(false);
+    if (value !== disDefault) setProvDefault(value);
+
+    const provObj = provinces.find((item) => item.province_name === value);
+    if (provObj)
+      handleFetchDistricts(
+        provObj.province_id,
+        provinces,
+        setDistricts,
+        setSelectedProvince
+      );
+  }
+
+  function onChangeDistrict(value) {
+    setDisDefault(value);
+  }
+  ////
 
   function onSubmitUpdateContact(data) {
     const contactInfo = {
@@ -92,9 +125,29 @@ export default function UpdateContactForm({ setIsUpdateContactForm }) {
       currentUserInfo?.accessToken,
       dispatch,
       setIsUpdateContactForm,
-      navigate
+      navigate,
+      setUpdateContactMsg
     );
   }
+
+  useEffect(() => {
+    const provId = provinces.find(
+      (p) => p.province_name === provDefault
+    )?.province_id;
+    if (provId) {
+      const fetchDisDefault = async () => {
+        const res = await axios.get(
+          `${PROVINCES_URL}/api/province/district/${provId}`
+        );
+        res?.data?.results && setDistricts(res.data.results);
+      };
+      fetchDisDefault();
+    }
+  }, [provinces]);
+
+  useEffect(() => {
+    if (provDefault && !districts.length) handleFetchProvinces(setProvinces);
+  }, []);
 
   return (
     <form
@@ -153,12 +206,27 @@ export default function UpdateContactForm({ setIsUpdateContactForm }) {
       <div className="flex flex-col gap-1">
         <span>Tỉnh thành</span>
         <select
-          defaultValue={province}
-          {...register("placeProv", {
-            required: "Vui lòng chọn tỉnh thành!",
+          className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+          {...register("placeDis", {
+            required: "Vui lòng chọn quận huyện!",
           })}
+          value={provDefault}
+          onChange={(e) => {
+            onChangeProvince(e.target.value);
+          }}
         >
-          <option value={province}>{province}</option>
+          <option
+            className="option-default"
+            value=""
+            disabled={selectedProvince}
+          >
+            -- Chọn tỉnh thành
+          </option>
+          {provinces.map((p) => (
+            <option key={p.province_id} value={p.province_name}>
+              {p.province_name}
+            </option>
+          ))}
         </select>
         {errors.placeProv && (
           <span className="text-[#CC0000]">{errors.placeProv.message}</span>
@@ -168,16 +236,28 @@ export default function UpdateContactForm({ setIsUpdateContactForm }) {
       <div className="flex flex-col gap-1">
         <span>Quận huyện</span>
         <select
-          defaultValue={district}
-          {...register("placeDis", {
-            required: "Vui lòng chọn quận huyện!",
+          className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+          {...register("placeProv", {
+            required: "Vui lòng chọn tỉnh thành!",
           })}
+          value={disDefault}
+          onChange={(e) => {
+            onChangeDistrict(e.target.value);
+          }}
         >
-          <option value={district}>{district}</option>
+          {districts.map((d) => (
+            <option key={d.district_id} value={d.district_name}>
+              {d.district_name}
+            </option>
+          ))}
         </select>
         {errors.placeDis && (
           <span className="text-[#CC0000]">{errors.placeDis.message}</span>
         )}
+      </div>
+      <div className="flex flex-col gap-1 mt-4">
+        <span></span>
+        <span className="text-[#CC0000]">{updateContactMsg}</span>
       </div>
       <div className="btns-row flex items-center justify-center mt-4 mb-4 gap-4 text-sm">
         <button

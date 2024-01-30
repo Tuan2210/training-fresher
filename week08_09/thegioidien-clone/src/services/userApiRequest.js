@@ -58,7 +58,8 @@ export const updateContactInfo = async (
   accessToken,
   dispatch,
   setIsUpdateContactForm,
-  navigate
+  navigate,
+  setUpdateContactMsg
 ) => {
   dispatch(updateContactStart());
   try {
@@ -75,5 +76,8 @@ export const updateContactInfo = async (
   } catch (error) {
     dispatch(updateContactFailed());
     setIsUpdateContactForm(true);
+
+    if (error.response.data.status === 400)
+      setUpdateContactMsg("Số điện thoại đã được đăng ký!");
   }
 };
