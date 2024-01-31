@@ -20,6 +20,12 @@ import {
   logoutStart,
   logoutSuccess,
   logoutFailed,
+  resetPwStart,
+  resetPwSuccess,
+  resetPwFailed,
+  confirmResetPwStart,
+  confirmResetPwSuccess,
+  confirmResetPwFailed,
 } from "../redux/features/authSlice";
 
 export const registerUser = async (
@@ -123,5 +129,43 @@ export const logout = async (
     navigate("/dangnhap");
   } catch (error) {
     dispatch(logoutFailed());
+  }
+};
+
+export const resetPassword = async (
+  email,
+  dispatch,
+  setShowResetPwForm,
+  setResetPwMsg
+) => {
+  dispatch(resetPwStart());
+  try {
+    await axios.post(`${API_URL}/api/v1/reset-password`, { email: email });
+    dispatch(resetPwSuccess());
+    setShowResetPwForm(true);
+    setResetPwMsg("");
+  } catch (error) {
+    dispatch(resetPwFailed());
+    setShowResetPwForm(false);
+    if (error.response.data.status === 400)
+      setResetPwMsg("Không tìm thấy email, vui lòng nhập lại!");
+  }
+};
+
+export const confirmResetPassword = async (
+  resetPwData,
+  dispatch,
+  navigate,
+  setConfirmResetPwMsg
+) => {
+  dispatch(confirmResetPwStart());
+  try {
+    await axios.post(`${API_URL}/api/v1/reset-password/confirm`, resetPwData);
+    dispatch(confirmResetPwSuccess());
+    navigate("/dangnhap");
+  } catch (error) {
+    dispatch(confirmResetPwFailed());
+    if (error.response.data.status === 400)
+      setConfirmResetPwMsg("Đổi mật khẩu thất bại, vui lòng thử lại!");
   }
 };

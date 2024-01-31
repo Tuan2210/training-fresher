@@ -140,7 +140,7 @@ export default function LoginFormHd() {
       )}
       <div className={cx(["rsrow", "w-full mt-2 grid items-center"])}>
         <Link
-          to=""
+          to="/quenmatkhau"
           id="lktoquenpass"
           className="text-[#4D4E47] hover:text-gray-500"
         >

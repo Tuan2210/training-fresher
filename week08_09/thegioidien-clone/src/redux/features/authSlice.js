@@ -22,6 +22,14 @@ const authSlice = createSlice({
       isFetching: false,
       error: false,
     },
+    resetPw: {
+      isFetching: false,
+      error: false,
+    },
+    confirmResetPw: {
+      isFetching: false,
+      error: false,
+    },
   },
   reducers: {
     //register
@@ -83,6 +91,30 @@ const authSlice = createSlice({
       state.login.currentUser = null;
       state.refreshAccessToken.accessToken = null;
     },
+    //reset-pw
+    resetPwStart: (state) => {
+      state.resetPw.isFetching = true;
+    },
+    resetPwSuccess: (state) => {
+      state.resetPw.isFetching = false;
+      state.resetPw.error = false;
+    },
+    resetPwFailed: (state) => {
+      state.resetPw.isFetching = false;
+      state.resetPw.error = true;
+    },
+    //confirm-reset-pw
+    confirmResetPwStart: (state) => {
+      state.confirmResetPw.isFetching = true;
+    },
+    confirmResetPwSuccess: (state) => {
+      state.confirmResetPw.isFetching = false;
+      state.confirmResetPw.error = false;
+    },
+    confirmResetPwFailed: (state) => {
+      state.confirmResetPw.isFetching = false;
+      state.confirmResetPw.error = true;
+    },
   },
 });
 
@@ -99,6 +131,12 @@ export const {
   logoutFailed,
   logoutStart,
   logoutSuccess,
+  resetPwStart,
+  resetPwSuccess,
+  resetPwFailed,
+  confirmResetPwStart,
+  confirmResetPwSuccess,
+  confirmResetPwFailed,
 } = authSlice.actions;
 
 export default authSlice.reducer;
