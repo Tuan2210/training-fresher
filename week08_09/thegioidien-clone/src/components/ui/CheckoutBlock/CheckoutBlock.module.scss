@@ -14,7 +14,41 @@
     &__title,
     &__item,
     &__sum {
-        grid-template-columns: 40px 50px minmax(60px, 1fr) 200px !important;
+        grid-template-columns: 40px 50px minmax(60px, 1fr) 200px;
+    }
+    &__title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        .num-order,
+        .prd-img,
+        .prd-name,
+        .action {
+            display: flex;
+        }
+        .prd-id,
+        .quantity,
+        .dvt,
+        .prd-price,
+        .paid {
+            display: none;
+        }
+    }
+    &__item {
+        .num-order,
+        .prd-img,
+        .prd-name,
+        .action {
+            display: flex;
+        }
+        .prd-id,
+        .prd-brand,
+        .quantity,
+        .dvt,
+        .prd-price,
+        .paid {
+            display: none;
+        }
     }
 }
 
@@ -38,13 +72,67 @@
                 &__title,
                 &__item,
                 &__sum {
-                    grid-template-columns: 40px 50px minmax(50px, 1fr) 600px !important;
+                    display: grid;
+                    grid-template-columns: 40px 60px 180px 80px 50px 80px 80px auto !important;
                 }
                 &__title {
                     .quantity,
                     .dvt,
                     .prd-price,
                     .paid {
+                        display: flex !important;
+                    }
+                }
+                &__item {
+                    .quantity,
+                    .dvt,
+                    .prd-price,
+                    .paid {
+                        display: flex !important;
+                    }
+                    .action {
+                        .action-details {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .cart-wrp {
+        &__ct {
+            .estimate-cart {
+                &__title,
+                &__item,
+                &__sum {
+                    grid-template-columns: 40px 80px 150px 200px 100px 50px 100px 100px auto !important;
+                }
+                &__title,
+                &__item {
+                    .prd-id {
+                        display: flex !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1401px) {
+    .cart-wrp {
+        &__ct {
+            .estimate-cart {
+                &__title,
+                &__item,
+                &__sum {
+                    grid-template-columns: 40px 100px 150px 250px 150px 100px 100px 100px 100px auto !important;
+                }
+                &__title,
+                &__item {
+                    .prd-brand {
                         display: flex !important;
                     }
                 }

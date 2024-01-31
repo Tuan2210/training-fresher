@@ -94,27 +94,50 @@ export default function Cart({ setIsCheckout }) {
                 "grid bg-[#EEEEEE] text-[#3E0B00] border-b border-solid border-b-[#CBCBCB]",
               ])}
             >
-              <div className="title-item num-order flex items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-l border-r border-solid border-l-[#CBCBCB] border-r-[#CBCBCB]">
+              <div
+                className={cx([
+                  "num-order",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-l border-r border-solid border-l-[#CBCBCB] border-r-[#CBCBCB]",
+                ])}
+              >
                 STT
               </div>
-              <div className="title-item prd-img flex items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]">
+              <div
+                className={cx([
+                  "prd-img",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
                 Hình
               </div>
-              {/* <div
+              <div
                 className={cx([
-                  "prd-name",
-                  "hidden items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                  "prd-id",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
                 ])}
               >
                 Mã sản phẩm
-              </div> */}
-              <div className="title-item prd-name flex items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]">
+              </div>
+              <div
+                className={cx([
+                  "prd-name",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
                 Tên sản phẩm
               </div>
               <div
                 className={cx([
-                  "quantity",
+                  "prd-brand",
                   "hidden items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                Nhãn hiệu
+              </div>
+              <div
+                className={cx([
+                  "quantity",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
                 ])}
               >
                 Số lượng
@@ -122,7 +145,7 @@ export default function Cart({ setIsCheckout }) {
               <div
                 className={cx([
                   "dvt",
-                  "hidden items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
                 ])}
               >
                 ĐVT
@@ -130,7 +153,7 @@ export default function Cart({ setIsCheckout }) {
               <div
                 className={cx([
                   "prd-price",
-                  "hidden items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
                 ])}
               >
                 Đơn giá
@@ -138,12 +161,17 @@ export default function Cart({ setIsCheckout }) {
               <div
                 className={cx([
                   "paid",
-                  "hidden items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
                 ])}
               >
                 Thành tiền
               </div>
-              <div className="title-item action flex items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]">
+              <div
+                className={cx([
+                  "action",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
                 Hành động
               </div>
             </div>
@@ -155,47 +183,128 @@ export default function Cart({ setIsCheckout }) {
               ])}
             >
               {/* num-order */}
-              <div className="title-item num-order flex items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-l border-r border-solid border-l-[#CBCBCB] border-r-[#CBCBCB]">
+              <div
+                className={cx([
+                  "num-order",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-l border-r border-solid border-l-[#CBCBCB] border-r-[#CBCBCB]",
+                ])}
+              >
                 1
               </div>
               {/* img */}
-              <div className="title-item prd-img flex items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]">
+              <div
+                className={cx([
+                  "prd-img",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
                 <img
                   src="https://thegioidien.com/hmhB/A24216571232080.jpg"
                   alt=""
                 />
               </div>
+              {/* prd-id */}
+              <div
+                className={cx([
+                  "prd-id",
+                  "items-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                AM5S
+              </div>
               {/* prd-name */}
-              <div className="title-item prd-name flex items-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]">
+              <div
+                className={cx([
+                  "prd-name",
+                  "items-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
                 Khớp nối trơn Ø16 mm
               </div>
+              {/* prd-brand */}
+              <div
+                className={cx([
+                  "prd-brand",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                MPE
+              </div>
+              {/* quantity */}
+              <div
+                className={cx([
+                  "quantity",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                1
+              </div>
+              {/* dvt */}
+              <div
+                className={cx([
+                  "dvt",
+                  "items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                Cái
+              </div>
+              {/* prd-price */}
+              <div
+                className={cx([
+                  "prd-price",
+                  "items-center justify-end p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                185.100
+              </div>
+              {/* paid */}
+              <div
+                className={cx([
+                  "paid",
+                  "items-center justify-end p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                185.100
+              </div>
               {/* action */}
-              <div className="title-item action flex flex-col gap-2 p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]">
-                <div className="flex justify-between items-center gap-4 overflow-hidden">
-                  <div className="flex gap-2 items-center">
-                    <span>ĐVT:</span>
-                    <span>Cái</span>
+              <div
+                className={cx([
+                  "action",
+                  "flex-col items-center justify-center gap-2 p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                <div
+                  className={cx([
+                    "action-details",
+                    "flex flex-col gap-2 p-2 text-[#3E0B00] overflow-hidden",
+                  ])}
+                >
+                  <div className="flex justify-between items-center gap-4 overflow-hidden">
+                    <div className="flex gap-2 items-center">
+                      <span>ĐVT:</span>
+                      <span>Cái</span>
+                    </div>
+                    <div className="flex gap-2 items-center">
+                      <span className="text-[#FF0000]">x</span>
+                      <span>2</span>
+                    </div>
                   </div>
-                  <div className="flex gap-2 items-center">
-                    <span className="text-[#FF0000]">x</span>
-                    <span>2</span>
+                  <div className="flex justify-between items-center">
+                    <span>Đơn giá</span>
+                    <span>900</span>
+                  </div>
+                  <div className="flex items-center justify-end gap-2">
+                    <span className="text-[#FF0000]">=</span>
+                    <span>1800</span>
                   </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span>Đơn giá</span>
-                  <span>900</span>
-                </div>
-                <div className="flex items-center justify-end gap-2">
-                  <span className="text-[#FF0000]">=</span>
-                  <span>1800</span>
-                </div>
-                {/* actions */}
+                {/* action-btns */}
                 <div className="mt-1 flex items-center justify-center gap-2">
-                  <button className="flex gap-2 items-center p-2 bg-[#1D5161] rounded-sm">
+                  <button className="flex gap-2 items-center p-2 bg-[#1D5161] rounded">
                     <FaRegEdit className="text-[#FFFF00]" />
                     <span className="text-white">Sửa</span>
                   </button>
-                  <button className="flex gap-2 items-center p-2 bg-[#1D5161] rounded-sm">
+                  <button className="flex gap-2 items-center p-2 bg-[#1D5161] rounded">
                     <FaRegTrashCan className="text-[#FFFF00]" />
                     <span className="text-white">Xóa</span>
                   </button>
@@ -206,7 +315,7 @@ export default function Cart({ setIsCheckout }) {
             <div
               className={cx([
                 "estimate-cart__sun",
-                "flex justify-end gap-10 pt-2 pb-2 text-[#3E0B00] border-b border-solid border-b-[#CBCBCB]",
+                "flex justify-end gap-10 pt-2 pb-2 pr-2 text-[#3E0B00] border-b border-solid border-b-[#CBCBCB]",
               ])}
             >
               <span>Tạm tính:</span>
