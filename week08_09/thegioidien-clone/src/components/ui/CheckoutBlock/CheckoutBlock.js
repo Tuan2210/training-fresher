@@ -10,11 +10,45 @@ import { FaFileInvoiceDollar, FaRegAddressCard } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import Cart from "./Cart";
+import InputForms from "./InputForms";
 
 const cx = classNames.bind(styles);
 
 export default function CheckoutBlock() {
   const [isCheckout, setIsCheckout] = useState(false);
+
+  ///login-inputs-array
+  const headers = [
+    {
+      title: "Đã là thành viên - Đăng nhập",
+      option: "opt1",
+    },
+    {
+      title: "Mua hàng ngay - Không cần đăng ký",
+      option: "opt2",
+    },
+    {
+      title: "Chưa là thành viên - Đăng ký",
+      option: "opt3",
+    },
+  ];
+  const inputs = [
+    {
+      labelAcc: "Tài khoản",
+      placeHolderAcc: "Nhập email hoặc điện thoại",
+      typeAcc: "text",
+      labelPw: "Mật khẩu",
+      typePw: "password",
+    },
+    {
+      placeHolder: "Họ tên",
+    },
+    {
+      placeHolder: "Họ tên",
+    },
+  ];
+  ///
+
   return (
     <div className="w-full">
       {isCheckout ? (
@@ -41,6 +75,7 @@ export default function CheckoutBlock() {
               " border border-solid border-[#B21E02]",
             ])}
           >
+            {/* checkout-wrp__hd */}
             <div
               className={cx([
                 "checkout-wrp__hd",
@@ -53,6 +88,12 @@ export default function CheckoutBlock() {
                   Vui lòng điền thông tin để tiếp tục mua hàng
                 </span>
               </div>
+            </div>
+            <div className="checkout-wrp__ct grid grid-cols-2">
+              <div className={cx(["form-wrp", "flex flex-col p-4 gap-4"])}>
+                <InputForms headers={headers} inputs={inputs} />
+              </div>
+              <div className={cx(["order-wrp", ""])}>hi</div>
             </div>
           </div>
         </div>
