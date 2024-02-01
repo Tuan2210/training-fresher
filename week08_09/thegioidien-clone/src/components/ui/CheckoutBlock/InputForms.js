@@ -10,6 +10,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { LuKeyRound } from "react-icons/lu";
 import { PiSignIn } from "react-icons/pi";
+import { HiChevronDoubleRight } from "react-icons/hi";
 
 import {
   handleFetchDistricts,
@@ -250,12 +251,25 @@ export default function InputForms({ headers, inputs }) {
                     </div>
                     {/* chkbox */}
                     <label className="flex flex-nowrap items-center pb-[0.3rem]">
-                      <input type="checkbox" value="Đồng ý" defaultChecked />
+                      <input
+                        type="checkbox"
+                        value="Đồng ý"
+                        defaultChecked
+                        disabled
+                      />
                       <span className="ml-2">
                         Tôi đồng ý với các điều khoản và quy định sử dụng tại
                         thegioidien.com
                       </span>
                     </label>
+                    {/* continue-btn */}
+                    <button
+                      type="submit"
+                      className="mt-2 mx-auto w-fit flex justify-center items-center rounded pt-2 pb-2 pl-4 pr-4 gap-2 bg-[#1C8DD9] hover:bg-[#1c8dd9e0]"
+                    >
+                      <HiChevronDoubleRight className="text-[#FFFF00]" />
+                      <p className="text-white">Tiếp tục</p>
+                    </button>
                   </form>
                 </div>
               )}
@@ -268,7 +282,167 @@ export default function InputForms({ headers, inputs }) {
                       là thông tin bắt buộc
                     </span>
                   </div>
-                  <form className=""></form>
+                  <form className="flex flex-col gap-4">
+                    {/* fullname */}
+                    <div className="flex gap-2">
+                      <input
+                        // {...input.register}
+                        type="text"
+                        placeholder={inputs[2].phName}
+                        className="h-8 w-full border border-solid border-[#767676]"
+                      />
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* phone */}
+                    <div className="flex gap-2">
+                      <input
+                        // {...input.register}
+                        type="text"
+                        placeholder={inputs[2].phPhone}
+                        className="h-8 w-full border border-solid border-[#767676]"
+                      />
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* email */}
+                    <div className="flex gap-2">
+                      <input
+                        // {...input.register}
+                        type="text"
+                        placeholder={inputs[2].phEmail}
+                        className="h-8 w-full border border-solid border-[#767676]"
+                      />
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* pw */}
+                    <div className="flex gap-2">
+                      <input
+                        // {...input.register}
+                        type="password"
+                        placeholder={inputs[2].phPw}
+                        className="h-8 w-full border border-solid border-[#767676]"
+                      />
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* confirm-pw */}
+                    <div className="flex gap-2">
+                      <input
+                        // {...input.register}
+                        type="password"
+                        placeholder={inputs[2].phConfirmPw}
+                        className="h-8 w-full border border-solid border-[#767676]"
+                      />
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* address */}
+                    <div className="flex gap-2">
+                      <input
+                        // {...input.register}
+                        type="text"
+                        placeholder={inputs[2].phAddress}
+                        className="h-8 w-full border border-solid border-[#767676]"
+                      />
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* provinces */}
+                    <div className="flex gap-2">
+                      <select
+                        className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                        defaultValue="default"
+                        // {...register("placeProv", {
+                        //   required: "Vui lòng chọn tỉnh thành!",
+                        // })}
+                        onChange={(e) => {
+                          onChangeProvince(e.target.value);
+                        }}
+                      >
+                        <option
+                          className="option-default"
+                          value=""
+                          disabled={isDisable}
+                        >
+                          -- Chọn tỉnh thành
+                        </option>
+                        {provinces.map((province) => (
+                          <option
+                            key={province.province_id}
+                            value={province.province_id}
+                          >
+                            {province.province_name}
+                          </option>
+                        ))}
+                      </select>
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* districts */}
+                    <div className="flex gap-2">
+                      <select
+                        className="w-full p-2 text-[16px] border border-solid border-[#767676]"
+                        // {...register("placeDis", {
+                        //   required: "Vui lòng chọn quận huyện!",
+                        // })}
+                      >
+                        <option
+                          className="option-default"
+                          value=""
+                          disabled={selectedProvince}
+                        >
+                          -- Chọn quận/huyện
+                        </option>
+                        {selectedProvince &&
+                          districts.map((district) => (
+                            <option
+                              key={district.district_id}
+                              value={district.district_name}
+                            >
+                              {district.district_name}
+                            </option>
+                          ))}
+                      </select>
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* GG-ReCAPTCHA */}
+                    <div className="flex flex-wrap items-center mt-[0.3rem] mb-[0.3rem] gap-1">
+                      <ReCAPTCHA
+                        sitekey={GGCAPTCHA_SITE_KEY}
+                        onExpired={() => {
+                          setIsExpired(true);
+                          setCapVal(null);
+                        }}
+                        onChange={(val) => {
+                          setIsExpired(false);
+                          setCapVal(val);
+                        }}
+                      />
+                    </div>
+                    {/* chkbox */}
+                    <label className="flex flex-nowrap items-center pb-[0.3rem]">
+                      <input
+                        type="checkbox"
+                        value="Đồng ý"
+                        defaultChecked
+                        disabled
+                      />
+                      <span className="ml-2">
+                        Tôi đồng ý với các điều khoản và quy định sử dụng tại
+                        thegioidien.com
+                      </span>
+                    </label>
+                    {/* chkbox-email */}
+                    <label className="flex flex-nowrap items-center pb-[0.3rem]">
+                      <input type="checkbox" value="Đồng ý" defaultChecked />
+                      <span className="ml-2">
+                        Nhận thông tin khuyến mãi qua email
+                      </span>
+                    </label>
+                    {/* continue-btn */}
+                    <button
+                      type="submit"
+                      className="mt-2 mx-auto w-fit flex justify-center items-center rounded pt-2 pb-2 pl-4 pr-4 gap-2 bg-[#1C8DD9] hover:bg-[#1c8dd9e0]"
+                    >
+                      <HiChevronDoubleRight className="text-[#FFFF00]" />
+                      <p className="text-white">Tiếp tục</p>
+                    </button>
+                  </form>
                 </div>
               )}
             </>

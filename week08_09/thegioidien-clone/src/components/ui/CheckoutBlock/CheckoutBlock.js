@@ -50,6 +50,8 @@ export default function CheckoutBlock() {
       phName: "Họ tên",
       phPhone: "Điện thoại",
       phEmail: "Email",
+      phPw: "Mật khẩu",
+      phConfirmPw: "Xác nhận mật khẩu",
       phAddress: "Địa chỉ (số nhà, tên đường, phường/xã)",
     },
   ];
