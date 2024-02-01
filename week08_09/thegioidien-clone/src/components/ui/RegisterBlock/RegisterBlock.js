@@ -411,8 +411,6 @@ export default function RegisterBlock() {
               <div className="input-row flex flex-col flex-nowrap items-center mt-[0.3rem] mb-[0.3rem]">
                 <div className="input-row__wrp w-full flex">
                   <select
-                    name=""
-                    id="district"
                     className="w-full p-2 text-[16px] border border-solid border-[#767676]"
                     {...register("placeDis", {
                       required: "Vui lòng chọn quận huyện!",

@@ -41,10 +41,16 @@ export default function CheckoutBlock() {
       typePw: "password",
     },
     {
-      placeHolder: "Họ tên",
+      phName: "Họ tên",
+      phPhone: "Điện thoại",
+      phEmail: "Email",
+      phAddress: "Địa chỉ giao hàng (số nhà, tên đường, phường/xã)",
     },
     {
-      placeHolder: "Họ tên",
+      phName: "Họ tên",
+      phPhone: "Điện thoại",
+      phEmail: "Email",
+      phAddress: "Địa chỉ (số nhà, tên đường, phường/xã)",
     },
   ];
   ///
