@@ -97,8 +97,7 @@ export default function LoginBlock() {
 
     if (/@/.test(acc["email-phoneNumber"]))
       user = { email: acc["email-phoneNumber"] };
-    else if (/\+84/.test(acc["email-phoneNumber"]))
-      user = { phoneNumber: acc["email-phoneNumber"] };
+    else user = { phone: "+84" + acc["email-phoneNumber"].slice(1) };
 
     user.password = acc.password;
     loginUser(user, dispatch, navigate, setLoginSuccess);
