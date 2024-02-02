@@ -347,7 +347,7 @@ export default function Header() {
           ])}
         >
           <Link
-            to="#"
+            to="/muahang"
             className={cx([
               "lktodtdt",
               " text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]",
@@ -378,7 +378,7 @@ export default function Header() {
           ])}
         >
           <Link
-            to="#"
+            to="/muahang"
             className={cx([
               "lktodtdt",
               " text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]",
@@ -440,7 +440,7 @@ export default function Header() {
           ])}
         >
           <Link
-            to="#"
+            to="/muahang"
             className={cx([
               "lktodtdt",
               " text-white flex justify-center items-center gap-1 pt-[0.5rem] pb-[0.5rem] pl-[0.7rem] pr-[0.7rem]",

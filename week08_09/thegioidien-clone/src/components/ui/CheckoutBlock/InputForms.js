@@ -428,7 +428,7 @@ export default function InputForms({ headers, inputs }) {
                       </span>
                     </label>
                     {/* chkbox-email */}
-                    <label className="flex flex-nowrap items-center pb-[0.3rem]">
+                    <label className="mt-[-0.5rem] flex flex-nowrap items-center pb-[0.3rem]">
                       <input type="checkbox" value="Đồng ý" defaultChecked />
                       <span className="ml-2">
                         Nhận thông tin khuyến mãi qua email

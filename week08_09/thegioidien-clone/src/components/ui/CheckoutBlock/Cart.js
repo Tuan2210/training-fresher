@@ -14,7 +14,7 @@ import { dataItems } from "../PrdsMenu/dataPrdsMenu";
 
 import { FaRegTrashCan, FaTrashCan } from "react-icons/fa6";
 
-export default function Cart({ setIsCheckout }) {
+export default function Cart({ setIsCart }) {
   return (
     <div className="flex flex-col mt-4 gap-4">
       {/* main-nav */}
@@ -290,7 +290,7 @@ export default function Cart({ setIsCheckout }) {
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>Đơn giá</span>
+                    <span>Đơn giá:</span>
                     <span>900</span>
                   </div>
                   <div className="flex items-center justify-end gap-2">
@@ -314,7 +314,7 @@ export default function Cart({ setIsCheckout }) {
             {/* estimate-cart__sum */}
             <div
               className={cx([
-                "estimate-cart__sun",
+                "estimate-cart__sum",
                 "flex justify-end gap-10 pt-2 pb-2 pr-2 text-[#3E0B00] border-b border-solid border-b-[#CBCBCB]",
               ])}
             >
@@ -334,7 +334,7 @@ export default function Cart({ setIsCheckout }) {
           </Link>
           <button
             className="flex items-center p-2 bg-[#1C8DD9] rounded-[3px] gap-2"
-            onClick={() => setIsCheckout(true)}
+            onClick={() => setIsCart(false)}
           >
             <span className="text-white">Tiếp tục đặt hàng</span>
             <HiChevronDoubleRight className="text-[#FFFF00]" />

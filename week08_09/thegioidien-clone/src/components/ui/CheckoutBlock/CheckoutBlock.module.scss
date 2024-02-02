@@ -1,8 +1,23 @@
 .cart-wrp,
-.checkout-wrp {
+.checkout-wrp,
+.chko-mem-wrp {
     &__hd {
         background-color: #b21e02;
         background-image: linear-gradient( to bottom, #b21e02, #b21e02, #b93016, #b21e02, #b21e02);
+    }
+}
+
+.cart-wrp,
+.checkout-wrp {
+    &__ct {
+        display: flex;
+        flex-direction: column;
+        .order-wrp {
+            &__title,
+            &__item {
+                grid-template-columns: 40px 70px auto 200px;
+            }
+        }
     }
 }
 
@@ -12,8 +27,7 @@
         background-image: linear-gradient(to bottom, #CBCBCB, #DFDFDF, #CBCBCB);
     }
     &__title,
-    &__item,
-    &__sum {
+    &__item {
         grid-template-columns: 40px 50px minmax(60px, 1fr) 200px;
     }
     &__title {
@@ -52,11 +66,41 @@
     }
 }
 
+.chko-mem-wrp {
+    &__ct {
+        .bd {
+            .title,
+            .item {
+                grid-template-columns: 50px 70px auto 200px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
 @media screen and (min-width: 576px) {
     .estimate-cart {
         &__hd {
             span {
                 font-size: 1.5rem;
+            }
+        }
+    }
+    .chko-mem-wrp {
+        &__ct {
+            .top {
+                &__info {
+                    flex-direction: row-reverse !important;
+                    flex-wrap: nowrap;
+                    justify-content: space-between;
+                    .left {
+                        &__item {
+                            grid-template-columns: 60px 1fr;
+                        }
+                    }
+                }
             }
         }
     }
@@ -70,8 +114,7 @@
             }
             .estimate-cart {
                 &__title,
-                &__item,
-                &__sum {
+                &__item {
                     display: grid;
                     grid-template-columns: 40px 60px 180px 80px 50px 80px 80px auto !important;
                 }
@@ -99,6 +142,37 @@
             }
         }
     }
+    .checkout-wrp {
+        &__ct {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            .order-wrp {
+                &__title,
+                &__item {
+                    grid-template-columns: 40px 60px auto 150px;
+                }
+                &__title {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+    .chko-mem-wrp {
+        &__ct {
+            .bd {
+                .title {
+                    grid-template-columns: 50px 60px auto 100px 70px 100px 100px !important;
+                    .quantity,
+                    .dvt,
+                    .prd-price {
+                        display: flex !important;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -106,12 +180,23 @@
         &__ct {
             .estimate-cart {
                 &__title,
-                &__item,
-                &__sum {
+                &__item {
                     grid-template-columns: 40px 80px 150px 200px 100px 50px 100px 100px auto !important;
                 }
                 &__title,
                 &__item {
+                    .prd-id {
+                        display: flex !important;
+                    }
+                }
+            }
+        }
+    }
+    .chko-mem-wrp {
+        &__ct {
+            .bd {
+                .title {
+                    grid-template-columns: 50px 80px 150px auto 100px 70px 150px 150px !important;
                     .prd-id {
                         display: flex !important;
                     }
@@ -126,12 +211,23 @@
         &__ct {
             .estimate-cart {
                 &__title,
-                &__item,
-                &__sum {
+                &__item {
                     grid-template-columns: 40px 100px 150px 250px 150px 100px 100px 100px 100px auto !important;
                 }
                 &__title,
                 &__item {
+                    .prd-brand {
+                        display: flex !important;
+                    }
+                }
+            }
+        }
+    }
+    .chko-mem-wrp {
+        &__ct {
+            .bd {
+                .title {
+                    grid-template-columns: 50px 60px 170px auto auto 100px 70px 170px 170px !important;
                     .prd-brand {
                         display: flex !important;
                     }
