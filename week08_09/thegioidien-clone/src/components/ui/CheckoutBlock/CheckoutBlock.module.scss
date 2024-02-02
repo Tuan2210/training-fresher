@@ -162,12 +162,21 @@
     .chko-mem-wrp {
         &__ct {
             .bd {
-                .title {
+                .title,
+                .item {
                     grid-template-columns: 50px 60px auto 100px 70px 100px 100px !important;
                     .quantity,
                     .dvt,
                     .prd-price {
                         display: flex !important;
+                    }
+                }
+                .item {
+                    .paid {
+                        display: flex !important;
+                    }
+                    .paid-min {
+                        display: none !important;
                     }
                 }
             }
@@ -195,7 +204,8 @@
     .chko-mem-wrp {
         &__ct {
             .bd {
-                .title {
+                .title,
+                .item {
                     grid-template-columns: 50px 80px 150px auto 100px 70px 150px 150px !important;
                     .prd-id {
                         display: flex !important;
@@ -226,8 +236,9 @@
     .chko-mem-wrp {
         &__ct {
             .bd {
-                .title {
-                    grid-template-columns: 50px 60px 170px auto auto 100px 70px 170px 170px !important;
+                .title,
+                .item {
+                    grid-template-columns: 50px 60px 170px auto 150px 100px 70px 170px 170px !important;
                     .prd-brand {
                         display: flex !important;
                     }

@@ -258,6 +258,15 @@ export default function CheckoutMember() {
                   alt=""
                 />
               </div>
+              {/* prd-id */}
+              <div
+                className={cx([
+                  "prd-id",
+                  "hidden items-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                AM5S
+              </div>
               {/* prd-name */}
               <div
                 className={cx([
@@ -266,6 +275,51 @@ export default function CheckoutMember() {
                 ])}
               >
                 Khớp nối trơn Ø16 mm
+              </div>
+              {/* prd-brand */}
+              <div
+                className={cx([
+                  "prd-brand",
+                  "hidden items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                MPE
+              </div>
+              {/* quantity */}
+              <div
+                className={cx([
+                  "quantity",
+                  "hidden items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                1
+              </div>
+              {/* dvt */}
+              <div
+                className={cx([
+                  "dvt",
+                  "hidden items-center justify-center p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                Cái
+              </div>
+              {/* prd-price */}
+              <div
+                className={cx([
+                  "prd-price",
+                  "hidden items-center justify-end p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                185.100
+              </div>
+              {/* paid */}
+              <div
+                className={cx([
+                  "paid",
+                  "hidden items-center justify-end p-2 text-[#3E0B00] overflow-hidden border-r border-solid border-r-[#CBCBCB]",
+                ])}
+              >
+                185.100
               </div>
               {/* paid-min */}
               <div
@@ -298,7 +352,7 @@ export default function CheckoutMember() {
             <div
               className={cx([
                 "sum",
-                "flex justify-end gap-12 pt-2 pb-2 pr-2 text-[#3E0B00] border-b border-solid border-b-[#CBCBCB] bg-white",
+                "flex justify-end gap-12 pt-2 pb-2 pr-2 text-[#3E0B00] border border-t-0 border-solid border-[#CBCBCB] bg-white",
               ])}
             >
               <span>Tổng cộng:</span>
@@ -308,7 +362,7 @@ export default function CheckoutMember() {
             <div
               className={cx([
                 "ship",
-                "flex justify-end gap-10 pt-2 pb-2 pr-2 text-[#3E0B00] border-b border-solid border-b-[#CBCBCB] bg-white",
+                "flex justify-end gap-10 pt-2 pb-2 pr-2 text-[#3E0B00] border border-t-0 border-solid border-[#CBCBCB] bg-white",
               ])}
             >
               <span>Phí vận chuyển:</span>
@@ -318,7 +372,7 @@ export default function CheckoutMember() {
             <div
               className={cx([
                 "bill",
-                "flex justify-end gap-10 pt-2 pb-2 pr-2 text-[#3E0B00] border-b border-solid border-b-[#CBCBCB] bg-white",
+                "flex justify-end gap-10 pt-2 pb-2 pr-2 text-[#3E0B00] border border-t-0 border-solid border-[#CBCBCB] bg-white",
               ])}
             >
               <span>Tổng thanh toán:</span>
@@ -328,7 +382,7 @@ export default function CheckoutMember() {
             <div
               className={cx([
                 "vnd",
-                "flex justify-end gap-14 pt-2 pb-2 pr-2 text-[#3E0B00] border-b border-solid border-b-[#CBCBCB] bg-white",
+                "flex justify-end gap-14 pt-2 pb-2 pr-2 text-[#3E0B00] border border-t-0 border-solid border-[#CBCBCB] bg-white",
               ])}
             >
               <span>Đồng tiền:</span>
