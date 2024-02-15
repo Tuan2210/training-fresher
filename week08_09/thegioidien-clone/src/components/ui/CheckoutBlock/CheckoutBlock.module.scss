@@ -77,6 +77,11 @@
                 white-space: nowrap;
             }
         }
+        .dkgn {
+            &__hd {
+                background-image: linear-gradient(to bottom, #CBCBCB, #FFFFFF);
+            }
+        }
     }
 }
 
@@ -177,6 +182,27 @@
                     }
                     .paid-min {
                         display: none !important;
+                    }
+                }
+            }
+            .dkgn {
+                &__ct {
+                    .dkgnct-nnh {
+                        display: grid !important;
+                        grid-gap: 0.5rem !important;
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                    }
+                    .dkgnct-row {
+                        .inputs-row {
+                            flex-direction: row !important;
+                        }
+                    }
+                    .dkgnct-nnh,
+                    .dkgnct-row {
+                        padding-left: 0.5rem !important;
+                    }
+                    .dkgnctrowoth {
+                        padding-left: 0.5rem !important;
                     }
                 }
             }

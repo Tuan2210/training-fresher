@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,15 +7,25 @@ import styles from "./CheckoutBlock.module.scss";
 
 import { IoHomeOutline } from "react-icons/io5";
 import { LuFileCheck } from "react-icons/lu";
-import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowLeft, MdOutlineLocalShipping } from "react-icons/md";
 import { SlArrowRight } from "react-icons/sl";
 
 import moment from "moment";
+
+import axios from "axios";
+
+import {
+  handleFetchDistricts,
+  handleFetchProvinces,
+} from "../../../services/prov_distApiRequest";
+import { PROVINCES_URL } from "../../../constants/apiUrl";
 
 const cx = classNames.bind(styles);
 
 export default function CheckoutMember() {
   const userInfo = useSelector((state) => state.user.currentUser?.info);
+
+  // console.log(userInfo);
 
   const navigate = useNavigate();
   function handleNavigateCart() {
@@ -23,6 +34,55 @@ export default function CheckoutMember() {
       navigate("/muahang");
     }, 0.01);
   }
+
+  const fullAddress = userInfo?.address?.split(", ") ?? [];
+  const address = fullAddress[0].trim() ?? "";
+  const [disDefault, setDisDefault] = useState(fullAddress[1].trim() ?? "");
+  const [provDefault, setProvDefault] = useState(fullAddress[2].trim() ?? "");
+
+  ////call api provinces-cities & districts
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [selectedProvince, setSelectedProvince] = useState(false);
+  const [updateContactMsg, setUpdateContactMsg] = useState("");
+
+  function onChangeProvince(value) {
+    setSelectedProvince(false);
+    if (value !== disDefault) setProvDefault(value);
+
+    const provObj = provinces.find((item) => item.province_name === value);
+    if (provObj)
+      handleFetchDistricts(
+        provObj.province_id,
+        provinces,
+        setDistricts,
+        setSelectedProvince
+      );
+  }
+
+  function onChangeDistrict(value) {
+    setDisDefault(value);
+  }
+  ////
+
+  useEffect(() => {
+    const provId = provinces.find(
+      (p) => p.province_name === provDefault
+    )?.province_id;
+    if (provId) {
+      const fetchDisDefault = async () => {
+        const res = await axios.get(
+          `${PROVINCES_URL}/api/province/district/${provId}`
+        );
+        res?.data?.results && setDistricts(res.data.results);
+      };
+      fetchDisDefault();
+    }
+  }, [provinces]);
+
+  useEffect(() => {
+    if (provDefault && !districts.length) handleFetchProvinces(setProvinces);
+  }, []);
 
   return (
     <div className="flex flex-col mt-4 gap-4">
@@ -389,9 +449,187 @@ export default function CheckoutMember() {
               <span>VNĐ</span>
             </div>
           </div>
-          <div className="dkgn"></div>
-          <div className="dkgn"></div>
-          <div className="dkgn"></div>
+          {/* dkgn */}
+          <div
+            className={cx([
+              "dkgn",
+              "mt-4 bg-[#F9F9F9] rounded-bl-[5px] rounded-br-[5px]",
+            ])}
+          >
+            {/* dkgn__hd */}
+            <div
+              className={cx([
+                "dkgn__hd",
+                "flex items-center pt-2 pb-2 border border-solid border-b-[#B21E02]",
+              ])}
+            >
+              <MdOutlineLocalShipping className="text-[#6A1300] text-3xl ml-2 mr-2" />
+              <span className="text-[1.2rem]">Điều khoản giao nhận</span>
+            </div>
+            {/* dkgn__ct */}
+            <div className={cx(["dkgn__ct", "block"])}>
+              <div className="flex items-center flex-nowrap justify-end mt-2 mr-2">
+                <span className="text-[#FF6600] mr-2 text-xl">*</span>
+                <span className="text-[#8D8D8D]">là thông tin bắt buộc</span>
+              </div>
+              {/* dkgnct-nnh */}
+              <div
+                className={cx([
+                  "dkgnct-nnh",
+                  "flex flex-col p-2 pb-0 pl-6 gap-1",
+                ])}
+              >
+                {/* Người nhận hàng */}
+                <div>
+                  <span className="text-[#3B3B3B]">Người nhận hàng</span>
+                  <div className="flex gap-2 pr-1 overflow-x-hidden">
+                    <input
+                      // {...input.register}
+                      type="text"
+                      className="h-9 w-full border border-solid border-[#767676] rounded-sm"
+                      defaultValue={userInfo?.name}
+                    />
+                    <span className="text-[#FF6600]">*</span>
+                  </div>
+                </div>
+                {/* Điện thoại */}
+                <div>
+                  <span className="text-[#3B3B3B]">Điện thoại</span>
+                  <div className="flex gap-2 pr-1 overflow-x-hidden">
+                    <input
+                      // {...input.register}
+                      type="text"
+                      className="h-9 w-full border border-solid border-[#767676] rounded-sm"
+                      defaultValue={userInfo?.phone}
+                    />
+                    <span className="text-[#FF6600]">*</span>
+                  </div>
+                </div>
+              </div>
+              {/* dkgnct-row */}
+              <div
+                className={cx([
+                  "dkgnct-row",
+                  "mt-1 flex flex-col p-2 pb-0 pl-6 gap-1",
+                ])}
+              >
+                {/* Địa chỉ giao hàng */}
+                <span className="text-[#3B3B3B]">Địa chỉ giao hàng</span>
+                <div className={cx("inputs-row", "w-full flex flex-col")}>
+                  {/* num-address */}
+                  <div className="w-full flex flex-col gap-1">
+                    <div className="flex gap-2 pr-1 overflow-x-hidden">
+                      <input
+                        // {...input.register}
+                        type="text"
+                        className="h-10 w-full border border-solid border-[#767676] rounded-sm"
+                        defaultValue={address}
+                      />
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* {errors.placeProv && (
+                      <span className="text-[#CC0000]">{errors.placeProv.message}</span>
+                    )} */}
+                  </div>
+                  {/* choose prov */}
+                  <div className="w-full flex flex-col gap-1">
+                    <div className="flex gap-2 pr-1 overflow-x-hidden">
+                      <select
+                        className="w-full mt-1 p-2 text-[16px] border border-solid border-[#767676]"
+                        // {...register("placeDis", {
+                        //   required: "Vui lòng chọn quận huyện!",
+                        // })}
+                        value={provDefault}
+                        onChange={(e) => {
+                          onChangeProvince(e.target.value);
+                        }}
+                      >
+                        <option
+                          className="option-default"
+                          value=""
+                          disabled={selectedProvince}
+                        >
+                          -- Chọn tỉnh thành
+                        </option>
+                        {provinces.map((p) => (
+                          <option key={p.province_id} value={p.province_name}>
+                            {p.province_name}
+                          </option>
+                        ))}
+                      </select>
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* {errors.placeProv && (
+                      <span className="text-[#CC0000]">{errors.placeProv.message}</span>
+                    )} */}
+                  </div>
+                  {/* choose dis */}
+                  <div className="w-full flex flex-col gap-1">
+                    <div className="flex gap-2 pr-1 overflow-x-hidden">
+                      <select
+                        className="w-full mt-1 p-2 text-[16px] border border-solid border-[#767676]"
+                        // {...register("placeProv", {
+                        //   required: "Vui lòng chọn tỉnh thành!",
+                        // })}
+                        value={disDefault}
+                        onChange={(e) => {
+                          onChangeDistrict(e.target.value);
+                        }}
+                      >
+                        {districts.map((d) => (
+                          <option key={d.district_id} value={d.district_name}>
+                            {d.district_name}
+                          </option>
+                        ))}
+                      </select>
+                      <span className="text-[#FF6600]">*</span>
+                    </div>
+                    {/* {errors.placeDis && (
+                      <span className="text-[#CC0000]">{errors.placeDis.message}</span>
+                    )} */}
+                  </div>
+                </div>
+              </div>
+              {/* dkgnct-row */}
+              <div
+                className={cx(["dkgnct-row", "mt-1 flex p-2 pb-0 pl-6 gap-2"])}
+              >
+                <span className="text-[#3B3B3B]">Thời gian giao hàng:</span>
+                <span>Trong vòng 12 - 24 giờ làm việc.</span>
+              </div>
+              {/* dkgnct-row */}
+              <div
+                className={cx([
+                  "dkgnct-row",
+                  "mt-1 flex flex-col p-2 pb-0 pl-6 gap-1",
+                ])}
+              >
+                <span className="text-[#3B3B3B]">Ghi chú đơn hàng</span>
+                <textarea
+                  className="border border-solid border-[#767676] rounded-sm"
+                  rows={3}
+                />
+              </div>
+              {/* dkgnctrowoth */}
+              <div className={cx(["dkgnctrowoth", "p-2 pb-4 pl-6"])}></div>
+            </div>
+          </div>
+          <div
+            className={cx([
+              "dkgn",
+              "mt-4 bg-[#F9F9F9] rounded-bl-[5px] rounded-br-[5px]",
+            ])}
+          >
+            <div className={cx(["dkgn__hd", "flex items-center pt-2"])}></div>
+          </div>
+          <div
+            className={cx([
+              "dkgn",
+              "mt-4 bg-[#F9F9F9] rounded-bl-[5px] rounded-br-[5px]",
+            ])}
+          >
+            <div className={cx(["dkgn__hd", "flex items-center pt-2"])}></div>
+          </div>
           <div className="op"></div>
           <div className="ft"></div>
         </div>
