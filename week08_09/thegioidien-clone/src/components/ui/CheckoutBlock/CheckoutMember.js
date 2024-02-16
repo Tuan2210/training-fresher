@@ -9,6 +9,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { LuFileCheck } from "react-icons/lu";
 import { MdKeyboardArrowLeft, MdOutlineLocalShipping } from "react-icons/md";
 import { SlArrowRight } from "react-icons/sl";
+import { FaLevelUpAlt, FaMoneyCheckAlt } from "react-icons/fa";
 
 import moment from "moment";
 
@@ -606,21 +607,111 @@ export default function CheckoutMember() {
               >
                 <span className="text-[#3B3B3B]">Ghi chú đơn hàng</span>
                 <textarea
-                  className="border border-solid border-[#767676] rounded-sm"
+                  className="p-2 mb-2 text-[1rem] font-[Arial] border border-solid border-[#767676] rounded-sm"
                   rows={3}
+                  cols={20}
                 />
               </div>
               {/* dkgnctrowoth */}
               <div className={cx(["dkgnctrowoth", "p-2 pb-4 pl-6"])}></div>
             </div>
           </div>
+          {/* pttt */}
           <div
             className={cx([
-              "dkgn",
+              "pttt",
               "mt-4 bg-[#F9F9F9] rounded-bl-[5px] rounded-br-[5px]",
             ])}
           >
-            <div className={cx(["dkgn__hd", "flex items-center pt-2"])}></div>
+            {/* pttt__hd */}
+            <div
+              className={cx([
+                "pttt__hd",
+                "flex items-center pt-2 pb-2 border border-solid border-b-[#B21E02]",
+              ])}
+            >
+              <FaMoneyCheckAlt className="text-[#6A1300] text-3xl ml-2 mr-2" />
+              <span className="text-[1.2rem]">Phương thức thanh toán</span>
+            </div>
+            {/* pttt__ct */}
+            <div
+              className={cx(["pttt__ct", "mt-2 grid gap-4 grid-cols-[1fr]"])}
+            >
+              {/* ptttct-op */}
+              <div className={cx(["ptttct-op", "flex flex-col p-2 gap-2"])}>
+                {/* ptttctop-item */}
+                <div
+                  className={cx([
+                    "ptttctop-item",
+                    "flex flex-nowrap items-center gap-2",
+                  ])}
+                >
+                  <input type="radio" id="cash-pay" value={"opTienMat"} />
+                  <label htmlFor="cash-pay" className="cursor-pointer">
+                    Thanh toán tiền mặt ngay khi nhận hàng
+                  </label>
+                </div>
+                {/* ptttctop-item */}
+                <div className={cx(["ptttctop-item", "flex flex-col"])}>
+                  {/* ptttctopitem-sub */}
+                  <div
+                    className={cx([
+                      "ptttctopitem-sub",
+                      "flex flex-nowrap items-center gap-2",
+                    ])}
+                  >
+                    <input
+                      type="radio"
+                      id="bank-pay"
+                      value={"opChuyenKhoan"}
+                      defaultChecked
+                    />
+                    <label htmlFor="bank-pay" className="cursor-pointer">
+                      Chuyển khoản trước qua ngân hàng
+                    </label>
+                  </div>
+                  {/* ptttctopitem-note */}
+                  <div
+                    className={cx([
+                      "ptttctopitem-note",
+                      "flex flex-nowrap items-center pl-3 text-[#585858] gap-2",
+                    ])}
+                  >
+                    <FaLevelUpAlt style={{ transform: "rotateY(180deg)" }} />
+                    <span className=" text-[14px]">
+                      Vui lòng ghi mã số đơn hàng vào nội dung thanh toán.
+                    </span>
+                  </div>
+                </div>
+                {/* ptttctop-item */}
+                <div className={cx(["ptttctop-item", "flex gap-3"])}>
+                  <select className="input-bank-row mt-2 w-full border border-solid border-[#767676]">
+                    <option value="0">-- Chọn ngân hàng --</option>
+                    <option value="1">
+                      Đỗ Thị Ánh Tuyết tại Ngân Hàng ACB - PGD Tam Hà - CN Thủ
+                      Đức
+                    </option>
+                    <option value="2">
+                      Công Ty TNHH Thế Giới Điện tại Ngân Hàng ACB - PGD Tam Hà
+                      - CN Thủ Đức
+                    </option>
+                  </select>
+                  <span className="text-[#FF6600]">*</span>
+                </div>
+              </div>
+              <div className={cx(["ptttct-op", "flex flex-col p-2"])}>
+                <div
+                  className={cx([
+                    "ptttctop-item",
+                    "flex flex-nowrap items-center gap-2",
+                  ])}
+                >
+                  <input type="checkbox" id="ckXuatHD" />
+                  <label htmlFor="ckXuatHD">Xuất hóa đơn tài chính</label>
+                </div>
+              </div>
+              <div className="mt-[-0.5rem] p-2 pb-4 pl-6"></div>
+            </div>
           </div>
           <div
             className={cx([

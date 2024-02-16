@@ -77,7 +77,8 @@
                 white-space: nowrap;
             }
         }
-        .dkgn {
+        .dkgn,
+        .pttt {
             &__hd {
                 background-image: linear-gradient(to bottom, #CBCBCB, #FFFFFF);
             }
@@ -204,6 +205,11 @@
                     .dkgnctrowoth {
                         padding-left: 0.5rem !important;
                     }
+                }
+            }
+            .pttt {
+                &__ct {
+                    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
                 }
             }
         }
