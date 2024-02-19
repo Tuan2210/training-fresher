@@ -10,6 +10,8 @@ import { LuFileCheck } from "react-icons/lu";
 import { MdKeyboardArrowLeft, MdOutlineLocalShipping } from "react-icons/md";
 import { SlArrowRight } from "react-icons/sl";
 import { FaLevelUpAlt, FaMoneyCheckAlt } from "react-icons/fa";
+import { FaFileContract } from "react-icons/fa6";
+import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
 
 import moment from "moment";
 
@@ -713,13 +715,170 @@ export default function CheckoutMember() {
               <div className="mt-[-0.5rem] p-2 pb-4 pl-6"></div>
             </div>
           </div>
+          {/* dk-qdc */}
           <div
             className={cx([
-              "dkgn",
-              "mt-4 bg-[#F9F9F9] rounded-bl-[5px] rounded-br-[5px]",
+              "dkqdc",
+              "mt-4 bg-white rounded-bl-[5px] rounded-br-[5px]",
             ])}
           >
-            <div className={cx(["dkgn__hd", "flex items-center pt-2"])}></div>
+            {/* dkqdc__hd */}
+            <div
+              className={cx([
+                "dkqdc__hd",
+                "flex items-center pt-2 pb-2 border border-solid border-b-[#B21E02] bg-[#F9F9F9]",
+              ])}
+            >
+              <FaFileContract className="text-[#6A1300] text-2xl ml-2 mr-2" />
+              <span className="text-[1.2rem]">Điều khoản, quy định chung</span>
+            </div>
+            {/* dkqdc__ct */}
+            <div
+              className={cx([
+                "dkqdc__ct",
+                "p-2 pt-4 pb-4 bg-[#F9F9F9] flex flex-col gap-2 rounded-bl-md rounded-br-md",
+              ])}
+            >
+              <p>
+                Mọi thắc mắc trong quá trình đặt hàng trực tuyến vui lòng liên
+                hệ đường dây nóng chăm sóc khách hàng:&nbsp;
+                <span style={{ color: "rgb(0, 0, 255)" }}>
+                  <strong>0967 266 277</strong>
+                </span>
+                .
+              </p>
+              <p>
+                Quý khách vui lòng giữ liên lạc qua điện thoại di động sau khi
+                đặt hàng để nhân viên phụ trách liên hệ xử lý đơn hàng.
+              </p>
+              <p>
+                Do tính chất sản phẩm công nghiệp và dữ liệu trực tuyến nên có
+                thể có sai số về lưu kho tại thời điểm đặt hàng.
+              </p>
+            </div>
+            {/* dkqdc__confirm */}
+            <div className={cx(["dkqdc__confirm", "p-4 pt-6"])}>
+              {/* confirm-fs */}
+              <fieldset
+                className={cx([
+                  "confirm-fs",
+                  "p-2 pl-4 pr-4 border border-solid border-[#1D8DD9]",
+                ])}
+              >
+                {/* confirm-lg */}
+                <legend className="confirm-lg text-[#00414F]">
+                  Tùy chọn đơn hàng
+                </legend>
+                {/* confirm-ct */}
+                <div
+                  className={cx(["confirm-ct", "flex flex-col items-center"])}
+                >
+                  {/* ct */}
+                  <div>
+                    <span
+                      className="required-field"
+                      style={{ display: "none" }}
+                    ></span>
+                    {/* confirm-item */}
+                    <div className={cx(["confirm-item", "flex flex-col mt-2"])}>
+                      {/* confirm-option */}
+                      <div
+                        className={cx([
+                          "confirm-option",
+                          "flex flex-col flex-nowrap items-start gap-2",
+                        ])}
+                      >
+                        {/* confirm-option-sub */}
+                        <div
+                          className={cx(["confirm-option-sub", "flex gap-3"])}
+                        >
+                          <input
+                            type="radio"
+                            id="confirm-agree"
+                            value={"dathang"}
+                            className="cursor-pointer"
+                          />
+                          <label
+                            htmlFor="confirm-agree"
+                            className="cursor-pointer"
+                          >
+                            Tôi đồng ý đặt mua các sản phẩm trong đơn hàng này
+                            cùng các điều khoản như trên.
+                          </label>
+                        </div>
+                        {/* confirm-option-sub */}
+                        <div
+                          className={cx(["confirm-option-sub", "flex gap-3"])}
+                        >
+                          <input
+                            type="radio"
+                            id="prd-price"
+                            value={"baogia"}
+                            className="cursor-pointer"
+                          />
+                          <label htmlFor="prd-price" className="cursor-pointer">
+                            Tôi yêu cầu thegioidien.com báo giá dự án cho các
+                            sản phẩm trong đơn hàng này.
+                          </label>
+                        </div>
+                      </div>
+                      {/* confirm-note */}
+                      <div
+                        className={cx([
+                          "confirm-note",
+                          "flex flex-nowrap items-center pl-3 text-[#585858] gap-2",
+                        ])}
+                      >
+                        <FaLevelUpAlt
+                          style={{ transform: "rotateY(180deg)" }}
+                        />
+                        <span className=" text-[14px]">
+                          Chỉ yêu cầu báo giá dự án cho đơn hàng số lượng lớn
+                          hoặc giá trị lớn
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* confirm-btn */}
+                  <div
+                    className={cx([
+                      "confirm-btn",
+                      "flex justify-center p-4 pl-8 pr-8",
+                    ])}
+                  >
+                    <button
+                      className={cx([
+                        "confirm-btn",
+                        "flex items-center p-2 pl-[0.7rem] pr-[0.7rem] gap-1 bg-[#1C8DD9] rounded-[3px]",
+                      ])}
+                      onClick={() => {
+                        navigate("/");
+                      }}
+                    >
+                      <HiChevronDoubleRight className="text-[#FFFF00] text-2xl" />
+                      <span className="text-white text-[1.1rem]">
+                        Xác nhận đơn hàng
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            {/* dkqdc__back-home */}
+            <div className="dkqdc__back-home m-4 flex">
+              <button
+                className={cx([
+                  "back-home-btn",
+                  "flex items-center p-2 pl-[0.7rem] pr-[0.7rem] gap-1 bg-[#1C8DD9] rounded-[3px]",
+                ])}
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                <HiChevronDoubleLeft className="text-[#FFFF00] text-xl" />
+                <span className="text-white">Trở vè</span>
+              </button>
+            </div>
           </div>
           <div className="op"></div>
           <div className="ft"></div>

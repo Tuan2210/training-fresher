@@ -78,7 +78,8 @@
             }
         }
         .dkgn,
-        .pttt {
+        .pttt,
+        .dkqdc {
             &__hd {
                 background-image: linear-gradient(to bottom, #CBCBCB, #FFFFFF);
             }
@@ -241,6 +242,20 @@
                     grid-template-columns: 50px 80px 150px auto 100px 70px 150px 150px !important;
                     .prd-id {
                         display: flex !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .chko-mem-wrp {
+        &__ct {
+            .dkqdc {
+                &__confirm {
+                    .confirm-ct {
+                        flex-direction: row;
                     }
                 }
             }
