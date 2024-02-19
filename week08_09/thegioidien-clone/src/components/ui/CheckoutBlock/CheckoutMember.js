@@ -68,6 +68,16 @@ export default function CheckoutMember() {
   }
   ////
 
+  ////check-btn
+  const [checkCashPay, setCheckCashPay] = useState(false);
+  const [checkBankPay, setCheckBankPay] = useState(true);
+  const [showBankOption, setShowBankOption] = useState("flex");
+
+  const [checkAgree, setCheckAgree] = useState(false);
+  const [checkPrdPrice, setCheckPrdPrice] = useState(false);
+  const [titleConfirmBtn, setTitleConfirmBtn] = useState("Xác nhận đơn hàng");
+  ////
+
   useEffect(() => {
     const provId = provinces.find(
       (p) => p.province_name === provDefault
@@ -648,7 +658,17 @@ export default function CheckoutMember() {
                     "flex flex-nowrap items-center gap-2",
                   ])}
                 >
-                  <input type="radio" id="cash-pay" value={"opTienMat"} />
+                  <input
+                    type="radio"
+                    id="cash-pay"
+                    value={"opTienMat"}
+                    checked={checkCashPay}
+                    onClick={() => {
+                      setCheckCashPay(true);
+                      setCheckBankPay(false);
+                      setShowBankOption("none");
+                    }}
+                  />
                   <label htmlFor="cash-pay" className="cursor-pointer">
                     Thanh toán tiền mặt ngay khi nhận hàng
                   </label>
@@ -666,7 +686,12 @@ export default function CheckoutMember() {
                       type="radio"
                       id="bank-pay"
                       value={"opChuyenKhoan"}
-                      defaultChecked
+                      checked={checkBankPay}
+                      onClick={() => {
+                        setCheckCashPay(false);
+                        setCheckBankPay(true);
+                        setShowBankOption("flex");
+                      }}
                     />
                     <label htmlFor="bank-pay" className="cursor-pointer">
                       Chuyển khoản trước qua ngân hàng
@@ -686,7 +711,10 @@ export default function CheckoutMember() {
                   </div>
                 </div>
                 {/* ptttctop-item */}
-                <div className={cx(["ptttctop-item", "flex gap-3"])}>
+                <div
+                  className={cx(["ptttctop-item", "gap-3"])}
+                  style={{ display: showBankOption }}
+                >
                   <select className="input-bank-row mt-2 w-full border border-solid border-[#767676]">
                     <option value="0">-- Chọn ngân hàng --</option>
                     <option value="1">
@@ -797,6 +825,12 @@ export default function CheckoutMember() {
                             id="confirm-agree"
                             value={"dathang"}
                             className="cursor-pointer"
+                            checked={checkAgree}
+                            onClick={() => {
+                              setCheckAgree(true);
+                              setCheckPrdPrice(false);
+                              setTitleConfirmBtn("Xác nhận đặt hàng");
+                            }}
                           />
                           <label
                             htmlFor="confirm-agree"
@@ -815,6 +849,12 @@ export default function CheckoutMember() {
                             id="prd-price"
                             value={"baogia"}
                             className="cursor-pointer"
+                            checked={checkPrdPrice}
+                            onClick={() => {
+                              setCheckAgree(false);
+                              setCheckPrdPrice(true);
+                              setTitleConfirmBtn("Gửi yêu cầu báo giá dự án");
+                            }}
                           />
                           <label htmlFor="prd-price" className="cursor-pointer">
                             Tôi yêu cầu thegioidien.com báo giá dự án cho các
@@ -857,7 +897,7 @@ export default function CheckoutMember() {
                     >
                       <HiChevronDoubleRight className="text-[#FFFF00] text-2xl" />
                       <span className="text-white text-[1.1rem]">
-                        Xác nhận đơn hàng
+                        {titleConfirmBtn}
                       </span>
                     </button>
                   </div>
