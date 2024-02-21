@@ -29,25 +29,16 @@ export default function MemberBlock() {
     ? JSON.parse(localStorage.getItem("currentUSer"))
     : null;
 
-  // console.log(userInfo);
-  // address
-  // :
-  // "11 BC, Quận Tân Bình, Thành phố Hồ Chí Minh"
-  // email
-  // :
-  // "a@gmail.com"
-  // id
-  // :
-  // 3
-  // name
-  // :
-  // "a"
-  // password
-  // :
-  // "$2a$10$WqKbLXNlGPyFj4QhiR0Lwu8xKZQ/BaIiZq8Ur5f9ZOAk1ADZShwTi"
-  // phone
-  // :
-  // "+8494430220"
+  //load created_date
+  const userInfoCreatedDate = userInfo?.created_date
+    ? userInfo.created_date.substring(0, 10).split("-")
+    : []; //yyyy-mm-dd
+  const formatCreatedDate =
+    userInfoCreatedDate[2] +
+    "/" +
+    userInfoCreatedDate[1] +
+    "/" +
+    userInfoCreatedDate[0]; // dd/mm/yyyy
 
   //handle render menu-items
   const menuItems = [
@@ -104,7 +95,7 @@ export default function MemberBlock() {
         {menuItems.map((item, index) => (
           <div
             key={index}
-            className="flex items-center pt-2 pb-2 pl-[0.7rem] pr-[0.7rem] gap-2 bg-[#1D8DD9] text-white border-b border-solid border-b-white"
+            className="flex items-center pt-2 pb-2 pl-[0.7rem] pr-[0.7rem] gap-2 bg-[#1D8DD9] text-white border-b border-solid border-b-white cursor-pointer hover:bg-[#B21E02]"
           >
             {item.icon}
             <span>
@@ -138,8 +129,8 @@ export default function MemberBlock() {
             "flex gap-5 bg-[#FEDBD7] p-4 pl-2 pr-2",
           ])}
         >
-          <span>ID: ....</span>
-          <span>Ngày đăng ký: .</span>
+          <span>ID: {userInfo?.id}.</span>
+          <span>Ngày đăng ký: {formatCreatedDate}.</span>
         </div>
         {/* login-contact-wrp */}
         <div
