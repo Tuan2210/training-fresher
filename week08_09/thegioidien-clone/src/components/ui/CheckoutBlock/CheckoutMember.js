@@ -663,7 +663,7 @@ export default function CheckoutMember() {
                     id="cash-pay"
                     value={"opTienMat"}
                     checked={checkCashPay}
-                    onClick={() => {
+                    onChange={() => {
                       setCheckCashPay(true);
                       setCheckBankPay(false);
                       setShowBankOption("none");
@@ -687,7 +687,7 @@ export default function CheckoutMember() {
                       id="bank-pay"
                       value={"opChuyenKhoan"}
                       checked={checkBankPay}
-                      onClick={() => {
+                      onChange={() => {
                         setCheckCashPay(false);
                         setCheckBankPay(true);
                         setShowBankOption("flex");
@@ -826,7 +826,7 @@ export default function CheckoutMember() {
                             value={"dathang"}
                             className="cursor-pointer"
                             checked={checkAgree}
-                            onClick={() => {
+                            onChange={() => {
                               setCheckAgree(true);
                               setCheckPrdPrice(false);
                               setTitleConfirmBtn("Xác nhận đặt hàng");
@@ -850,7 +850,7 @@ export default function CheckoutMember() {
                             value={"baogia"}
                             className="cursor-pointer"
                             checked={checkPrdPrice}
-                            onClick={() => {
+                            onChange={() => {
                               setCheckAgree(false);
                               setCheckPrdPrice(true);
                               setTitleConfirmBtn("Gửi yêu cầu báo giá dự án");
